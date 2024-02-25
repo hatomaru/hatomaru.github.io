@@ -75,6 +75,8 @@
 	  .privacy-policy_top {
     flex-direction: column; /* スマートフォンビューではカラムを縦に並べる */
     padding: 100px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 	
   .icon-container {
