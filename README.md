@@ -1,0 +1,1 @@
+# hatomaru.github.io
