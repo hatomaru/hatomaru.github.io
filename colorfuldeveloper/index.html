@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ColorfulDeveloper</title>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   <link rel="stylesheet" href="../css/defaultstyle.css">
   <link rel="stylesheet" href="../css/styles.css">
 </head>
@@ -119,9 +120,13 @@
 
     </div>
   </section>
-  <footer>
-    ©2019-2024 by ColorfulDeveloper.
-  </footer>
+     <script>
+      $(function() {
+        $.get('/footer.html', function(data){
+          $('body').append(data);
+        });
+      });
+    </script>
   <script src="../js/scripts.js"></script>
   <script src="../js/menu.js"></script>
 </body>
