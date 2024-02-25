@@ -1,0 +1,84 @@
+/* CSS Document */
+/* プライバシーポリシーのセクションのスタイル */
+.privacy-policy_top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  margin-bottom: -100px;
+  margin-top: 60px;
+  gap: 20px; /* カラム間のスペース */
+}
+
+.privacy-policy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  margin-top: 20px;
+  gap: 20px; /* カラム間のスペース */
+}
+
+/* 左側のカラムのスタイル */
+.column-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 角丸の図形コンテナのスタイル */
+.shape-container {
+  border-radius: 50%; /* 角丸にする */
+  width: 100px; /* 図形の幅 */
+  height: 100px; /* 図形の高さ */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:0.1s ease-out;
+}
+
+.bi_bi-journal{
+  transition: transform 0.3s ease; /* アニメーションの効果時間と種類を指定 */
+  display: block; /* SVGがinlineでないことを保証 */
+}
+
+.bi_bi-journal:hover{
+  transform: scale(1.3); /* ホバー時に少し拡大する */
+}
+
+.shape-container:hover{
+	border-radius: 10%;
+}
+
+/* 右側のカラムのスタイル */
+.column-right {
+  flex: 3;
+}
+
+.column-right h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.column-right p {
+  color: #666;
+}
+
+/* レスポンシブデザインのスタイル */
+@media (max-width: 768px) {
+  .privacy-policy {
+    flex-direction: column; /* スマートフォンビューではカラムを縦に並べる */
+    padding: 20px;
+  }
+
+	  .privacy-policy_top {
+    flex-direction: column; /* スマートフォンビューではカラムを縦に並べる */
+    padding: 100px;
+  }
+	
+  .icon-container {
+    height: 200px; /* スマートフォンビューでの高さ調整 */
+  }
+}
+

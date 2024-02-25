@@ -1,0 +1,177 @@
+/* CSS Document */
+/* 基本スタイル */
+/* ここにCSSスタイルを追加 */
+
+html { 
+	scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+/* フッター */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+
+/* ヘッダー */
+/* ナビゲーションバーの基本スタイル */
+.navbar {
+  width: 100%;
+  background-color: #fff;
+  padding: 10px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-container {
+  max-width: 1200px; /* コンテナの最大幅 */
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-left, .navbar-right {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.navbar-logo img {
+  margin-left: 20px;
+    width: 200px;
+  height: 50%; /* ロゴのサイズ調整 */
+}
+
+.navbar-menu {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-menu li {
+	padding: 20px;
+	padding-right: 20px;
+}
+
+.navbar-menu li a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s;
+  height: auto;
+  width: auto;
+}
+
+.navbar-menu li a:hover, .navbar-menu li a:focus {
+  color: #DCBA29;
+}
+
+.my-apps-button {
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.my-apps-button:hover, .my-apps-button:focus {
+  background-color: #333;
+}
+
+
+/* レスポンシブデザインでモバイルビュー時のスタイル */
+@media (max-width: 768px) {
+	  .navbar-container {
+    flex-direction: column;
+  }
+
+  .navbar-left {
+    order: 1; /* モバイルビューでの位置変更 */
+  }
+
+  .navbar-menu {
+    flex-direction: column;
+    width: 100%;
+    display: none; /* モバイルビューで初期非表示 */
+  }
+
+  .navbar-menu li a {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    display: block;
+  }
+
+  .navbar-right {
+    order: 2;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+	  
+  }
+
+  .hamburger-menu {
+    display: flex;
+    order: 3;
+    margin-bottom: 10px;
+  }
+
+  .navbar-menu.is-active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+  }
+}
+
+a {
+	padding: 0px;
+	margin: 0px;
+	color: #DCBA29;
+}
+
+p {
+	margin: 0;
+}
+
+/* レスポンシブデザイン: ハンバーガーメニュー */
+.hamburger-menu {
+  display: none; /* この行はそのままですが、モバイルビュー以外では非表示に */
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-around; /* バー間のスペースを均等に */
+  padding: 10px; /* クリックしやすくするためのパディング */
+  z-index: 1001; /* ナビゲーションバーの上に表示 */
+}
+
+.hamburger-menu .bar {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+}
+
+/* 画面サイズが768px以下の場合のスタイル */
+@media (max-width: 768px) {
+  .hamburger-menu {
+    display: block; /* モバイルビューではハンバーガーメニューを表示 */
+  }
+}
+
+
+/* JavaScriptを使用してハンバーガーメニューの動作を追加する必要があります。 */
+
+/* ここまで共通で表示 */

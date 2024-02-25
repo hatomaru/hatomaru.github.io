@@ -1,0 +1,362 @@
+
+/* メインイメージ */
+#hero {
+  background-image: url('../main-image.jpg');
+  background-size: cover;
+  height: 200%;
+  margin-bottom: 100px;
+  margin-top: 10%;
+	padding-top: 0px;
+}
+
+@media (max-width: 768px) {
+	#hero {
+  margin-bottom: 100px;
+  margin-top: 40%;
+	padding-top: 0px;
+}
+}
+
+/* ゲームのセクション */
+#games {
+  padding: 50px 0;
+}
+
+/* クリエイターについてのセクション */
+#about {
+  background-color: #e9e9e9;
+  padding: 50px 0;
+}
+
+  
+  .header {
+    background: url('../header-background.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 20px;
+	  padding-top: 0px;
+    text-align: center;
+  }
+  
+  .slide-show {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+  
+.mySlides fade {
+	height: 30px;
+}
+
+  .slide {
+    width: 100%;
+    display: none;
+    position: absolute;
+  }
+  
+  .slide.active {
+    display: block;
+  }
+  
+  .news-list, .apps-list, .dev-apps-list {
+    padding: 20px;
+  }
+  
+  .news-item, .app-item, .dev-app-item {
+    background: #f0f0f0;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .apps-list, .dev-apps-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .app-item, .dev-app-item {
+    width: 30%;
+    box-sizing: border-box;
+  }
+/* CSS Document */
+
+/* 全体のスタイル */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+/* スライドショーのセクションのスタイル */
+.slideshow-section {
+  position: relative;
+  max-width: 100%;
+  
+}
+
+/* スライドショーのコンテナのスタイル */
+/* スライドショーのコンテナのスタイル */
+.slideshow-container {
+  max-width: 100%; /* 最大幅は画面の幅と同じ */
+  height: 500px; /* ここで高さを固定 */
+  position: relative;
+  margin: auto;
+  overflow: hidden; /* はみ出した部分は非表示に */
+  margin-bottom: 20px;
+}
+
+/* 各スライドのスタイル */
+.mySlides {
+  display: none; /* スライドは一つずつ表示 */
+  height: 100%; /* コンテナの高さに合わせる */
+}
+
+.mySlides img {
+  width: 100%; /* 画像は幅いっぱいに広げる */
+  height: 100%; /* 画像の高さをコンテナの高さに合わせる */
+  object-fit: contain; /* 画像全体が見えるように調整 */
+}
+
+
+
+/* スライドのフェードアニメーション */
+@keyframes fadeEffect {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@-webkit-keyframes fadeEffect {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+/* "次へ"ボタンと"前へ"ボタンの共通スタイル */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px; /* ボタンのサイズ */
+  height: 50px; /* ボタンのサイズ */
+  padding: 0;
+  color: white;
+  font-weight: bold;
+  font-size: 24px; /* アイコンのサイズを調整 */
+  line-height: 50px; /* アイコンの垂直中央揃え */
+  text-align: center;
+  transition: background-color 0.6s ease;
+  border-radius: 50%; /* 丸形にする */
+  user-select: none;
+  background-color: rgba(0,0,0,0.8);
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.25); /* ドロップシャドウを追加 */
+	z-index: 10;
+}
+
+/* "次へ"ボタンの位置を右側に設定 */
+.next {
+  right: 20px; /* 右の余白 */
+}
+
+/* "前へ"ボタンの位置を左側に設定 */
+.prev {
+  left: 20px; /* 左の余白 */
+}
+
+/* ボタンのホバースタイル */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,1); /* ホバー時の背景色 */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5); /* ホバー時のドロップシャドウを強くする */
+}
+
+/* レスポンシブデザイン：ビューポートが小さくなったらボタンのサイズを調整 */
+@media only screen and (max-width: 768px) {
+  .prev, .next {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+  }
+}
+
+/* レスポンシブデザインのためのメディアクエリ */
+@media (max-width: 768px) {
+  .slideshow-container {
+    height: 300px; /* 小さい画面での高さを調整 */
+  }
+}
+
+@media (max-width: 480px) {
+  .slideshow-container {
+    height: 200px; /* さらに小さい画面での高さを調整 */
+  }
+}
+
+
+/* スライド下のドットナビゲーションのスタイル */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #717171;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.dot:hover {
+  background-color: #F31F80;
+}
+
+.active{
+  background-color: #F31F80;
+}
+
+/* スライド画像のスタイル */
+img {
+  vertical-align: middle;
+  width: 100%; /* 画像をレスポンシブにする */
+}
+
+/* レスポンシブデザイン */
+@media only screen and (max-width: 768px) {
+  .prev, .next, .text {font-size: 11px}
+}
+
+/* お知らせセクションのスタイル */
+.news-section {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f9f9f9; /* 背景色 */
+}
+
+.news-item {
+  background-color: #ffffff; /* ニュースアイテムの背景色 */
+  margin-bottom: 15px; /* 下のマージン */
+  padding: 10px; /* パディング */
+  border-left: 5px solid #007BFF; /* 左側のボーダー */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 軽いボックスシャドウ */
+}
+
+.news-item a {
+  margin-top: 0;
+  color: #333; /* タイトルの色 */
+  font-size: 1.2em;
+}
+
+.news-item p2 {
+  margin-top: 0;
+  color: #333; /* タイトルの色 */
+  font-size: 1.2em;
+}
+
+.new-tag {
+  background-color: #FF3C6F; /* タグの背景色 */
+  color: #FFFFFF; /* タグの文字色 */
+  font-size: 0.7em;
+  padding: 5px 9px;
+  margin-left: 10px; /* タグの左のマージン */
+  border-radius: 5px; /* 角を丸くする */
+}
+
+.news-item p {
+  color: #666; /* 説明文の色 */
+}
+
+.news-footer {
+  color: #999; /* フッターの色 */
+  font-size: 0.8em;
+  text-align: right;
+  margin-top: 10;
+}
+
+/* 配信中のアプリセクションのスタイル */
+.apps-section {
+  padding: 20px;
+  background-color: #f9f9f9; /* 背景色 */
+}
+
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3列のグリッド */
+  gap: 20px; /* グリッドのギャップ */
+}
+
+.app-card {
+  background-color: #ffffff; /* カードの背景色 */
+  border: 1px solid #ddd; /* カードの境界 */
+  border-radius: 10px; /* 角を丸くする */
+  overflow: hidden; /* 内容がはみ出た時に隠す */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* カードの影 */
+}
+
+.app-image-container {
+  width: 100%; /* コンテナの幅 */
+}
+
+.app-image-container img {
+ width: 100%;
+  height: 250px;
+  object-fit: cover; /* 画像をコンテナにフィットさせる */
+  
+}
+
+.app-info {
+  padding: 15px; /* 情報部分のパディング */
+}
+
+.app-info h3 {
+  margin: 10px 0; /* タイトルのマージン */
+}
+
+.app-genre {
+  display: inline-block;
+  background-color: #e0e0e0; /* ジャンルタグの背景色 */
+  color: #333; /* ジャンルタグの文字色 */
+  padding: 5px 10px;
+  border-radius: 20px; /* ジャンルタグを丸くする */
+  margin-right: 10px; /* ジャンルタグのマージン */
+	margin-bottom: 10px;
+}
+
+.store-buttons {
+  margin-top: 20px; /* ボタンの上のマージン */
+}
+
+.store-button {
+  text-decoration: none; /* リンクの下線を消す */
+  color: #fff; /* ボタンの文字色 */
+  padding: 10px 15px; /* ボタンのパディング */
+  border-radius: 5px; /* ボタンの角を丸くする */
+  margin-right: 10px; /* ボタンの間隔 */
+}
+
+.store-button.ios {
+  background-color: #007bff; /* iOSボタンの色 */
+  
+}
+
+.store-button.android {
+  background-color: #34a853; /* Androidボタンの色 */
+}
+
+.store-button.comingsoon {
+  background-color: #D4B121; /* Androidボタンの色 */
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .app-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2列に変更 */
+  }
+}
+
+@media (max-width: 480px) {
+  .app-grid {
+    grid-template-columns: 1fr; /* 1列に変更 */
+  }
+}
+
+
+
+
