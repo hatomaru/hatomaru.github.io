@@ -282,6 +282,7 @@ img {
   border-radius: 10px; /* 角を丸くする */
   overflow: hidden; /* 内容がはみ出た時に隠す */
   box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* カードの影 */
+  max-width: 400px;
 }
 
 .app-image-container {
