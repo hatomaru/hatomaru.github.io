@@ -38,6 +38,8 @@
   transition:0.1s ease-out;
 }
 
+
+
 .bi_bi-journal{
   transition: transform 0.3s ease; /* アニメーションの効果時間と種類を指定 */
   display: block; /* SVGがinlineでないことを保証 */
@@ -82,5 +84,11 @@
   .icon-container {
     height: 200px; /* スマートフォンビューでの高さ調整 */
   }
+	
+	.column-right {
+	font-size: 13px;
+  max-width: 252px;
+	}
+
 }
 
