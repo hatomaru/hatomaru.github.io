@@ -72,6 +72,10 @@
     width: 30%;
     box-sizing: border-box;
   }
+
+.Link{
+	
+}
 /* CSS Document */
 
 /* 全体のスタイル */
@@ -243,6 +247,7 @@ img {
   color: #333; /* タイトルの色 */
   font-size: 1.2em;
 }
+
 
 .new-tag {
   background-color: #FF3C6F; /* タグの背景色 */
