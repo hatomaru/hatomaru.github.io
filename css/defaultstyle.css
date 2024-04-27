@@ -9,6 +9,7 @@ html {
 body {
     font-family: Arial, sans-serif;
     color: #333;
+	letter-spacing: 0.02em;
 }
 
 /* フッター */
