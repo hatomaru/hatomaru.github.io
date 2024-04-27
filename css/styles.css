@@ -318,6 +318,18 @@ li{
   max-width: 400px;
 }
 
+.app-card:hover {
+  box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.2);
+  transform: scale(0.97);
+  transition-duration: 500ms;
+}
+
+.app-card {
+  box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0);
+  transform: scale(1);
+  transition-duration: 300ms;
+}
+
 .app-image-container {
   width: 100%; /* コンテナの幅 */
 }
@@ -345,18 +357,24 @@ li{
   border-radius: 20px; /* ジャンルタグを丸くする */
   margin-right: 10px; /* ジャンルタグのマージン */
 	margin-bottom: 10px;
+	font-size: 17px; 
+	padding-right: 20px; 
+	padding-left: 10px;
 }
 
 .store-buttons {
-  margin-top: 20px; /* ボタンの上のマージン */
+  margin-top: 33px; /* ボタンの上のマージン */
+  margin-bottom: 20px;
 }
 
 .store-button {
   text-decoration: none; /* リンクの下線を消す */
   color: #fff; /* ボタンの文字色 */
-  padding: 10px 15px; /* ボタンのパディング */
+  padding: 16px 15px; /* ボタンのパディング */
   border-radius: 5px; /* ボタンの角を丸くする */
   margin-right: 10px; /* ボタンの間隔 */
+  font-size: 80%;
+	 box-sizing: border-box;
 }
 
 .store-button.ios {
@@ -373,13 +391,13 @@ li{
 }
 
 /* レスポンシブ対応 */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .app-grid {
     grid-template-columns: repeat(2, 1fr); /* 2列に変更 */
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 590px) {
   .app-grid {
     grid-template-columns: 1fr; /* 1列に変更 */
   }

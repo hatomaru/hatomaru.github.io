@@ -1,0 +1,67 @@
+/* CSS Document */
+#about {
+	text-align: center;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	padding-bottom: -30px;
+}
+
+#about h1{
+	padding-top: 30px;
+	margin-bottom: 10px;
+	font-size: 90px;
+}
+
+#about img {
+	border-radius: 100%; width: 120px; height: auto;
+}
+
+#about p {
+	padding-top: 0px;
+	padding-bottom: 20px;
+}
+
+#about h2 {
+	padding-top: 45px;
+	margin-top: -40px;
+}
+
+#about h3 {
+	padding-top: 45px;
+	margin-top: -60px;
+	color: gray;
+}
+
+#hero {
+	margin-top: 80px;
+}
+
+.Dl-button {
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+  padding: 16px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.Dl-button:hover, .Dl-button:focus {
+  background-color: #333;
+}
+
+.aboutCountnt {
+	margin-left: 10px;
+}
+
+.ContentAbout {
+		background-color: hsla(0,0%,98%,1.00);
+}
+
+.aboutCountnt h1{
+	font-size: 30px;
+	margin-bottom: 4px;
+}
+
+.Content_Genre {
+	margin-top: 5px;margin-bottom: 15px;padding-top: 0px
+}

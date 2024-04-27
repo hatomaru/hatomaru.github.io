@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>One Team. Portfolio</title>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+   <link rel="icon" href="favicon.ico">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="../css/defaultstyle.css">
+  <link rel="stylesheet" href="../css/styles.css">
+	<link rel="stylesheet" href="../css/portfolio.css">
+</head>
+
+<body>
+
+  <!-- ナビゲーションバー -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <!-- ロゴとメニューリンク -->
+      <div class="navbar-left">
+        <a href="#hero" class="navbar-logo">
+          <img src="src/OneTeam.Logo_2.png" alt="ロゴ">
+        </a>
+        <ul class="navbar-menu">
+          <li><a href="#hero" style="color: #DCBA29;">ホーム</a></li>
+          <!-- <li><a href="about.html">開発者について</a></li> -->
+          <li><a href="#app">作品</a></li>
+			<li style="margin: 45px:"><a href="https://twitter.com/OneTeam_dot"><img src="src/logo-black.png" style="width: 30px;height: auto;"></a></li>
+        </ul>
+      </div>
+
+      <!-- 右端のボタン -->
+      <div class="navbar-right">
+       <a href="https://unityroom.com/users/oneteam_dot"
+          class="my-apps-button" style="background-color: #43A2D8">Unityroomで一部の作品を遊ぶ</a>
+      </div>
+
+      <!-- ハンバーガーメニュー -->
+      <div class="hamburger-menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+  </nav>
+
+<section class="about" id="about">
+<h1 style="margin-top: 80px">About</h1>
+	<img src="src/Icon.png" style="">
+	<h2>One Team.</h2>
+	<h3>ワンチームドット</h3>
+	<p>ゲーム系制作専門学校 2年制の1年生です。</p>
+	</section>
+	
+  <!-- 作品の一覧 -->
+  <section class="apps-section" id="app">
+    <h2>作品一覧</h2>
+    <div class="app-grid">
+      <!-- 作品カード -->
+      <div class="app-card">
+        <div class="app-image-container">
+					  <a href="contents/cont-01.html" style="color:black; text-decoration: none;">
+          <img src="../src/app/BL_ScreenShoot.png" alt="作品のスクリーンショット" style="object-position: 100% 38%;">
+        </div>
+        <div class="app-info">
+          <h3>BlockWorld Ai</h3>
+		  <li>
+          <ul><span class="app-genre" style="background-color: #FF2E86;color: whitesmoke">AIパズル</span></ul>
+			  		   <ul><span class="app-genre" style="background-color: #FFF;color: orange;border: 2px solid orange; font-weight: bold;"><span class="material-symbols-outlined" style="padding-right: 5px">
+trophy
+</span>受賞作品</span></ul>
+			</li>
+          <p>制限時間以内にブロックの中の数字が0になるようにパネルを
+            タップして、<br>敵に攻撃し、全6体の敵を全て倒すゲームです。</p>
+		　　</a>
+        </div>
+      </div>
+      <!-- 作品カード -->
+      <div class="app-card">
+        <div class="app-image-container">
+					  <a href="contents/cont-02.html" style="color:black; text-decoration: none;">
+          <img src="../src/app/SiM_ScreenShot.png" alt="アプリのスクリーンショット" style="object-position: 100% 38%;">
+        </div>
+        <div class="app-info">
+          <h3>SimpleMath</h3>
+		  <li>
+          <ul><span class="app-genre" style="background-color: #2FAA00;color: whitesmoke">計算練習</span></ul>
+			  
+			</li>
+      <p>二択から答えを選んでたし算、ひき算、かけ算、わり算の計算の練習が<br>出来る計算練習ゲームです。</p>
+		　　</a>
+        </div>
+  </section>
+  <section class="apps-section">
+    <h2>スキル</h2>
+    <div class="app-grid">
+      <!-- アプリカード -->
+		    <div class="app-card">
+        <div class="app-image-container">
+          <img src="src/app/BlockWorld_Ai/サムネイル_4.jpg" alt="アプリのスクリーンショット" style="object-position: 100% 20%;">
+        </div>
+        <div class="app-info">
+          <h3>Unityを使ったゲーム制作</h3>
+		  <p>主にUnityを使ってゲームを作っています。</p>
+        </div>
+      </div>
+      <div class="app-card">
+        <div class="app-image-container">
+          <img src="src/Skill_Design.png" alt="アプリのスクリーンショット" style="object-position: 100% 20%;">
+        </div>
+        <div class="app-info">
+          <h3>Figmaを使ったUIデザイン</h3>
+		  <p>FigmaやIllustratorを使ったデザインに取り組んでいます。</p>
+        </div>
+      </div>
+    <div class="app-card">
+        <div class="app-image-container">
+          <img src="src/Skill_Movie.png" alt="アプリのスクリーンショット" style="object-position: 100% 20%;">
+        </div>
+        <div class="app-info">
+          <h3>映像制作</h3>
+		  <p>趣味で映像制作を行ったり、Xに公開するプロモーションビデオを制作しています。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+     <script>
+      $(function() {
+        $.get('/footer.html', function(data){
+          $('body').append(data);
+        });
+      });
+    </script>
+  <script src="../js/scripts.js"></script>
+  <script src="../js/menu.js"></script>
+</body>
+
+</html>

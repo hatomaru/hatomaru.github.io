@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlockWorld Ai</title>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+	<link rel="icon" href="../favicon.ico">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="../../css/defaultstyle.css">
+  <link rel="stylesheet" href="../../css/styles.css">
+	<link rel="stylesheet" href="../../css/portfolio.css">
+</head>
+
+<body>
+
+  <!-- ナビゲーションバー -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <!-- ロゴとメニューリンク -->
+      <div class="navbar-left">
+        <a href="#hero" class="navbar-logo">
+          <img src="../src/OneTeam.Logo_2.png" alt="ロゴ">
+        </a>
+        <ul class="navbar-menu">
+          <li><a href="#hero" style="color: #DCBA29;">ホーム</a></li>
+          <!-- <li><a href="about.html">開発者について</a></li> -->
+          <li><a href="/portfolio/#app">作品</a></li>
+			<li style="margin: 45px:"><a href="https://twitter.com/OneTeam_dot"><img src="../src/logo-black.png" style="width: 30px;height: auto;"></a></li>
+        </ul>
+      </div>
+
+      <!-- 右端のボタン -->
+      <div class="navbar-right">
+        <a href="https://unityroom.com/users/oneteam_dot"
+          class="my-apps-button" style="background-color: #43A2D8">	Unityroomで一部の作品を遊ぶ</a>
+      </div>
+
+      <!-- ハンバーガーメニュー -->
+      <div class="hamburger-menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+  </nav>
+
+
+  <section id="hero" style="margin-bottom: 0px;">
+    <section class="slideshow-section">
+      <div class="slideshow-container">
+        <!-- 各スライド -->
+        <div class="mySlides fade">
+          <img src="../src/app/BlockWorld_Ai/サムネイル_1.png">
+        </div>
+    <div class="mySlides fade">
+          <img src="../src/app/BlockWorld_Ai/サムネイル_2.jpg">
+        </div>
+		    <div class="mySlides fade">
+          <img src="../src/app/BlockWorld_Ai/サムネイル_3.jpg">
+        </div>
+		    <div class="mySlides fade">
+          <img src="../src/app/BlockWorld_Ai/サムネイル_4.jpg">
+        </div>
+		    <div class="mySlides fade">
+          <img src="../src/app/BlockWorld_Ai/サムネイル_5.jpg">
+        </div>
+        <!-- 前へボタン -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <!-- 次へボタン -->
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
+      <!-- スライド下のドットナビゲーション -->
+      <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+		  <span class="dot" onclick="currentSlide(2)"></span>
+		  <span class="dot" onclick="currentSlide(3)"></span>
+		  <span class="dot" onclick="currentSlide(4)"></span>
+		  <span class="dot" onclick="currentSlide(5)"></span>		  
+      </div>
+    </section>
+  </section>
+	  <section class="aboutCountnt">
+	<h1>BlockWorldAi <span style="font-size: 20px; color: grey">ブロックワールドアイ</span></h1>
+	<time datetime="2024-02-25" style="margin-top: 0px;margin-bottom: 0px;padding-bottom: 30px">2023年</time>
+	 <li class="Content_Genre">
+          <ul><span class="app-genre" style="background-color: #FF2D5F;color: whitesmoke; padding-top: 10px">AIパズルゲーム</span></ul>
+		   <ul><span class="app-genre" style="background-color: #FFF;color: orange;border: 2px solid orange; font-weight: bold;"><span class="material-symbols-outlined" style="padding-right: 5px">
+trophy
+</span>ゲームクリエイター甲子園 2023 U-18総合大賞 他受賞</span></ul>
+			</li>
+		<section class="ContentAbout">
+  <section class="news-section" style="margin-bottom: 10px;">
+    <h2>概要</h2>
+   	 <article class="news-item" style="border-left: 0px solid #1C9418;">
+      <p>AIがキミのパズルを学んで共に戦うパズルRPGゲーム、通常ステージではAIがパズルを学びながら敵と戦います、<br>ステージ最後のボスステージでは育てたAIが戦ってくれます。<br>プレイヤーはスキルを発動してAIを応援します。BlockWorldのゆかいなフレンズと一緒に冒険しよう！</p>
+      <div class="news-footer">
+
+      </div>
+    </article>
+  </section>
+  <!-- 配信中のアプリセクション -->
+    <section class="news-section" style="margin-top: 0px;">
+    <h2>こだわったポイント</h2>
+   	 <article class="news-item" style="border-left: 20px solid #FF256F;"><span class="material-symbols-outlined" style="margin-left: 0px;margin-top: 9px;font-size: 60px; color: #FF256F;">
+School
+</span>
+	  <li>
+		  <ul><p2>AIがパズルの動かし方を学び、強力なボスにキミと共に戦う</p2></ul> 
+		 </li>
+      <p>ゲーム内でプレイヤーのパズルを学ぶAI BLRSがプレイヤーのパズルを学習します！<br>学習システムのデータ構造やスコアの算出を行う式をこだわりました。</p>
+      <div class="news-footer">
+        <time datetime="2024-02-25 " style="color: hsla(0,0%,100%,1.00)">2024年4月6日</time>
+      </div>
+    </article>
+		<article class="news-item" style="border-left: 20px solid #D07E1F;"><span class="material-symbols-outlined" style="margin-left: 0px;margin-top: 9px;font-size: 60px; color: #D07E1F;">
+Swords
+</span>
+	  <li>
+		  <ul><p2>取って 取られての早押しバトル！</p2></ul> 
+		 </li>
+				 <p>対戦形式でより白熱したバトルになるように工夫しました。</p>
+      <div class="news-footer">
+        <time datetime="2024-02-25 " style="color: hsla(0,0%,100%,1.00)">2024年4月6日</time>
+      </div>
+    </article>
+			 <article class="news-item" style="border-left: 20px solid #1C9418;"><span class="material-symbols-outlined" style="margin-left: 0px;margin-top: 9px;font-size: 60px; color: #1C9418;">
+School
+</span>
+	  <li>
+		  <ul><p2>AIの強化学習(模倣)をお手軽に体験できる</p2></ul> 
+		 </li>
+				 <p>AIの学習に成功するとAiキューブという学習結果を可視化した物を生成することによって<br>プレイヤーのAIの育成を可視化しました。</p>
+      <div class="news-footer">
+        <time datetime="2024-02-25 " style="color: hsla(0,0%,100%,1.00)">2024年4月6日</time>
+      </div>
+    </article>
+			 <article class="news-item" style="border-left: 20px solid #3179D6;"><span class="material-symbols-outlined" style="margin-left: 0px;margin-top: 9px;font-size: 60px; color: #3179D6;">
+Public
+</span>
+	  <li>
+		  <ul><p2>不思議な世界 BlockWorldを冒険しよう</p2></ul> 
+		 </li>
+				 <p>BlockWorldのカラフルで独特な世界をローポリゴンで表現しました。</p>
+      <div class="news-footer">
+        <time datetime="2024-02-25 " style="color: hsla(0,0%,100%,1.00)">2024年4月6日</time>
+      </div>
+    </article>	
+  </section>
+	<section class="news-section">
+    <h2>受賞歴</h2>
+   	 <article class="news-item" style="border-left: 20px solid #29889E;"><span class="material-symbols-outlined" style="margin-left: 0px;margin-top: 9px;font-size: 70px; color: #29889E;">
+trophy
+</span>
+	  <li>
+		  <ul><p2>Unityニュージェネレーションズフェス2023 審査員賞</p2></ul> 
+		 </li>
+      <div class="news-footer">
+        <time datetime="2024-02-25"></time>
+      </div>
+    </article>
+		 	 <article class="news-item" style="border-left: 20px solid #ED9126;"><span class="material-symbols-outlined" style="margin-left: 0px;margin-top: 9px;font-size: 70px; color: #ED9126;">
+trophy
+</span>
+	  <li>
+		  <ul><p2>ゲームクリエイター甲子園 2023 U-18総合大賞</p2></ul> 
+		 </li>
+      <div class="news-footer">
+        <time datetime="2024-02-25"></time>
+      </div>
+    </article>
+  </section>
+	</section>
+		  	</section>
+     <script>
+      $(function() {
+        $.get('/footer_O.html', function(data){
+          $('body').append(data);
+        });
+      });
+    </script>
+  <script src="../../js/scripts.js"></script>
+  <script src="../../js/menu.js"></script>
+</body>
+
+</html>
