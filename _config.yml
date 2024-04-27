@@ -1,0 +1,14 @@
+plugins:
+  - jekyll-sitemap
+
+defaults:
+  -
+    scope:
+      path:            "footer.html"
+    values:
+      sitemap:         false
+  -
+    scope:
+      path:            "footer_O.html"
+    values:
+      sitemap:         false
