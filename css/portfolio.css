@@ -37,6 +37,12 @@
 	margin-top: 170px;
 }
 
+.Year {
+	margin-top: 5px;
+	color: hsla(0,0%,71%,1.00);
+	font-size: 18px;
+}
+
 .Dl-button {
   background-color: #000;
   color: #fff;
