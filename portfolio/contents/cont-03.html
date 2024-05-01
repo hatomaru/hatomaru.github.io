@@ -16,36 +16,13 @@
 <body>
 
     <!-- ナビゲーションバー -->
-  <nav class="navbar">
-    <div class="navbar-container">
-      <!-- ロゴとメニューリンク -->
-      <div class="navbar-left">
-        <a href="/portfolio/" class="navbar-logo">
-          <img src="../src/OneTeam.Logo_2.png" alt="ロゴ">
-        </a>
-        <ul class="navbar-menu">
-          <li><a href="/portfolio/" style="color: #DCBA29;">ホーム</a></li>
-          <!-- <li><a href="about.html">開発者について</a></li> -->
-          <li><a href="/portfolio/#app">作品</a></li>
-			<li><a href="/portfolio/#skil">スキル</a></li>
-			<li style="margin: 45px:"><a href="https://twitter.com/OneTeam_dot"><img src="../src/logo-black.png" style="width: 30px;height: auto;"></a></li>
-        </ul>
-      </div>
-
-      <!-- 右端のボタン -->
-      <div class="navbar-right">
-        <a href="https://unityroom.com/users/oneteam_dot"
-          class="my-apps-button" style="background-color: #43A2D8">Unityroomで一部の作品を遊ぶ</a>
-      </div>
-
-      <!-- ハンバーガーメニュー -->
-      <div class="hamburger-menu">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </div>
-    </div>
-  </nav>
+     <script>
+      $(function() {
+        $.get('/navbar_O.html', function(data){
+          $('body').append(data);
+        });
+      });
+    </script>
 
 
   <section id="hero" style="margin-bottom: 10px;">
