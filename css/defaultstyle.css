@@ -172,6 +172,18 @@ p {
   }
 }
 
+.Title {
+	text-align:  center;
+}
+
+.TitleText {
+	font-size: 400%;
+	margin-bottom: 5px;
+}
+
+.TtileDetail {
+	margin-top: -5px;
+}
 
 /* JavaScriptを使用してハンバーガーメニューの動作を追加する必要があります。 */
 
