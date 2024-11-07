@@ -115,6 +115,11 @@ body, html {
   object-fit: contain; /* 画像全体が見えるように調整 */
 }
 
+.FillSlide img {
+  width: 100%; /* 画像は幅いっぱいに広げる */
+  height: 100%; /* 画像の高さをコンテナの高さに合わせる */
+  object-fit: contain; /* 画像全体が見えるように調整 */
+}
 
 
 /* スライドのフェードアニメーション */
