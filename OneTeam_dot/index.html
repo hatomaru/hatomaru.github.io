@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ColorfulDeveloper</title>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+   <link rel="icon" href="/colorfuldeveloper/favicon.ico">
+  <link rel="stylesheet" href="../css/defaultstyle.css">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+
+  <!-- ナビゲーションバー -->
+     <script>
+      $(function() {
+        $.get('/navbar_OC.html', function(data){
+          $('body').append(data);
+        });
+      });
+    </script>
+
+
+  <section id="hero">
+    <section class="slideshow-section">
+      <div class="slideshow-container">
+        <!-- 各スライド -->
+        <div class="mySlides fade">
+          <img src="../src/info/CD_Banner_1.png">
+        </div>
+
+        <!-- 前へボタン -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <!-- 次へボタン -->
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
+      <!-- スライド下のドットナビゲーション -->
+      <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+      </div>
+    </section>
+  </section>
+  <!-- 配信中のアプリセクション -->
+  <section class="apps-section" id="app">
+	<div class="Title">
+	<h2 class="TitleText">GAMES</h2>
+    <h2 class="TtileDetail">公開中のゲーム</h2>
+		</div>
+    <div class="app-grid">
+      <!-- アプリカード -->
+      <div class="app-card">
+        <div class="app-image-container">
+          <img src="../src/app/BL_ScreenShoot.png" alt="アプリのスクリーンショット" style="object-position: 100% 38%;">
+        </div>
+        <div class="app-info">
+          <h3>BlockWorld</h3>
+		  <li>
+          <ul><span class="app-genre" style="background-color: #FF2E86;color: whitesmoke">AIを育成するゲーム</span></ul>
+			</li>
+          <p>制限時間以内にブロックの中の数字が0になるようにパネルを
+            タップして、<br>敵に攻撃し、全6体の敵を全て倒すゲームです。</p>
+          <div class="store-buttons">
+            <a href="https://play.google.com/store/apps/details?id=com.ColorfulDeveloper.BlockWorld"
+              class="store-button android">BlockWorldをインストールする</a>
+          </div>
+          <div class="store-buttons">
+            <a href="https://apps.apple.com/jp/app/id6463722805" class="store-button ios">BlockWorldをインストールする</a>
+          </div>
+        </div>
+      </div>
+ <div class="app-card">
+        <div class="app-image-container">
+          <img src="../src/app/SiM_ScreenShot.png" alt="アプリのスクリーンショット" style="object-position: 100% 38%;">
+        </div>
+        <div class="app-info">
+          <h3>SimpleMath</h3>
+		  <li>
+          <ul><span class="app-genre" style="background-color: #2FAA00;color: whitesmoke">計算練習</span></ul>
+			</li>
+			<p>二択から答えを選んでたし算、ひき算、かけ算、わり算の計算の練習が<br>出来る計算練習ゲームです。</p>
+          <div class="store-buttons">
+            <a href="https://play.google.com/store/apps/details?id=com.ColorfulDeveloper.SimpleMath"
+              class="store-button android">SimpleMathをインストールする</a>
+          </div>
+          <div class="store-buttons">
+            <a href="https://apps.apple.com/jp/app/%E8%A8%88%E7%AE%97%E7%B7%B4%E7%BF%92-simplemath/id6469422268?ign-mpt=uo%3D4" class="store-button ios">SimpleMathをインストールする</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+	  <!-- 配信中のアプリセクション -->
+  <section class="apps-section" id="app">
+	<div class="Title">
+	<h2 class="TitleText">GUIDELINE</h2>
+    <h2 class="TtileDetail">配信ガイドライン</h2>
+		</div>
+    <div class="app-grid">
+      <!-- アプリカード -->
+		 <a href="Guideline/BlockWorldAi.html" style="color:black; text-decoration: none;">
+      <div class="app-card">
+        <div class="app-image-container">
+          <img src="src/app/サムネイル_1.png" alt="アプリのスクリーンショット" style="object-position: 100% 38%;">
+        </div>
+        <div class="app-info">
+          <h3>BlockWorld Ai</h3>
+		 
+        </div>
+      </div>
+		</a>
+			 <a href="Guideline/Other.html" style="color:black; text-decoration: none;">
+ <div class="app-card">
+        <div class="app-image-container">
+          <img src="../src/app/SiM_ScreenShot.png" alt="アプリのスクリーンショット" style="object-position: 100% 38%;">
+        </div>
+        <div class="app-info">
+          <h3>その他のゲーム</h3>
+        </div>
+      </div>
+		</a>
+    </div>
+  </section>
+    <script>
+      $(function() {
+        $.get('/contact.html', function(data){
+          $('body').append(data);
+        });
+      });
+    </script>
+     <script>
+      $(function() {
+        $.get('/footer_O.html', function(data){
+          $('body').append(data);
+        });
+      });
+    </script>
+  <script src="../js/scripts.js"></script>
+  <script src="../js/menu.js"></script>
+</body>
+
+</html>
