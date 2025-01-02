@@ -95,6 +95,5 @@
 @media (max-width: 600px) {
    /* 横幅が600px以下の場合に適用するスタイル */
 	.my-apps-button { width: 0px; height: 0px; display: none;}
-   .navbar-right { width: 0px; height: 0px; display: none;}
 }
 
