@@ -94,6 +94,8 @@
 
 @media (max-width: 600px) {
    /* 横幅が600px以下の場合に適用するスタイル */
+	.navbar-logo {padding-top: 10px; padding-bottom: 4px}
+	.navbar-right{ width: 0px; height: 0px; display: none;}
 	.my-apps-button { width: 0px; height: 0px; display: none;}
 }
 
