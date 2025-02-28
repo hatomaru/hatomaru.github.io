@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>One Team. Portfolio | カルクオンライン</title>
+			<link rel="icon" href="../favicon_P.ico">
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="../../css/defaultstyle.css">
+  <link rel="stylesheet" href="../../css/styles.css">
+	<link rel="stylesheet" href="../../css/portfolio.css">
+</head>
+
+<body>
+
+     <!-- ナビゲーションバー -->
+     <script>
+      $(function() {
+        $.get('/navbar_O.html', function(data){
+          $('body').append(data);
+        });
+      });
+    </script>
+
+
+  <section id="hero" style="margin-bottom: 10px;">
+    <section class="slideshow-section">
+      <div class="slideshow-container">
+        <!-- 各スライド -->
+           <div class="mySlides fade">
+          <img src="../src/app/CalcOnline/スクリーンショット_1.jpg">
+        </div>
+		        <div class="mySlides fade">
+          <img src="../src/app/CalcOnline/スクリーンショット_2.jpg">
+        </div>
+		        <div class="mySlides fade">
+          <img src="../src/app/CalcOnline/スクリーンショット_3.jpg">
+        </div>
+		        <div class="mySlides fade">
+          <img src="../src/app/CalcOnline/スクリーンショット_4.jpg">
+        </div>
+        <!-- 前へボタン -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <!-- 次へボタン -->
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
+      <!-- スライド下のドットナビゲーション -->
+      <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+		    <span class="dot" onclick="currentSlide(2)"></span>
+		  <span class="dot" onclick="currentSlide(3)"></span>
+		  <span class="dot" onclick="currentSlide(4)"></span>
+      </div>
+    </section>
+  </section>
+	  <section class="aboutCountnt">
+	<h1>カルクオンライン </h1>
+	<time datetime="2024-02-25" style="margin-top: 0px;margin-bottom: 0px;padding-bottom: 30px">2025年</time>
+	 <li class="Content_Genre">
+ 	  <ul><span class="app-genre" style="background-color: #1A88AA;color: whitesmoke;padding-top: 10px">オンライン</span></ul>
+          <ul><span class="app-genre" style="background-color: #2FAA00;color: whitesmoke;padding-top: 10px">計算練習</span></ul>
+			</li>
+		   <h2 style="margin-top: -8px">使用した技術</h2>
+		  		   <li class="Content_Genre" style="margin-top: -10px;">
+ 	  <ul><span class="app-genre" style="background-color: #1A88AA;color: whitesmoke;padding-top: 10px;">オンライン対戦</span></ul>
+          <ul><span class="app-genre" style="background-color: #2F5A82;color: whitesmoke;padding-top: 10px;">リアルタイムコメント機能</span></ul>
+			</li>
+		  <section class="ContentAbout">
+  <section class="news-section" style="margin-bottom: 10px;">
+    <h2>概要</h2>
+   	 <article class="news-item" style="border-left: 0px solid #1C9418;">
+              <p>2択の計算問題を解く事で脳の健康維持と家族の絆を深められるゲームです。<br>
+ボタンを大きく配置したり、アイコンを活用することで誰でも簡単に遊べるようにしました。<br>
+オンライン対戦では、早押しバトルで遠く離れた家族や友達と一緒に計算練習が出来たり、スタンプやコメントを送り合うことで、コミュニケーションを通じて絆を深めることができます。<br>
+またルームにはパスワードを設定することができるので老人ホームなどでも安心してご活用いただけます。<br>
+ひとりでも、強さの異なる3つのCPUと早く答える練習をすることができます。<br>
+老人ホーム等のレクリエーション、飲み会のコミュニケーションツールや教育機関など絆を深める様々な場面でご活用いただけます。<br>
+脳のトレーニングとコミュニケーションの活性化を同時に実現するゲームを通じて、家族や友人、そして世代を超えたつながりを深めてみませんか？</p>
+      <div class="news-footer">
+
+      </div>
+    </article>
+  </section>
+  <!-- 配信中のアプリセクション -->
+    <section class="news-section" style="margin-top: 0px;">
+    <h2>こだわったポイント</h2>
+					 <article class="news-item" style="border-left: 20px solid #2C75B9;"><span class="material-symbols-outlined" style="margin-left: 0px;margin-top: 9px;font-size: 60px; color: #2C75B9;">
+Language
+</span>
+	  <li>
+		  <ul><p2>オンラインでみんなで計算早押しバトル</p2></ul> 
+		 </li>
+      <p>みんなでオンライン対戦が出来る機能を実装しました。<br>またスタンプやチャット機能でコミュニケーションを活性化できるように工夫しました</p>
+      <div class="news-footer">
+        <time datetime="2024-02-25 " style="color: hsla(0,0%,100%,1.00)">2024年4月6日</time>
+      </div>
+    </article>
+		 <article class="news-item" style="border-left: 20px solid #1F84B2;"><span class="material-symbols-outlined" style="margin-left: 0px;margin-top: 9px;font-size: 60px; color: #1F84B2;">
+Group
+</span>
+	  <li>
+		  <ul><p2>誰でも遊びやすい シンプルなUI</p2></ul> 
+		 </li>
+      <p>ボタンにアイコンに追加したり、操作の手順をなるべく少なくする事で、誰でも遊びやすいゲームになるように工夫しました。</p>
+      <div class="news-footer">
+        <time datetime="2024-02-25 " style="color: hsla(0,0%,100%,1.00)">2024年4月6日</time>
+      </div>
+    </article>
+  </section>
+	</section>
+		  	</section>
+     <script>
+      $(function() {
+        $.get('/footer_O.html', function(data){
+          $('body').append(data);
+        });
+      });
+    </script>
+  <script src="../../js/scripts.js"></script>
+  <script src="../../js/menu.js"></script>
+</body>
+
+</html>
