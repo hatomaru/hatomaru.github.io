@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ひとコミュ - 自分だけのAI会話ルーム</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <nav>
+    <div style="font-weight: bold; font-size: 1.3em;">ひとコミュ</div>
+    <div>
+      <a href="#features">特徴</a>
+      <a href="#rules">ルール</a>
+    </div>
+  </nav>
+
+  <header>
+    <div class="stars">
+      <div class="shooting-star"></div>
+      <script>
+        for (let i = 0; i < 20; i++) {
+          const star = document.createElement('span');
+          star.style.left = `${Math.random() * 100}%`;
+          star.style.top = `${Math.random() * 100}%`;
+          document.currentScript.parentElement.appendChild(star);
+        }
+      </script>
+    </div>
+    <div class="bubble">誰にも見られず、安心してAIと話せるんだって！</div>
+    <h1>ひとコミュ - AIと話せる、自分だけの部屋</h1>
+    <a href="#" class="cta-button">🌙 ただいま準備中！</a>
+  </header>
+
+  <section id="features">
+    <h2>特徴</h2>
+    <ul>
+      <li> 他人の視線を気にせず、完全にクローズドな空間でAIと自由なチャットを楽しめます。</li>
+      <li> AIの話し方・性格・シチュエーションを自由にカスタマイズ可能。自分だけの話し相手を作れます。</li>
+      <li> 24時間で自動的に会話が消去される安心設計。気軽な独り言や相談もOK。</li>
+      <li> フィードバック機能つきで、面接練習やスピーチの練習にも最適。</li>
+      <li> 雑談・相談・ひとりごと…自然な相槌と反応で、人と話しているような温かさ。</li>
+      <li> スマホ・PC対応。移動中や休憩中など、好きなときに自分の世界へ。</li>
+    </ul>
+  </section>
+
+  <section id="rules">
+    <h2>ルール</h2>
+    <ul>
+      <li> 公序良俗に反する投稿や暴言はご遠慮ください。</li>
+      <li> AIへの攻撃的・不適切な発言は禁止されています。</li>
+      <li> 18歳未満の方のご利用はできません。</li>
+    </ul>
+  </section>
+
+  <footer>
+    <div class="copyright">
+      &copy; 2025 ひとコミュ  All rights reserved。
+    </div>
+  </footer>
+
+  <script>
+  const bubble = document.querySelector('.bubble');
+  const messages = [
+    "誰にも見られず、安心してAIと話せる部屋を準備しているよ！",
+    "早くみんなに使ってほしいな",
+    "24時間で会話が消えるから安心。ちょっとした事何でも教えてね",
+    "近い内に使えるようになるから、ちょっと待っていてね"
+  ];
+  let index = 0;
+
+  function changeMessage() {
+    bubble.style.opacity = 0; // フェードアウト
+    setTimeout(() => {
+      index = (index + 1) % messages.length;
+      bubble.textContent = messages[index];
+      bubble.style.opacity = 1; // フェードイン
+    }, 1000); // フェードアウト後にテキスト変更
+  }
+
+  setInterval(changeMessage, 6000); // 6秒ごとに変更
+</script>
+<script>
+  document.querySelector('.cta-button').addEventListener('click', function() {
+    // 年齢確認モーダルをコメントアウト
+    /*
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.innerHTML = `
+      <div class="modal-content">
+        <div style="font-size: 2em; margin-bottom: 10px;">🌟</div>
+        <p>このサービスはGemini APIを使用しています。</p>
+        <p>18歳以上ですか？</p>
+        <button class="modal-button" id="yes-button">はい</button>
+        <button class="modal-button" id="no-button">いいえ</button>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    // アニメーションのための遅延
+    setTimeout(() => {
+      modal.classList.add('show');
+    }, 10);
+
+    // ボタンのイベントリスナー
+    document.getElementById('yes-button').addEventListener('click', () => {
+      alert('ご利用ありがとうございます！');
+      modal.remove();
+    });
+
+    document.getElementById('no-button').addEventListener('click', () => {
+      modal.remove(); // 最初のモーダルを閉じる
+      const noModal = document.createElement('div');
+      noModal.className = 'modal';
+      noModal.innerHTML = `
+        <div class="modal-content">
+          <div style="font-size: 2em; margin-bottom: 10px;">🙇</div>
+          <p>申し訳ありませんが、18歳未満の方はご利用いただけません。</p>
+          <p>またの機会にお待ちしておりますね。</p>
+          <button class="modal-button" id="close-no-modal">閉じる</button>
+        </div>
+      `;
+      document.body.appendChild(noModal);
+
+      setTimeout(() => {
+        noModal.classList.add('show');
+      }, 10);
+
+      document.getElementById('close-no-modal').addEventListener('click', () => {
+        noModal.remove();
+      });
+    });
+
+    // モーダル外をクリックで閉じる
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.remove();
+      }
+    });
+    */
+
+    // 新しいメッセージモーダル
+    const waitModal = document.createElement('div');
+    waitModal.className = 'modal';
+    waitModal.innerHTML = `
+      <div class="modal-content">
+        <div style="font-size: 2em; margin-bottom: 10px;">⏰</div>
+        <p>もう少し待ってね</p>
+        <p>アプリを準備しています。公開までもう少しだけお待ちください。</p>
+        <button class="modal-button" id="close-wait-modal">閉じる</button>
+      </div>
+    `;
+    document.body.appendChild(waitModal);
+
+    // アニメーションのための遅延
+    setTimeout(() => {
+      waitModal.classList.add('show');
+    }, 10);
+
+    // 閉じるボタンのイベントリスナー
+    document.getElementById('close-wait-modal').addEventListener('click', () => {
+      waitModal.remove();
+    });
+
+    // モーダル外をクリックで閉じる
+    waitModal.addEventListener('click', (e) => {
+      if (e.target === waitModal) {
+        waitModal.remove();
+      }
+    });
+  });
+</script>
+</body>
+</html>
