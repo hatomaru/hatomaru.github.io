@@ -290,8 +290,9 @@ html {
     font-size: 0.85em;
     color: #aaa;
   }
-  @media (max-width: 900px) and (min-width: 601px) {
+  @media (max-width: 900px) and (min-width: 769px) {
     .card-grid {
+      grid-template-columns: repeat(2, 1fr);
       gap: 24px;
     }
     .image-card {
@@ -306,6 +307,7 @@ html {
       align-self: center;
     }
   }
+  /* モバイル専用の強制1列レイアウト */
   @media (max-width: 768px) {
     .hamburger {
       display: flex;
@@ -338,14 +340,20 @@ html {
       background-color: rgba(253, 216, 53, 0.1);
       text-decoration: none;
     }
+    /* 強制的に1列レイアウト */
     .card-grid {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto;
-      gap: 24px;
+      grid-template-columns: 1fr !important;
+      grid-template-rows: repeat(4, auto) !important;
+      gap: 20px;
+      max-width: 500px;
+      margin: 0 auto;
+      display: grid !important;
     }
     .image-card {
-      max-width: 90%;
+      max-width: 100%;
+      width: 100%;
       margin: 0 auto;
+      display: block !important;
     }
   }
   @media (max-width: 600px) {
@@ -370,13 +378,16 @@ html {
       padding: 14px 18px;
     }
     .card-grid {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto;
-      gap: 20px;
+      grid-template-columns: 1fr !important;
+      grid-template-rows: repeat(4, auto) !important;
+      gap: 18px;
       max-width: 100%;
+      padding: 0 20px;
+      display: grid;
     }
     .image-card {
-      max-width: 85%;
+      max-width: 100%;
+      width: 100%;
       margin: 0 auto;
     }
     .character-card {
@@ -508,11 +519,16 @@ html {
       margin: 10px 5px;
     }
     .card-grid {
-      gap: 16px;
-      padding: 0 10px;
+      grid-template-columns: 1fr !important;
+      grid-template-rows: repeat(4, auto) !important;
+      gap: 15px;
+      padding: 0 15px;
+      max-width: 100%;
+      display: grid;
     }
     .image-card {
-      max-width: 80%;
+      max-width: 100%;
+      width: 100%;
       margin: 0 auto;
     }
   }
