@@ -10,12 +10,17 @@
 <body>
   <nav>
     <div style="font-weight: bold; font-size: 1.3em;">ひとコミュ</div>
-    <div>
+    <div class="nav-menu">
       <a href="#use-cases">使い方</a>
       <a href="#features">特徴</a>
       <a href="#image-cards">イメージ</a>
       <a href="#character-intro">キャラクター</a>
       <a href="#rules">ルール</a>
+    </div>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
   </nav>
 
@@ -240,6 +245,32 @@
         waitModal.remove();
       }
     });
+  });
+</script>
+<script>
+  // ハンバーガーメニューの制御
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.querySelector('.nav-menu');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+  });
+
+  // メニューリンクをクリックしたときにメニューを閉じる
+  document.querySelectorAll('.nav-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      navMenu.classList.remove('active');
+    });
+  });
+
+  // メニュー外をクリックしたときにメニューを閉じる
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+      hamburger.classList.remove('active');
+      navMenu.classList.remove('active');
+    }
   });
 </script>
 </body>
