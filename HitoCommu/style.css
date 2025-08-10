@@ -29,6 +29,22 @@ html {
     width: 100%;
     max-width: 100vw;
   }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.3em;
+    color: #fff;
+  }
+  .nav-logo-img {
+    height: 40px;
+    width: auto;
+    max-width: 160px;
+    transition: transform 0.2s ease;
+  }
+  .nav-logo-img:hover {
+    transform: scale(1.05);
+  }
   .nav-menu {
     display: flex;
   }
@@ -78,6 +94,27 @@ html {
   header h1 {
     font-size: 2.5em;
     margin-bottom: 25px;
+  }
+  .title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+  }
+  .logo {
+    max-width: 300px;
+    height: auto;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease;
+  }
+  .logo:hover {
+    transform: scale(1.05);
+  }
+  .title-container h1 {
+    margin: 0;
+    font-size: 2.5em;
+    text-align: center;
   }
   .cta-button {
     display: inline-block;
@@ -360,11 +397,21 @@ html {
     nav {
       padding: 14px 20px;
     }
+    .nav-logo-img {
+      height: 35px;
+      max-width: 140px;
+    }
     header {
       padding: 60px 15px 40px;
     }
     header h1 {
       font-size: 1.6em;
+    }
+    .title-container h1 {
+      font-size: 1.6em;
+    }
+    .logo {
+      max-width: 100px;
     }
     .cta-button {
       font-size: 1em;
@@ -436,8 +483,12 @@ html {
     nav {
       padding: 12px 15px;
     }
-    nav div:first-child {
-      font-size: 1.1em !important;
+    .nav-logo {
+      font-size: 1.1em;
+    }
+    .nav-logo-img {
+      height: 30px;
+      max-width: 120px;
     }
     header {
       padding: 50px 15px 30px;
@@ -446,6 +497,17 @@ html {
       font-size: 1.4em;
       line-height: 1.3;
       margin-bottom: 20px;
+    }
+    .title-container h1 {
+      font-size: 1.4em;
+      line-height: 1.3;
+    }
+    .title-container {
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .logo {
+      max-width: 0px;
     }
     .cta-button {
       font-size: 0.9em;
