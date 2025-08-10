@@ -11,7 +11,10 @@
   <nav>
     <div style="font-weight: bold; font-size: 1.3em;">ひとコミュ</div>
     <div>
+      <a href="#use-cases">使い方</a>
       <a href="#features">特徴</a>
+      <a href="#image-cards">イメージ</a>
+      <a href="#character-intro">キャラクター</a>
       <a href="#rules">ルール</a>
     </div>
   </nav>
@@ -30,9 +33,39 @@
     </div>
     <div class="bubble">誰にも見られず、安心してAIと話せるんだって！</div>
     <h1>ひとコミュ - AIと話せる、自分だけの部屋</h1>
-    <a href="#" class="cta-button">🌙 ただいま準備中！</a>
+    <a href="#" class="cta-button">🌙 もうすぐオープンテスト実施予定</a>
   </header>
-
+  <section class="intro">
+    <h2>ひとコミュとは？</h2>
+    <p>ひとコミュは、DiscordのサーバーでAIと自由に会話できるクローズドな空間を提供します。誰にも見られず、安心して自分だけのAIと話せる場所です。</p>
+    <p>AIの性格や話し方をカスタマイズして、自分だけの特別な会話体験を楽しんでください。</p>
+  </section>
+  <section id="use-cases">
+    <h2>こんな時に「ひとコミュ」</h2>
+    <div class="use-case-list">
+      <div class="use-case-item">
+        <div class="use-case-icon talk">💬</div>
+        <div class="use-case-content">
+          <div class="use-case-content-title">日常会話</div>
+          <div class="use-case-content-text">今日はこんなことがあったんだよ〜って話しかけてみよう。誰にも気をつかわず、気軽におしゃべりできます。</div>
+        </div>
+      </div>
+      <div class="use-case-item">
+        <div class="use-case-icon consult">🌱</div>
+        <div class="use-case-content">
+          <div class="use-case-content-title">相談</div>
+          <div class="use-case-content-text">モヤモヤした気持ちを、ちょっとだけ聞いてほしいとき。AIが優しく耳を傾けてくれるよ。</div>
+        </div>
+      </div>
+      <div class="use-case-item">
+        <div class="use-case-icon interview">🎤</div>
+        <div class="use-case-content">
+          <div class="use-case-content-title">模擬面接</div>
+          <div class="use-case-content-text">「自己PRどうしよう？」そんなときも大丈夫。練習しながら、少しずつ自信をつけていこう。</div>
+        </div>
+      </div>
+    </div>
+  </section>
   <section id="features">
     <h2>特徴</h2>
     <ul>
@@ -44,27 +77,65 @@
       <li> スマホ・PC対応。移動中や休憩中など、好きなときに自分の世界へ。</li>
     </ul>
   </section>
-
+  <section id="image-cards">
+    <h2>サーバーイメージ</h2>
+    <p style="font-size:.85em;color:#9aa;">サーバーイメージは本サーバーのイメージです。</p>
+    <div class="card-grid">
+      <div class="image-card"><img src="src/ServerImage_1.jpg" alt="会話の様子"></div>
+      <div class="image-card"><img src="src/ServerImage_2.jpg" alt="模擬面接の様子"></div>
+      <div class="image-card"><img src="src/ServerImage_3.jpg" alt="会話のフィードバックをもらっている様子"></div>
+      <div class="image-card"><img src="src/ServerImage_4.jpg" alt="模擬面接のフィードバックをもらっている様子"></div>
+    </div>
+  </section>
+  
+  <section id="character-intro">
+    <h2>キャラクター紹介</h2>
+    <div class="character-card">
+      <div class="character-avatar">
+        <img src="src/Character.png" alt="ひとコミュくん" onerror="this.style.display='none';">
+      </div>
+      <div class="character-info">
+        <h3>ひとコミュくん</h3>
+        <p>「はなす」をお手伝いする、ひとコミュくん。<br>優しく、話をじっくり聞いてくれるAIの精霊。<br>ちょっぴりおっとりしてるけど、あなたの言葉を大切に受け止めてくれるよ。</p>
+        <div class="character-tags">
+          <div class="tag-row">
+            <div class="tag-label">性格</div>
+            <div class="tag-value">おっとり、やさしい、相槌上手</div>
+          </div>
+          <div class="tag-row">
+            <div class="tag-label">好きなもの</div>
+            <div class="tag-value">静かな時間、ひとりごと、星空</div>
+          </div>
+          <div class="tag-row">
+            <div class="tag-label">得意なこと</div>
+            <div class="tag-value">共感、話をじっくり聞くこと</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <section id="rules">
     <h2>ルール</h2>
     <ul>
       <li> 公序良俗に反する投稿や暴言はご遠慮ください。</li>
       <li> AIへの攻撃的・不適切な発言は禁止されています。</li>
-      <li> 18歳未満の方のご利用はできません。</li>
+      <li> このサービスはGemini APIを使用しているため<br>18歳未満の方のご利用はできません。</li>
     </ul>
   </section>
 
   <footer>
+    <img src="src/Character.png" alt="手を振るひとコミュくん">
     <div class="copyright">
       &copy; 2025 ひとコミュ  All rights reserved。
     </div>
+    <p style="font-size:.85em;color:#9aa;">DiscordはDiscord Inc.の登録商標です。本サーバー及び会話AIはDiscord社の提携・承認を受けたものではありません。</p>
   </footer>
 
   <script>
   const bubble = document.querySelector('.bubble');
   const messages = [
     "誰にも見られず、安心してAIと話せる部屋を準備しているよ！",
-    "早くみんなに使ってほしいな",
+    "もう少しでみんなに会えるよ～！楽しみだなぁ。",
     "24時間で会話が消えるから安心。ちょっとした事何でも教えてね",
     "近い内に使えるようになるから、ちょっと待っていてね"
   ];
@@ -147,7 +218,7 @@
       <div class="modal-content">
         <div style="font-size: 2em; margin-bottom: 10px;">⏰</div>
         <p>もう少し待ってね</p>
-        <p>アプリを準備しています。公開までもう少しだけお待ちください。</p>
+        <p>サーバーを準備しています。オープンテスト開始までもう少しだけお待ちください。</p>
         <button class="modal-button" id="close-wait-modal">閉じる</button>
       </div>
     `;
