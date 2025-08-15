@@ -18,6 +18,7 @@
       <a href="#image-cards">イメージ</a>
       <a href="#character-intro">キャラクター</a>
       <a href="#rules">ルール</a>
+    <a href="terms.html">利用規約</a>
     </div>
     <div class="hamburger" id="hamburger">
       <span></span>
@@ -43,7 +44,7 @@
       <h1>AIと話せる、自分だけの部屋</h1>
       <img src="src/Logo.png" alt="ひとコミュロゴ" class="logo" onerror="this.style.display='none';">
     </div>
-    <a href="#" class="cta-button">🌙 8月15日 20時ごろから～ オープンテスト実施</a>
+    <a href="#" class="cta-button">🌙 8月15日～8月26日 オープンテスト実施中</a>
   </header>
   <section class="intro">
     <h2>ひとコミュとは？</h2>
@@ -131,6 +132,7 @@
       <li> AIへの攻撃的・不適切な発言は禁止されています。</li>
       <li> このサービスはGemini APIを使用しているため<br>18歳未満の方のご利用はできません。</li>
     </ul>
+  <div style="margin-top:16px;text-align:right;font-size:.95em;"><a href="terms.html" style="color:#4a6fa5;text-decoration:underline;">利用規約はこちら</a></div>
   </section>
 
   <footer>
@@ -144,9 +146,9 @@
   <script>
   const bubble = document.querySelector('.bubble');
   const messages = [
-    "誰にも見られず、安心してAIと話せる部屋まもなくやってくるよ",
-    "オープンテストを実施するよ！みんなの意見でひとコミュを進化させよう",
-    "24時間で会話が消えるから安心。ちょっとした事何でも教えてね",
+    "誰にも見られず、安心してAIと話せる部屋オープンテスト中",
+    "オープンテストを実施中！みんなの意見を聞かせてね",
+    "24時間で会話が消えるから安心。ちょっとした事何でも教えて～",
     "模擬面接やスピーチの練習もできるよ！",
   ];
   let index = 0;
@@ -164,8 +166,6 @@
 </script>
 <script>
   document.querySelector('.cta-button').addEventListener('click', function() {
-    // 年齢確認モーダルをコメントアウト
-    /*
     const modal = document.createElement('div');
     modal.className = 'modal';
     modal.innerHTML = `
@@ -186,8 +186,7 @@
 
     // ボタンのイベントリスナー
     document.getElementById('yes-button').addEventListener('click', () => {
-      alert('ご利用ありがとうございます！');
-      modal.remove();
+      location.href = 'https://discord.com/invite/fxsBu76Wzv';
     });
 
     document.getElementById('no-button').addEventListener('click', () => {
@@ -219,9 +218,9 @@
         modal.remove();
       }
     });
-    */
 
-    // 新しいメッセージモーダル
+    /*
+    // 新しいメッセージモーダルをコメントアウト
     const waitModal = document.createElement('div');
     waitModal.className = 'modal';
     waitModal.innerHTML = `
@@ -233,6 +232,7 @@
       </div>
     `;
     document.body.appendChild(waitModal);
+    */
 
     // アニメーションのための遅延
     setTimeout(() => {

@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>利用規約 | ひとコミュ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f7f7fa;
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            color: #333;
+        }
+        .terms-header {
+            text-align: center;
+            margin-top: 48px;
+            margin-bottom: 16px;
+        }
+        .terms-header img {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 12px;
+        }
+        .terms-main {
+            max-width: 800px;
+            margin: 0 auto 48px auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 40px 28px 32px 28px;
+        }
+        .terms-main h1 {
+            font-size: 2rem;
+            margin-bottom: 24px;
+            color: #2a3a5a;
+            text-align: center;
+        }
+        .terms-main h2 {
+            font-size: 1.2rem;
+            margin-top: 32px;
+            color: #444;
+        }
+        .terms-main p, .terms-main li {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+        .terms-main ul {
+            margin-left: 1.5em;
+        }
+        @media (max-width: 600px) {
+            .terms-main {
+                padding: 16px 8px;
+            }
+            .terms-header {
+                margin-top: 24px;
+            }
+        }
+        .nav-menu {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-logo">
+            <a href="index.html"><img src="src/Logo.png" alt="ひとコミュ" class="nav-logo-img" onerror="this.style.display='none'; this.parentElement.innerHTML='ひとコミュ';"></a>
+        </div>
+        <div class="nav-menu">
+            <a href="index.html#use-cases">使い方</a>
+            <a href="index.html#features">特徴</a>
+            <a href="index.html#image-cards">イメージ</a>
+            <a href="index.html#character-intro">キャラクター</a>
+            <a href="index.html#rules">ルール</a>
+            <a href="terms.html" style="font-weight:bold;">利用規約</a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <div class="terms-header">
+        <img src="src/Character.png" alt="ひとコミュくん" onerror="this.style.display='none';">
+        <div style="font-size:1.3em;font-weight:700;color:#2a3a5a;">ひとコミュ 利用規約</div>
+    </div>
+    <main class="terms-main">
+        <h1>利用規約</h1>
+        <p>1.ここはAIと会話ができるチャットです</p>
+        <p></p>2.使用しているAIは「Gemini」です</p>
+        <p>3.18歳以上でなければこのサービスを利用できません</p>
+        <p>※使用しているAIの利用規約に基づく制限です。</p>
+        <p>4.AIの出力内容について、当方の重大な過失を除き、一切の責任を負いません。</p>
+        <p>5.プライバシー保護のため、会話は24時間後に自動で削除されます。</p>
+        <p>6.たまにAIが反応しないことがあるかもしれません。</p>
+<p>7.AIに過度な人格付けを行う行為は禁止される場合があります。
+ （例：AIに過激な命令を繰り返す、性的対象とみなす 等）</p>
+<p>8.管理人は、原則として会話内容を閲覧しません。
+ ただし、違反が疑われる場合やAIの出力拒否が繰り返される場合には、内容を確認し、必要に応じて警告/BANを行います。
+ ※AIが出力を拒否した場合や、公序良俗に反する入力は、プログラム上で自動的に検知・通知されることがあります。</p>
+<p>9.Discordのコミュニティガイドラインを遵守してください。
+・差別的・暴力的・性的・違法な内容は禁止です。</p>
+<p>この規約は予告なく変更されることがあります</p>
+<p style="margin-top:32px; text-align:right; color:#888;">更新日：2025年8月15日</p>
+        <p style="margin-top:32px; text-align:right; color:#888;">制定日：2025年8月15日</p>
+    </main>
+
+    <footer>
+        <div class="copyright">
+            &copy; 2025 ひとコミュ  All rights reserved。
+        </div>
+        <p style="font-size:.85em;color:#9aa;">DiscordはDiscord Inc.の登録商標です。本サーバー及び会話AIはDiscord社の提携・承認を受けたものではありません。</p>
+    </footer>
+
+    <script>
+        // ハンバーガーメニューの制御
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
