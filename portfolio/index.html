@@ -367,6 +367,10 @@
       $(function() {
         $.get('/navbar_O.html', function(data){
           $('body').append(data);
+          // ナビゲーションが読み込まれた後にハンバーガーメニューを初期化
+          if (typeof initHamburgerMenu === 'function') {
+            initHamburgerMenu();
+          }
         });
       });
     </script>
@@ -727,6 +731,7 @@
       });
     </script>
   <script src="../js/scripts.js"></script>
+  <script src="../js/menu.js"></script>
 </body>
 
 </html>

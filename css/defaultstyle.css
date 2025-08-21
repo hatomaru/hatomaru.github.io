@@ -169,13 +169,44 @@ footer {
     color: #DCBA29 !important;
   }
 
+  /* ハンバーガーメニュー内のunityroomボタンスタイル */
+  .navbar-menu .unityroom-menu-item {
+    border-top: 2px solid #43A2D8;
+    background-color: #f8f9fa;
+  }
+
+  .navbar-menu .unityroom-menu-item a {
+    background-color: #43A2D8;
+    color: white !important;
+    text-align: center;
+    font-weight: bold;
+    margin: 10px;
+    border-radius: 5px;
+  }
+
+  .navbar-menu .unityroom-menu-item a:hover {
+    background-color: #3490c7;
+    color: white !important;
+  }
+
   .navbar-right {
+    display: none;
+  }
+
+  /* Twitterアイコンはモバイルでも表示 */
+  .navbar-right.twitter-icon {
+    display: flex !important;
+    order: 2;
+  }
+
+  /* unityroomボタンはモバイルでは非表示 */
+  .navbar-right.unityroom-button {
     display: none;
   }
 
   .hamburger-menu {
     display: flex;
-    order: 2;
+    order: 3;
     flex-direction: column;
     justify-content: center;
     align-items: center;

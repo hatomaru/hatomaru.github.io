@@ -1,11 +1,14 @@
 // JavaScript Document
 // ハンバーガーメニューの初期化関数
 function initHamburgerMenu() {
+  console.log('initHamburgerMenu called'); // デバッグ用
+  
   // ハンバーガーメニューとナビゲーションメニューの要素を取得
   var hamburger = document.querySelector('.hamburger-menu') || document.getElementById('hamburger-menu');
   var navbarMenu = document.querySelector('.navbar-menu');
 
-  console.log('Initializing hamburger menu...', hamburger, navbarMenu); // デバッグ用
+  console.log('Hamburger element:', hamburger); // デバッグ用
+  console.log('Navbar menu element:', navbarMenu); // デバッグ用
 
   if (hamburger && navbarMenu) {
     // 既存のイベントリスナーを削除（重複を防ぐため）
@@ -13,7 +16,7 @@ function initHamburgerMenu() {
     
     // ハンバーガーメニューがクリックされたときのイベントリスナー
     hamburger.addEventListener('click', toggleMenu);
-    console.log('Event listeners attached'); // デバッグ用
+    console.log('Event listeners attached successfully'); // デバッグ用
 
     // メニュー項目がクリックされたらメニューを閉じる
     var menuItems = navbarMenu.querySelectorAll('a');
@@ -31,18 +34,28 @@ function initHamburgerMenu() {
     window.addEventListener('resize', handleResize);
   } else {
     console.log('Hamburger menu elements not found'); // デバッグ用
+    console.log('Retrying in 100ms...'); // デバッグ用
+    // 要素がまだ見つからない場合は少し待ってから再試行
+    setTimeout(initHamburgerMenu, 100);
   }
 }
 
 // メニューのトグル関数
 function toggleMenu(event) {
+  console.log('toggleMenu called'); // デバッグ用
   event.stopPropagation();
   var hamburger = document.querySelector('.hamburger-menu');
   var navbarMenu = document.querySelector('.navbar-menu');
   
+  console.log('Toggle - Hamburger:', hamburger); // デバッグ用
+  console.log('Toggle - NavbarMenu:', navbarMenu); // デバッグ用
+  
   if (hamburger && navbarMenu) {
     navbarMenu.classList.toggle('is-active');
     hamburger.classList.toggle('is-active');
+    console.log('Menu toggled - is-active classes added/removed'); // デバッグ用
+  } else {
+    console.log('Toggle failed - elements not found'); // デバッグ用
   }
 }
 
