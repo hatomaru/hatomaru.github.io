@@ -211,12 +211,12 @@ footer {
 
   /* ハンバーガーメニュー内のPlayStoreボタンスタイル */
   .navbar-menu .playstore-menu-item {
-    border-top: 2px solid #4CAF50;
+    border-top: 2px solid rgba(0,0,0,0.1);
     background-color: #f8f9fa;
   }
 
   .navbar-menu .playstore-menu-item a {
-    background-color: #4CAF50;
+    background-color: rgba(0,0,0,0.1);
     color: white !important;
     text-align: center;
     font-weight: bold;
@@ -225,7 +225,7 @@ footer {
   }
 
   .navbar-menu .playstore-menu-item a:hover {
-    background-color: #45a049;
+    background-color: rgba(0,0,0,0.1);
     color: white !important;
   }
 
