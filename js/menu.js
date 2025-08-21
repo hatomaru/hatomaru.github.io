@@ -2,8 +2,10 @@
 // ハンバーガーメニューの初期化関数
 function initHamburgerMenu() {
   // ハンバーガーメニューとナビゲーションメニューの要素を取得
-  var hamburger = document.querySelector('.hamburger-menu');
+  var hamburger = document.querySelector('.hamburger-menu') || document.getElementById('hamburger-menu');
   var navbarMenu = document.querySelector('.navbar-menu');
+
+  console.log('Initializing hamburger menu...', hamburger, navbarMenu); // デバッグ用
 
   if (hamburger && navbarMenu) {
     // 既存のイベントリスナーを削除（重複を防ぐため）
@@ -11,6 +13,7 @@ function initHamburgerMenu() {
     
     // ハンバーガーメニューがクリックされたときのイベントリスナー
     hamburger.addEventListener('click', toggleMenu);
+    console.log('Event listeners attached'); // デバッグ用
 
     // メニュー項目がクリックされたらメニューを閉じる
     var menuItems = navbarMenu.querySelectorAll('a');
@@ -26,6 +29,8 @@ function initHamburgerMenu() {
     // 画面サイズが変更されたときの処理
     window.removeEventListener('resize', handleResize);
     window.addEventListener('resize', handleResize);
+  } else {
+    console.log('Hamburger menu elements not found'); // デバッグ用
   }
 }
 
