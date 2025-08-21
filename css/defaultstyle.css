@@ -117,6 +117,12 @@ footer {
     flex: 1;
     display: flex;
     align-items: center;
+    gap: 15px;
+  }
+
+  .navbar-logo {
+    display: flex;
+    align-items: center;
   }
 
   .navbar-logo img {
@@ -197,6 +203,20 @@ footer {
   .navbar-right.twitter-icon {
     display: flex !important;
     order: 2;
+    align-items: center;
+    margin: 0 !important;
+    padding: 0;
+  }
+
+  .navbar-right.twitter-icon a {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+  }
+
+  .navbar-right.twitter-icon img {
+    width: 28px !important;
+    height: auto;
   }
 
   /* unityroomボタンはモバイルでは非表示 */
@@ -214,6 +234,7 @@ footer {
     padding: 10px;
     width: 40px;
     height: 40px;
+    margin-left: 10px;
   }
 
   .hamburger-menu .bar {
