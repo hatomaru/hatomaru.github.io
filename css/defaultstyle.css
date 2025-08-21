@@ -111,6 +111,11 @@ footer {
   display: none;
 }
 
+/* PlayStoreメニューアイテム - PC版では非表示 */
+.playstore-menu-item {
+  display: none;
+}
+
 /* レスポンシブデザインでモバイルビュー時のスタイル */
 @media (max-width: 768px) {
   .navbar-container {
@@ -204,8 +209,33 @@ footer {
     color: white !important;
   }
 
+  /* ハンバーガーメニュー内のPlayStoreボタンスタイル */
+  .navbar-menu .playstore-menu-item {
+    border-top: 2px solid #4CAF50;
+    background-color: #f8f9fa;
+  }
+
+  .navbar-menu .playstore-menu-item a {
+    background-color: #4CAF50;
+    color: white !important;
+    text-align: center;
+    font-weight: bold;
+    margin: 10px;
+    border-radius: 5px;
+  }
+
+  .navbar-menu .playstore-menu-item a:hover {
+    background-color: #45a049;
+    color: white !important;
+  }
+
   /* モバイル版でunityroomメニューアイテムを表示 */
   .unityroom-menu-item {
+    display: list-item !important;
+  }
+
+  /* モバイル版でPlayStoreメニューアイテムを表示 */
+  .playstore-menu-item {
     display: list-item !important;
   }
 
