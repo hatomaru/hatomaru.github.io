@@ -60,6 +60,17 @@ footer {
   padding: 0;
 }
 
+/* デスクトップ版でハンバーガーメニューを非表示 */
+@media (min-width: 769px) {
+  .hamburger-menu {
+    display: none !important;
+  }
+  
+  .navbar-menu {
+    display: flex !important;
+  }
+}
+
 .navbar-menu li {
 	padding: 20px;
 	padding-right: 20px;
@@ -93,49 +104,69 @@ footer {
 
 /* レスポンシブデザインでモバイルビュー時のスタイル */
 @media (max-width: 768px) {
-	  .navbar-container {
-    flex-direction: column;
+  .navbar-container {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 20px;
   }
 
   .navbar-left {
-    order: 1; /* モバイルビューでの位置変更 */
+    order: 1;
+    flex: 1;
+  }
+
+  .navbar-logo img {
+    margin-left: 0;
+    width: 150px;
   }
 
   .navbar-menu {
-    flex-direction: column;
-    width: 100%;
-    display: none; /* モバイルビューで初期非表示 */
-  }
-
-  .navbar-menu li a {
-    padding: 15px;
-    border-bottom: 1px solid #ddd;
-    display: block;
-  }
-
-  .navbar-right {
-    order: 2;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 10px 0;
-	  
-  }
-
-  .hamburger-menu {
-    display: flex;
-    order: 3;
-    margin-bottom: 10px;
-  }
-
-  .navbar-menu.is-active {
-    display: flex;
+    display: none;
     flex-direction: column;
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
     background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-top: 1px solid #e9ecef;
+    z-index: 999;
+  }
+
+  .navbar-menu.is-active {
+    display: flex;
+  }
+
+  .navbar-menu li {
+    padding: 0;
+    border-bottom: 1px solid #e9ecef;
+  }
+
+  .navbar-menu li:last-child {
+    border-bottom: none;
+  }
+
+  .navbar-menu li a {
+    padding: 15px 20px;
+    display: block;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .navbar-menu li a:hover {
+    background-color: #f8f9fa;
+  }
+
+  .navbar-right {
+    order: 3;
+    display: none; /* モバイルではボタンを非表示 */
+  }
+
+  .hamburger-menu {
+    display: flex;
+    order: 2;
+    margin-bottom: 0;
   }
 }
 
@@ -151,24 +182,60 @@ p {
 
 /* レスポンシブデザイン: ハンバーガーメニュー */
 .hamburger-menu {
-  display: none; /* この行はそのままですが、モバイルビュー以外では非表示に */
+  display: none;
   cursor: pointer;
   flex-direction: column;
-  justify-content: space-around; /* バー間のスペースを均等に */
-  padding: 10px; /* クリックしやすくするためのパディング */
-  z-index: 1001; /* ナビゲーションバーの上に表示 */
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  z-index: 1001;
+  background: transparent;
+  border: none;
+  width: 50px;
+  height: 50px;
 }
 
 .hamburger-menu .bar {
   width: 25px;
   height: 3px;
   background-color: #333;
+  margin: 3px 0;
+  transition: 0.3s ease;
+  transform-origin: center;
+}
+
+/* ハンバーガーメニューがアクティブ時のアニメーション */
+.hamburger-menu.is-active .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-menu.is-active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu.is-active .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+.hamburger-menu.is-active .bar:nth-child(4) {
+  opacity: 0;
 }
 
 /* 画面サイズが768px以下の場合のスタイル */
 @media (max-width: 768px) {
   .hamburger-menu {
-    display: block; /* モバイルビューではハンバーガーメニューを表示 */
+    display: flex;
+  }
+  
+  .navbar-menu {
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+  
+  .navbar-menu.is-active {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
