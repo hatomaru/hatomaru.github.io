@@ -1,10 +1,23 @@
 /* CSS Document */
+
+/* ページ全体のリセット */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* ナビゲーション後のコンテンツ調整 */
+body > section:first-of-type,
+body > #hero {
+    margin-top: 20px;
+}
+
 #about {
 	text-align: center;
 	margin: 0 0 0 0;
 	padding: 0 0 0 0;
 	padding-bottom: -30px;
-	margin-top: 250px;
+	margin-top: 0;
 }
 
 #about h1{
@@ -34,7 +47,7 @@
 }
 
 #hero {
-	margin-top: 250px;
+	margin-top: 0;
 }
 
 .Year {
