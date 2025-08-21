@@ -131,6 +131,28 @@ html {
     background-color: #4752c4;
     transform: scale(1.05);
   }
+  .test-period-badge {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgba(253, 216, 53, 0.15);
+    color: #fdd835;
+    font-size: 1em;
+    border-radius: 20px;
+    margin: 15px auto 20px auto;
+    border: 2px solid #fdd835;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(253, 216, 53, 0.3);
+    backdrop-filter: blur(10px);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% {
+      box-shadow: 0 2px 8px rgba(253, 216, 53, 0.3);
+    }
+    50% {
+      box-shadow: 0 4px 16px rgba(253, 216, 53, 0.5);
+    }
+  }
   .bubble {
     background-color: #313338;
     color: #fff;
@@ -417,6 +439,11 @@ html {
       font-size: 1em;
       padding: 10px 16px;
     }
+    .test-period-badge {
+      font-size: 0.9em;
+      padding: 8px 16px;
+      margin: 12px auto 16px auto;
+    }
     section {
       padding: 40px 20px;
     }
@@ -512,6 +539,11 @@ html {
     .cta-button {
       font-size: 0.9em;
       padding: 8px 14px;
+    }
+    .test-period-badge {
+      font-size: 0.8em;
+      padding: 6px 12px;
+      margin: 10px auto 14px auto;
     }
     section {
       padding: 30px 15px;
