@@ -52,6 +52,19 @@ body > #hero {
 	margin-top: 0;
 }
 
+/* ページの最初のh1要素の調整 */
+body > h1:first-of-type {
+    margin-top: 20px;
+}
+
+/* メインコンテンツエリアの調整 */
+.main-content,
+.ContentAbout,
+.aboutCountnt {
+    margin-top: 0;
+    padding-top: 20px;
+}
+
 .Year {
 	margin-top: 5px;
 	color: hsla(0,0%,71%,1.00);
@@ -81,6 +94,18 @@ body > #hero {
   body > section:first-of-type,
   body > #hero {
     margin-top: 12px;
+  }
+
+  /* モバイル版でのh1要素の調整 */
+  body > h1:first-of-type {
+    margin-top: 10px;
+  }
+
+  /* モバイル版でのコンテンツエリア調整 */
+  .main-content,
+  .ContentAbout,
+  .aboutCountnt {
+    padding-top: 10px;
   }
 }
 
