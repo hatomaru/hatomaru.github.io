@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>One Team. Portfolio | Amevar</title>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+	<link rel="icon" href="/portfolio/favicon_P.ico">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="../../css/defaultstyle.css">
+  <link rel="stylesheet" href="../../css/styles.css">
+	<link rel="stylesheet" href="../../css/portfolio.css">
+</head>
+
+<body>
+
+    <!-- ナビゲーションバー -->
+     <script>
+      $(function() {
+        $.get('/navbar_O.html', function(data){
+          $('body').append(data);
+        });
+      });
+    </script>
+
+
+  <section id="hero" style="margin-bottom: 10px;">
+    <section class="slideshow-section">
+      <div class="slideshow-container">
+        <!-- 各スライド -->
+        <div class="mySlides fade">
+          <img src="../src/app/AM/サムネイル_1.jpg">
+        </div>
+    <div class="mySlides fade">
+          <img src="../src/app/AM/サムネイル_2.jpg">
+        </div>
+		   <div class="mySlides fade">
+          <img src="../src/app/AM/サムネイル_3.jpg">
+        </div>
+		   <div class="mySlides fade">
+          <img src="../src/app/AM/サムネイル_4.jpg">
+        </div>
+        <!-- 前へボタン -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <!-- 次へボタン -->
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
+      <!-- スライド下のドットナビゲーション -->
+      <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+		  <span class="dot" onclick="currentSlide(2)"></span>
+		  <span class="dot" onclick="currentSlide(3)"></span>
+		  <span class="dot" onclick="currentSlide(4)"></span>
+      </div>
+    </section>
+  </section>
+	  <section class="aboutCountnt">
+	<h1>Amevar</h1>
+    <span style="font-size: 20px; color: grey">アミーバー<br></span>
+	<time datetime="2024-02-25" style="margin-top: 0px;margin-bottom: 0px;padding-bottom: 30px">2025年</time>
+	 <li class="Content_Genre">
+          <ul><span class="app-genre" style="background-color: #FF2E86;color: whitesmoke">AI</span></ul>
+			  <ul><span class="app-genre" style="background-color: #7e29e0;color: whitesmoke">育成シミュレーション</span></ul>
+           <ul><span class="app-genre" style="background-color: #FFF;color: orange;border: 2px solid orange; font-weight: bold;"><span class="material-symbols-outlined" style="padding-right: 5px;font-size: 20px;">
+trophy
+</span>大阪万博 デジタル学園祭 出展（2025年7月）</span></ul>
+			  </ul>
+			</li>
+		    <h2 style="margin-top: -8px">使用した技術</h2>
+		  		   <li class="Content_Genre" style="margin-top: -10px;">
+ 	   	  <ul><span class="app-genre" style="background-color: #FF2D5F;color: whitesmoke;padding-top: 10px;">強化学習生物AI</span></ul>
+          <ul><span class="app-genre" style="background-color: #BA3679;color: whitesmoke;padding-top: 10px;">生物モデル構築・実装</span></ul>
+					    <ul><span class="app-genre" style="background-color: #40537c;color: whitesmoke;padding-top: 10px;">SQLiteを用いたデータベース</span></ul>
+			</li>
+		<section class="ContentAbout">
+  <section class="news-section" style="margin-bottom: 10px;">
+    <h2>概要</h2>
+   	 <article class="news-item" style="border-left: 0px solid #1C9418;">
+      <p>あなたが見守るのは、“自分で学び、進化する”生物たち。
+<br>本作はAIの様な学習システムを備えた生物を、観察・育成しながら多様なバイオームを冒険する育成シミュレーションゲームです。
+<br>島を探索し、生物たちが自発的に行動を学び、他種族との戦いを経て淘汰と進化を繰り返します。
+<br>勝利すれば新たなパーツを獲得し、姿も能力も変化します。さらに撫でたりつついたりといった触れ合いで愛着が生まれ、あなただけの“推し”が育っていきます。
+<br>観察、育成、淘汰、進化――その全てが織りなすドラマを体験してください。
+
+      </p>
+      <div class="news-footer">
+
+      </div>
+    </article>
+  </section>
+  <!-- 配信中のアプリセクション -->
+    <section class="news-section" style="margin-top: 0px;">
+    <h2>こだわったポイント</h2>
+   	 <article class="news-item" style="border-left: 20px solid #1b6769;"><span class="material-symbols-outlined" style="margin-left: 0px;margin-top: 9px;font-size: 60px; color: #1b6769;">
+Genetics
+</span>
+	  <li>
+		  <ul><p2>命のつながりを進化と淘汰で表現</p2></ul> 
+		 </li>
+      <p>自由に動き回り、エサを食べる方法を学ぶ生物を強化学習AI（C#）で実装。進化や淘汰の過程を家系図で紡ぐことで表現しました。
+      <div class="news-footer">
+        <time datetime="2024-02-25 " style="color: hsla(0,0%,100%,1.00)">2024年4月6日</time>
+      </div>
+    </article>
+		 	 <article class="news-item" style="border-left: 20px solid #1E7689;"><span class="material-symbols-outlined" style="margin-left: 0px;margin-top: 9px;font-size: 60px; color: #1E7689;">
+Egg
+</span>
+	  <li>
+		  <ul><p2>ローポリゴンを活かしたメリハリある表現</p2>
+		  </ul> 
+		 </li>
+      <p>通常シーンでは優しい雰囲気に、誕生シーンでは温かさを演出するなど、場面に応じた表現に工夫しました。</p>
+<div class="news-footer">
+  <time datetime="2024-02-25 " style="color: hsla(0,0%,100%,1.00)">2024年4月6日</time>
+</div>
+    </article>
+  </section>
+	</section>
+		  	</section>
+     <script>
+      $(function() {
+        $.get('/footer_O.html', function(data){
+          $('body').append(data);
+        });
+      });
+    </script>
+  <script src="../../js/scripts.js"></script>
+  <script src="../../js/menu.js"></script>
+</body>
+
+</html>

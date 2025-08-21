@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>One Team. Portfolio | I Like It!</title>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+	<link rel="icon" href="/portfolio/favicon_P.ico">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="../../css/defaultstyle.css">
+  <link rel="stylesheet" href="../../css/styles.css">
+	<link rel="stylesheet" href="../../css/portfolio.css">
+</head>
+
+<body>
+
+    <!-- ナビゲーションバー -->
+     <script>
+      $(function() {
+        $.get('/navbar_O.html', function(data){
+          $('body').append(data);
+        });
+      });
+    </script>
+
+
+  <section id="hero" style="margin-bottom: 10px;">
+    <section class="slideshow-section">
+      <div class="slideshow-container">
+        <!-- 各スライド -->
+        <div class="mySlides fade">
+          <img src="../src/app/ILikeIt/サムネイル_1.jpg">
+        </div>
+        <!-- 前へボタン -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <!-- 次へボタン -->
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
+      <!-- スライド下のドットナビゲーション -->
+      <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+      </div>
+    </section>
+  </section>
+	  <section class="aboutCountnt">
+	<h1>I Like It!</h1>
+    <span style="font-size: 20px; color: grey">アイライクイット<br></span>
+	<time datetime="2024-02-25" style="margin-top: 0px;margin-bottom: 0px;padding-bottom: 30px">2025年 Unity1Week あい投稿作品</time>
+	 <li class="Content_Genre">
+          <ul><span class="app-genre" style="background-color: #FF2E86;color: whitesmoke">AI</span></ul>
+			  <ul><span class="app-genre" style="background-color: #E08429;color: whitesmoke">カジュアル</span></ul>
+          <ul><span class="app-genre" style="background-color: #43A2D8;color: whitesmoke">unityroomで公開中</span>
+			  </ul>
+			</li>
+		    <h2 style="margin-top: -8px">使用した技術</h2>
+		  		   <li class="Content_Genre" style="margin-top: -10px;">
+ 	  <ul><span class="app-genre" style="background-color: #FF2E86;color: whitesmoke;padding-top: 10px;">Geminiと連携したリアルタイム生成</span></ul>
+			</li>
+	       <a href="https://unityroom.com/games/ilike_it"
+          class="Dl-button" style="background-color: #43A2D8">unityroomでこの作品を遊ぶ</a>
+		<section class="ContentAbout">
+  <section class="news-section" style="margin-bottom: 10px;">
+    <h2>概要</h2>
+   	 <article class="news-item" style="border-left: 0px solid #1C9418;">
+      <p>Geminiが生成したSNS風投稿を、60秒間でチェックしよう。
+<br>ポジティブな投稿にはライクし、飛ばしても問題はなし。
+<br>困っていそうな投稿にはそっと絆創膏を貼ってあげるゲーム
+      </p>
+      <div class="news-footer">
+
+      </div>
+    </article>
+  </section>
+  <!-- 配信中のアプリセクション -->
+    <section class="news-section" style="margin-top: 0px;">
+    <h2>こだわったポイント</h2>
+   	 <article class="news-item" style="border-left: 20px solid #b92c67;"><span class="material-symbols-outlined" style="margin-left: 0px;margin-top: 9px;font-size: 60px; color: #b92c67;">
+Bolt
+</span>
+	  <li>
+		  <ul><p2>生成AIと連動した変化し続けるゲーム</p2></ul> 
+		 </li>
+      <p>サイバーな雰囲気作りにこだわりました。<br>
+        生成AIを活用し、ゲーム内の投稿をリアルタイムに生成。プレイするたびに内容や展開が変化するゲーム性を実現しました。
+      <div class="news-footer">
+        <time datetime="2024-02-25 " style="color: hsla(0,0%,100%,1.00)">2024年4月6日</time>
+      </div>
+    </article>
+		 	 <article class="news-item" style="border-left: 20px solid #895b1e;"><span class="material-symbols-outlined" style="margin-left: 0px;margin-top: 9px;font-size: 60px; color: #895b1e;">
+Fertile
+</span>
+	  <li>
+		  <ul><p2>いいねと絆創膏でそっと寄り添うゲーム体験</p2></ul> 
+		 </li>
+      <p>SNS風の投稿を生成し、プレイヤーは「いいね」で共感、「絆創膏」で寄り添いを表現。現代社会をモチーフにした体験を表現しました。</p>
+<div class="news-footer">
+  <time datetime="2024-02-25 " style="color: hsla(0,0%,100%,1.00)">2024年4月6日</time>
+</div>
+    </article>
+  </section>
+	</section>
+		  	</section>
+     <script>
+      $(function() {
+        $.get('/footer_O.html', function(data){
+          $('body').append(data);
+        });
+      });
+    </script>
+  <script src="../../js/scripts.js"></script>
+  <script src="../../js/menu.js"></script>
+</body>
+
+</html>

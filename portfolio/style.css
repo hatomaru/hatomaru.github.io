@@ -1,0 +1,327 @@
+/* 基本レイアウト */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+}
+
+/* コンテナの基本設定 */
+.about-container, .apps-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 学生証風カードのレスポンシブ対応 */
+.student-card {
+  max-width: 100%;
+  margin: 20px auto;
+}
+
+/* PC版では横並びレイアウトを維持 */
+.student-card-main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.student-profile {
+  text-align: center;
+  min-width: 200px;
+  margin-right: 40px;
+}
+
+.student-photo {
+  max-width: 120px;
+  height: auto;
+}
+
+.student-details {
+  flex: 1;
+  padding-left: 20px;
+  border-left: 2px solid #e9ecef;
+}
+
+/* PC版ではスキルを横並びに */
+.student-skills {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.student-skill-category {
+  flex: 1;
+}
+
+/* アプリグリッドの基本設定 - PC版で大画面を活用 */
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+  padding: 30px 0;
+}
+
+/* 大画面では4列表示 */
+@media (min-width: 1400px) {
+  .app-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+}
+
+/* 中大画面では3列表示 */
+@media (min-width: 1000px) and (max-width: 1399px) {
+  .app-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+  }
+}
+
+.app-card {
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  max-width: 100%;
+}
+
+.app-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.app-image-container {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.app-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.app-info {
+  padding: 15px;
+  text-align: center;
+}
+
+.app-info h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.app-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.app-info ul li {
+  font-size: 0.85em;
+}
+
+.app-info p {
+  font-size: 0.9em;
+  line-height: 1.5;
+  margin: 8px 0;
+}
+
+.app-info .Year {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* Works見出しのスタイル */
+.works-title {
+  margin-top: 80px;
+  margin-bottom: 50px;
+  text-align: center;
+  font-size: 4em;
+  font-weight: 800;
+  background: black;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 3px;
+  position: relative;
+}
+
+/* セクションタイトル */
+.apps-section h2, .about h1 {
+  text-align: center;
+  font-size: 2em;
+  margin: 40px 0 30px 0;
+}
+
+/* ジャンルタグ */
+.app-genre {
+  padding: 4px 8px;
+  border-radius: 15px;
+  font-size: 1.1em;
+  white-space: nowrap;
+}
+
+/* タブレット対応 (768px以下) - モバイル向けレイアウト */
+@media (max-width: 768px) {
+  .about-container, .apps-section {
+    padding: 0 15px;
+  }
+
+  .app-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 15px 0;
+  }
+
+  /* 学生証カードをモバイル向けに縦並び */
+  .student-card {
+    margin: 15px 0;
+    transform: scale(1); /* モバイルでは拡大縮小を無効 */
+  }
+
+  .student-card-main {
+    padding: 15px;
+    flex-direction: column; /* 縦並びに変更 */
+    align-items: center;
+  }
+
+  .student-profile {
+    margin-right: 0;
+    margin-bottom: 20px;
+    min-width: auto;
+  }
+
+  .student-details {
+    padding-left: 0;
+    border-left: none;
+    border-top: 2px solid #e9ecef;
+    padding-top: 20px;
+  }
+
+  .student-skills {
+    flex-direction: column; /* 縦並びに変更 */
+    gap: 15px;
+  }
+
+  .apps-section h2, .about h1 {
+    font-size: 1.8em;
+    margin: 30px 0 20px 0;
+  }
+
+  .works-title {
+    font-size: 3em;
+    margin-top: 60px;
+    margin-bottom: 40px;
+  }
+
+  .app-info h3 {
+    font-size: 1.1em;
+  }
+
+  .app-info ul li {
+    font-size: 0.8em;
+  }
+
+  .app-info p {
+    font-size: 0.85em;
+  }
+
+  .app-image-container {
+    height: 180px;
+  }
+}
+
+/* スマートフォン対応 (480px以下) */
+@media (max-width: 480px) {
+  .about-container, .apps-section {
+    padding: 0 10px;
+  }
+
+  .app-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 10px 0;
+  }
+
+  .student-card-main {
+    padding: 10px;
+  }
+
+  .student-photo {
+    max-width: 100px;
+  }
+
+  .apps-section h2, .about h1 {
+    font-size: 1.5em;
+    margin: 20px 0 15px 0;
+  }
+
+  .works-title {
+    font-size: 2.5em;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+  }
+
+  .works-title::after {
+    width: 80px;
+    height: 3px;
+    margin: 15px auto 0;
+  }
+
+  .app-info {
+    padding: 12px;
+  }
+
+  .app-genre {
+    padding: 3px 6px;
+    font-size: 1.2em;
+  }
+
+  .app-image-container {
+    height: 160px;
+  }
+
+  /* マテリアルアイコンのサイズ調整 */
+  .material-symbols-outlined {
+    font-size: 16px !important;
+  }
+}
+
+/* 超小画面対応 (360px以下) */
+@media (max-width: 360px) {
+  .about-container, .apps-section {
+    padding: 0 8px;
+  }
+
+  .app-info h3 {
+    font-size: 0.95em;
+  }
+
+  .app-info p {
+    font-size: 0.75em;
+  }
+
+  .app-genre {
+    padding: 2px 5px;
+    font-size: 0.65em;
+  }
+
+  .app-image-container {
+    height: 140px;
+  }
+}
