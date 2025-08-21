@@ -4,6 +4,8 @@
 body {
     margin: 0;
     padding: 0;
+    /* fixedナビゲーションバーのための上部余白 */
+    padding-top: 80px;
 }
 
 /* ナビゲーション後のコンテンツ調整 */
@@ -67,6 +69,19 @@ body > #hero {
 
 .Dl-button:hover, .Dl-button:focus {
   background-color: #333;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  body {
+    /* モバイル版でのナビゲーションバー高さ調整 */
+    padding-top: 70px;
+  }
+  
+  body > section:first-of-type,
+  body > #hero {
+    margin-top: 10px;
+  }
 }
 
 .aboutCountnt {

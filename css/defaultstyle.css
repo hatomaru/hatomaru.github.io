@@ -10,6 +10,10 @@ body {
     font-family: Arial, sans-serif;
     color: #333;
 	letter-spacing: 0.02em;
+    margin: 0;
+    padding: 0;
+    /* 固定ナビゲーションバーのためのデフォルト上部余白 */
+    padding-top: 80px;
 }
 
 /* フッター */
@@ -102,6 +106,11 @@ footer {
 }
 
 
+/* unityroomメニューアイテム - PC版では非表示 */
+.unityroom-menu-item {
+  display: none;
+}
+
 /* レスポンシブデザインでモバイルビュー時のスタイル */
 @media (max-width: 768px) {
   .navbar-container {
@@ -193,6 +202,11 @@ footer {
   .navbar-menu .unityroom-menu-item a:hover {
     background-color: #3490c7;
     color: white !important;
+  }
+
+  /* モバイル版でunityroomメニューアイテムを表示 */
+  .unityroom-menu-item {
+    display: list-item !important;
   }
 
   .navbar-right {
@@ -359,6 +373,13 @@ p {
 
 .TtileDetail {
 	margin-top: -5px;
+}
+
+/* モバイル版での基本レイアウト調整 */
+@media (max-width: 768px) {
+  body {
+    padding-top: 70px;
+  }
 }
 
 /* JavaScriptを使用してハンバーガーメニューの動作を追加する必要があります。 */
