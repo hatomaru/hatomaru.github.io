@@ -107,12 +107,16 @@ footer {
   .navbar-container {
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     padding: 0 20px;
+    position: relative;
   }
 
   .navbar-left {
     order: 1;
     flex: 1;
+    display: flex;
+    align-items: center;
   }
 
   .navbar-logo img {
@@ -131,10 +135,15 @@ footer {
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     border-top: 1px solid #e9ecef;
     z-index: 999;
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: all 0.3s ease;
   }
 
   .navbar-menu.is-active {
     display: flex;
+    transform: translateY(0);
+    opacity: 1;
   }
 
   .navbar-menu li {
@@ -152,21 +161,54 @@ footer {
     text-align: left;
     width: 100%;
     box-sizing: border-box;
+    color: #333 !important;
   }
 
   .navbar-menu li a:hover {
     background-color: #f8f9fa;
+    color: #DCBA29 !important;
   }
 
   .navbar-right {
-    order: 3;
-    display: none; /* モバイルではボタンを非表示 */
+    display: none;
   }
 
   .hamburger-menu {
     display: flex;
     order: 2;
-    margin-bottom: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .hamburger-menu .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 3px 0;
+    transition: 0.3s ease;
+    transform-origin: center;
+  }
+
+  /* ハンバーガーメニューがアクティブ時のアニメーション */
+  .hamburger-menu.is-active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .hamburger-menu.is-active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-menu.is-active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+
+  .hamburger-menu.is-active .bar:nth-child(4) {
+    opacity: 0;
   }
 }
 
@@ -236,6 +278,21 @@ p {
   .navbar-menu.is-active {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+/* デスクトップ版でハンバーガーメニューを非表示 */
+@media (min-width: 769px) {
+  .hamburger-menu {
+    display: none !important;
+  }
+  
+  .navbar-menu {
+    display: flex !important;
+  }
+  
+  .navbar-right {
+    display: flex !important;
   }
 }
 
