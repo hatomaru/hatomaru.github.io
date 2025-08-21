@@ -5,13 +5,13 @@ body {
     margin: 0;
     padding: 0;
     /* fixedナビゲーションバーのための上部余白 */
-    padding-top: 120px;
+    padding-top: 100px;
 }
 
 /* ナビゲーション後のコンテンツ調整 */
 body > section:first-of-type,
 body > #hero {
-    margin-top: 20px;
+    margin-top: 60px;
 }
 
 #about {

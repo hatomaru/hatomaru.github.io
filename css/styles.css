@@ -304,14 +304,17 @@ li{
 .apps-section {
   padding: 20px;
   background-color: #f9f9f9; /* 背景色 */
+  width: 100%; /* 全画面幅を利用 */
 }
 
 .app-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3列のグリッド */
   gap: 20px; /* グリッドのギャップ */
-  max-width: 1400px; /* 最大幅を制限 */
+  width: 100%; /* 全画面幅を利用 */
+  max-width: none; /* 最大幅制限を削除 */
   margin: 0 auto; /* 中央寄せ */
+  padding: 0 40px; /* 左右に適度な余白 */
 }
 
 .app-card {
@@ -320,7 +323,8 @@ li{
   border-radius: 10px; /* 角を丸くする */
   overflow: hidden; /* 内容がはみ出た時に隠す */
   box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* カードの影 */
-  max-width: 400px;
+  width: 100%; /* グリッドセルの全幅を使用 */
+  max-width: none; /* 最大幅制限を削除 */
 }
 
 .app-card:hover {
@@ -395,21 +399,55 @@ li{
 }
 
 /* レスポンシブ対応 */
-@media (min-width: 1500px) {
+@media (min-width: 2000px) {
+  .app-grid {
+    grid-template-columns: repeat(6, 1fr); /* 超大画面では6列 */
+    gap: 30px;
+    padding: 0 60px;
+  }
+}
+
+@media (min-width: 1700px) and (max-width: 1999px) {
+  .app-grid {
+    grid-template-columns: repeat(5, 1fr); /* 非常に大きな画面では5列 */
+    gap: 25px;
+    padding: 0 50px;
+  }
+}
+
+@media (min-width: 1500px) and (max-width: 1699px) {
   .app-grid {
     grid-template-columns: repeat(4, 1fr); /* 大画面では4列 */
+    gap: 20px;
+    padding: 0 40px;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1499px) {
+  .app-grid {
+    grid-template-columns: repeat(3, 1fr); /* デフォルト3列 */
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 901px) {
+  .app-grid {
+    grid-template-columns: repeat(2, 1fr); /* 中画面では2列 */
+    padding: 0 20px;
   }
 }
 
 @media (max-width: 900px) {
   .app-grid {
     grid-template-columns: repeat(2, 1fr); /* 2列に変更 */
+    padding: 0 15px;
   }
 }
 
 @media (max-width: 590px) {
   .app-grid {
     grid-template-columns: 1fr; /* 1列に変更 */
+    padding: 0 10px;
   }
 }
 
