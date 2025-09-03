@@ -1,145 +1,366 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>One Team.</title>
-  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-   <link rel="icon" href="/colorfuldeveloper/favicon.ico">
-  <link rel="stylesheet" href="../css/defaultstyle.css">
-  <link rel="stylesheet" href="../css/styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>One Team. – 「かける」で体験をつくる</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
+  <canvas id="scene" aria-hidden="true"></canvas>
 
-  <!-- ナビゲーションバー -->
+  <div class="topbar" role="navigation">
+    <div class="topbar-inner">
+      <a href="/OneTeam_dot/" class="navbar-logo">
+        <img src="src/OneTeam.Logo_2.png" alt="ロゴ" />
+      </a>
+      
+      <nav class="topnav">
+        <a href="#about">About</a>
+        <a href="#games">GAMES</a>
+        <a href="#guideline">GUIDELINE</a>
+        <a href="https://hatomaru.github.io/portfolio/">PORTFOLIO</a>
+      </nav>
+      
+      <div class="navbar-right">
+        <a href="https://twitter.com/OneTeam_dot" class="social-link">
+          <img src="src/logo-black.png" alt="Twitter" />
+        </a>
+        <a href="https://unityroom.com/users/oneteam_dot" class="my-apps-button">unityroomで一部の作品を遊ぶ</a>
+      </div>
+      
+      <button class="hamb" id="hamb" aria-controls="drawer" aria-expanded="false" aria-label="メニュー">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="drawer" id="drawer">
+      <a href="#about">About</a>
+      <a href="#games">GAMES</a>
+      <a href="#guideline">GUIDELINE</a>
+      <a href="https://hatomaru.github.io/portfolio/">PORTFOLIO</a>
+      <a href="https://unityroom.com/users/oneteam_dot">unityroomで作品を遊ぶ</a>
+    </div>
+  <div class="backdrop" id="backdrop" aria-hidden="true"></div>
+  </div>
+
+  <header id="top" class="animate-in animate-fade-up">
+    <p class="lead animate-in animate-fade-up animate-delay-1">「かける」で体験をつくる</p>
+    <h1 class="animate-in animate-fade-up animate-delay-2">One Team.</h1>
+  </header>
+
+  <section id="about" class="section">
+    <h2>About</h2>
+    <p>One Team. は、テクノロジー × デザイン × ストーリーを「かける」ことで、新しい体験を作ることに取り組む個人開発者です。</p>
+  </section>
+
+  <section id="games" class="section animate-in animate-fade-left">
+    <div class="carousel">
+      <div class="controls animate-in animate-fade-up animate-delay-1">
+        <div class="carousel-title-group">
+          <h2 class="carousel-title">GAMES</h2>
+          <p class="carousel-subtitle">ゲーム作品</p>
+        </div>
+        <div class="carousel-nav-group">
+          <button class="btn-nav" id="games-prev">◀ Prev</button>
+          <span class="page-indicator" id="games-indicator">1 / 1</span>
+          <button class="btn-nav" id="games-next">Next ▶</button>
+        </div>
+      </div>
+      <div class="grid animate-in animate-fade-up animate-delay-2" id="games-grid"></div>
+    </div>
+  </section>
+
+  <section id="guideline" class="section animate-in animate-fade-right">
+    <div class="carousel">
+      <div class="controls animate-in animate-fade-up animate-delay-1">
+        <div class="carousel-title-group">
+          <h2 class="carousel-title">GUIDELINE</h2>
+          <p class="carousel-subtitle">利用指針</p>
+        </div>
+        <div class="carousel-nav-group">
+          <button class="btn-nav" id="guide-prev">◀ Prev</button>
+          <span class="page-indicator" id="guide-indicator">1 / 1</span>
+          <button class="btn-nav" id="guide-next">Next ▶</button>
+        </div>
+      </div>
+      <div class="grid animate-in animate-fade-up animate-delay-2" id="guide-grid"></div>
+    </div>
+  </section>
+
+  <script>
+  // ===== 背景アニメーション（残光 × 鮮やかブレンド × 省負荷） =====
+  (() => {
+    const view = document.getElementById('scene');
+    const ctx = view.getContext('2d');
+    const acc = document.createElement('canvas'); // オフスクリーンで蓄積
+    const accCtx = acc.getContext('2d');
+    const DPR = Math.max(1, Math.min(2.5, window.devicePixelRatio || 1));
+    let W = 0, H = 0;
+
+    function resize(){
+      W = innerWidth; H = innerHeight;
+      for(const c of [view, acc]){ c.width = Math.floor(W*DPR); c.height = Math.floor(H*DPR); c.style.width=W+'px'; c.style.height=H+'px'; }
+      for(const c of [ctx, accCtx]){ c.setTransform(DPR,0,0,DPR,0,0); }
+      accCtx.clearRect(0,0,W,H); // 初期は透明（白で塗らない）
+    }
+    addEventListener('resize', resize, { passive:true });
+    resize();
+
+    const TAU = Math.PI*2;
+    const rand = (a,b)=> a + Math.random()*(b-a);
+
+    function makeBlob(){
+      const a = rand(0, TAU);
+      const h = rand(0,360), s = Math.round(rand(78,96)), l = Math.round(rand(55,65));
+      return {
+        x: rand(0,W), y: rand(0,H), r: rand(55,95),
+        color: `hsl(${h.toFixed(1)} ${s}% ${l}%)`, // 固定色（ちらつき防止）
+        vx: Math.cos(a) * rand(0.03, 0.08),
+        vy: Math.sin(a) * rand(0.03, 0.08),
+        t: rand(0,1000), jitter: rand(0.0004, 0.0010)
+      };
+    }
+
+    const blobs = Array.from({length:9}, makeBlob);
+
+    const DECAY = 0.015; // 小さいほど長く残る（0.01〜0.02 目安）
+    function radial(x,y,r,c){
+      const g = accCtx.createRadialGradient(x,y,0,x,y,r);
+      g.addColorStop(0, c.replace(')', ' / 0.95)'));
+      g.addColorStop(0.6, c.replace(')', ' / 0.50)'));
+      g.addColorStop(1, c.replace(')', ' / 0)'));
+      return g;
+    }
+
+    (function draw(){
+      // 1) 残光フェード（薄い白を重ねて徐々に消す）
+      // 既存の描画を少しだけ“消す”→ 透明方向にフェード
+      accCtx.globalCompositeOperation = 'destination-out';
+      accCtx.fillStyle = `rgba(0,0,0,${DECAY})`;
+      accCtx.fillRect(0,0,W,H);
+
+      // 2) 鮮やかに重ねる
+      accCtx.globalCompositeOperation = 'screen';
+      for(const b of blobs){
+        b.t += b.jitter;
+        b.x += b.vx + Math.cos(b.t) * 0.22;
+        b.y += b.vy + Math.sin(b.t*0.26) * 0.22;
+        if(b.x < -220) b.x = W + 220; if(b.x > W + 220) b.x = -220;
+        if(b.y < -220) b.y = H + 220; if(b.y > H + 220) b.y = -220;
+        accCtx.fillStyle = radial(b.x,b.y,b.r,b.color);
+        accCtx.beginPath(); accCtx.arc(b.x,b.y,b.r,0,TAU); accCtx.fill();
+      }
+
+      // 3) 画面へ描画
+      ctx.clearRect(0,0,W,H);
+      ctx.drawImage(acc, 0, 0, W, H);
+      requestAnimationFrame(draw);
+    })();
+  })();
+
+  // ===== ハンバーガー（右スライド） =====
+  const hamb = document.getElementById('hamb');
+  const drawer = document.getElementById('drawer');
+  const backdrop = document.getElementById('backdrop');
+
+  function setDrawer(open){
+    drawer.classList.toggle('open', open);
+    backdrop.classList.toggle('open', open);
+    hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.classList.toggle('drawer-open', open);
+  }
+
+  if (hamb && drawer && backdrop) {
+    hamb.addEventListener('click', () => {
+      const open = !drawer.classList.contains('open');
+      setDrawer(open);
+    });
+    backdrop.addEventListener('click', () => setDrawer(false));
+    drawer.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') setDrawer(false);
+    });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && drawer.classList.contains('open')) setDrawer(false);
+    });
+  }
+
+  // ===== カルーセル =====
+  function setupCarousel({ items, gridEl, prevEl, nextEl, indicatorEl, pageSize=9 }){
+    let page=0; const totalPages=Math.max(1,Math.ceil(items.length/pageSize));
+    function render(){
+      gridEl.innerHTML='';
+      const slice=items.slice(page*pageSize,page*pageSize+pageSize);
+      for(const it of slice){
+        const card=document.createElement('article'); card.className='card';
+        const th=document.createElement('div'); th.className='thumb';
+        
+        // 画像の処理
+        if(it.image) {
+          const img = document.createElement('img');
+          img.src = it.image;
+          img.alt = it.title || '';
+          
+          // トリミング範囲の指定（object-position）
+          if(it.objectPosition) {
+            img.style.objectPosition = it.objectPosition;
+          }
+          
+          // 画像のフィット方法の指定
+          if(it.objectFit) {
+            img.style.objectFit = it.objectFit;
+          }
+          
+          // 画像読み込みエラーの対処
+          img.onerror = function() {
+            this.style.display = 'none';
+            th.style.background = 'linear-gradient(135deg,#eef3ff,#f7f0ff)';
+          };
+          
+          // 画像読み込み中の表示
+          img.style.backgroundColor = '#f3f4f6';
+          
+          th.appendChild(img);
+        } else if(it.thumb) {
+          // 従来の背景画像方式もサポート
+          th.style.background = it.thumb;
+        } else {
+          // デフォルトのグラデーション
+          th.style.background = 'linear-gradient(135deg,#eef3ff,#f7f0ff)';
+        }
+        
+        const body=document.createElement('div'); body.className='card-body';
+        if(it.tag){ const tag=document.createElement('span'); tag.className='tag'; tag.style.background=it.tagColor||'#6b7280'; tag.textContent=it.tag; body.appendChild(tag); }
+        const tt=document.createElement('div'); tt.className='title'; tt.textContent=it.title; body.appendChild(tt);
+        const mt=document.createElement('div'); mt.className='meta'; mt.textContent=it.meta||''; body.appendChild(mt);
+        if(it.desc){ const desc=document.createElement('p'); desc.textContent=it.desc; body.appendChild(desc); }
+        if(it.buttons){ const btns=document.createElement('div'); btns.className='btns'; for(const b of it.buttons){ const btn=document.createElement('a'); btn.className='btn '+(b.type||''); btn.href=b.href||'#'; btn.textContent=b.label; btns.appendChild(btn);} body.appendChild(btns); }
+        card.appendChild(th); card.appendChild(body); gridEl.appendChild(card);
+      }
+      indicatorEl.textContent=`${page+1} / ${totalPages}`;
+      prevEl.disabled=page===0; nextEl.disabled=page>=totalPages-1;
+    }
+    prevEl.addEventListener('click',()=>{ if(page>0){page--;render();} });
+    nextEl.addEventListener('click',()=>{ if(page<totalPages-1){page++;render();} });
+    render();
+  }
+
+  const games=[
+    { 
+      title:'BlockWorld Ai', 
+      tag:'AIを育成するゲーム', 
+      tagColor:'#ec4899', 
+      meta:'AI × Puzzle RPG', 
+      desc:'パズルを学ぶ不思議なAI ホシハビトくんと共に強力なボスに挑むパズルRPG。', 
+      image:'../portfolio/src/app/BlockWorld_Ai/サムネイル_1.jpg',
+      objectPosition: 'center 30%',
+      objectFit: 'cover',
+      buttons:[{label:'ストアページ',href:'#',type:'primary'}]
+    },
+    { 
+      title:'BlockWorld', 
+      tag:'シンプル脳トレパズル', 
+      tagColor:'#8b5cf6', 
+      meta:'Puzzle', 
+      desc:'制限時間内にブロックの数字を0にして敵を全て倒すシンプル脳トレパズル。', 
+      image:'../src/app/BL_ScreenShoot.png',
+      objectPosition: 'center 20%',
+      objectFit: 'cover',
+      buttons:[{label:'BlockWorldをインストールする',href:'#',type:'secondary'}]
+    },
+    { 
+      title:'SimpleMath', 
+      tag:'計算練習', 
+      tagColor:'#10b981', 
+      meta:'Math Game', 
+      desc:'二択から答えを選んで四則演算の練習ができる計算練習ゲーム。', 
+      image:'../src/app/SiM_ScreenShot.png',
+      objectPosition: 'center 40%',
+      objectFit: 'cover',
+      buttons:[{label:'SimpleMathをインストールする',href:'#',type:'secondary'}]
+    }
+  ];
+
+  const guides=[
+    { 
+      title:'配信ガイドライン (BlockWorld Ai)', 
+      tag:'GUIDE', 
+      tagColor:'#3b82f6', 
+      meta:'Streaming Guidelines (BlockWorld Ai)', 
+      desc:'BlockWorld Aiを配信する際のルール。', 
+      image:'src/guideline/Guideline_BlockWorld_Ai.png',
+      objectPosition: 'center center',
+      objectFit: 'cover',
+      buttons:[{label:'詳細を読む',href:'Guideline/BlockWorldAi.html',type:'primary'}]
+    },
+      { 
+      title:'配信ガイドライン (その他のゲーム)', 
+      tag:'GUIDE', 
+      tagColor:'#3b82f6', 
+      meta:'Streaming Guidelines (Other Games)', 
+      desc:'One Team.のゲームを配信する際のルール。', 
+      image:'src/guideline/Guideline_Other.png',
+      objectPosition: 'center center',
+      objectFit: 'cover',
+      buttons:[{label:'詳細を読む',href:'Guideline/Other.html',type:'primary'}]
+    }
+  ];
+
+  setupCarousel({ items: games, gridEl: document.getElementById('games-grid'), prevEl: document.getElementById('games-prev'), nextEl: document.getElementById('games-next'), indicatorEl: document.getElementById('games-indicator'), pageSize:9 });
+  setupCarousel({ items: guides, gridEl: document.getElementById('guide-grid'), prevEl: document.getElementById('guide-prev'), nextEl: document.getElementById('guide-next'), indicatorEl: document.getElementById('guide-indicator'), pageSize:9 });
+
+  // ===== フロートインアニメーション =====
+  const animateElements = document.querySelectorAll('.animate-in');
+  
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const element = entry.target;
+        
+        // 適切なアニメーションクラスを追加
+        if (element.classList.contains('animate-fade-up')) {
+          element.style.animationName = 'fadeInUp';
+        } else if (element.classList.contains('animate-fade-left')) {
+          element.style.animationName = 'fadeInLeft';
+        } else if (element.classList.contains('animate-fade-right')) {
+          element.style.animationName = 'fadeInRight';
+        } else {
+          element.style.animationName = 'fadeInUp'; // デフォルト
+        }
+        
+        element.style.animationDuration = '0.8s';
+        element.style.animationFillMode = 'forwards';
+        element.style.animationTimingFunction = 'ease-out';
+        
+        // 一度アニメーションしたら監視を停止
+        observer.unobserve(element);
+      }
+    });
+  }, observerOptions);
+
+  // 全てのアニメーション要素を監視開始
+  animateElements.forEach(element => {
+    observer.observe(element);
+  });
+
+  // 初期状態でヘッダー要素は即座にアニメーション開始
+  const headerElements = document.querySelectorAll('header .animate-in');
+  headerElements.forEach((element, index) => {
+    setTimeout(() => {
+      if (element.classList.contains('animate-fade-up')) {
+        element.style.animationName = 'fadeInUp';
+      }
+      element.style.animationDuration = '0.8s';
+      element.style.animationFillMode = 'forwards';
+      element.style.animationTimingFunction = 'ease-out';
+    }, index * 100);
+  });
+  </script>
      <script>
-      $(function() {
-        $.get('/navbar_OC.html', function(data){
-          $('body').append(data);
-        });
-      });
-    </script>
-
-
-  <section id="hero">
-    <section class="slideshow-section">
-      <div class="slideshow-container">
-        <!-- 各スライド -->
-        <div class="mySlides fade">
-          <img src="../src/アセット 1.png" style="width:100%">
-        </div>
-
-        <!-- 前へボタン -->
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <!-- 次へボタン -->
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-      </div>
-      <!-- スライド下のドットナビゲーション -->
-      <div style="text-align:center">
-        <span class="dot" onclick="currentSlide(1)"></span>
-      </div>
-    </section>
-  </section>
-  <!-- 配信中のアプリセクション -->
-  <section class="apps-section" id="app" style="margin-top: -100px;">
-	<div class="Title">
-	<h2 class="TitleText">GAMES</h2>
-    <h2 class="TtileDetail">公開中のゲーム</h2>
-		</div>
-    <div class="app-grid">
-		<!-- アプリカード -->
-      <div class="app-card">
-        <div class="app-image-container">
-          <img src="../portfolio/src/app/BlockWorld_Ai/サムネイル_1.jpg" alt="アプリのスクリーンショット" style="object-position: 100% 38%;">
-        </div>
-        <div class="app-info">
-          <h3>BlockWorld Ai</h3>
-		  <li>
-          <ul><span class="app-genre" style="background-color: #FF2E86;color: whitesmoke">AIを育成するゲーム</span></ul>
-			</li>
-                  <p>パズルを学ぶ不思議なAI ホシハビトくんと共に<br>
-ゲーム内でパズルの動かし方を学ばせて、強力なボスにプレイヤーと共に戦うパズルRPGゲームです。</p>
-        </div>
-		  <div class="store-buttons">
-            <a href="https://store.steampowered.com/app/3010030?utm_source=OfficialSite"
-              class="store-button android" style="background-color: hsla(228,48%,20%,1.00)">ストアページ</a>
-          </div>
-      </div>
-      <!-- アプリカード -->
-      <div class="app-card">
-        <div class="app-image-container">
-          <img src="../src/app/BL_ScreenShoot.png" alt="アプリのスクリーンショット" style="object-position: 100% 38%;">
-        </div>
-        <div class="app-info">
-          <h3>BlockWorld</h3>
-		  <li>
-          <ul><span class="app-genre" style="background-color: #C132EC;color: whitesmoke">シンプル脳トレパズル</span></ul>
-			</li>
-          <p>制限時間以内にブロックの中の数字が0になるようにパネルをタップして、<br>敵に攻撃し、全6体の敵を全て倒すゲームです。</p>
-          <div class="store-buttons">
-            <a href="https://play.google.com/store/apps/details?id=com.ColorfulDeveloper.BlockWorld"
-              class="store-button android">BlockWorldをインストールする</a>
-          </div>
-          <div class="store-buttons">
-            <a href="https://apps.apple.com/jp/app/id6463722805" class="store-button ios">BlockWorldをインストールする</a>
-          </div>
-        </div>
-      </div>
- <div class="app-card">
-        <div class="app-image-container">
-          <img src="../src/app/SiM_ScreenShot.png" alt="アプリのスクリーンショット" style="object-position: 100% 38%;">
-        </div>
-        <div class="app-info">
-          <h3>SimpleMath</h3>
-		  <li>
-          <ul><span class="app-genre" style="background-color: #2FAA00;color: whitesmoke">計算練習</span></ul>
-			</li>
-			<p>二択から答えを選んでたし算・ひき算・かけ算・わり算の練習が出来る計算練習ゲームです。</p>
-          <div class="store-buttons">
-            <a href="https://play.google.com/store/apps/details?id=com.ColorfulDeveloper.SimpleMath"
-              class="store-button android">SimpleMathをインストールする</a>
-          </div>
-          <div class="store-buttons">
-            <a href="https://apps.apple.com/jp/app/%E8%A8%88%E7%AE%97%E7%B7%B4%E7%BF%92-simplemath/id6469422268?ign-mpt=uo%3D4" class="store-button ios">SimpleMathをインストールする</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-	  <!-- 配信中のアプリセクション -->
-  <section class="apps-section" id="guideline">
-	<div class="Title">
-	<h2 class="TitleText">GUIDELINE</h2>
-    <h2 class="TtileDetail">配信ガイドライン</h2>
-		</div>
-    <div class="app-grid">
-      <!-- アプリカード -->
-		 <a href="Guideline/BlockWorldAi.html" style="color:black; text-decoration: none;">
-      <div class="app-card">
-        <div class="app-image-container">
-          <img src="../portfolio/src/app/BlockWorld_Ai/サムネイル_1.jpg" alt="アプリのスクリーンショット" style="object-position: 100% 38%;">
-        </div>
-        <div class="app-info">
-          <h3>BlockWorld Ai</h3>
-		 
-        </div>
-      </div>
-		</a>
-			 <a href="Guideline/Other.html" style="color:black; text-decoration: none;">
- <div class="app-card">
-        <div class="app-image-container">
-          <img src="../src/アセット 1.png" alt="アプリのスクリーンショット" style="object-position: 20% 28%;">
-        </div>
-        <div class="app-info">
-          <h3>その他のゲーム</h3>
-        </div>
-      </div>
-		</a>
-    </div>
-  </section>
-    <script>
       $(function() {
         $.get('/contact.html', function(data){
           $('body').append(data);
@@ -153,8 +374,5 @@
         });
       });
     </script>
-  <script src="../js/scripts.js"></script>
-  <script src="../js/menu.js"></script>
 </body>
-
 </html>
