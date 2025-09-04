@@ -49,8 +49,8 @@
   </header>
 
   <section id="about" class="section">
-    <h2>About</h2>
-    <p>One Team. は、テクノロジー × デザイン × ストーリーを「かける」ことで、新しい体験を作ることに取り組む個人開発者です。</p>
+    <h2 class="animate-in animate-fade-up">About</h2>
+    <p class="animate-in animate-fade-up">One Team. は、テクノロジー × デザイン × ストーリーを「かける」ことで、<br>新しい体験を作ることに取り組む個人開発者です。</p>
   </section>
 
   <section id="games" class="section animate-in animate-fade-left">
@@ -245,22 +245,44 @@
   }
 
   const games=[
-    { 
-      title:'BlockWorld Ai', 
-      tag:'AIを育成するゲーム', 
-      tagColor:'#ec4899', 
-      meta:'AI × Puzzle RPG', 
-      desc:'パズルを学ぶ不思議なAI ホシハビトくんと共に強力なボスに挑むパズルRPG。', 
-      image:'../portfolio/src/app/BlockWorld_Ai/サムネイル_1.jpg',
+     { 
+      title:'Amevar', 
+      tag:'あなたが見守るのは、小さな命の物語', 
+      tagColor:'#10b981', 
+      meta:'命のつながり x 育成シミュレーション', 
+      desc:'自由に動き回る生物を育成し、戦いや進化で命のつながりを体験する育成シミュレーション。', 
+      image:'../portfolio/src/app/AM/サムネイル_3.jpg',
       objectPosition: 'center 30%',
       objectFit: 'cover',
       buttons:[{label:'ストアページ',href:'#',type:'primary'}]
     },
     { 
-      title:'BlockWorld', 
-      tag:'シンプル脳トレパズル', 
+      title:'BlockWorld Ai', 
+      tag:'パズルでキミのAIを育てよう', 
+      tagColor:'#ec4899', 
+      meta:'AI × パズルRPG', 
+      desc:'パズルを学ぶ不思議なAI ホシハビトくんと共に強力なボスに挑むパズルRPG。', 
+      image:'../portfolio/src/app/BlockWorld_Ai/サムネイル_3.jpg',
+      objectPosition: 'center 30%',
+      objectFit: 'cover',
+      buttons:[{label:'ストアページ',href:'#',type:'primary'}]
+    },
+        { 
+      title:'ナンバークラッシュゲーム CyberCrush', 
+      tag:'サイバー空間で数字をクラッシュ！', 
       tagColor:'#8b5cf6', 
-      meta:'Puzzle', 
+      meta:'脳トレ x フラッシュ', 
+      desc:'制限時間内にパネルの数字を0にして、ブロックを消すシンプル脳トレゲーム。', 
+      image:'../portfolio/src/app/CC/CC_1.jpg',
+      objectPosition: '30% 20%',
+      objectFit: 'cover',
+      buttons:[{label:'unityroomで遊ぶ',href:'#',type:'secondary'}]
+    },
+    { 
+      title:'BlockWorld', 
+      tag:'星ブロックを揃えて大量連鎖を狙え！', 
+      tagColor:'#8b5cf6', 
+      meta:'パズル x 爽快感', 
       desc:'制限時間内にブロックの数字を0にして敵を全て倒すシンプル脳トレパズル。', 
       image:'../src/app/BL_ScreenShoot.png',
       objectPosition: 'center 20%',
@@ -269,9 +291,9 @@
     },
     { 
       title:'SimpleMath', 
-      tag:'計算練習', 
+      tag:'2択で答える計算練習ゲーム', 
       tagColor:'#10b981', 
-      meta:'Math Game', 
+      meta:'計算練習 x お手軽', 
       desc:'二択から答えを選んで四則演算の練習ができる計算練習ゲーム。', 
       image:'../src/app/SiM_ScreenShot.png',
       objectPosition: 'center 40%',
@@ -308,56 +330,75 @@
   setupCarousel({ items: games, gridEl: document.getElementById('games-grid'), prevEl: document.getElementById('games-prev'), nextEl: document.getElementById('games-next'), indicatorEl: document.getElementById('games-indicator'), pageSize:9 });
   setupCarousel({ items: guides, gridEl: document.getElementById('guide-grid'), prevEl: document.getElementById('guide-prev'), nextEl: document.getElementById('guide-next'), indicatorEl: document.getElementById('guide-indicator'), pageSize:9 });
 
-  // ===== フロートインアニメーション =====
-  const animateElements = document.querySelectorAll('.animate-in');
-  
+  // ===== フロートインアニメーション（スクロール順に順番表示） =====
+  const STAGGER_MS = 180; // 要素ごとに少しずつ時間差で表示
+  const queued = new Set();
+  const queue = [];
+  let processing = false;
+
+  function triggerFloatIn(element){
+    if (!element) return;
+    // 適切なアニメーションクラスを適用
+    if (element.classList.contains('animate-fade-left')) {
+      element.style.animationName = 'fadeInLeft';
+    } else if (element.classList.contains('animate-fade-right')) {
+      element.style.animationName = 'fadeInRight';
+    } else {
+      element.style.animationName = 'fadeInUp';
+    }
+    element.style.animationDuration = '0.8s';
+    element.style.animationFillMode = 'forwards';
+    element.style.animationTimingFunction = 'ease-out';
+  }
+
+  function processQueue(){
+    if (processing || queue.length === 0) return;
+    processing = true;
+    const el = queue.shift();
+    triggerFloatIn(el);
+    observer.unobserve(el);
+    setTimeout(() => {
+      processing = false;
+      processQueue();
+    }, STAGGER_MS);
+  }
+
   const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    threshold: 0.15,
+    rootMargin: '0px 0px -15% 0px'
   };
 
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const element = entry.target;
-        
-        // 適切なアニメーションクラスを追加
-        if (element.classList.contains('animate-fade-up')) {
-          element.style.animationName = 'fadeInUp';
-        } else if (element.classList.contains('animate-fade-left')) {
-          element.style.animationName = 'fadeInLeft';
-        } else if (element.classList.contains('animate-fade-right')) {
-          element.style.animationName = 'fadeInRight';
-        } else {
-          element.style.animationName = 'fadeInUp'; // デフォルト
-        }
-        
-        element.style.animationDuration = '0.8s';
-        element.style.animationFillMode = 'forwards';
-        element.style.animationTimingFunction = 'ease-out';
-        
-        // 一度アニメーションしたら監視を停止
-        observer.unobserve(element);
-      }
-    });
+    // 可視になったものをDOM順で処理し、キューに追加
+    entries
+      .filter(e => e.isIntersecting)
+      .sort((a, b) => (a.target.compareDocumentPosition(b.target) & Node.DOCUMENT_POSITION_FOLLOWING) ? -1 : 1)
+      .forEach(({ target }) => {
+        if (queued.has(target)) return;
+        queued.add(target);
+        queue.push(target);
+        processQueue();
+      });
   }, observerOptions);
 
-  // 全てのアニメーション要素を監視開始
-  animateElements.forEach(element => {
-    observer.observe(element);
-  });
+  // ヘッダー内は初回ロードで即時アニメーション、スクロール順制御の対象外
+  document.querySelectorAll('.animate-in:not(header .animate-in)').forEach(el => observer.observe(el));
 
-  // 初期状態でヘッダー要素は即座にアニメーション開始
+  // 既存のヘッダー要素の即時アニメーション（軽い段階的ディレイ）
   const headerElements = document.querySelectorAll('header .animate-in');
   headerElements.forEach((element, index) => {
     setTimeout(() => {
-      if (element.classList.contains('animate-fade-up')) {
+      if (element.classList.contains('animate-fade-left')) {
+        element.style.animationName = 'fadeInLeft';
+      } else if (element.classList.contains('animate-fade-right')) {
+        element.style.animationName = 'fadeInRight';
+      } else {
         element.style.animationName = 'fadeInUp';
       }
       element.style.animationDuration = '0.8s';
       element.style.animationFillMode = 'forwards';
       element.style.animationTimingFunction = 'ease-out';
-    }, index * 100);
+    }, index * 120);
   });
   </script>
      <script>
