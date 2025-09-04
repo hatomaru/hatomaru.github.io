@@ -233,7 +233,29 @@
         const tt=document.createElement('div'); tt.className='title'; tt.textContent=it.title; body.appendChild(tt);
         const mt=document.createElement('div'); mt.className='meta'; mt.textContent=it.meta||''; body.appendChild(mt);
         if(it.desc){ const desc=document.createElement('p'); desc.textContent=it.desc; body.appendChild(desc); }
-        if(it.buttons){ const btns=document.createElement('div'); btns.className='btns'; for(const b of it.buttons){ const btn=document.createElement('a'); btn.className='btn '+(b.type||''); btn.href=b.href||'#'; btn.textContent=b.label; btns.appendChild(btn);} body.appendChild(btns); }
+        
+        // ボタン生成（複数/単一の両対応）
+        {
+          const btnDataRaw = (it.buttons ?? it.button ?? null);
+          if (btnDataRaw) {
+            const btns = document.createElement('div');
+            btns.className = 'btns';
+            const btnList = Array.isArray(btnDataRaw) ? btnDataRaw : [btnDataRaw];
+            for (const b of btnList) {
+              if (!b) continue;
+              const btn = document.createElement('a');
+              btn.className = 'btn ' + (b.type || '');
+              btn.href = b.href || '#';
+              btn.textContent = b.label ?? 'リンク';
+              // 新しいタブで開く
+              if (b.newTab) { btn.target = '_blank'; btn.rel = 'noopener noreferrer'; }
+              // 無効状態
+              if (b.disabled) { btn.classList.add('disabled'); btn.setAttribute('aria-disabled','true'); btn.href = 'javascript:void(0)'; }
+              btns.appendChild(btn);
+            }
+            body.appendChild(btns);
+          }
+        }
         card.appendChild(th); card.appendChild(body); gridEl.appendChild(card);
       }
       indicatorEl.textContent=`${page+1} / ${totalPages}`;
@@ -250,55 +272,61 @@
       tag:'あなたが見守るのは、小さな命の物語', 
       tagColor:'#10b981', 
       meta:'命のつながり x 育成シミュレーション', 
-      desc:'自由に動き回る生物を育成し、戦いや進化で命のつながりを体験する育成シミュレーション。', 
+      desc:'自由に動き回る生物を育成し、戦いや進化で命のつながりを体験する育成シミュレーション', 
       image:'../portfolio/src/app/AM/サムネイル_3.jpg',
       objectPosition: 'center 30%',
       objectFit: 'cover',
-      buttons:[{label:'ストアページ',href:'#',type:'primary'}]
+      buttons:[{label:'デモバージョン 配信中',href:'#',type:'store4'}]
     },
     { 
       title:'BlockWorld Ai', 
       tag:'パズルでキミのAIを育てよう', 
       tagColor:'#ec4899', 
       meta:'AI × パズルRPG', 
-      desc:'パズルを学ぶ不思議なAI ホシハビトくんと共に強力なボスに挑むパズルRPG。', 
+      desc:'パズルを学ぶ不思議なAI ホシハビトくんと共に強力なボスに挑むパズルRPG', 
       image:'../portfolio/src/app/BlockWorld_Ai/サムネイル_3.jpg',
       objectPosition: 'center 30%',
       objectFit: 'cover',
-      buttons:[{label:'ストアページ',href:'#',type:'primary'}]
+      buttons:[{label:'ストアページ',href:'#',type:'store3'}]
     },
         { 
       title:'ナンバークラッシュゲーム CyberCrush', 
       tag:'サイバー空間で数字をクラッシュ！', 
       tagColor:'#8b5cf6', 
       meta:'脳トレ x フラッシュ', 
-      desc:'制限時間内にパネルの数字を0にして、ブロックを消すシンプル脳トレゲーム。', 
+      desc:'制限時間内にパネルの数字を0にして、ブロックを消すシンプル脳トレゲーム', 
       image:'../portfolio/src/app/CC/CC_1.jpg',
       objectPosition: '30% 20%',
       objectFit: 'cover',
-      buttons:[{label:'unityroomで遊ぶ',href:'#',type:'secondary'}]
+      buttons:[{label:'unityroomで遊ぶ',href:'#',type:'primary'}]
     },
     { 
       title:'BlockWorld', 
       tag:'星ブロックを揃えて大量連鎖を狙え！', 
       tagColor:'#8b5cf6', 
       meta:'パズル x 爽快感', 
-      desc:'制限時間内にブロックの数字を0にして敵を全て倒すシンプル脳トレパズル。', 
+      desc:'制限時間内にブロックの数字を0にして敵を全て倒すシンプル脳トレパズル', 
       image:'../src/app/BL_ScreenShoot.png',
       objectPosition: 'center 20%',
       objectFit: 'cover',
-      buttons:[{label:'BlockWorldをインストールする',href:'#',type:'secondary'}]
+       buttons:[
+        {label:'SimpleMathをインストールする',href:'#',type:'store1'},
+        {label:'SimpleMathをインストールする',href:'#',type:'store2'},
+      ]
     },
     { 
       title:'SimpleMath', 
       tag:'2択で答える計算練習ゲーム', 
       tagColor:'#10b981', 
       meta:'計算練習 x お手軽', 
-      desc:'二択から答えを選んで四則演算の練習ができる計算練習ゲーム。', 
+      desc:'二択から答えを選んで四則演算の練習ができる計算練習ゲーム', 
       image:'../src/app/SiM_ScreenShot.png',
       objectPosition: 'center 40%',
       objectFit: 'cover',
-      buttons:[{label:'SimpleMathをインストールする',href:'#',type:'secondary'}]
+      buttons:[
+        {label:'SimpleMathをインストールする',href:'#',type:'store1'},
+        {label:'SimpleMathをインストールする',href:'#',type:'store2'},
+      ]
     }
   ];
 
