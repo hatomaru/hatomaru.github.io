@@ -18,6 +18,7 @@
       <nav class="topnav">
         <a href="#about">About</a>
         <a href="#games">GAMES</a>
+        <a href="#story">STORY</a>
         <a href="#guideline">GUIDELINE</a>
         <a href="https://hatomaru.github.io/portfolio/">PORTFOLIO</a>
       </nav>
@@ -36,6 +37,7 @@
     <div class="drawer" id="drawer">
       <a href="#about">About</a>
       <a href="#games">GAMES</a>
+      <a href="#story">STORY</a>
       <a href="#guideline">GUIDELINE</a>
       <a href="https://hatomaru.github.io/portfolio/">PORTFOLIO</a>
       <a href="https://unityroom.com/users/oneteam_dot">unityroomで作品を遊ぶ</a>
@@ -67,6 +69,24 @@
         </div>
       </div>
       <div class="grid animate-in animate-fade-up animate-delay-2" id="games-grid"></div>
+    </div>
+  </section>
+
+  <!-- STORY セクション（GAMESの下） -->
+  <section id="story" class="section animate-in animate-fade-right">
+    <div class="carousel">
+      <div class="controls animate-in animate-fade-up animate-delay-1">
+        <div class="carousel-title-group">
+          <h2 class="carousel-title">STORY</h2>
+        </div>
+        <div class="carousel-nav-group">
+          <button class="btn-nav" id="story-prev">◀ Prev</button>
+          <span class="page-indicator" id="story-indicator">1 / 1</span>
+          <button class="btn-nav" id="story-next">Next ▶</button>
+        </div>
+      </div>
+      <p class="animate-in animate-fade-up animate-delay-2">作品制作の思考ログや小話を紹介しています</p>
+      <div class="grid animate-in animate-fade-up animate-delay-3" id="story-grid"></div>
     </div>
   </section>
 
@@ -185,7 +205,7 @@
   }
 
   // ===== カルーセル =====
-  function setupCarousel({ items, gridEl, prevEl, nextEl, indicatorEl, pageSize=9 }){
+  function setupCarousel({ items, gridEl, prevEl, nextEl, indicatorEl, pageSize=9, wrapCardLink=false }){
     let page=0; const totalPages=Math.max(1,Math.ceil(items.length/pageSize));
     function render(){
       gridEl.innerHTML='';
@@ -256,7 +276,19 @@
             body.appendChild(btns);
           }
         }
-        card.appendChild(th); card.appendChild(body); gridEl.appendChild(card);
+        card.appendChild(th); card.appendChild(body);
+        
+        // STORYなどカード全体をリンク化（ネスト回避のためボタンがない場合のみ）
+        if (wrapCardLink && !it.buttons && !it.button && (it.href || it.link)) {
+          const a = document.createElement('a');
+          a.className = 'card-link';
+          a.href = it.href || it.link;
+          if (it.newTab) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
+          a.appendChild(card);
+          gridEl.appendChild(a);
+        } else {
+          gridEl.appendChild(card);
+        }
       }
       indicatorEl.textContent=`${page+1} / ${totalPages}`;
       prevEl.disabled=page===0; nextEl.disabled=page>=totalPages-1;
@@ -355,7 +387,15 @@
     }
   ];
 
+  // STORY 用データ（最大3件/カルーセル対応）
+  const stories = [
+    { title:'世界観', meta:'Background', desc:'作品世界の背景設定を紹介。', image:'', objectFit:'cover', objectPosition:'center', href:'#' },
+    { title:'キャラクター', meta:'Characters', desc:'主要キャラクターのプロフィール。', href:'#' },
+    { title:'制作ノート', meta:'Dev Note', desc:'開発の裏話や制作メモ。', href:'#' },
+  ];
+
   setupCarousel({ items: games, gridEl: document.getElementById('games-grid'), prevEl: document.getElementById('games-prev'), nextEl: document.getElementById('games-next'), indicatorEl: document.getElementById('games-indicator'), pageSize:9 });
+  setupCarousel({ items: stories, gridEl: document.getElementById('story-grid'), prevEl: document.getElementById('story-prev'), nextEl: document.getElementById('story-next'), indicatorEl: document.getElementById('story-indicator'), pageSize:3, wrapCardLink:true });
   setupCarousel({ items: guides, gridEl: document.getElementById('guide-grid'), prevEl: document.getElementById('guide-prev'), nextEl: document.getElementById('guide-next'), indicatorEl: document.getElementById('guide-indicator'), pageSize:9 });
 
   // ===== フロートインアニメーション（スクロール順に順番表示） =====
@@ -445,3 +485,4 @@
     </script>
 </body>
 </html>
+``` 
