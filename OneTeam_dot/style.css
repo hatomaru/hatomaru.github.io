@@ -123,11 +123,11 @@ h1{ font-size: clamp(36px, 6vw, 68px); letter-spacing:.02em; margin:.1rem 0 1.2r
 .btn.store1{ background:#10b981; color:#fff; }
 .btn.store2{ background:#1059b9; color:#fff; }
 .btn.store3{ background:#2e2e44; color:#fff; }
-.btn.store1:hover{ background:#059669; box-shadow: 0 4px 12px rgba(16,185,129,0.4); }
-.btn.store2:hover{ background:#1059b9; box-shadow: 0 4px 12px rgba(16,185,129,0.4); }
-.btn.store3:hover{ background:#2e2e44; box-shadow: 0 4px 12px rgba(16,185,129,0.4); }
+.btn.store1:hover{ background:#067a55; box-shadow: 0 4px 12px #10b98166; }
+.btn.store2:hover{ background:#0b3975; box-shadow: 0 4px 12px #1059b966; }
+.btn.store3:hover{ background:#2e2e44; box-shadow: 0 4px 12px #2e2e4466; }
 .btn.store4{ background:#8f3532; color:#fff; }
-.btn.store4:hover{ background:#8f3532; box-shadow: 0 4px 12px rgba(16,185,129,0.4); }
+.btn.store4:hover{ background:#702825; box-shadow: 0 4px 12px #8f353266; }
 /* タッチデバイス配慮 */
 @media (hover:none) and (pointer:coarse){
   .card:hover{ transform:none; box-shadow: var(--shadow); border-color: var(--stroke); }
@@ -137,10 +137,10 @@ h1{ font-size: clamp(36px, 6vw, 68px); letter-spacing:.02em; margin:.1rem 0 1.2r
   .btn:hover{ transform:none; box-shadow: var(--shadow); }
   .btn.primary:hover{ background:#2563eb; box-shadow: var(--shadow); }
   .btn.secondary:hover{ background:#10b981; box-shadow: var(--shadow); }
-  .btn.store1:hover{ background:#10b981; box-shadow: var(--shadow); }
-  .btn.store2:hover{ background:#1059b9; box-shadow: var(--shadow); }
+  .btn.store1:hover{ background:#067a55; box-shadow: var(--shadow); }
+  .btn.store2:hover{ background:#0b3975; box-shadow: var(--shadow); }
   .btn.store3:hover{ background:#2e2e44; box-shadow: var(--shadow); }
-  .btn.store4:hover{ background:#8f3532; box-shadow: var(--shadow); }
+  .btn.store4:hover{ background:#702825; box-shadow: var(--shadow); }
   .controls .btn-nav:hover:not(:disabled){ transform:none; box-shadow: var(--shadow); border-color: var(--stroke); background: var(--card); }
   .topnav a:hover{ background:none; color: var(--fg); transform:none; }
   .hamb:hover{ background: var(--card); border-color: var(--stroke); transform:none; }
