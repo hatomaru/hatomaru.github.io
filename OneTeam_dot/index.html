@@ -322,7 +322,7 @@
       image:'../portfolio/src/app/BlockWorld_Ai/サムネイル_3.jpg',
       objectPosition: 'center 30%',
       objectFit: 'cover',
-      buttons:[{label:'ストアページ',href:'#',type:'store3'}]
+      buttons:[{label:'ストアページ',href:'https://store.steampowered.com/app/3010030/BlockWorld_Ai',type:'store3'}]
     },
         { 
       title:'ナンバークラッシュゲーム CyberCrush', 
@@ -334,7 +334,7 @@
       image:'../portfolio/src/app/CC/CC_1.jpg',
       objectPosition: '30% 20%',
       objectFit: 'cover',
-      buttons:[{label:'unityroomで遊ぶ',href:'#',type:'primary'}]
+      buttons:[{label:'unityroomで遊ぶ',href:'https://unityroom.com/games/cybercrash',type:'primary'}]
     },
     { 
       title:'BlockWorld', 
@@ -347,8 +347,8 @@
       objectPosition: 'center 20%',
       objectFit: 'cover',
        buttons:[
-        {label:'SimpleMathをインストールする',href:'#',type:'store1'},
-        {label:'SimpleMathをインストールする',href:'#',type:'store2'},
+        {label:'BlockWorldをインストールする',href:'https://play.google.com/store/apps/details?id=com.ColorfulDeveloper.BlockWorld',type:'store1'},
+        {label:'BlockWorldをインストールする',href:'https://apps.apple.com/jp/app/id6463722805',type:'store2'},
       ]
     },
     { 
@@ -362,8 +362,8 @@
       objectPosition: 'center 40%',
       objectFit: 'cover',
       buttons:[
-        {label:'SimpleMathをインストールする',href:'#',type:'store1'},
-        {label:'SimpleMathをインストールする',href:'#',type:'store2'},
+        {label:'SimpleMathをインストールする',href:'https://play.google.com/store/apps/details?id=com.ColorfulDeveloper.SimpleMath',type:'store1'},
+        {label:'SimpleMathをインストールする',href:'https://apps.apple.com/jp/app/id6469422268',type:'store2'},
       ]
     }
   ];
@@ -395,9 +395,10 @@
 
   // STORY 用データ（最大3件/カルーセル対応）
   const stories = [
-    { title:'準備中', meta:'Background', desc:'作品世界の背景設定を紹介。', image:'', objectFit:'cover', objectPosition:'center', href:'#' },
+    { title:'Amevarのフキダシ①', meta:'Note', desc:'Amevarの制作の小話を紹介', image:'src/note/Samune_1.png', objectFit:'cover', objectPosition:'center', href:'https://note.com/oneteam_dot/n/n10fdfb82b4d4' },
     //{ title:'キャラクター', meta:'Characters', desc:'主要キャラクターのプロフィール。', href:'#' },
     //{ title:'制作ノート', meta:'Dev Note', desc:'開発の裏話や制作メモ。', href:'#' },
+    { title:'もっと見る', meta:'And more', desc:'One Team. 公式Noteをみてみる', href:'https://note.com/oneteam_dot' },
   ];
 
   setupCarousel({ items: games, gridEl: document.getElementById('games-grid'), prevEl: document.getElementById('games-prev'), nextEl: document.getElementById('games-next'), indicatorEl: document.getElementById('games-indicator'), pageSize:9 });
