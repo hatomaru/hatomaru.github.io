@@ -249,9 +249,10 @@
         }
         
         const body=document.createElement('div'); body.className='card-body';
-        if(it.tag){ const tag=document.createElement('span'); tag.className='tag'; tag.style.background=it.tagColor||'#6b7280'; tag.textContent=it.tag; body.appendChild(tag); }
-        const tt=document.createElement('div'); tt.className='title'; tt.textContent=it.title; body.appendChild(tt);
-        const mt=document.createElement('div'); mt.className='meta'; mt.textContent=it.meta||''; body.appendChild(mt);
+  if(it.tag){ const tag=document.createElement('span'); tag.className='tag'; tag.style.background=it.tagColor||'#6b7280'; tag.textContent=it.tag; body.appendChild(tag); }
+  const tt=document.createElement('div'); tt.className='title'; tt.textContent=it.title; body.appendChild(tt);
+  if(it.reading){ const rd=document.createElement('div'); rd.className='reading'; rd.textContent=it.reading; body.appendChild(rd); }
+  const mt=document.createElement('div'); mt.className='meta'; mt.textContent=it.meta||''; body.appendChild(mt);
         if(it.desc){ const desc=document.createElement('p'); desc.textContent=it.desc; body.appendChild(desc); }
         
         // ボタン生成（複数/単一の両対応）
@@ -299,8 +300,9 @@
   }
 
   const games=[
-     { 
-      title:'Amevar', 
+  { 
+   title:'Amevar', 
+   reading:'アミーバー',
       tag:'あなたが見守るのは、小さな命の物語', 
       tagColor:'#10b981', 
       meta:'命のつながり x 育成シミュレーション', 
@@ -312,6 +314,7 @@
     },
     { 
       title:'BlockWorld Ai', 
+      reading:'ブロックワールド アイ',
       tag:'パズルでキミのAIを育てよう', 
       tagColor:'#ec4899', 
       meta:'AI × パズルRPG', 
@@ -323,6 +326,7 @@
     },
         { 
       title:'ナンバークラッシュゲーム CyberCrush', 
+      reading:'サイバークラッシュ',
       tag:'サイバー空間で数字をクラッシュ！', 
       tagColor:'#8b5cf6', 
       meta:'脳トレ x フラッシュ', 
@@ -334,6 +338,7 @@
     },
     { 
       title:'BlockWorld', 
+      reading:'ブロックワールド',
       tag:'星ブロックを揃えて大量連鎖を狙え！', 
       tagColor:'#8b5cf6', 
       meta:'パズル x 爽快感', 
@@ -348,6 +353,7 @@
     },
     { 
       title:'SimpleMath', 
+      reading:'シンプルマス',
       tag:'2択で答える計算練習ゲーム', 
       tagColor:'#10b981', 
       meta:'計算練習 x お手軽', 
