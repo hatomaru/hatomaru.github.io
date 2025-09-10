@@ -9,41 +9,18 @@
 <body>
   <canvas id="scene" aria-hidden="true"></canvas>
 
-  <div class="topbar" role="navigation">
-    <div class="topbar-inner">
-      <a href="/OneTeam_dot/" class="navbar-logo">
-        <img src="src/OneTeam.Logo_2.png" alt="ロゴ" />
-      </a>
-      
-      <nav class="topnav">
-        <a href="#about">About</a>
-        <a href="#games">GAMES</a>
-        <a href="#story">STORY</a>
-        <a href="#guideline">GUIDELINE</a>
-        <a href="https://hatomaru.github.io/portfolio/">PORTFOLIO</a>
-      </nav>
-      
-      <div class="navbar-right">
-        <a href="https://twitter.com/OneTeam_dot" class="social-link">
-          <img src="src/logo-black.png" alt="Twitter" />
-        </a>
-        <a href="https://unityroom.com/users/oneteam_dot" class="my-apps-button">unityroomで一部の作品を遊ぶ</a>
-      </div>
-      
-      <button class="hamb" id="hamb" aria-controls="drawer" aria-expanded="false" aria-label="メニュー">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-    </div>
-    <div class="drawer" id="drawer">
-      <a href="#about">About</a>
-      <a href="#games">GAMES</a>
-      <a href="#story">STORY</a>
-      <a href="#guideline">GUIDELINE</a>
-      <a href="https://hatomaru.github.io/portfolio/">PORTFOLIO</a>
-      <a href="https://unityroom.com/users/oneteam_dot">unityroomで作品を遊ぶ</a>
-    </div>
-  <div class="backdrop" id="backdrop" aria-hidden="true"></div>
-  </div>
+      <!-- ナビゲーションバー -->
+     <script>
+      $(function() {
+        $.get('/navbar_OC.html', function(data){
+          $('body').append(data);
+          // ナビゲーションが読み込まれた後にハンバーガーメニューを初期化
+          if (typeof initHamburgerMenu === 'function') {
+            initHamburgerMenu();
+          }
+        });
+      });
+    </script>
 
   <header id="top" class="animate-in animate-fade-up">
     <p class="lead animate-in animate-fade-up animate-delay-1">「かける」で体験をつくる</p>

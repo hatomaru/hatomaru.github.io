@@ -1,37 +1,35 @@
-    <!-- ナビゲーションバー -->
-  <nav class="navbar">
-    <div class="navbar-container">
-      <!-- ロゴとメニューリンク -->
-      <div class="navbar-left">
-        <a href="/OneTeam_dot/" class="navbar-logo">
-          <img src="/portfolio/src/OneTeam.Logo_2.png" alt="ロゴ">
+ <div class="topbar" role="navigation">
+    <div class="topbar-inner">
+      <a href="/OneTeam_dot/" class="navbar-logo">
+        <img src="src/OneTeam.Logo_2.png" alt="ロゴ" />
+      </a>
+      
+      <nav class="topnav">
+        <a href="#about">About</a>
+        <a href="#games">GAMES</a>
+        <a href="#story">STORY</a>
+        <a href="#guideline">GUIDELINE</a>
+        <a href="https://hatomaru.github.io/portfolio/">PORTFOLIO</a>
+      </nav>
+      
+      <div class="navbar-right">
+        <a href="https://twitter.com/OneTeam_dot" class="social-link">
+          <img src="src/logo-black.png" alt="Twitter" />
         </a>
-        <ul class="navbar-menu">
-          <li><a href="/OneTeam_dot/" style="color: #DCBA29;">ホーム</a></li>
-          <!-- <li><a href="about.html">開発者について</a></li> -->
-          <li><a href="/OneTeam_dot/#app">ゲーム</a></li>
-			<li><a href="/OneTeam_dot/#guildline">ガイドライン</a></li>
-			<li><a href="/portfolio/">ポートフォリオ</a></li>
-        </ul>
+        <a href="https://unityroom.com/users/oneteam_dot" class="my-apps-button">unityroomで一部の作品を遊ぶ</a>
       </div>
-
-      <!-- 右端のボタン -->
-				<div class="navbar-right" style="margin: 15px;">
-			  			<a href="https://twitter.com/OneTeam_dot"><img src="/portfolio/src/logo-black.png" style="width: 30px;height: auto;"></a>
-      </div>
-		<div class="navbar-right">
-        <a href="https://unityroom.com/users/oneteam_dot"
-          class="my-apps-button" style="background-color: #43A2D8">unityroomで一部の作品を遊ぶ</a>
-      </div>
-
-      <!-- ハンバーガーメニュー -->
-      <div class="hamburger-menu">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-		  <div class="bar"></div>
-      </div>
+      
+      <button class="hamb" id="hamb" aria-controls="drawer" aria-expanded="false" aria-label="メニュー">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
     </div>
-  </nav>
-
-  <script src="../js/menu.js"></script>
+    <div class="drawer" id="drawer">
+      <a href="#about">About</a>
+      <a href="#games">GAMES</a>
+      <a href="#story">STORY</a>
+      <a href="#guideline">GUIDELINE</a>
+      <a href="https://hatomaru.github.io/portfolio/">PORTFOLIO</a>
+      <a href="https://unityroom.com/users/oneteam_dot">unityroomで作品を遊ぶ</a>
+    </div>
+  <div class="backdrop" id="backdrop" aria-hidden="true"></div>
+  </div>
