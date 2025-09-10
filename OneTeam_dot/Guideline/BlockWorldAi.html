@@ -398,6 +398,20 @@
     observer.observe(element);
   });
   </script>
+      <script>
+      $(function() {
+        $.get('/contact.html', function(data){
+          $('body').append(data);
+        });
+      });
+    </script>
+     <script>
+      $(function() {
+        $.get('/footer_O.html', function(data){
+          $('body').append(data);
+        });
+      });
+    </script>
 </body>
 
 </html>
