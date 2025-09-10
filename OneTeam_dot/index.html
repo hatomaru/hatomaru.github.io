@@ -1,145 +1,461 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>One Team.</title>
-  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-   <link rel="icon" href="/colorfuldeveloper/favicon.ico">
-  <link rel="stylesheet" href="../css/defaultstyle.css">
-  <link rel="stylesheet" href="../css/styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>One Team. – 「かける」で体験をつくる</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
+  <canvas id="scene" aria-hidden="true"></canvas>
 
-  <!-- ナビゲーションバー -->
+      <!-- ナビゲーションバー -->
      <script>
       $(function() {
         $.get('/navbar_OC.html', function(data){
           $('body').append(data);
+          // ナビゲーションが読み込まれた後にハンバーガーメニューを初期化
+          if (typeof initHamburgerMenu === 'function') {
+            initHamburgerMenu();
+          }
         });
       });
     </script>
 
+  <header id="top" class="animate-in animate-fade-up">
+    <p class="lead animate-in animate-fade-up animate-delay-1">「かける」で体験をつくる</p>
+    <h1 class="animate-in animate-fade-up animate-delay-2">One Team.</h1>
+  </header>
 
-  <section id="hero">
-    <section class="slideshow-section">
-      <div class="slideshow-container">
-        <!-- 各スライド -->
-        <div class="mySlides fade">
-          <img src="../src/アセット 1.png" style="width:100%">
-        </div>
-
-        <!-- 前へボタン -->
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <!-- 次へボタン -->
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-      </div>
-      <!-- スライド下のドットナビゲーション -->
-      <div style="text-align:center">
-        <span class="dot" onclick="currentSlide(1)"></span>
-      </div>
-    </section>
+  <section id="about" class="section">
+    <h2 class="animate-in animate-fade-up">About</h2>
+    <p class="animate-in animate-fade-up">One Team. は、テクノロジー × デザイン × ストーリーを「かける」ことで、<br>新しい体験を作ることに取り組む個人開発者です。</p>
   </section>
-  <!-- 配信中のアプリセクション -->
-  <section class="apps-section" id="app" style="margin-top: -100px;">
-	<div class="Title">
-	<h2 class="TitleText">GAMES</h2>
-    <h2 class="TtileDetail">公開中のゲーム</h2>
-		</div>
-    <div class="app-grid">
-		<!-- アプリカード -->
-      <div class="app-card">
-        <div class="app-image-container">
-          <img src="../portfolio/src/app/BlockWorld_Ai/サムネイル_1.jpg" alt="アプリのスクリーンショット" style="object-position: 100% 38%;">
+
+  <section id="games" class="section animate-in animate-fade-left">
+    <div class="carousel">
+      <div class="controls animate-in animate-fade-up animate-delay-1">
+        <div class="carousel-title-group">
+          <h2 class="carousel-title">GAMES</h2>
+          <p class="carousel-subtitle">ゲーム作品</p>
         </div>
-        <div class="app-info">
-          <h3>BlockWorld Ai</h3>
-		  <li>
-          <ul><span class="app-genre" style="background-color: #FF2E86;color: whitesmoke">AIを育成するゲーム</span></ul>
-			</li>
-                  <p>パズルを学ぶ不思議なAI ホシハビトくんと共に<br>
-ゲーム内でパズルの動かし方を学ばせて、強力なボスにプレイヤーと共に戦うパズルRPGゲームです。</p>
-        </div>
-		  <div class="store-buttons">
-            <a href="https://store.steampowered.com/app/3010030?utm_source=OfficialSite"
-              class="store-button android" style="background-color: hsla(228,48%,20%,1.00)">ストアページ</a>
-          </div>
-      </div>
-      <!-- アプリカード -->
-      <div class="app-card">
-        <div class="app-image-container">
-          <img src="../src/app/BL_ScreenShoot.png" alt="アプリのスクリーンショット" style="object-position: 100% 38%;">
-        </div>
-        <div class="app-info">
-          <h3>BlockWorld</h3>
-		  <li>
-          <ul><span class="app-genre" style="background-color: #C132EC;color: whitesmoke">シンプル脳トレパズル</span></ul>
-			</li>
-          <p>制限時間以内にブロックの中の数字が0になるようにパネルをタップして、<br>敵に攻撃し、全6体の敵を全て倒すゲームです。</p>
-          <div class="store-buttons">
-            <a href="https://play.google.com/store/apps/details?id=com.ColorfulDeveloper.BlockWorld"
-              class="store-button android">BlockWorldをインストールする</a>
-          </div>
-          <div class="store-buttons">
-            <a href="https://apps.apple.com/jp/app/id6463722805" class="store-button ios">BlockWorldをインストールする</a>
-          </div>
+        <div class="carousel-nav-group">
+          <button class="btn-nav" id="games-prev">◀ Prev</button>
+          <span class="page-indicator" id="games-indicator">1 / 1</span>
+          <button class="btn-nav" id="games-next">Next ▶</button>
         </div>
       </div>
- <div class="app-card">
-        <div class="app-image-container">
-          <img src="../src/app/SiM_ScreenShot.png" alt="アプリのスクリーンショット" style="object-position: 100% 38%;">
-        </div>
-        <div class="app-info">
-          <h3>SimpleMath</h3>
-		  <li>
-          <ul><span class="app-genre" style="background-color: #2FAA00;color: whitesmoke">計算練習</span></ul>
-			</li>
-			<p>二択から答えを選んでたし算・ひき算・かけ算・わり算の練習が出来る計算練習ゲームです。</p>
-          <div class="store-buttons">
-            <a href="https://play.google.com/store/apps/details?id=com.ColorfulDeveloper.SimpleMath"
-              class="store-button android">SimpleMathをインストールする</a>
-          </div>
-          <div class="store-buttons">
-            <a href="https://apps.apple.com/jp/app/%E8%A8%88%E7%AE%97%E7%B7%B4%E7%BF%92-simplemath/id6469422268?ign-mpt=uo%3D4" class="store-button ios">SimpleMathをインストールする</a>
-          </div>
-        </div>
-      </div>
+      <div class="grid animate-in animate-fade-up animate-delay-2" id="games-grid"></div>
     </div>
   </section>
-	  <!-- 配信中のアプリセクション -->
-  <section class="apps-section" id="guideline">
-	<div class="Title">
-	<h2 class="TitleText">GUIDELINE</h2>
-    <h2 class="TtileDetail">配信ガイドライン</h2>
-		</div>
-    <div class="app-grid">
-      <!-- アプリカード -->
-		 <a href="Guideline/BlockWorldAi.html" style="color:black; text-decoration: none;">
-      <div class="app-card">
-        <div class="app-image-container">
-          <img src="../portfolio/src/app/BlockWorld_Ai/サムネイル_1.jpg" alt="アプリのスクリーンショット" style="object-position: 100% 38%;">
+
+  <!-- STORY セクション -->
+  <!--
+  <section id="story" class="section animate-in animate-fade-right">
+    <div class="carousel">
+      <div class="controls animate-in animate-fade-up animate-delay-1">
+        <div class="carousel-title-group">
+          <h2 class="carousel-title">STORY</h2>
         </div>
-        <div class="app-info">
-          <h3>BlockWorld Ai</h3>
-		 
+        <div class="carousel-nav-group">
+          <button class="btn-nav" id="story-prev">◀ Prev</button>
+          <span class="page-indicator" id="story-indicator">1 / 1</span>
+          <button class="btn-nav" id="story-next">Next ▶</button>
         </div>
       </div>
-		</a>
-			 <a href="Guideline/Other.html" style="color:black; text-decoration: none;">
- <div class="app-card">
-        <div class="app-image-container">
-          <img src="../src/アセット 1.png" alt="アプリのスクリーンショット" style="object-position: 20% 28%;">
-        </div>
-        <div class="app-info">
-          <h3>その他のゲーム</h3>
-        </div>
-      </div>
-		</a>
+      <p class="animate-in animate-fade-up animate-delay-2">作品制作の思考ログや小話を紹介しています</p>
+      <div class="grid animate-in animate-fade-up animate-delay-3" id="story-grid"></div>
     </div>
   </section>
-    <script>
+-->
+  <section id="guideline" class="section animate-in animate-fade-right">
+    <div class="carousel">
+      <div class="controls animate-in animate-fade-up animate-delay-1">
+        <div class="carousel-title-group">
+          <h2 class="carousel-title">GUIDELINE</h2>
+          <p class="carousel-subtitle">利用指針</p>
+        </div>
+        <div class="carousel-nav-group">
+          <button class="btn-nav" id="guide-prev">◀ Prev</button>
+          <span class="page-indicator" id="guide-indicator">1 / 1</span>
+          <button class="btn-nav" id="guide-next">Next ▶</button>
+        </div>
+      </div>
+      <div class="grid animate-in animate-fade-up animate-delay-2" id="guide-grid"></div>
+    </div>
+  </section>
+
+  <script>
+  // ===== 背景アニメーション（残光 × 鮮やかブレンド × 省負荷） =====
+  (() => {
+    const view = document.getElementById('scene');
+    const ctx = view.getContext('2d');
+    const acc = document.createElement('canvas'); // オフスクリーンで蓄積
+    const accCtx = acc.getContext('2d');
+    const DPR = Math.max(1, Math.min(2.5, window.devicePixelRatio || 1));
+    let W = 0, H = 0;
+
+    function resize(){
+      W = innerWidth; H = innerHeight;
+      for(const c of [view, acc]){ c.width = Math.floor(W*DPR); c.height = Math.floor(H*DPR); c.style.width=W+'px'; c.style.height=H+'px'; }
+      for(const c of [ctx, accCtx]){ c.setTransform(DPR,0,0,DPR,0,0); }
+      accCtx.clearRect(0,0,W,H); // 初期は透明（白で塗らない）
+    }
+    addEventListener('resize', resize, { passive:true });
+    resize();
+
+    const TAU = Math.PI*2;
+    const rand = (a,b)=> a + Math.random()*(b-a);
+
+    function makeBlob(){
+      const a = rand(0, TAU);
+      const h = rand(0,360), s = Math.round(rand(78,96)), l = Math.round(rand(55,65));
+      return {
+        x: rand(0,W), y: rand(0,H), r: rand(55,95),
+        color: `hsl(${h.toFixed(1)} ${s}% ${l}%)`, // 固定色（ちらつき防止）
+        vx: Math.cos(a) * rand(0.03, 0.08),
+        vy: Math.sin(a) * rand(0.03, 0.08),
+        t: rand(0,1000), jitter: rand(0.0004, 0.0010)
+      };
+    }
+
+    const blobs = Array.from({length:9}, makeBlob);
+
+    const DECAY = 0.015; // 小さいほど長く残る（0.01〜0.02 目安）
+    function radial(x,y,r,c){
+      const g = accCtx.createRadialGradient(x,y,0,x,y,r);
+      g.addColorStop(0, c.replace(')', ' / 0.95)'));
+      g.addColorStop(0.6, c.replace(')', ' / 0.50)'));
+      g.addColorStop(1, c.replace(')', ' / 0)'));
+      return g;
+    }
+
+    (function draw(){
+      // 1) 残光フェード（薄い白を重ねて徐々に消す）
+      // 既存の描画を少しだけ“消す”→ 透明方向にフェード
+      accCtx.globalCompositeOperation = 'destination-out';
+      accCtx.fillStyle = `rgba(0,0,0,${DECAY})`;
+      accCtx.fillRect(0,0,W,H);
+
+      // 2) 鮮やかに重ねる
+      accCtx.globalCompositeOperation = 'screen';
+      for(const b of blobs){
+        b.t += b.jitter;
+        b.x += b.vx + Math.cos(b.t) * 0.22;
+        b.y += b.vy + Math.sin(b.t*0.26) * 0.22;
+        if(b.x < -220) b.x = W + 220; if(b.x > W + 220) b.x = -220;
+        if(b.y < -220) b.y = H + 220; if(b.y > H + 220) b.y = -220;
+        accCtx.fillStyle = radial(b.x,b.y,b.r,b.color);
+        accCtx.beginPath(); accCtx.arc(b.x,b.y,b.r,0,TAU); accCtx.fill();
+      }
+
+      // 3) 画面へ描画
+      ctx.clearRect(0,0,W,H);
+      ctx.drawImage(acc, 0, 0, W, H);
+      requestAnimationFrame(draw);
+    })();
+  })();
+
+  // ===== ハンバーガー（右スライド） =====
+  const hamb = document.getElementById('hamb');
+  const drawer = document.getElementById('drawer');
+  const backdrop = document.getElementById('backdrop');
+
+  function setDrawer(open){
+    drawer.classList.toggle('open', open);
+    backdrop.classList.toggle('open', open);
+    hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.classList.toggle('drawer-open', open);
+  }
+
+  if (hamb && drawer && backdrop) {
+    hamb.addEventListener('click', () => {
+      const open = !drawer.classList.contains('open');
+      setDrawer(open);
+    });
+    backdrop.addEventListener('click', () => setDrawer(false));
+    drawer.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') setDrawer(false);
+    });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && drawer.classList.contains('open')) setDrawer(false);
+    });
+  }
+
+  // ===== カルーセル =====
+  function setupCarousel({ items, gridEl, prevEl, nextEl, indicatorEl, pageSize=9, wrapCardLink=false }){
+    let page=0; const totalPages=Math.max(1,Math.ceil(items.length/pageSize));
+    function render(){
+      gridEl.innerHTML='';
+      const slice=items.slice(page*pageSize,page*pageSize+pageSize);
+      for(const it of slice){
+        const card=document.createElement('article'); card.className='card';
+        const th=document.createElement('div'); th.className='thumb';
+        
+        // 画像の処理
+        if(it.image) {
+          const img = document.createElement('img');
+          img.src = it.image;
+          img.alt = it.title || '';
+          
+          // トリミング範囲の指定（object-position）
+          if(it.objectPosition) {
+            img.style.objectPosition = it.objectPosition;
+          }
+          
+          // 画像のフィット方法の指定
+          if(it.objectFit) {
+            img.style.objectFit = it.objectFit;
+          }
+          
+          // 画像読み込みエラーの対処
+          img.onerror = function() {
+            this.style.display = 'none';
+            th.style.background = 'linear-gradient(135deg,#eef3ff,#f7f0ff)';
+          };
+          
+          // 画像読み込み中の表示
+          img.style.backgroundColor = '#f3f4f6';
+          
+          th.appendChild(img);
+        } else if(it.thumb) {
+          // 従来の背景画像方式もサポート
+          th.style.background = it.thumb;
+        } else {
+          // デフォルトのグラデーション
+          th.style.background = 'linear-gradient(135deg,#eef3ff,#f7f0ff)';
+        }
+        
+        const body=document.createElement('div'); body.className='card-body';
+  if(it.tag){ const tag=document.createElement('span'); tag.className='tag'; tag.style.background=it.tagColor||'#6b7280'; tag.textContent=it.tag; body.appendChild(tag); }
+  const tt=document.createElement('div'); tt.className='title'; tt.textContent=it.title; body.appendChild(tt);
+  if(it.reading){ const rd=document.createElement('div'); rd.className='reading'; rd.textContent=it.reading; body.appendChild(rd); }
+  const mt=document.createElement('div'); mt.className='meta'; mt.textContent=it.meta||''; body.appendChild(mt);
+        if(it.desc){ const desc=document.createElement('p'); desc.textContent=it.desc; body.appendChild(desc); }
+        
+        // ボタン生成（複数/単一の両対応）
+        {
+          const btnDataRaw = (it.buttons ?? it.button ?? null);
+          if (btnDataRaw) {
+            const btns = document.createElement('div');
+            btns.className = 'btns';
+            const btnList = Array.isArray(btnDataRaw) ? btnDataRaw : [btnDataRaw];
+            for (const b of btnList) {
+              if (!b) continue;
+              const btn = document.createElement('a');
+              btn.className = 'btn ' + (b.type || '');
+              btn.href = b.href || '#';
+              btn.textContent = b.label ?? 'リンク';
+              // 新しいタブで開く
+              if (b.newTab) { btn.target = '_blank'; btn.rel = 'noopener noreferrer'; }
+              // 無効状態
+              if (b.disabled) { btn.classList.add('disabled'); btn.setAttribute('aria-disabled','true'); btn.href = 'javascript:void(0)'; }
+              btns.appendChild(btn);
+            }
+            body.appendChild(btns);
+          }
+        }
+        card.appendChild(th); card.appendChild(body);
+        
+        // STORYなどカード全体をリンク化（ネスト回避のためボタンがない場合のみ）
+        if (wrapCardLink && !it.buttons && !it.button && (it.href || it.link)) {
+          const a = document.createElement('a');
+          a.className = 'card-link';
+          a.href = it.href || it.link;
+          if (it.newTab) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
+          a.appendChild(card);
+          gridEl.appendChild(a);
+        } else {
+          gridEl.appendChild(card);
+        }
+      }
+      indicatorEl.textContent=`${page+1} / ${totalPages}`;
+      prevEl.disabled=page===0; nextEl.disabled=page>=totalPages-1;
+    }
+    prevEl.addEventListener('click',()=>{ if(page>0){page--;render();} });
+    nextEl.addEventListener('click',()=>{ if(page<totalPages-1){page++;render();} });
+    render();
+  }
+
+  const games=[
+  { 
+   title:'Amevar', 
+   reading:'アミーバー',
+      tag:'あなたが見守るのは、小さな命の物語', 
+      tagColor:'#10b981', 
+      meta:'命のつながり x 育成シミュレーション', 
+      desc:'自由に動き回る生物を育成し、戦いや進化で命のつながりを体験する育成シミュレーション', 
+      image:'../portfolio/src/app/AM/サムネイル_2.jpg',
+      objectPosition: 'center 30%',
+      objectFit: 'cover',
+      buttons:[{label:'準備中',href:'#',type:'store4'}]
+    },
+    { 
+      title:'BlockWorld Ai', 
+      reading:'ブロックワールド アイ',
+      tag:'パズルでキミのAIを育てよう', 
+      tagColor:'#ec4899', 
+      meta:'AI × パズルRPG', 
+      desc:'パズルを学ぶ不思議なAI ホシハビトくんと共に強力なボスに挑むパズルRPG', 
+      image:'../portfolio/src/app/BlockWorld_Ai/サムネイル_3.jpg',
+      objectPosition: 'center 30%',
+      objectFit: 'cover',
+      buttons:[{label:'ストアページ',href:'https://store.steampowered.com/app/3010030/BlockWorld_Ai',type:'store3'}]
+    },
+        { 
+      title:'ナンバークラッシュゲーム CyberCrush', 
+      reading:'サイバークラッシュ',
+      tag:'サイバー空間で数字をクラッシュ！', 
+      tagColor:'#8b5cf6', 
+      meta:'脳トレ x フラッシュ', 
+      desc:'制限時間内にパネルの数字を0にして、ブロックを消すシンプル脳トレゲーム', 
+      image:'../portfolio/src/app/CC/CC_1.jpg',
+      objectPosition: '30% 20%',
+      objectFit: 'cover',
+      buttons:[{label:'unityroomで遊ぶ',href:'https://unityroom.com/games/cybercrash',type:'primary'}]
+    },
+    { 
+      title:'BlockWorld', 
+      reading:'ブロックワールド',
+      tag:'星ブロックを揃えて大量連鎖を狙え！', 
+      tagColor:'#8b5cf6', 
+      meta:'パズル x 爽快感', 
+      desc:'制限時間内にブロックの数字を0にして敵を全て倒すシンプル脳トレパズル', 
+      image:'../src/app/BL_ScreenShoot.png',
+      objectPosition: 'center 20%',
+      objectFit: 'cover',
+       buttons:[
+        {label:'BlockWorldをインストールする',href:'https://play.google.com/store/apps/details?id=com.ColorfulDeveloper.BlockWorld',type:'store1'},
+        {label:'BlockWorldをインストールする',href:'https://apps.apple.com/jp/app/id6463722805',type:'store2'},
+      ]
+    },
+    { 
+      title:'SimpleMath', 
+      reading:'シンプルマス',
+      tag:'2択で答える計算練習ゲーム', 
+      tagColor:'#10b981', 
+      meta:'計算練習 x お手軽', 
+      desc:'二択から答えを選んで四則演算の練習ができる計算練習ゲーム', 
+      image:'../src/app/SiM_ScreenShot.png',
+      objectPosition: 'center 40%',
+      objectFit: 'cover',
+      buttons:[
+        {label:'SimpleMathをインストールする',href:'https://play.google.com/store/apps/details?id=com.ColorfulDeveloper.SimpleMath',type:'store1'},
+        {label:'SimpleMathをインストールする',href:'https://apps.apple.com/jp/app/id6469422268',type:'store2'},
+      ]
+    }
+  ];
+
+  const guides=[
+    { 
+      title:'配信ガイドライン (BlockWorld Ai)', 
+      tag:'GUIDE', 
+      tagColor:'#3b82f6', 
+      meta:'Streaming Guidelines (BlockWorld Ai)', 
+      desc:'BlockWorld Aiを配信する際のルール。', 
+      image:'src/guideline/Guideline_BlockWorld_Ai.png',
+      objectPosition: 'center center',
+      objectFit: 'cover',
+      buttons:[{label:'詳細を読む',href:'Guideline/BlockWorldAi.html',type:'primary'}]
+    },
+      { 
+      title:'配信ガイドライン (その他のゲーム)', 
+      tag:'GUIDE', 
+      tagColor:'#3b82f6', 
+      meta:'Streaming Guidelines (Other Games)', 
+      desc:'One Team.のゲームを配信する際のルール。', 
+      image:'src/guideline/Guideline_Other.png',
+      objectPosition: 'center center',
+      objectFit: 'cover',
+      buttons:[{label:'詳細を読む',href:'Guideline/Other.html',type:'primary'}]
+    }
+  ];
+
+  // STORY 用データ（最大3件/カルーセル対応）
+  const stories = [
+    //{ title:'Amevarのフキダシ①', meta:'Note', desc:'Amevarの制作の小話を紹介', image:'src/note/Samune_1.png', objectFit:'cover', objectPosition:'center', href:'https://note.com/oneteam_dot/n/n10fdfb82b4d4' },
+    //{ title:'キャラクター', meta:'Characters', desc:'主要キャラクターのプロフィール。', href:'#' },
+    //{ title:'制作ノート', meta:'Dev Note', desc:'開発の裏話や制作メモ。', href:'#' },
+    //{ title:'もっと見る', meta:'And more', desc:'One Team. 公式Noteをみてみる', href:'https://note.com/oneteam_dot' },
+    { title:'もっと見る', meta:'準備中', desc:'準備中', href:'#' }
+  ];
+
+  setupCarousel({ items: games, gridEl: document.getElementById('games-grid'), prevEl: document.getElementById('games-prev'), nextEl: document.getElementById('games-next'), indicatorEl: document.getElementById('games-indicator'), pageSize:9 });
+  //setupCarousel({ items: stories, gridEl: document.getElementById('story-grid'), prevEl: document.getElementById('story-prev'), nextEl: document.getElementById('story-next'), indicatorEl: document.getElementById('story-indicator'), pageSize:3, wrapCardLink:true });
+  setupCarousel({ items: guides, gridEl: document.getElementById('guide-grid'), prevEl: document.getElementById('guide-prev'), nextEl: document.getElementById('guide-next'), indicatorEl: document.getElementById('guide-indicator'), pageSize:9 });
+
+  // ===== フロートインアニメーション（スクロール順に順番表示） =====
+  const STAGGER_MS = 180; // 要素ごとに少しずつ時間差で表示
+  const queued = new Set();
+  const queue = [];
+  let processing = false;
+
+  function triggerFloatIn(element){
+    if (!element) return;
+    // 適切なアニメーションクラスを適用
+    if (element.classList.contains('animate-fade-left')) {
+      element.style.animationName = 'fadeInLeft';
+    } else if (element.classList.contains('animate-fade-right')) {
+      element.style.animationName = 'fadeInRight';
+    } else {
+      element.style.animationName = 'fadeInUp';
+    }
+    element.style.animationDuration = '0.8s';
+    element.style.animationFillMode = 'forwards';
+    element.style.animationTimingFunction = 'ease-out';
+  }
+
+  function processQueue(){
+    if (processing || queue.length === 0) return;
+    processing = true;
+    const el = queue.shift();
+    triggerFloatIn(el);
+    observer.unobserve(el);
+    setTimeout(() => {
+      processing = false;
+      processQueue();
+    }, STAGGER_MS);
+  }
+
+  const observerOptions = {
+    threshold: 0.15,
+    rootMargin: '0px 0px -15% 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    // 可視になったものをDOM順で処理し、キューに追加
+    entries
+      .filter(e => e.isIntersecting)
+      .sort((a, b) => (a.target.compareDocumentPosition(b.target) & Node.DOCUMENT_POSITION_FOLLOWING) ? -1 : 1)
+      .forEach(({ target }) => {
+        if (queued.has(target)) return;
+        queued.add(target);
+        queue.push(target);
+        processQueue();
+      });
+  }, observerOptions);
+
+  // ヘッダー内は初回ロードで即時アニメーション、スクロール順制御の対象外
+  document.querySelectorAll('.animate-in:not(header .animate-in)').forEach(el => observer.observe(el));
+
+  // 既存のヘッダー要素の即時アニメーション（軽い段階的ディレイ）
+  const headerElements = document.querySelectorAll('header .animate-in');
+  headerElements.forEach((element, index) => {
+    setTimeout(() => {
+      if (element.classList.contains('animate-fade-left')) {
+        element.style.animationName = 'fadeInLeft';
+      } else if (element.classList.contains('animate-fade-right')) {
+        element.style.animationName = 'fadeInRight';
+      } else {
+        element.style.animationName = 'fadeInUp';
+      }
+      element.style.animationDuration = '0.8s';
+      element.style.animationFillMode = 'forwards';
+      element.style.animationTimingFunction = 'ease-out';
+    }, index * 120);
+  });
+  </script>
+     <script>
       $(function() {
         $.get('/contact.html', function(data){
           $('body').append(data);
@@ -153,8 +469,6 @@
         });
       });
     </script>
-  <script src="../js/scripts.js"></script>
-  <script src="../js/menu.js"></script>
 </body>
-
 </html>
+``` 

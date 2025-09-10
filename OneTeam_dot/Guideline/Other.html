@@ -2,127 +2,403 @@
 <html lang="ja">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>One Team. | 配信ガイドライン</title>
-  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-   <link rel="icon" href="/colorfuldeveloper/favicon.ico">
-  <link rel="stylesheet" href="../../css/defaultstyle.css">
-  <link rel="stylesheet" href="../../css/styles.css">
-<link rel="stylesheet" href="../../css/PrivacyPolicy.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="icon" href="../favicon_P.ico">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* ページ固有の微調整のみ残す */
+
+    .section { 
+      padding: 4vh 6vw; 
+      scroll-margin-top: 72px; 
+      max-width:1200px; 
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* ヒーローセクション */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      height: 70vh;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-bottom: 4rem;
+    }
+
+    .hero-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2));
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      color: white;
+      max-width: 800px;
+      padding: 2rem;
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 700;
+      margin: 0 0 1rem;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(16px, 2.2vw, 22px);
+      margin: 0;
+      opacity: 0.9;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    /* セクション見出しの新デザイン */
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section-title {
+      font-size: clamp(32px, 4.5vw, 48px);
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+      color: var(--fg);
+      letter-spacing: 0.02em;
+    }
+    .section-subtitle {
+      font-size: clamp(14px, 1.8vw, 18px);
+      color: var(--muted);
+      margin: 0;
+      font-weight: 400;
+      text-align: center;
+    }
+
+    /* ガイドラインカード */
+    .guideline-grid {
+      display: grid;
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .guideline-card {
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      transition: all 0.3s ease;
+      transform: translateY(0);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .guideline-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+      border-color: rgba(91, 166, 255, 0.3);
+    }
+
+    .guideline-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--card-accent, var(--accent));
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.3s ease;
+    }
+
+    .guideline-card:hover::before {
+      transform: scaleY(1);
+    }
+
+    .guideline-icon {
+      flex-shrink: 0;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .guideline-card:hover .guideline-icon {
+      transform: scale(1.1);
+    }
+
+    .guideline-content {
+      flex: 1;
+    }
+
+    .guideline-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+      color: var(--fg);
+    }
+
+    .guideline-text {
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* 個別のアクセントカラー */
+    .card-celebration { --card-accent: #D19830; }
+    .card-celebration .guideline-icon { background: #D19830; }
+
+    .card-title { --card-accent: #D18330; }
+    .card-title .guideline-icon { background: #D18330; }
+
+    .card-block { --card-accent: #D9576E; }
+    .card-block .guideline-icon { background: #D9576E; }
+
+    .card-chat { --card-accent: #5394DA; }
+    .card-chat .guideline-icon { background: #5394DA; }
+
+  /* 必要ならこのページ専用の追加CSSをここに書く */
+  </style>
 </head>
 
 <body>
+  <canvas id="scene" aria-hidden="true"></canvas>
 
-  <!-- ナビゲーションバー -->
+        <!-- ナビゲーションバー -->
      <script>
       $(function() {
         $.get('/navbar_OC.html', function(data){
           $('body').append(data);
+          // ナビゲーションが読み込まれた後にハンバーガーメニューを初期化
+          if (typeof initHamburgerMenu === 'function') {
+            initHamburgerMenu();
+          }
         });
       });
     </script>
 
-
-   <section id="hero" style="width: 100%; height: 100%;">
-    <section class="slideshow-section">
-      <div class="slideshow-container">
-          <img src="../src/guideline/Guideline_Other.png" style="width: 100%; height: 100%;object-fit: cover;">
-      </div>
-    </section>
+  <section class="hero-section animate-in animate-fade-up">
+    <img src="../src/guideline/Guideline_Other.png" alt="ガイドライン" class="hero-image">
+    <div class="hero-overlay"></div>
+    <div class="hero-content animate-in animate-fade-up animate-delay-1">
+      <h1 class="hero-title">GUIDELINE</h1>
+      <p class="hero-subtitle">配信ガイドライン</p>
+    </div>
   </section>
-  <!-- 配信中のアプリセクション -->
-  <section class="apps-section" id="app" style="margin-top: -100px;">
-	<div class="Title">
-	<h2 class="TitleText">GUIDELINE</h2>
-    <h2 class="TtileDetail">配信ガイドライン</h2>
-		</div>
-    <section class="privacy-policy">
-    <!-- 左側のカラム -->
-    <div class="column-left">
-      <div class="shape-container" style="background-color: #D19830;">
-        <!-- アイコン画像 -->
-    <span class="material-symbols-outlined" style="padding-right: 5px;font-size: 300%">
-	Celebration
-	</span>
-      </div>
+
+  <section class="section">
+    <div class="section-header animate-in animate-fade-up">
+      <h2 class="section-title">Streaming Guidelines</h2>
+      <p class="section-subtitle">配信・動画投稿に関するルール</p>
     </div>
 
-    <!-- 右側のカラム -->
-    <div class="column-right">
-      <h1 style="font-size: 25px">One Team.のゲームのプレイ動画・配信は共に大歓迎です！</h1>
-      <p>
-        この度はOne Team.のゲームにご興味を持っていただき<br>誠にありがとうございます。</p>
-      <p>
+    <div class="guideline-grid">
+      <article class="guideline-card card-celebration animate-in animate-fade-left animate-delay-1">
+        <div class="guideline-icon">
+          <span class="material-symbols-outlined">celebration</span>
+        </div>
+        <div class="guideline-content">
+          <h3 class="guideline-title">One Team.のゲームのプレイ動画・配信は共に大歓迎です！</h3>
+          <p class="guideline-text">
+            この度はOne Team.のゲームにご興味を持っていただき誠にありがとうございます。
+          </p>
+        </div>
+      </article>
+
+      <article class="guideline-card card-title animate-in animate-fade-right animate-delay-2">
+        <div class="guideline-icon">
+          <span class="material-symbols-outlined">match_case</span>
+        </div>
+        <div class="guideline-content">
+          <h3 class="guideline-title">タイトルまたは概要欄にゲームのタイトルを入れてください</h3>
+          <p class="guideline-text">
+            動画タイトル、または概要欄に<strong>「ゲームのタイトル」</strong>を含めてください。
+          </p>
+        </div>
+      </article>
+
+      <article class="guideline-card card-block animate-in animate-fade-left animate-delay-3">
+        <div class="guideline-icon">
+          <span class="material-symbols-outlined">block</span>
+        </div>
+        <div class="guideline-content">
+          <h3 class="guideline-title">公序良俗に反する配信・動画は禁止です</h3>
+          <p class="guideline-text">
+            適切で健全なコンテンツとしてお楽しみください。
+          </p>
+        </div>
+      </article>
+
+      <article class="guideline-card card-chat animate-in animate-fade-right animate-delay-4">
+        <div class="guideline-icon">
+          <span class="material-symbols-outlined">chat</span>
+        </div>
+        <div class="guideline-content">
+          <h3 class="guideline-title">ガイドラインは改定される場合があります</h3>
+          <p class="guideline-text">
+            今後何らかの事情でガイドラインを変更する場合は、One Team.のXで告知します。<br>
+            <small>2024年12月1日発行 (第一版)</small>
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <script>
+  // ===== 背景アニメーション（残光 × 鮮やかブレンド × 省負荷） =====
+  (() => {
+    const view = document.getElementById('scene');
+    const ctx = view.getContext('2d');
+    const acc = document.createElement('canvas'); // オフスクリーンで蓄積
+    const accCtx = acc.getContext('2d');
+    const DPR = Math.max(1, Math.min(2.5, window.devicePixelRatio || 1));
+    let W = 0, H = 0;
+
+    function resize(){
+      W = innerWidth; H = innerHeight;
+      for(const c of [view, acc]){ c.width = Math.floor(W*DPR); c.height = Math.floor(H*DPR); c.style.width=W+'px'; c.style.height=H+'px'; }
+      for(const c of [ctx, accCtx]){ c.setTransform(DPR,0,0,DPR,0,0); }
+      accCtx.clearRect(0,0,W,H); // 初期は透明（白で塗らない）
+    }
+    addEventListener('resize', resize, { passive:true });
+    resize();
+
+    const TAU = Math.PI*2;
+    const rand = (a,b)=> a + Math.random()*(b-a);
+
+    function makeBlob(){
+      const a = rand(0, TAU);
+      const h = rand(0,360), s = Math.round(rand(78,96)), l = Math.round(rand(55,65));
+      return {
+        x: rand(0,W), y: rand(0,H), r: rand(55,95),
+        color: `hsl(${h.toFixed(1)} ${s}% ${l}%)`, // 固定色（ちらつき防止）
+        vx: Math.cos(a) * rand(0.03, 0.08),
+        vy: Math.sin(a) * rand(0.03, 0.08),
+        t: rand(0,1000), jitter: rand(0.0004, 0.0010)
+      };
+    }
+
+    const blobs = Array.from({length:9}, makeBlob);
+
+    const DECAY = 0.015; // 小さいほど長く残る（0.01〜0.02 目安）
+    function radial(x,y,r,c){
+      const g = accCtx.createRadialGradient(x,y,0,x,y,r);
+      g.addColorStop(0, c.replace(')', ' / 0.95)'));
+      g.addColorStop(0.6, c.replace(')', ' / 0.50)'));
+      g.addColorStop(1, c.replace(')', ' / 0)'));
+      return g;
+    }
+
+    (function draw(){
+      // 1) 残光フェード（薄い白を重ねて徐々に消す）
+      // 既存の描画を少しだけ"消す"→ 透明方向にフェード
+      accCtx.globalCompositeOperation = 'destination-out';
+      accCtx.fillStyle = `rgba(0,0,0,${DECAY})`;
+      accCtx.fillRect(0,0,W,H);
+
+      // 2) 鮮やかに重ねる
+      accCtx.globalCompositeOperation = 'screen';
+      for(const b of blobs){
+        b.t += b.jitter;
+        b.x += b.vx + Math.cos(b.t) * 0.22;
+        b.y += b.vy + Math.sin(b.t*0.26) * 0.22;
+        if(b.x < -220) b.x = W + 220; if(b.x > W + 220) b.x = -220;
+        if(b.y < -220) b.y = H + 220; if(b.y > H + 220) b.y = -220;
+        accCtx.fillStyle = radial(b.x,b.y,b.r,b.color);
+        accCtx.beginPath(); accCtx.arc(b.x,b.y,b.r,0,TAU); accCtx.fill();
+      }
+
+      // 3) 画面へ描画
+      ctx.clearRect(0,0,W,H);
+      ctx.drawImage(acc, 0, 0, W, H);
+      requestAnimationFrame(draw);
+    })();
+  })();
+
+  // ===== ハンバーガー（右スライド + バックドロップ + ESCで閉じる） =====
+  const hamb = document.getElementById('hamb');
+  const drawer = document.getElementById('drawer');
+  const backdrop = document.getElementById('backdrop');
+  function setDrawer(open){
+    drawer.classList.toggle('open', open);
+    backdrop.classList.toggle('open', open);
+    hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.classList.toggle('drawer-open', open);
+  }
+  if (hamb && drawer && backdrop) {
+    hamb.addEventListener('click', () => setDrawer(!drawer.classList.contains('open')));
+    backdrop.addEventListener('click', () => setDrawer(false));
+    drawer.addEventListener('click', (e) => { if (e.target.tagName === 'A') setDrawer(false); });
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && drawer.classList.contains('open')) setDrawer(false); });
+  }
+
+  // ===== フロートインアニメーション =====
+  const animateElements = document.querySelectorAll('.animate-in');
+  
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const element = entry.target;
         
-      </p>
-      <!-- その他の本文 -->
-    </div>
-  </section>
-<section class="privacy-policy">
-    <!-- 左側のカラム -->
-    <div class="column-left">
-      <div class="shape-container" style="background-color: #D18330;">
-        <!-- アイコン画像 -->
-       <span class="material-symbols-outlined" style="padding-right: 5px;font-size: 300%">
-	match_case
-	</span>
-      </div>
-    </div>
-
-    <!-- 右側のカラム -->
-    <div class="column-right">
-      <h1 style="font-size: 25px">タイトルまたは概要欄にゲームのタイトルを入れてください</h1>
-      <p>
-		  動画タイトル、または概要欄に<b>「ゲームのタイトル」</b>を含めてください。</p>
-      <p>
+        // 適切なアニメーションクラスを追加
+        if (element.classList.contains('animate-fade-up')) {
+          element.style.animationName = 'fadeInUp';
+        } else if (element.classList.contains('animate-fade-left')) {
+          element.style.animationName = 'fadeInLeft';
+        } else if (element.classList.contains('animate-fade-right')) {
+          element.style.animationName = 'fadeInRight';
+        } else {
+          element.style.animationName = 'fadeInUp'; // デフォルト
+        }
         
-      </p>
-      <!-- その他の本文 -->
-    </div>
-  </section>
-	  <section class="privacy-policy">
-    <!-- 左側のカラム -->
-    <div class="column-left">
-      <div class="shape-container" style="background-color: #D9576E;">
-        <!-- アイコン画像 -->
-         <span class="material-symbols-outlined" style="padding-right: 5px;font-size: 300%">
-	block
-	</span>
-      </div>
-    </div>
+        element.style.animationDuration = '0.8s';
+        element.style.animationFillMode = 'forwards';
+        element.style.animationTimingFunction = 'ease-out';
+        
+        // 一度アニメーションしたら監視を停止
+        observer.unobserve(element);
+      }
+    });
+  }, observerOptions);
 
-    <!-- 右側のカラム -->
-    <div class="column-right">
-      <h1 style="font-size: 25px">公序良俗に反する配信・動画は禁止です</h1>
-      <!-- その他の本文 -->
-    </div>
-  </section>
-	  <section class="privacy-policy">
-    <!-- 左側のカラム -->
-    <div class="column-left">
-      <div class="shape-container" style="background-color: #5394DA;">
-        <!-- アイコン画像 -->
-           <span class="material-symbols-outlined" style="padding-right: 5px;font-size: 300%">
-	chat
-	</span>
-      </div>
-    </div>
-
-    <!-- 右側のカラム -->
-    <div class="column-right">
-      <h1 style="font-size: 25px">ガイドラインは改定される場合があります</h1>
-      <p>
-		  今後何らかの事情でガイドラインを変更する場合は、One Team.のXで告知します。</p>
-      <p>
-       <p>2024年12月1日発行 (第一版)</p>
-      </p>
-      <!-- その他の本文 -->
-    </div>
-  </section>
-  </section>
-     <script>
+  // 全てのアニメーション要素を監視開始
+  animateElements.forEach(element => {
+    observer.observe(element);
+  });
+  </script>
+      <script>
       $(function() {
         $.get('/contact.html', function(data){
           $('body').append(data);
@@ -136,8 +412,6 @@
         });
       });
     </script>
-  <script src="../js/scripts.js"></script>
-  <script src="../js/menu.js"></script>
 </body>
 
 </html>
