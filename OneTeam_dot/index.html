@@ -57,11 +57,13 @@
     <h1 class="animate-in animate-fade-up animate-delay-2">One Team.</h1>
   </header>
 
+  <!-- About セクション -->
   <section id="about" class="section">
     <h2 class="animate-in animate-fade-up">About</h2>
     <p class="animate-in animate-fade-up">One Team. は、テクノロジー × デザイン × ストーリーを「かける」ことで、<br>新しい体験を作ることに取り組む個人開発者です。</p>
   </section>
 
+  <!-- GAMES セクション -->
   <section id="games" class="section animate-in animate-fade-left">
     <div class="carousel">
       <div class="controls animate-in animate-fade-up animate-delay-1">
@@ -80,7 +82,6 @@
   </section>
 
   <!-- STORY セクション -->
-  <!--
   <section id="story" class="section animate-in animate-fade-right">
     <div class="carousel">
       <div class="controls animate-in animate-fade-up animate-delay-1">
@@ -97,7 +98,8 @@
       <div class="grid animate-in animate-fade-up animate-delay-3" id="story-grid"></div>
     </div>
   </section>
--->
+
+  <!-- GUIDELINE セクション -->
   <section id="guideline" class="section animate-in animate-fade-right">
     <div class="carousel">
       <div class="controls animate-in animate-fade-up animate-delay-1">
@@ -382,15 +384,15 @@
 
   // STORY 用データ（最大3件/カルーセル対応）
   const stories = [
-    //{ title:'Amevarのフキダシ①', meta:'Note', desc:'Amevarの制作の小話を紹介', image:'src/note/Samune_1.png', objectFit:'cover', objectPosition:'center', href:'https://note.com/oneteam_dot/n/n10fdfb82b4d4' },
+    { title:'Amevarのフキダシ①', meta:'Note', desc:'Amevarの制作の小話を紹介', image:'src/note/Samune_1.png', objectFit:'cover', objectPosition:'center', href:'https://note.com/oneteam_dot/n/n10fdfb82b4d4' },
     //{ title:'キャラクター', meta:'Characters', desc:'主要キャラクターのプロフィール。', href:'#' },
     //{ title:'制作ノート', meta:'Dev Note', desc:'開発の裏話や制作メモ。', href:'#' },
-    //{ title:'もっと見る', meta:'And more', desc:'One Team. 公式Noteをみてみる', href:'https://note.com/oneteam_dot' },
-    { title:'もっと見る', meta:'準備中', desc:'準備中', href:'#' }
+    { title:'もっと見る', meta:'And more', desc:'One Team. 公式Noteをみてみる', href:'https://note.com/oneteam_dot' },
+    //{ title:'もっと見る', meta:'準備中', desc:'準備中', href:'#' }
   ];
 
   setupCarousel({ items: games, gridEl: document.getElementById('games-grid'), prevEl: document.getElementById('games-prev'), nextEl: document.getElementById('games-next'), indicatorEl: document.getElementById('games-indicator'), pageSize:9 });
-  //setupCarousel({ items: stories, gridEl: document.getElementById('story-grid'), prevEl: document.getElementById('story-prev'), nextEl: document.getElementById('story-next'), indicatorEl: document.getElementById('story-indicator'), pageSize:3, wrapCardLink:true });
+  setupCarousel({ items: stories, gridEl: document.getElementById('story-grid'), prevEl: document.getElementById('story-prev'), nextEl: document.getElementById('story-next'), indicatorEl: document.getElementById('story-indicator'), pageSize:3, wrapCardLink:true });
   setupCarousel({ items: guides, gridEl: document.getElementById('guide-grid'), prevEl: document.getElementById('guide-prev'), nextEl: document.getElementById('guide-next'), indicatorEl: document.getElementById('guide-indicator'), pageSize:9 });
 
   // ===== フロートインアニメーション（スクロール順に順番表示） =====
