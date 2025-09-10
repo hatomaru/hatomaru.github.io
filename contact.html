@@ -1,28 +1,42 @@
-  <section class="apps-section">
-    <div class="Title">
-	<h2 class="TitleText">CONTACT</h2>
-    <h2 class="TtileDetail">お問い合わせ窓口</h2>
-		</div>
-    <div class="app-grid">
-      <!-- アプリカード -->
-      <div class="app-card">
-        <div class="app-image-container">
-			
+<section id="contact" class="section">
+  <style>
+    /* Scoped styles for injected contact section */
+    #contact .contact-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; align-items:stretch; }
+    #contact .contact-card{ padding:18px; display:flex; gap:12px; align-items:center; }
+    #contact .contact-avatar{ width:64px; height:64px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,var(--accent), #a48bff); color:#fff; font-weight:700; font-size:20px; flex-shrink:0; }
+    #contact .contact-body{ flex:1; }
+    #contact .contact-title{ margin:0 0 6px; font-size:1.05rem; font-weight:700; }
+    #contact .contact-sub{ margin:0; color:var(--muted); font-size:0.95rem; }
+    #contact .contact-actions{ margin-top:10px; display:flex; gap:10px; }
+  </style>
+
+  <div class="section-header">
+    <h2 class="section-title">CONTACT</h2>
+    <p class="section-subtitle">お問い合わせ・ご連絡はこちらから</p>
+  </div>
+
+  <div class="contact-grid">
+    <div class="card contact-card">
+      <div class="contact-avatar">X</div>
+      <div class="contact-body">
+        <h3 class="contact-title">X</h3>
+        <div class="contact-actions">
+          <a class="btn primary" href="https://twitter.com/OneTeam_dot" target="_blank" rel="noopener noreferrer">@OneTeam_dot</a>
         </div>
-		<a href="https://twitter.com/OneTeam_dot" style="text-decoration: none; color: #333">
-        <div class="app-info">
-          <h3>X</h3>
-          <span class="app-genre" style="background-color: #1D1C1C;color: whitesmoke">@OneTeam_dot</span>
-        </div>
-			</a>
       </div>
-		<a href="mailto:oneteam.dot@gmail.com" style="text-decoration: none; color: #333">
-	<div class="app-card">
-        <div class="app-info">
-          <h3>メール</h3>
-          <span class="app-genre" style="background-color: #23619A;color: whitesmoke">oneteam.dot@gmail.com</span>
-        </div>
-      </div>
-			</a>
     </div>
+
+    <a href="mailto:oneteam.dot@gmail.com" style="text-decoration:none;color:inherit;">
+      <div class="card contact-card">
+        <div class="contact-avatar">@</div>
+        <div class="contact-body">
+          <h3 class="contact-title">メール</h3>
+          <p class="contact-sub">その他のお問い合わせ</p>
+          <div class="contact-actions">
+            <span class="btn" style="background:#23619A;color:#fff;">oneteam.dot@gmail.com</span>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
 </section>
