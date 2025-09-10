@@ -4,6 +4,35 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script>
+  // グローバルに呼べる初期化関数を用意する
+  function initHamburgerMenu(){
+    const hamb = document.getElementById('hamb');
+    const drawer = document.getElementById('drawer');
+    const backdrop = document.getElementById('backdrop');
+
+    if (!hamb || !drawer || !backdrop) return; // ナビがまだ存在しない場合は何もしない
+
+    function setDrawer(open){
+      drawer.classList.toggle('open', open);
+      backdrop.classList.toggle('open', open);
+      hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.body.classList.toggle('drawer-open', open);
+    }
+
+    hamb.addEventListener('click', () => {
+      const open = !drawer.classList.contains('open');
+      setDrawer(open);
+    });
+    backdrop.addEventListener('click', () => setDrawer(false));
+    drawer.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') setDrawer(false);
+    });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && drawer.classList.contains('open')) setDrawer(false);
+    });
+  }
+  </script>
   <title>One Team. – 「かける」で体験をつくる</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -158,30 +187,9 @@
   })();
 
   // ===== ハンバーガー（右スライド） =====
-  const hamb = document.getElementById('hamb');
-  const drawer = document.getElementById('drawer');
-  const backdrop = document.getElementById('backdrop');
-
-  function setDrawer(open){
-    drawer.classList.toggle('open', open);
-    backdrop.classList.toggle('open', open);
-    hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
-    document.body.classList.toggle('drawer-open', open);
-  }
-
-  if (hamb && drawer && backdrop) {
-    hamb.addEventListener('click', () => {
-      const open = !drawer.classList.contains('open');
-      setDrawer(open);
-    });
-    backdrop.addEventListener('click', () => setDrawer(false));
-    drawer.addEventListener('click', (e) => {
-      if (e.target.tagName === 'A') setDrawer(false);
-    });
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && drawer.classList.contains('open')) setDrawer(false);
-    });
-  }
+  // ハンバーガーメニューの初期化は head 内の initHamburgerMenu() を使用します。
+  // navbar を読み込んだ後に次の呼び出しで初期化されます:
+  // if (typeof initHamburgerMenu === 'function') initHamburgerMenu();
 
   // ===== カルーセル =====
   function setupCarousel({ items, gridEl, prevEl, nextEl, indicatorEl, pageSize=9, wrapCardLink=false }){

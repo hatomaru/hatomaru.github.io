@@ -9,6 +9,28 @@
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   <link rel="stylesheet" href="../style.css" />
+  <script>
+  // グローバルに呼べる初期化関数を用意する
+  function initHamburgerMenu(){
+    const hamb = document.getElementById('hamb');
+    const drawer = document.getElementById('drawer');
+    const backdrop = document.getElementById('backdrop');
+
+    if (!hamb || !drawer || !backdrop) return;
+
+    function setDrawer(open){
+      drawer.classList.toggle('open', open);
+      backdrop.classList.toggle('open', open);
+      hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.body.classList.toggle('drawer-open', open);
+    }
+
+    hamb.addEventListener('click', () => setDrawer(!drawer.classList.contains('open')));
+    backdrop.addEventListener('click', () => setDrawer(false));
+    drawer.addEventListener('click', (e) => { if (e.target.tagName === 'A') setDrawer(false); });
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && drawer.classList.contains('open')) setDrawer(false); });
+  }
+  </script>
   <style>
     /* ページ固有の微調整のみ残す */
 
@@ -344,21 +366,9 @@
   })();
 
   // ===== ハンバーガー（右スライド + バックドロップ + ESCで閉じる） =====
-  const hamb = document.getElementById('hamb');
-  const drawer = document.getElementById('drawer');
-  const backdrop = document.getElementById('backdrop');
-  function setDrawer(open){
-    drawer.classList.toggle('open', open);
-    backdrop.classList.toggle('open', open);
-    hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
-    document.body.classList.toggle('drawer-open', open);
-  }
-  if (hamb && drawer && backdrop) {
-    hamb.addEventListener('click', () => setDrawer(!drawer.classList.contains('open')));
-    backdrop.addEventListener('click', () => setDrawer(false));
-    drawer.addEventListener('click', (e) => { if (e.target.tagName === 'A') setDrawer(false); });
-    window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && drawer.classList.contains('open')) setDrawer(false); });
-  }
+  // ハンバーガーメニューの初期化は head 内の initHamburgerMenu() を使用します。
+  // navbar を読み込んだ後に次の呼び出しで初期化されます:
+  // if (typeof initHamburgerMenu === 'function') initHamburgerMenu();
 
   // ===== フロートインアニメーション =====
   const animateElements = document.querySelectorAll('.animate-in');
