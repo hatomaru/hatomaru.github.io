@@ -43,7 +43,7 @@
      <script>
       $(function() {
         $.get('/navbar_OC.html', function(data){
-          $('body').append(data);
+      $('body').prepend(data);
           // ナビゲーションが読み込まれた後にハンバーガーメニューを初期化
           if (typeof initHamburgerMenu === 'function') {
             initHamburgerMenu();
