@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>レポート | ThanksPlaytest</title>
+    <link rel="stylesheet" href="styles/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  </head>
+  <body class="page page--report">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="logo" href="index.html">
+          <img src="assets/logo.svg" alt="ThanksPlaytest ロゴ" />
+          <span class="logo__text">ThanksPlaytest</span>
+        </a>
+        <nav class="site-nav">
+          <a href="index.html#next-test" class="site-nav__link">次回テスト</a>
+          <a href="index.html#reports" class="site-nav__link">レポート一覧</a>
+          <a href="index.html#filter" class="site-nav__link">タグ</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="site-main">
+      <section class="report-hero" id="report-hero">
+        <p class="report-hero__back"><a href="index.html">← 一覧に戻る</a></p>
+        <h1 class="report-hero__title" id="report-title">Loading...</h1>
+        <p class="report-hero__meta" id="report-meta"></p>
+        <div class="report-hero__tags" id="report-tags"></div>
+      </section>
+
+      <section class="report-summary" id="report-summary">
+        <h2 class="section-title">Summary</h2>
+        <div class="summary__media" id="summary-media"></div>
+        <p class="summary__description" id="summary-description"></p>
+      </section>
+
+      <section class="report-kaizen" id="report-kaizen">
+        <h2 class="section-title">KAIZEN</h2>
+        <div class="kaizen__list" id="kaizen-list"></div>
+      </section>
+
+      <section class="report-thanks" id="report-thanks">
+        <h2 class="section-title">Thanks Message</h2>
+        <div class="thanks__content card" id="thanks-message"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span id="current-year"></span> ThanksPlaytest. All rights reserved.</p>
+    </footer>
+
+    <script src="js/report.js" type="module"></script>
+  </body>
+</html>

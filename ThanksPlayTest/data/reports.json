@@ -1,0 +1,92 @@
+{
+  "reports": [
+    {
+      "slug": "moonlight-alpha",
+      "productName": "Moonlight Trails",
+      "testTitle": "アルファテスト #3",
+      "testDate": "2024-12-05",
+      "summary": "協力プレイのテンポ調整と夜間ステージの視認性を確認。",
+      "tags": ["協力", "視認性", "UI"],
+      "summaryDescription": "探索の没入感が好評だった一方、暗闇での仲間位置把握に課題が残る結果となりました。",
+      "summaryMedia": [
+        {
+          "type": "image",
+          "src": "assets/chart-placeholder.svg",
+          "alt": "アンケート結果の棒グラフ"
+        }
+      ],
+      "kaizen": [
+        {
+          "title": "ビーコンの視認性を改善",
+          "description": "暗所で仲間が見つけづらいという声に応えて、ビーコンの光量とアニメーションを調整します。",
+          "media": [
+            { "type": "image", "src": "assets/chart-placeholder.svg", "alt": "ビーコン改善案モック" }
+          ]
+        },
+        {
+          "title": "ミニマップの拡大UIを追加",
+          "description": "プレイヤーごとにミニマップの拡大率を選べるUIを追加し、状況把握を支援します。",
+          "media": []
+        }
+      ],
+      "thanksMessage": "### ご参加ありがとうございました！\n仲間との連携を楽しみながらも、しっかり改善点を教えていただき感謝しています。次回は新ギミックを導入予定なので、ぜひまたご協力ください。"
+    },
+    {
+      "slug": "garden-beta",
+      "productName": "Floating Garden",
+      "testTitle": "ベータテスト #1",
+      "testDate": "2025-01-12",
+      "summary": "制作システムのUIリニューアルに対する使い勝手を検証。",
+      "tags": ["制作", "UX", "チュートリアル"],
+      "summaryDescription": "新しい導線が直感的だったと80%の参加者が回答。チュートリアルのボリュームに対する意見も集まりました。",
+      "summaryMedia": [
+        {
+          "type": "image",
+          "src": "assets/chart-placeholder.svg",
+          "alt": "アンケートのサマリーグラフ"
+        }
+      ],
+      "kaizen": [
+        {
+          "title": "チュートリアルを分割",
+          "description": "一度に情報が多いとの指摘から、段階的にステップを進められる構成に見直します。",
+          "media": [
+            { "type": "image", "src": "assets/chart-placeholder.svg", "alt": "チュートリアル分割案" }
+          ]
+        }
+      ],
+      "thanksMessage": "みなさんの鋭いフィードバックのおかげで、制作システムが一気に洗練されました。引き続き楽しく作れる体験を目指します！"
+    },
+    {
+      "slug": "battle-delta",
+      "productName": "Starfall Arena",
+      "testTitle": "バランステスト",
+      "testDate": "2025-01-28",
+      "summary": "新キャラクター2名のダメージバランスと必殺技の爽快感を確認。",
+      "tags": ["対戦", "バランス", "エフェクト"],
+      "summaryDescription": "必殺技の演出は好評だったものの、クールダウンが長くテンポが崩れるとの声がありました。",
+      "summaryMedia": [
+        {
+          "type": "image",
+          "src": "assets/chart-placeholder.svg",
+          "alt": "投票結果チャート"
+        }
+      ],
+      "kaizen": [
+        {
+          "title": "クールダウン短縮のテスト",
+          "description": "平均ダメージ量を維持したままクールダウンを20%短縮する調整をテスト環境で実施します。",
+          "media": [
+            { "type": "image", "src": "assets/chart-placeholder.svg", "alt": "バランス調整シート" }
+          ]
+        },
+        {
+          "title": "ヒット演出の光量調整",
+          "description": "長時間プレイで目が疲れるというフィードバックから、エフェクト光量を段階的に落とす仕組みを導入します。",
+          "media": []
+        }
+      ],
+      "thanksMessage": "#### Starfallチームより\nテストにご参加いただいた皆さま、本当にありがとうございました。次回は大会モードの先行テストを予定しています。ぜひご期待ください！"
+    }
+  ]
+}
