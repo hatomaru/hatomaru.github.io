@@ -1,0 +1,29 @@
+<svg width="720" height="360" viewBox="0 0 720 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">次回テスト告知イラスト</title>
+  <desc id="desc">柔らかな水色の背景に集うテスターたちのイメージ。</desc>
+  <defs>
+    <linearGradient id="panel" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#e0f5ff" />
+      <stop offset="100%" stop-color="#f5f9ff" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" x2="100%" y1="0%" y2="0%">
+      <stop offset="0%" stop-color="#a1c4fd" />
+      <stop offset="100%" stop-color="#c2e9fb" />
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="720" height="360" rx="32" fill="url(#panel)" />
+  <g transform="translate(80 60)" fill="#ffffff" opacity="0.85">
+    <rect x="0" y="120" width="120" height="120" rx="28" />
+    <rect x="140" y="40" width="120" height="200" rx="28" />
+    <rect x="280" y="0" width="120" height="240" rx="28" />
+    <rect x="420" y="60" width="120" height="180" rx="28" />
+  </g>
+  <path d="M120 220 C220 120 420 180 560 110" fill="none" stroke="url(#accent)" stroke-width="18" stroke-linecap="round" opacity="0.8" />
+  <g fill="#7ab8f5" opacity="0.75">
+    <circle cx="160" cy="240" r="14" />
+    <circle cx="260" cy="150" r="16" />
+    <circle cx="360" cy="200" r="20" />
+    <circle cx="520" cy="140" r="12" />
+  </g>
+  <text x="50%" y="300" text-anchor="middle" font-family="'Noto Sans JP', sans-serif" font-size="36" fill="#5a6f95" opacity="0.8">Join the Next Playtest</text>
+</svg>
