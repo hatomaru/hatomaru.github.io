@@ -3,13 +3,19 @@
     /* Scoped styles for injected contact section */
     /* 横並び（フレックス）: 幅が足りないときは折り返す */
     #contact .contact-grid{ display:flex; gap:18px; align-items:stretch; flex-wrap:wrap; }
-    #contact .contact-grid a{ text-decoration:none; color:inherit; flex:1 1 260px; }
-    #contact .contact-card{ padding:18px; display:flex; gap:12px; align-items:center; height:100%; }
+    /* 各カードのコンテナ（a）をブロック化して幅指定。デスクトップでは2カラム、狭い画面では折り返す */
+    #contact .contact-grid a{ display:block; text-decoration:none; color:inherit; flex:0 1 calc(50% - 9px); min-width:260px; box-sizing:border-box; }
+    /* カード本体はアンカー内で幅100%にして中身を横並びに */
+    #contact .contact-card{ padding:18px; display:flex; gap:12px; align-items:center; height:100%; width:100%; box-sizing:border-box; }
     #contact .contact-avatar{ width:64px; height:64px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,var(--accent), #a48bff); color:#fff; font-weight:700; font-size:20px; flex-shrink:0; }
     #contact .contact-body{ flex:1; }
     #contact .contact-title{ margin:0 0 6px; font-size:1.05rem; font-weight:700; }
     #contact .contact-sub{ margin:0; color:var(--muted); font-size:0.95rem; }
     #contact .contact-actions{ margin-top:10px; display:flex; gap:10px; }
+    /* 小さい画面では1列にする */
+    @media (max-width:600px){
+      #contact .contact-grid a{ flex-basis:100%; flex:1 1 100%; }
+    }
   </style>
 
   <div class="section-header">
