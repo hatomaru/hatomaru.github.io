@@ -25,6 +25,25 @@
       setDrawer(open);
     });
     backdrop.addEventListener('click', () => setDrawer(false));
+    // 画面外をタップ/クリックしたときにドロワーを閉じる（スマホ向け）
+    document.addEventListener('pointerdown', (e) => {
+      try {
+        if (!drawer.classList.contains('open')) return;
+        // composedPath を使ってイベントパス内に drawer または hamb があるか確認
+        const path = (e.composedPath && e.composedPath()) || (function fallback(el){
+          const arr = [];
+          let node = el;
+          while(node){ arr.push(node); node = node.parentNode; }
+          return arr;
+        })(e.target);
+        if (!path.includes(drawer) && !path.includes(hamb)) {
+          setDrawer(false);
+        }
+      } catch (err) {
+        // 念のため例外は無視して挙動に影響を出さない
+        // console.error(err);
+      }
+    }, { passive: true });
     drawer.addEventListener('click', (e) => {
       if (e.target.tagName === 'A') setDrawer(false);
     });

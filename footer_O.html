@@ -1,6 +1,7 @@
   <footer class="footer" style="background:#333333;color:#fff;">
     <style>
-      .footer{ padding:28px 6vw; text-align:center; color:#ffffff; border-top:1px solid rgba(255,255,255,0.06); }
+      /* Ensure footer stacks above the animated background canvas */
+      .footer{ position:relative; z-index:20; padding:28px 6vw; text-align:center; color:#ffffff; border-top:1px solid rgba(255,255,255,0.06); }
       .footer .foot-inner{ max-width:1200px; margin:0 auto; display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
       .footer .brand-small{ display:flex; gap:10px; align-items:center; }
       .footer .brand-small img{ height:28px; }

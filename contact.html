@@ -1,8 +1,10 @@
 <section id="contact" class="section">
   <style>
     /* Scoped styles for injected contact section */
-    #contact .contact-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; align-items:stretch; }
-    #contact .contact-card{ padding:18px; display:flex; gap:12px; align-items:center; }
+    /* 横並び（フレックス）: 幅が足りないときは折り返す */
+    #contact .contact-grid{ display:flex; gap:18px; align-items:stretch; flex-wrap:wrap; }
+    #contact .contact-grid a{ text-decoration:none; color:inherit; flex:1 1 260px; }
+    #contact .contact-card{ padding:18px; display:flex; gap:12px; align-items:center; height:100%; }
     #contact .contact-avatar{ width:64px; height:64px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,var(--accent), #a48bff); color:#fff; font-weight:700; font-size:20px; flex-shrink:0; }
     #contact .contact-body{ flex:1; }
     #contact .contact-title{ margin:0 0 6px; font-size:1.05rem; font-weight:700; }
@@ -14,18 +16,21 @@
     <h2 class="section-title">CONTACT</h2>
     <p class="section-subtitle">お問い合わせ・ご連絡はこちらから</p>
   </div>
-<a href="https://twitter.com/OneTeam_dot" style="text-decoration:none;color:inherit;">
-    <div class="card contact-card">
-      <div class="contact-avatar">X</div>
-      <div class="contact-body">
-        <h3 class="contact-title">X</h3>
-        <div class="contact-actions">
-          <span class="btn primary">@OneTeam_dot</span>
+
+  <div class="contact-grid">
+    <a href="https://twitter.com/OneTeam_dot" aria-label="OneTeam の X へ">
+      <div class="card contact-card">
+        <div class="contact-avatar">X</div>
+        <div class="contact-body">
+          <h3 class="contact-title">X</h3>
+          <div class="contact-actions">
+            <span class="btn primary">@OneTeam_dot</span>
+          </div>
         </div>
       </div>
-  </a>
+    </a>
 
-    <a href="mailto:oneteam.dot@gmail.com" style="text-decoration:none;color:inherit;">
+    <a href="mailto:oneteam.dot@gmail.com" aria-label="メールでお問い合わせ">
       <div class="card contact-card">
         <div class="contact-avatar">@</div>
         <div class="contact-body">
