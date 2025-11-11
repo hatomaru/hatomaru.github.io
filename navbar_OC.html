@@ -38,7 +38,7 @@
  </style>
 
  <div class="topbar" role="navigation">
-    <div class="topbar-inner">
+   <div class="topbar-inner">
       <a href="/OneTeam_dot/" class="navbar-logo">
         <img src="/OneTeam_dot/src/OneTeam.Logo_2.png" alt="ロゴ" />
       </a>
@@ -58,17 +58,19 @@
         <a href="https://unityroom.com/users/oneteam_dot" class="my-apps-button">unityroomで一部の作品を遊ぶ</a>
       </div>
       
-      <button class="hamb" id="hamb" aria-controls="drawer" aria-expanded="false" aria-label="メニュー">
+       <button class="hamb" id="hamb" aria-controls="drawer" aria-expanded="false" aria-label="メニュー">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
     </div>
-    <div class="drawer" id="drawer">
-      <a href="https://hatomaru.github.io/OneTeam_dot/#about">About</a>
-      <a href="https://hatomaru.github.io/OneTeam_dot/#games">GAMES</a>
-      <a href="https://hatomaru.github.io/OneTeam_dot/#story">STORY</a>
-      <a href="https://hatomaru.github.io/OneTeam_dot/#guideline">GUIDELINE</a>
-      <a href="https://hatomaru.github.io/portfolio/">PORTFOLIO</a>
-      <a href="https://unityroom.com/users/oneteam_dot">unityroomで作品を遊ぶ</a>
-    </div>
-  <div class="backdrop" id="backdrop" aria-hidden="true"></div>
   </div>
+
+  <!-- ドロワーとバックドロップは topbar の外に置く（backdrop-filter による stacking context を回避） -->
+  <div class="drawer" id="drawer">
+    <a href="https://hatomaru.github.io/OneTeam_dot/#about">About</a>
+    <a href="https://hatomaru.github.io/OneTeam_dot/#games">GAMES</a>
+    <a href="https://hatomaru.github.io/OneTeam_dot/#story">STORY</a>
+    <a href="https://hatomaru.github.io/OneTeam_dot/#guideline">GUIDELINE</a>
+    <a href="https://hatomaru.github.io/portfolio/">PORTFOLIO</a>
+    <a href="https://unityroom.com/users/oneteam_dot">unityroomで作品を遊ぶ</a>
+  </div>
+  <div class="backdrop" id="backdrop" aria-hidden="true"></div>
