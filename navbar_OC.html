@@ -1,30 +1,39 @@
  <style>
- /* navbar のオーバーレイとドロワーのスタッキング順を明示して、
-    ハンバーガーメニュー開時に黒い背景が前面（ページコンテンツ上）に表示されるようにする */
+ /* navbar のオーバーレイとドロワーのスタッキング順を明示
+   - JS が付け外しするクラスは `.open` のため、それに合わせる
+   - OneTeam_dot/style.css の期待する振る舞い（opacity で表示）と整合させる */
  .topbar { position: relative; z-index: 100; }
- /* ドロワー（スライドメニュー）はバックドロップより上に表示 */
+
+ /* ドロワー（スライドメニュー） */
  .drawer {
    position: fixed;
    top: 0;
    right: 0;
-   height: 100%;
-   width: 260px;
-   background: #fff;
-   z-index: 1002; /* ドロワーを最前面に */
+   height: 100vh;
+   width: min(84vw, 360px);
+   background: rgba(255,255,255,0.98);
+   backdrop-filter: blur(10px);
+   z-index: 1002; /* ドロワーをバックドロップより上に */
    transform: translateX(100%);
    transition: transform .28s ease;
+   pointer-events: none; /* open 時に有効化 */
+   overflow-y: auto;
  }
- .drawer.open { transform: translateX(0); }
- /* 黒い背景（バックドロップ）はページ上に表示されるよう fixed と高めの z-index を指定 */
+ .drawer.open { transform: translateX(0); pointer-events: auto; }
+
+ /* 黒い背景（バックドロップ）は opacity で制御（JS は .open を付ける） */
  .backdrop {
    position: fixed;
    inset: 0;
-   background: rgba(0,0,0,0.5);
+   background: rgba(0,0,0,0.35);
+   opacity: 0;
+   pointer-events: none;
+   transition: opacity .28s ease;
    z-index: 1000; /* ドロワーより下、ページコンテンツより上 */
-   display: none;
  }
- .backdrop.show { display: block; }
- /* ハンバーガーボタンは適切に前面に出す（必要に応じて変更） */
+ .backdrop.open { opacity: 1; pointer-events: auto; }
+
+ /* ハンバーガーボタンの重なりはドロワーより上にしておく（必要なら調整） */
  .hamb { position: relative; z-index: 1003; }
  </style>
 
