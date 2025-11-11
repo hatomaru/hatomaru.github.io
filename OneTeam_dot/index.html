@@ -13,6 +13,21 @@
 
     if (!hamb || !drawer || !backdrop) return; // ナビがまだ存在しない場合は何もしない
 
+    // --- ドロワーをトップバーの下に配置する調整 ---
+    // モバイルでトップバーが固定表示（sticky）されている場合、
+    // ドロワーの内容がトップバーの背後に隠れてしまうため、
+    // トップバーの高さを測って drawer の top/height を調整する。
+    const topbar = document.querySelector('.topbar');
+    function updateDrawerPosition(){
+      const topH = (topbar && topbar.getBoundingClientRect) ? Math.round(topbar.getBoundingClientRect().height) : 0;
+      // topbar の高さ分だけドロワーを下げ、残りを高さにする
+      drawer.style.top = topH + 'px';
+      drawer.style.height = `calc(100vh - ${topH}px)`;
+    }
+    // 初期設定とリサイズで更新
+    updateDrawerPosition();
+    window.addEventListener('resize', updateDrawerPosition, { passive: true });
+
     function setDrawer(open){
       drawer.classList.toggle('open', open);
       backdrop.classList.toggle('open', open);
