@@ -1,3 +1,33 @@
+ <style>
+ /* navbar のオーバーレイとドロワーのスタッキング順を明示して、
+    ハンバーガーメニュー開時に黒い背景が前面（ページコンテンツ上）に表示されるようにする */
+ .topbar { position: relative; z-index: 100; }
+ /* ドロワー（スライドメニュー）はバックドロップより上に表示 */
+ .drawer {
+   position: fixed;
+   top: 0;
+   right: 0;
+   height: 100%;
+   width: 260px;
+   background: #fff;
+   z-index: 1002; /* ドロワーを最前面に */
+   transform: translateX(100%);
+   transition: transform .28s ease;
+ }
+ .drawer.open { transform: translateX(0); }
+ /* 黒い背景（バックドロップ）はページ上に表示されるよう fixed と高めの z-index を指定 */
+ .backdrop {
+   position: fixed;
+   inset: 0;
+   background: rgba(0,0,0,0.5);
+   z-index: 1000; /* ドロワーより下、ページコンテンツより上 */
+   display: none;
+ }
+ .backdrop.show { display: block; }
+ /* ハンバーガーボタンは適切に前面に出す（必要に応じて変更） */
+ .hamb { position: relative; z-index: 1003; }
+ </style>
+
  <div class="topbar" role="navigation">
     <div class="topbar-inner">
       <a href="/OneTeam_dot/" class="navbar-logo">
