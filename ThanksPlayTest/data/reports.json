@@ -1,0 +1,116 @@
+{
+  "nextTest": {
+    "enabled": false,
+    "title": "次のテスト予定",
+    "summary": "現在準備中です。開催日は未定です。",
+    "buttonText": "準備中",
+    "imgSrc": false
+  },
+  "reports": [
+    {
+      "slug": "amevar-20251109",
+      "productName": "Amevar",
+      "testTitle": "東京ゲームダンジョン 10",
+      "testDate": "2025-12-01",
+      "summary": "",
+      "summaryDescription": "探索の没入感が好評だった一方、暗闇での仲間位置把握に課題が残る結果となりました。",
+      "summaryMedia": [
+        {
+          "type": "image",
+          "src": "assets/chart-placeholder.svg",
+          "alt": "アンケート結果の棒グラフ"
+        }
+      ],
+      "summaries": [
+        {
+          "title": "総括",
+          "description": "探索の没入感が好評だった一方、暗闇での仲間位置把握に課題が残る結果となりました。",
+          "media": [
+            {
+              "type": "image",
+              "src": "assets/chart-placeholder.svg",
+              "alt": "アンケート結果の棒グラフ"
+            }
+          ]
+        },
+        {
+          "title": "補足データ",
+          "description": "参加者コメントより、夜間の視認性に関する具体的な指摘が複数ありました。今後の改善に役立てます。",
+          "media": []
+        }
+      ],
+      "kaizen": [
+        {
+          "title": "ビーコンの視認性を改善",
+          "description": "暗所で仲間が見つけづらいという声に応えて、ビーコンの光量とアニメーションを調整します。",
+          "media": [
+            { "type": "image", "src": "assets/chart-placeholder.svg", "alt": "ビーコン改善案モック" }
+          ]
+        },
+        {
+          "title": "ミニマップの拡大UIを追加",
+          "description": "プレイヤーごとにミニマップの拡大率を選べるUIを追加し、状況把握を支援します。",
+          "media": []
+        }
+      ],
+      "thanksMessage": "### ご参加ありがとうございました！\n試遊とフィードバック提供にご協力いただいた皆さまに、心よりありがとうございます。皆さまのご意見をもとに、より良い体験を目指して改善を進めていきます。今後ともAmevarをよろしくお願いいたします！"
+    },
+    {
+      "slug": "garden-beta",
+      "productName": "Floating Garden",
+      "testTitle": "ベータテスト #1",
+      "testDate": "2025-01-12",
+      "summary": "制作システムのUIリニューアルに対する使い勝手を検証。",
+      "tags": ["制作", "UX", "チュートリアル"],
+      "summaryDescription": "新しい導線が直感的だったと80%の参加者が回答。チュートリアルのボリュームに対する意見も集まりました。",
+      "summaryMedia": [
+        {
+          "type": "image",
+          "src": "assets/chart-placeholder.svg",
+          "alt": "アンケートのサマリーグラフ"
+        }
+      ],
+      "kaizen": [
+        {
+          "title": "チュートリアルを分割",
+          "description": "一度に<b>情報が多い</b>との指摘から、段階的にステップを進められる構成に見直します。",
+          "media": [
+            { "type": "image", "src": "assets/chart-placeholder.svg", "alt": "チュートリアル分割案" }
+          ]
+        }
+      ],
+      "thanksMessage": "みなさんの鋭いフィードバックのおかげで、制作システムが一気に洗練されました。引き続き楽しく作れる体験を目指します！"
+    },
+    {
+      "slug": "battle-delta",
+      "productName": "Starfall Arena",
+      "testTitle": "バランステスト",
+      "testDate": "2025-01-28",
+      "summary": "新キャラクター2名のダメージバランスと必殺技の爽快感を確認。",
+      "tags": ["対戦", "バランス", "エフェクト"],
+      "summaryDescription": "必殺技の演出は好評だったものの、クールダウンが長くテンポが崩れるとの声がありました。",
+      "summaryMedia": [
+        {
+          "type": "image",
+          "src": "assets/chart-placeholder.svg",
+          "alt": "投票結果チャート"
+        }
+      ],
+      "kaizen": [
+        {
+          "title": "クールダウン短縮のテスト",
+          "description": "平均ダメージ量を維持したままクールダウンを20%短縮する調整をテスト環境で実施します。",
+          "media": [
+            { "type": "image", "src": "assets/chart-placeholder.svg", "alt": "バランス調整シート" }
+          ]
+        },
+        {
+          "title": "ヒット演出の光量調整",
+          "description": "長時間プレイで目が疲れるというフィードバックから、エフェクト光量を段階的に落とす仕組みを導入します。",
+          "media": []
+        }
+      ],
+      "thanksMessage": "#### Starfallチームより\nテストにご参加いただいた皆さま、本当にありがとうございました。次回は大会モードの先行テストを予定しています。ぜひご期待ください！"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ThanksTestPage | ThanksPlaytest</title>
+    <link rel="stylesheet" href="styles/styles.css" />
+  </head>
+  <body class="page page--index">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="logo" href="./">
+          <img src="assets/logo.svg" alt="ThanksPlaytest ロゴ" />
+          <span class="logo__text">ThanksPlaytest</span>
+        </a>
+        <nav class="site-nav">
+          <a href="#next-test" class="site-nav__link">次回テスト</a>
+          <a href="#reports" class="site-nav__link">レポート一覧</a>
+          <a href="#filter" class="site-nav__link">タグ</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="site-main">
+      <section class="next-test" id="next-test">
+        <div class="next-test__content card">
+          <div class="next-test__info">
+            <h1 class="next-test__title">次のテスト予定</h1>
+            <p class="next-test__date" id="next-test-date">2025年2月15日（土） 19:00〜</p>
+            <p class="next-test__summary">
+              新コンセプト「Moonlight Trails」の協力プレイテストを実施します。初参加歓迎！
+            </p>
+            <a class="button button--primary" href="#">Join</a>
+          </div>
+          <div class="next-test__visual">
+            <img src="assets/upcoming-test.svg" alt="次回テストのイメージ" />
+          </div>
+        </div>
+      </section>
+
+      <section class="filters" id="filter">
+        <h2 class="section-title">タグで絞り込み</h2>
+        <div class="filters__list" id="tag-container">
+          <!-- タグボタンをJSで生成 -->
+        </div>
+      </section>
+
+      <section class="reports" id="reports">
+        <div class="reports__header">
+          <h2 class="section-title">これまでのテスト結果</h2>
+          <div class="pagination" id="pagination">
+            <button class="button button--ghost" id="prev-page" disabled>前へ</button>
+            <span class="pagination__status" id="page-status">1 / 1</span>
+            <button class="button button--ghost" id="next-page" disabled>次へ</button>
+          </div>
+        </div>
+        <div class="reports__grid" id="reports-container">
+          <!-- レポートカードをJSで生成 -->
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span id="current-year"></span> ThanksPlaytest. All rights reserved.</p>
+    </footer>
+
+    <script src="js/index.js" type="module"></script>
+  </body>
+</html>
