@@ -207,6 +207,9 @@
         if(it.image) {
           const img = document.createElement('img');
           img.src = it.image;
+          // 遅延読み込みは画像のみに限定する（トップバー等は常に即時表示）
+          img.loading = 'lazy';
+          img.decoding = 'async';
           img.alt = it.title || '';
           
           // トリミング範囲の指定（object-position）
@@ -455,17 +458,14 @@
     }, index * 120);
   });
   </script>
-     <script>
+    <script>
       $(function() {
-        $.get('/contact.html', function(data){
-          $('body').append(data);
-        });
-      });
-    </script>
-     <script>
-      $(function() {
-        $.get('/footer_O.html', function(data){
-          $('body').append(data);
+        $.get('/contact.html', function(contactData){
+          $('body').append(contactData);
+          // contact の挿入が完了したら footer を読み込む
+          $.get('/footer_O.html', function(footerData){
+            $('body').append(footerData);
+          });
         });
       });
     </script>

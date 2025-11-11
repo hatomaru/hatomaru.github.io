@@ -411,18 +411,15 @@
   </script>
       <script>
       $(function() {
-        $.get('/contact.html', function(data){
-          $('body').append(data);
+        $.get('/contact.html', function(contactData){
+          $('body').append(contactData);
+          $.get('/footer_O.html', function(footerData){
+            $('body').append(footerData);
+          });
         });
       });
     </script>
-     <script>
-      $(function() {
-        $.get('/footer_O.html', function(data){
-          $('body').append(data);
-        });
-      });
-    </script>
+    
 </body>
 
 </html>
