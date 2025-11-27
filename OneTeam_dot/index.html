@@ -115,6 +115,24 @@
     </div>
   </section>
 
+  <!-- LABS セクション -->
+  <section id="labs" class="section animate-in animate-fade-left">
+    <div class="carousel">
+      <div class="controls animate-in animate-fade-up animate-delay-1">
+        <div class="carousel-title-group">
+          <h2 class="carousel-title">LABS</h2>
+          <p class="carousel-subtitle">体験づくりの過程で試した実験や、ゲーム以外の作品を紹介しています</p>
+        </div>
+        <div class="carousel-nav-group">
+          <button class="btn-nav" id="labs-prev">◀ Prev</button>
+          <span class="page-indicator" id="labs-indicator">1 / 1</span>
+          <button class="btn-nav" id="labs-next">Next ▶</button>
+        </div>
+      </div>
+      <div class="grid animate-in animate-fade-up animate-delay-2" id="labs-grid"></div>
+    </div>
+  </section>
+
   <!-- STORY セクション -->
   <section id="story" class="section animate-in animate-fade-right">
     <div class="carousel">
@@ -408,6 +426,21 @@
     }
   ];
 
+  const labs = [
+    {
+      title: 'AfterNSconds',
+      reading: 'N秒後の世界',
+      tag: 'コトバを解釈し変化するN秒後の世界',
+      tagColor: '#cf2ac0',
+      meta: 'LLM × メディアアート',
+      desc: 'UnityとLlama3を使って、コトバを解釈し変化するN秒後の世界を表現した作品',
+      image: '../portfolio/src/app/Lab/AfterNSeconds.jpg',
+      objectPosition: 'center',
+      objectFit: 'cover',
+      buttons: []
+    }
+  ];
+
   // STORY 用データ（最大3件/カルーセル対応）
   const stories = [
     { title:'Amevarのフキダシ①', meta:'Note', desc:'Amevarの制作の小話を紹介', image:'src/note/Samune_1.png', objectFit:'cover', objectPosition:'center', href:'https://note.com/oneteam_dot/n/n10fdfb82b4d4' },
@@ -418,6 +451,7 @@
   ];
 
   setupCarousel({ items: games, gridEl: document.getElementById('games-grid'), prevEl: document.getElementById('games-prev'), nextEl: document.getElementById('games-next'), indicatorEl: document.getElementById('games-indicator'), pageSize:9 });
+  setupCarousel({ items: labs, gridEl: document.getElementById('labs-grid'), prevEl: document.getElementById('labs-prev'), nextEl: document.getElementById('labs-next'), indicatorEl: document.getElementById('labs-indicator'), pageSize:9 });
   setupCarousel({ items: stories, gridEl: document.getElementById('story-grid'), prevEl: document.getElementById('story-prev'), nextEl: document.getElementById('story-next'), indicatorEl: document.getElementById('story-indicator'), pageSize:3, wrapCardLink:true });
   setupCarousel({ items: guides, gridEl: document.getElementById('guide-grid'), prevEl: document.getElementById('guide-prev'), nextEl: document.getElementById('guide-next'), indicatorEl: document.getElementById('guide-indicator'), pageSize:9 });
 
