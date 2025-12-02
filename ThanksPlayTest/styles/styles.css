@@ -77,10 +77,21 @@ strong {
   color: var(--text-color);
 }
 
-.logo img {
+.logo__icon {
   width: 48px;
   height: 48px;
   border-radius: var(--radius-sm);
+  object-fit: contain;
+}
+
+/* 長いロゴ画像はアスペクト比を維持して表示（高さを揃え、幅は自動） */
+.logo__text {
+  display: block;
+  height: 40px; /* ヘッダー内に収まる適切な高さ。必要なら調整してください */
+  width: auto;
+  max-width: 240px; /* 横幅が極端に広くならないよう制限 */
+  object-fit: contain;
+  border-radius: 0; /* テキストロゴに角丸は不要なことが多い */
 }
 
 .logo__text {
