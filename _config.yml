@@ -12,3 +12,4 @@ defaults:
       path:            "footer_O.html"
     values:
       sitemap:         false
+      
