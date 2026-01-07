@@ -246,12 +246,14 @@ body {
   .student-card {
     margin: 15px 0;
     transform: scale(1); /* モバイルでは拡大縮小を無効 */
+    border-radius: 12px;
   }
 
   .student-card-main {
     padding: 15px;
     flex-direction: column; /* 縦並びに変更 */
     align-items: center;
+    gap: 12px;
   }
 
   .student-profile {
@@ -265,6 +267,40 @@ body {
     border-left: none;
     border-top: 2px solid #e9ecef;
     padding-top: 20px;
+  }
+
+  /* About内の文字サイズと余白をやや小さめに */
+  .student-card-header h2 {
+    font-size: clamp(15px, 4.25vw, 19px);
+    margin: 0;
+  }
+
+  .student-name {
+    font-size: clamp(14px, 3.9vw, 17px);
+    margin: 8px 0 4px;
+  }
+
+  .student-name-sub {
+    font-size: clamp(10px, 3.1vw, 12px);
+    margin: 0;
+    color: #666;
+  }
+
+  .student-section-title {
+    font-size: clamp(12px, 3.2vw, 14px);
+    margin: 12px 0 6px;
+  }
+
+  .student-intro,
+  .student-basic-info,
+  .student-skill-list div {
+    font-size: clamp(10px, 3vw, 13px);
+    line-height: 1.6;
+  }
+
+  /* 画像サイズもやや縮小 */
+  .student-photo {
+    max-width: 100px;
   }
 
   .student-skills {
@@ -334,7 +370,24 @@ body {
   }
 
   .student-photo {
-    max-width: 100px;
+    max-width: 72px;
+  }
+
+  /* さらにコンパクトに */
+  .student-card-header h2 {
+    font-size: 15px;
+  }
+  .student-name {
+    font-size: 15px;
+  }
+  .student-section-title {
+    font-size: 12px;
+  }
+  .student-intro,
+  .student-basic-info,
+  .student-skill-list div {
+    font-size: 11px;
+    line-height: 1.55;
   }
 
   .apps-section h2, .about h1 {
