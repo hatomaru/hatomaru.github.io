@@ -541,3 +541,43 @@ html {
 .image-position-100-20 {
   object-position: 100% 20%;
 }
+
+/* About 折り畳み（デスクトップは常時展開） */
+.about-collapsible { overflow: visible; max-height: none; }
+.about-toggle { display: none; }
+
+@media (max-width: 768px) {
+  .student-card-header {
+    position: relative;
+    padding-right: 72px;
+  }
+
+  .about-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 6px 10px;
+    border: 1px solid rgba(0,0,0,0.15);
+    background: #fff;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #333;
+  }
+
+  .about-collapsible {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-2px);
+    transition: max-height 0.45s cubic-bezier(0.2, 0, 0, 1), opacity 0.3s ease, transform 0.3s ease;
+    will-change: max-height;
+  }
+  .about-collapsible.is-open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

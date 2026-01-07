@@ -39,9 +39,11 @@
       <!-- ヘッダー部分 -->
       <div class="student-card-header animated-gradient">
         <h2>About</h2>
+        <button class="about-toggle" aria-expanded="false" aria-controls="about-content"><span class="material-symbols-outlined" style="margin-right:6px;">expand_more</span>開く</button>
       </div>
       
-      <!-- メイン部分 -->
+      <!-- メイン部分 + フッター（折り畳みパネル） -->
+      <div id="about-content" class="about-collapsible">
       <div class="student-card-main">
         
         <!-- 左側：写真とプロフィール -->
@@ -99,6 +101,7 @@
       <!-- フッター部分 -->
       <div class="student-card-footer">
         <p>MyProfile - 2025</p>
+      </div>
       </div>
       
     </div>
@@ -387,6 +390,76 @@
     </script>
   <script src="../js/scripts.js"></script>
   <script src="../js/menu.js"></script>
+  <script>
+    // About折り畳み制御（スマホ/タブレット）
+    (function() {
+      var toggle = document.querySelector('.about-toggle');
+      var panel = document.getElementById('about-content');
+      if (!toggle || !panel) return;
+
+      var mq = window.matchMedia('(max-width: 768px)');
+
+      function setOpen(open) {
+        if (open) {
+          panel.classList.add('is-open');
+          if (mq.matches) {
+            // 実高まで滑らかに展開
+            panel.style.maxHeight = panel.scrollHeight + 'px';
+          } else {
+            panel.style.maxHeight = '';
+          }
+          toggle.setAttribute('aria-expanded', 'true');
+          toggle.innerHTML = '<span class="material-symbols-outlined" style="margin-right:6px;">expand_less</span>閉じる';
+        } else {
+          panel.classList.remove('is-open');
+          if (mq.matches) {
+            panel.style.maxHeight = '0px';
+          } else {
+            panel.style.maxHeight = '';
+          }
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.innerHTML = '<span class="material-symbols-outlined" style="margin-right:6px;">expand_more</span>開く';
+        }
+      }
+
+      function applyByMedia(e) {
+        if (e.matches) {
+          // 小画面: デフォルトは折り畳み。#about指定時は自動で開く
+          setOpen(location.hash === '#about');
+        } else {
+          // 大画面: 常に開く（CSS的にも影響なしだが状態を合わせる）
+          setOpen(true);
+        }
+      }
+
+      toggle.addEventListener('click', function() {
+        var isOpen = toggle.getAttribute('aria-expanded') === 'true';
+        setOpen(!isOpen);
+      });
+
+      if (mq.addEventListener) {
+        mq.addEventListener('change', applyByMedia);
+      } else if (mq.addListener) {
+        // 旧ブラウザ互換
+        mq.addListener(applyByMedia);
+      }
+      applyByMedia(mq);
+
+      // アンカー遷移でAbout指定時に開く
+      window.addEventListener('hashchange', function() {
+        if (location.hash === '#about' && mq.matches) {
+          setOpen(true);
+        }
+      });
+
+      // リサイズや向き変更で開いている場合の高さを追従
+      window.addEventListener('resize', function() {
+        if (mq.matches && toggle.getAttribute('aria-expanded') === 'true') {
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        }
+      });
+    })();
+  </script>
 </body>
 
 </html>
