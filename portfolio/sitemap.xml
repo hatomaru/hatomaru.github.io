@@ -1,17 +1,38 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<url>
-<loc>https://hatomaru.github.io/portfolio/contents/cont-01.html</loc>
-</url>
-<url>
-<loc>https://hatomaru.github.io/portfolio/contents/cont-02.html</loc>
-</url>
-<url>
-<loc>https://hatomaru.github.io/portfolio/contents/cont-03.html</loc>
-</url>
-<url>
-<loc>https://hatomaru.github.io/portfolio/contents/cont-04.html</loc>
-</url>
-<url>
-<loc>https://hatomaru.github.io/portfolio/</loc>
-</url>
+	<url>
+		<loc>https://hatomaru.github.io/portfolio/</loc>
+	</url>
+	<url>
+		<loc>https://hatomaru.github.io/portfolio/contents/Amevar.html</loc>
+	</url>
+	<url>
+		<loc>https://hatomaru.github.io/portfolio/contents/BlockWorld.html</loc>
+	</url>
+	<url>
+		<loc>https://hatomaru.github.io/portfolio/contents/BlockWorld_Ai.html</loc>
+	</url>
+	<url>
+		<loc>https://hatomaru.github.io/portfolio/contents/BlockWorld_PC.html</loc>
+	</url>
+	<url>
+		<loc>https://hatomaru.github.io/portfolio/contents/CalcOnline.html</loc>
+	</url>
+	<url>
+		<loc>https://hatomaru.github.io/portfolio/contents/CHROMJOURNEY.html</loc>
+	</url>
+	<url>
+		<loc>https://hatomaru.github.io/portfolio/contents/CountDownGame.html</loc>
+	</url>
+	<url>
+		<loc>https://hatomaru.github.io/portfolio/contents/CyberCrash.html</loc>
+	</url>
+	<url>
+		<loc>https://hatomaru.github.io/portfolio/contents/ILikeIt.html</loc>
+	</url>
+	<url>
+		<loc>https://hatomaru.github.io/portfolio/contents/NoutoteFever.html</loc>
+	</url>
+	<url>
+		<loc>https://hatomaru.github.io/portfolio/contents/SimpleMath.html</loc>
+	</url>
 </urlset>
