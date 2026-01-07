@@ -10,6 +10,21 @@ body {
   line-height: 1.6;
 }
 
+/* 固定ヘッダー対策（アンカー位置/初期表示のずれ回避） */
+:root {
+  --header-height: 64px; /* デフォルトのナビ高さ（必要に応じて調整） */
+}
+
+html {
+  scroll-padding-top: var(--header-height);
+  scroll-behavior: smooth;
+}
+
+/* このページのAbout先頭がナビに隠れないよう余白を追加 */
+.about {
+  padding-top: calc(var(--header-height) + 10px) !important;
+}
+
 /* コンテナの基本設定 */
 .about-container, .apps-section {
   max-width: none; /* 大画面では最大幅制限を削除 */
@@ -215,13 +230,14 @@ body {
 
 /* タブレット対応 (768px以下) - モバイル向けレイアウト */
 @media (max-width: 768px) {
+  :root { --header-height: 72px; }
   .about-container, .apps-section {
     padding: 0 15px;
   }
 
   /* タブレット版での上部余白調整 */
   .about {
-    padding-top: 30px !important;
+    padding-top: calc(var(--header-height) + 8px) !important;
   }
 
   .TitleText {
@@ -338,13 +354,14 @@ body {
 
 /* スマートフォン対応 (480px以下) */
 @media (max-width: 480px) {
+  :root { --header-height: 80px; }
   .about-container, .apps-section {
     padding: 0 10px;
   }
 
   /* モバイルでの上部余白調整 */
   .about {
-    padding-top: 20px !important;
+    padding-top: calc(var(--header-height) + 6px) !important;
   }
 
   .TitleText {
