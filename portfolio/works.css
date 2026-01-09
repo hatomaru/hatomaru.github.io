@@ -29,12 +29,15 @@ body{
 .slideshow-container img{
   width:100%;
   height:auto !important;
-  max-height: 40%;
-  max-width: 40%;
+  max-height: 60%;
+  max-width: 70%;
   object-fit:contain !important;
   display:block;
   margin:0 auto;
 }
+/* 縦横で画像の最大幅を切り替え */
+.slideshow-container img.is-portrait{max-width:50%}
+.slideshow-container img.is-landscape{max-width:70%}
 .prev,.next{
   position:absolute;top:50%;transform:translateY(-50%);
   background:rgba(11,18,32,0.7);color:#fff;
