@@ -226,6 +226,10 @@ html {
   border-radius: 15px;
   font-size: 1.1em;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 /* タブレット対応 (768px以下) - モバイル向けレイアウト */

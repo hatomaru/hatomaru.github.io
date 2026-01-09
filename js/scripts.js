@@ -30,3 +30,33 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
 
+// スライド画像の縦横を自動判定してクラスを付与
+(function() {
+  function setOrientationClass(img) {
+    if (!img || !img.naturalWidth || !img.naturalHeight) return;
+    var isPortrait = img.naturalHeight > img.naturalWidth;
+    img.classList.remove('is-portrait', 'is-landscape');
+    img.classList.add(isPortrait ? 'is-portrait' : 'is-landscape');
+  }
+
+  function applyToAll() {
+    var imgs = document.querySelectorAll('.slideshow-container img');
+    imgs.forEach(function(img){
+      if (img.complete && img.naturalWidth > 0) {
+        setOrientationClass(img);
+      } else {
+        img.addEventListener('load', function onLoad(){
+          img.removeEventListener('load', onLoad);
+          setOrientationClass(img);
+        });
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyToAll);
+  } else {
+    applyToAll();
+  }
+})();
+
