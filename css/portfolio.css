@@ -1,3 +1,45 @@
+/* --- Trackrecord: clickable cards & hover animation --- */
+.news-item-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.news-section .news-item {
+  position: relative;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.news-item-link:hover .news-item {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.news-item-link:active .news-item {
+  transform: translateY(0);
+}
+
+.link-corner-icon {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  font-size: 22px;
+  opacity: 0.55;
+  pointer-events: none; /* keep card fully clickable */
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.news-item-link:hover .link-corner-icon {
+  opacity: 0.9;
+  transform: translate(2px, -2px);
+}
+
+/* 年表示がリンクアイコンと重ならないよう右側に余白を確保 */
+.news-item-link .news-footer {
+  padding-right: 48px;
+}
+
 /* CSS Document */
 
 /* ページ全体のリセット */
