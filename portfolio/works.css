@@ -36,8 +36,8 @@ body{
   margin:0 auto;
 }
 /* 縦横で画像の最大幅を切り替え */
-.slideshow-container img.is-portrait{max-width:50%}
-.slideshow-container img.is-landscape{max-width:70%}
+.slideshow-container img.is-portrait{max-width:50%;}
+.slideshow-container img.is-landscape{max-width:90%; max-height: 80%;}
 .prev,.next{
   position:absolute;top:50%;transform:translateY(-50%);
   background:rgba(11,18,32,0.7);color:#fff;
@@ -82,6 +82,12 @@ body{
 
 /* 見た目を整えるユーティリティ */
 .center{max-width:var(--max-width);margin:0 auto}
+
+/* Portfolioページ用: ナビの左余白を除去 */
+.navbar{padding-left:0 !important}
+@media (max-width:768px){
+  .navbar-container{padding-left:0 !important;padding-right:0 !important}
+}
 
 @media (max-width:800px){
   .slideshow-container img{max-height:min(70vh, calc(100vh - var(--header-height) - 24px))}
