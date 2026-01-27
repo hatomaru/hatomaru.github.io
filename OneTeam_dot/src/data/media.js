@@ -7,7 +7,7 @@ window.__MEDIA_DATA = [
     "objectFit": "cover",
     "objectPosition": "center",
     "href": "https://feynman.co.jp/unityforest/gamereview/amevar-review/",
-    "published": "2026-01-25"
+    "published": "2026-01-27"
   },
   {
     "title": "【1/9🎩ワイルド鑑定団🍷】",
