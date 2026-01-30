@@ -5,6 +5,7 @@
   --muted:#9aa4b2;
   --accent:#4fd1c5;
   --max-width:1000px;
+  --header-height:64px;
   /* ナビ用 */
   --nav-bg: rgba(255,255,255,0.72);
   --nav-border: rgba(0,0,0,0.08);
