@@ -12,7 +12,17 @@ body {
 
 /* 固定ヘッダー対策（アンカー位置/初期表示のずれ回避） */
 :root {
-  --header-height: 64px; /* デフォルトのナビ高さ（必要に応じて調整） */
+  --header-height: 72px; /* デフォルトのナビ高さ（必要に応じて調整） */
+  /* ポートフォリオ用共通トークン（色味は既存を尊重） */
+  --card-radius: 16px;
+  --card-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  --card-shadow-hover: 0 16px 32px rgba(0, 0, 0, 0.18);
+  --card-bg: #ffffff;
+  --muted-border: rgba(0, 0, 0, 0.08);
+  --section-padding-x: 40px;
+  --nav-bg: rgba(255,255,255,0.72);
+  --nav-border: rgba(0,0,0,0.08);
+  --nav-shadow: 0 8px 24px rgba(0,0,0,0.08);
 }
 
 html {
@@ -30,7 +40,7 @@ html {
   max-width: none; /* 大画面では最大幅制限を削除 */
   width: 100%; /* 全画面幅を利用 */
   margin: 0 auto;
-  padding: 0 40px; /* 適度な左右の余白 */
+  padding: 0 var(--section-padding-x); /* 適度な左右の余白 */
 }
 
 /* 学生証風カードのレスポンシブ対応 */
@@ -117,24 +127,29 @@ html {
   }
 }
 
+
 .app-card {
-  background: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background: var(--card-bg);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
   overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 280ms ease, box-shadow 280ms ease;
   max-width: 100%;
+  border: 1px solid var(--muted-border);
 }
 
 .app-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+  box-shadow: var(--card-shadow-hover);
 }
+
 
 .app-image-container {
   width: 100%;
-  height: 200px;
+  aspect-ratio: 16 / 9;
+  min-height: 220px;
   overflow: hidden;
+  background: #f5f5f5;
 }
 
 .app-image-container img {
@@ -143,35 +158,43 @@ html {
   object-fit: cover;
 }
 
+
 .app-info {
-  padding: 15px;
-  text-align: center;
+  padding: 18px 18px 20px;
+  text-align: left;
 }
 
+
 .app-info h3 {
-  font-size: 1.2em;
-  margin-bottom: 10px;
-  line-height: 1.3;
+  font-size: 1.25em;
+  margin: 2px 0 10px;
+  line-height: 1.35;
+  font-weight: 700;
 }
+
 
 .app-info ul {
   list-style: none;
   padding: 0;
-  margin: 10px 0;
+  margin: 10px 0 12px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 6px;
 }
 
 .app-info ul li {
   font-size: 0.85em;
+  /* 長文タグの折り返しを許可するための最小幅調整 */
+  min-width: 0;
 }
 
+
 .app-info p {
-  font-size: 0.9em;
-  line-height: 1.5;
+  font-size: 0.95em;
+  line-height: 1.6;
   margin: 8px 0;
+  color: #444;
 }
 
 .app-info .Year {
@@ -201,6 +224,25 @@ html {
   margin: 40px 0 30px 0;
 }
 
+/* ページ見出し */
+.TitleText {
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  /* 見出しの上下余白を統一 */
+  margin-top: 56px;
+  margin-bottom: 6px;
+}
+
+.TitleDetail {
+  text-align: center;
+  color: #666;
+  font-weight: 500;
+  margin-top: 8px;
+  margin-bottom: 26px;
+}
+
 /* 大画面でのコンテナ余白調整 */
 @media (min-width: 2000px) {
   .about-container, .apps-section {
@@ -225,11 +267,29 @@ html {
   padding: 4px 8px;
   border-radius: 15px;
   font-size: 1.1em;
-  white-space: nowrap;
+  /* 長文でも崩れないように内部で折り返し可能に */
+  white-space: normal;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  max-width: 100%;
+  line-height: 1.3;
+  box-sizing: border-box;
+  /* 単語や日本語の長文でも任意位置で改行 */
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* マイクロインタラクションの軽減（ユーザー設定尊重） */
+@media (prefers-reduced-motion: reduce) {
+  .app-card {
+    transition: none;
+  }
+  .app-card:hover {
+    transform: none;
+    box-shadow: var(--card-shadow);
+  }
 }
 
 /* タブレット対応 (768px以下) - モバイル向けレイアウト */
@@ -246,6 +306,7 @@ html {
 
   .TitleText {
     margin-top: 40px !important;
+    margin-bottom: 6px !important;
   }
 
   #skil {
@@ -254,12 +315,17 @@ html {
 
   #skil .TitleText {
     margin-top: 30px !important;
+    margin-bottom: 6px !important;
+  }
+  .TitleDetail {
+    margin-top: 8px !important;
+    margin-bottom: 22px !important;
   }
 
   .app-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
-    padding: 15px 0;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+    padding: 18px 0;
   }
 
   /* 学生証カードをモバイル向けに縦並び */
@@ -340,7 +406,7 @@ html {
   }
 
   .app-info h3 {
-    font-size: 1.1em;
+    font-size: 1.15em;
   }
 
   .app-info ul li {
@@ -352,7 +418,7 @@ html {
   }
 
   .app-image-container {
-    height: 180px;
+    min-height: 190px;
   }
 }
 
@@ -370,6 +436,11 @@ html {
 
   .TitleText {
     margin-top: 30px !important;
+    margin-bottom: 4px !important;
+  }
+  .TitleDetail {
+    margin-top: 6px !important;
+    margin-bottom: 18px !important;
   }
 
   #skil {
@@ -382,8 +453,8 @@ html {
 
   .app-grid {
     grid-template-columns: 1fr;
-    gap: 15px;
-    padding: 10px 0;
+    gap: 16px;
+    padding: 12px 0;
   }
 
   .student-card-main {
@@ -430,12 +501,12 @@ html {
   }
 
   .app-info h3 {
-    font-size: 1em;
+    font-size: 1.05em;
     line-height: 1.4;
   }
 
   .app-info {
-    padding: 12px;
+    padding: 14px;
   }
 
   .app-info ul {
@@ -456,13 +527,83 @@ html {
   }
 
   .app-image-container {
-    height: 160px;
+    min-height: 170px;
   }
 
   /* マテリアルアイコンのサイズ調整 */
   .material-symbols-outlined {
     font-size: 16px !important;
   }
+}
+
+/* ==== Portfolio 専用ナビのモダン化（色味は既存に準拠） ==== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--nav-bg);
+  backdrop-filter: saturate(140%) blur(12px);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+  border-bottom: 1px solid var(--nav-border);
+  box-shadow: var(--nav-shadow);
+  z-index: 1000;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6px 20px;
+}
+
+.navbar-logo img {
+  height: 40px;
+  width: auto;
+}
+
+.navbar-menu li a {
+  position: relative;
+  padding: 10px 8px;
+  font-weight: 600;
+}
+.navbar-menu li a::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 6px;
+  height: 2px;
+  background: currentColor;
+  opacity: 0;
+  transform: scaleX(0.6);
+  transform-origin: center;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.navbar-menu li a:hover::after,
+.navbar-menu li a:focus::after {
+  opacity: 0.8;
+  transform: scaleX(1);
+}
+
+.my-apps-button {
+  border: 1px solid var(--nav-border);
+}
+
+/* モバイルのドロップダウン（既存JS連携） */
+@media (max-width: 768px) {
+  .navbar-container { padding: 6px 12px; }
+  .navbar-menu {
+    left: 0;
+    right: 0;
+    margin: 0;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--nav-border);
+  }
+  .navbar-menu li a { padding: 14px 16px; }
+  .hamburger-menu { border-radius: 10px; }
+  .hamburger-menu.is-active { background: rgba(0,0,0,0.04); }
 }
 
 /* 超小画面対応 (360px以下) */
@@ -485,7 +626,7 @@ html {
   }
 
   .app-image-container {
-    height: 140px;
+    min-height: 150px;
   }
 }
 

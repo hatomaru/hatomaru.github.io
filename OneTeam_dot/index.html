@@ -94,7 +94,7 @@
   <!-- About セクション -->
   <section id="about" class="section">
     <h2 class="animate-in animate-fade-up">About</h2>
-    <p class="animate-in animate-fade-up">One Team. は、テクノロジー × デザイン × ストーリーを「かける」ことで、<br>新しい体験を作ることに取り組む個人開発者です。</p>
+    <p class="animate-in animate-fade-up">One Team. (ワンチームドット) は、テクノロジー × デザイン × ストーリーを「かける」ことで、<br>新しい体験を作ることに取り組んでいる個人開発者です。</p>
   </section>
 
   <!-- GAMES セクション -->
@@ -148,6 +148,24 @@
       </div>
       <p class="animate-in animate-fade-up animate-delay-2">作品制作の思考ログや小話を紹介しています</p>
       <div class="grid animate-in animate-fade-up animate-delay-3" id="story-grid"></div>
+    </div>
+  </section>
+
+  <!-- MEDIA セクション -->
+  <section id="media" class="section animate-in animate-fade-right">
+    <div class="carousel">
+      <div class="controls animate-in animate-fade-up animate-delay-1">
+        <div class="carousel-title-group">
+          <h2 class="carousel-title">MEDIA</h2>
+          <p class="carousel-subtitle">各種メディアにて、作品や活動についてご紹介いただいた実績を掲載しています。</p>
+        </div>
+        <div class="carousel-nav-group">
+          <button class="btn-nav" id="media-prev">◀ Prev</button>
+          <span class="page-indicator" id="media-indicator">1 / 1</span>
+          <button class="btn-nav" id="media-next">Next ▶</button>
+        </div>
+      </div>
+      <div class="grid animate-in animate-fade-up animate-delay-2" id="media-grid"></div>
     </div>
   </section>
 
@@ -298,6 +316,17 @@
   if(it.reading){ const rd=document.createElement('div'); rd.className='reading'; rd.textContent=it.reading; body.appendChild(rd); }
   const mt=document.createElement('div'); mt.className='meta'; mt.textContent=it.meta||''; body.appendChild(mt);
         if(it.desc){ const desc=document.createElement('p'); desc.textContent=it.desc; body.appendChild(desc); }
+
+        // 掲載時期（MEDIA向け・任意）
+        if(it.published){
+          const pub=document.createElement('div');
+          pub.className='published';
+          pub.textContent = `掲載時期: ${it.published}`;
+          pub.style.fontSize = '0.85em';
+          pub.style.opacity = '0.75';
+          pub.style.marginTop = '6px';
+          body.appendChild(pub);
+        }
         
         // ボタン生成（複数/単一の両対応）
         {
@@ -323,12 +352,13 @@
         }
         card.appendChild(th); card.appendChild(body);
         
-        // STORYなどカード全体をリンク化（ネスト回避のためボタンがない場合のみ）
+        // STORY/MEDIAなどカード全体をリンク化（ボタンがない場合のみ）
         if (wrapCardLink && !it.buttons && !it.button && (it.href || it.link)) {
           const a = document.createElement('a');
           a.className = 'card-link';
           a.href = it.href || it.link;
-          if (it.newTab) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
+          const shouldNewTab = !!it.newTab || (gridEl && gridEl.id === 'media-grid');
+          if (shouldNewTab) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
           a.appendChild(card);
           gridEl.appendChild(a);
         } else {
@@ -411,7 +441,23 @@
       ]
     }
   ];
-
+  // MEDIAデータはJS（media.js）から読み込み
+  let medias = [];
+  async function loadMedias(){
+    try {
+      await new Promise((resolve) => {
+        if (Array.isArray(window.__MEDIA_DATA)) return resolve();
+        const s = document.createElement('script');
+        s.src = 'src/data/media.js';
+        s.onload = resolve;
+        s.onerror = resolve; // 失敗時もresolveして空配列フォールバック
+        document.head.appendChild(s);
+      });
+      medias = Array.isArray(window.__MEDIA_DATA) ? window.__MEDIA_DATA : [];
+    } finally {
+      setupCarousel({ items: medias, gridEl: document.getElementById('media-grid'), prevEl: document.getElementById('media-prev'), nextEl: document.getElementById('media-next'), indicatorEl: document.getElementById('media-indicator'), pageSize:3, wrapCardLink:true });
+    }
+  }
   const guides=[
       { 
       title:'配信ガイドライン', 
@@ -452,12 +498,12 @@
         {label:'確認だけをインストールする',href:'https://apps.apple.com/jp/app/id6757307010',type:'store2'},]
     },
     {
-      title: 'AfterNSconds',
+      title: 'AfterNSeconds',
       reading: 'N秒後の世界',
       tag: 'コトバを解釈し変化するN秒後の世界',
       tagColor: '#cf2ac0',
       meta: 'LLM × メディアアート',
-      desc: 'UnityとLlama3を使って、コトバを解釈し変化するN秒後の世界を表現した作品',
+      desc: 'Unityとllama.cppを使って、コトバを解釈し変化するN秒後の世界を表現した作品',
       image: '../portfolio/src/app/Lab/AfterNSeconds.jpg',
       objectPosition: 'center',
       objectFit: 'cover',
@@ -477,6 +523,8 @@
   setupCarousel({ items: games, gridEl: document.getElementById('games-grid'), prevEl: document.getElementById('games-prev'), nextEl: document.getElementById('games-next'), indicatorEl: document.getElementById('games-indicator'), pageSize:9 });
   setupCarousel({ items: labs, gridEl: document.getElementById('labs-grid'), prevEl: document.getElementById('labs-prev'), nextEl: document.getElementById('labs-next'), indicatorEl: document.getElementById('labs-indicator'), pageSize:9 });
   setupCarousel({ items: stories, gridEl: document.getElementById('story-grid'), prevEl: document.getElementById('story-prev'), nextEl: document.getElementById('story-next'), indicatorEl: document.getElementById('story-indicator'), pageSize:3, wrapCardLink:true });
+  // MEDIAはJS読み込み後に初期化
+  loadMedias();
   setupCarousel({ items: guides, gridEl: document.getElementById('guide-grid'), prevEl: document.getElementById('guide-prev'), nextEl: document.getElementById('guide-next'), indicatorEl: document.getElementById('guide-indicator'), pageSize:9 });
 
   // ===== フロートインアニメーション（スクロール順に順番表示） =====
