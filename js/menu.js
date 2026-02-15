@@ -87,7 +87,7 @@ function handleOutsideClick(event) {
 
 // リサイズ処理
 function handleResize() {
-  if (window.innerWidth > 768) {
+  if (window.innerWidth > 1240) {
     closeMenu();
   }
 }

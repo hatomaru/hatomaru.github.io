@@ -590,7 +590,7 @@ html {
 }
 
 /* モバイルのドロップダウン（既存JS連携） */
-@media (max-width: 768px) {
+@media (max-width: 1240px) {
   .navbar-container { padding: 6px 12px; }
   .navbar-menu {
     left: 0;

@@ -51,6 +51,10 @@ footer {
   margin-right: 10px;
 }
 
+/* 左側コンテナとメニューを広げて右寄せを可能にする（デスクトップ） */
+.navbar-left { flex: 1; }
+.navbar-left .navbar-menu { flex: 1; }
+
 .navbar-logo img {
   margin-left: 20px;
     width: 200px;
@@ -65,7 +69,7 @@ footer {
 }
 
 /* デスクトップ版でハンバーガーメニューを非表示 */
-@media (min-width: 769px) {
+@media (min-width: 1241px) {
   .hamburger-menu {
     display: none !important;
   }
@@ -117,7 +121,7 @@ footer {
 }
 
 /* レスポンシブデザインでモバイルビュー時のスタイル */
-@media (max-width: 768px) {
+@media (max-width: 1240px) {
   .navbar-container {
     flex-direction: row;
     justify-content: space-between;
@@ -228,6 +232,9 @@ footer {
     background-color: rgba(0,0,0,0.1);
     color: white !important;
   }
+
+  /* モバイルではXリンクを通常の並びに */
+  .navbar-menu .x-link-item { margin-left: 0 !important; }
 
   /* モバイル版でunityroomメニューアイテムを表示 */
   .unityroom-menu-item {
@@ -359,8 +366,8 @@ p {
   opacity: 0;
 }
 
-/* 画面サイズが768px以下の場合のスタイル */
-@media (max-width: 768px) {
+/* 画面サイズが1240px以下の場合のスタイル */
+@media (max-width: 1240px) {
   .hamburger-menu {
     display: flex;
   }
@@ -378,7 +385,7 @@ p {
 }
 
 /* デスクトップ版でハンバーガーメニューを非表示 */
-@media (min-width: 769px) {
+@media (min-width: 1241px) {
   .hamburger-menu {
     display: none !important;
   }
@@ -386,6 +393,8 @@ p {
   .navbar-menu {
     display: flex !important;
   }
+  /* デスクトップでXリンクを右寄せ */
+  .navbar-menu .x-link-item { margin-left: auto; }
   
   .navbar-right {
     display: flex !important;
@@ -406,7 +415,7 @@ p {
 }
 
 /* モバイル版での基本レイアウト調整 */
-@media (max-width: 768px) {
+@media (max-width: 1240px) {
   body {
     padding-top: 70px;
   }
