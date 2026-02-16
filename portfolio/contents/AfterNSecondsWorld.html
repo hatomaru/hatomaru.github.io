@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>One Team. Portfolio | N秒後の世界</title>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+	<link rel="icon" href="/portfolio/favicon_P.ico">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="../../css/defaultstyle.css">
+  <link rel="stylesheet" href="../../css/styles.css">
+	<link rel="stylesheet" href="../../css/portfolio.css">
+  <link rel="stylesheet" href="../works.css">
+  <style>
+    :root{
+      /* 作品ページごとに変更可能なドット色 */
+      --dot-color: #d1d5db;           /* 通常 */
+      --dot-color-active: #1b6769;    /* アクティブ */
+      --dot-color-hover: #1b6769;     /* ホバー */
+    }
+  </style>
+</head>
+
+<body>
+
+    <!-- ナビゲーションバー -->
+     <script>
+      $(function() {
+        $.get('/navbar_O.html', function(data){
+          $('body').append(data);
+        });
+      });
+    </script>
+
+
+  <section id="hero" style="margin-bottom: 10px;">
+    <section class="slideshow-section">
+      <div class="slideshow-container">
+        <!-- 各スライド -->
+        <div class="mySlides fade">
+          <div class="video-wrapper">
+		      <iframe width="1000" height="500" src="https://www.youtube.com/embed/P7nfzGIVu7Q?si=f-ZjRWeKLgy32XlQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="mySlides fade">
+          <img src="../src/app/AM/サムネイル_1.jpg">
+        </div>
+    <div class="mySlides fade">
+          <img src="../src/app/AM/サムネイル_2.jpg">
+        </div>
+		   <div class="mySlides fade">
+          <img src="../src/app/AM/サムネイル_3.jpg">
+        </div>
+		   <div class="mySlides fade">
+          <img src="../src/app/AM/サムネイル_4.jpg">
+        </div>
+        <!-- 前へボタン -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <!-- 次へボタン -->
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
+      <!-- スライド下のドットナビゲーション -->
+      <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+		  <span class="dot" onclick="currentSlide(2)"></span>
+		  <span class="dot" onclick="currentSlide(3)"></span>
+		  <span class="dot" onclick="currentSlide(4)"></span>
+      </div>
+    </section>
+  </section>
+	  <section class="aboutCountnt">
+	<h1>N秒後の世界</h1>
+	<time datetime="2024-02-25" style="margin-top: 0px;margin-bottom: 0px;padding-bottom: 30px">2026年</time>
+	 <li class="Content_Genre">
+          <ul><span class="app-genre" style="background-color: #5b2eff;color: whitesmoke">ローカルLLM</span></ul>
+		<ul><span class="app-genre" style="background-color: #d43464;color: whitesmoke">メディアアート</span></ul>
+			</li>
+		    <h2 style="margin-top: -8px">使用した技術</h2>
+		  		   <li class="Content_Genre" style="margin-top: -10px;">
+          <ul><span class="app-genre" style="background-color: #5635ce;color: whitesmoke;padding-top: 10px;">Llama.cpp</span></ul>
+		   <ul><span class="app-genre" style="background-color: #40537c;color: whitesmoke;padding-top: 10px;">プロセス管理</span></ul>
+            <ul><span class="app-genre" style="background-color: #7e3c5b;color: whitesmoke;padding-top: 10px;">ピクセルアート描画</span></ul>
+			</li>
+		<section class="ContentAbout">
+  <section class="news-section" style="margin-bottom: 10px;">
+    <h2>概要</h2>
+   	 <article class="news-item" style="border-left: 0px solid #1C9418;">
+      <p>N秒後の世界は、時間経過によって変化する世界をローカルLLMを用いて表現する作品です。<br>
+言葉を与えるとLLMが解釈し、ピクセルアートの配色を生成します。
+
+      </p>
+      <div class="news-footer">
+
+      </div>
+    </article>
+  </section>
+  <!-- 配信中のアプリセクション -->
+    <section class="news-section" style="margin-top: 0px;">
+    <h2>こだわったポイント</h2>
+   	 <article class="news-item" style="border-left: 20px solid #1b6769;"><span class="material-symbols-outlined" style="margin-left: 0px;margin-top: 9px;font-size: 60px; color: #1b6769;">
+Genetics
+</span>
+	  <li>
+		  <ul><p2>言葉を解釈する装置としてのLLM</p2></ul> 
+		 </li>
+      <p>ローカルLLMが入力された言葉をそのまま解釈するのではなく
+<br>連想言葉、配色、イメージなどに分解することで、言葉を解釈する様子を表現しました。</p>
+      <div class="news-footer">
+        <time datetime="2024-02-25 " style="color: hsla(0,0%,100%,1.00)">2024年4月6日</time>
+      </div>
+    </article>
+		 	 <article class="news-item" style="border-left: 20px solid #1E7689;"><span class="material-symbols-outlined" style="margin-left: 0px;margin-top: 9px;font-size: 60px; color: #1E7689;">
+Egg
+</span>
+	  <li>
+		  <ul><p2>言葉から世界が生まれるような世界観の表現</p2>
+		  </ul> 
+		 </li>
+      <p>生成中は言葉が分解される様子を画面の右上に表示したり、黒く静かな画面の雰囲気にしたりして
+落ち着いた世界になるように工夫しました。</p>
+<div class="news-footer">
+  <time datetime="2024-02-25 " style="color: hsla(0,0%,100%,1.00)">2024年4月6日</time>
+</div>
+    </article>
+  </section>
+	</section>
+		  	</section>
+     <script>
+      $(function() {
+        $.get('/footer_O.html', function(data){
+          $('body').append(data);
+        });
+      });
+    </script>
+  <script src="../../js/scripts.js"></script>
+  <script src="../../js/menu.js"></script>
+</body>
+
+</html>
