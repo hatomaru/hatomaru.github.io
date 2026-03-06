@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>One Team. | 知的財産・著作物ポリシー</title>
+  <link rel="icon" href="../favicon_P.ico">
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="../style.css" />
+  <script>
+  // グローバルに呼べる初期化関数を用意する
+  function initHamburgerMenu(){
+    const hamb = document.getElementById('hamb');
+    const drawer = document.getElementById('drawer');
+    const backdrop = document.getElementById('backdrop');
+
+    if (!hamb || !drawer || !backdrop) return;
+
+    function setDrawer(open){
+      drawer.classList.toggle('open', open);
+      backdrop.classList.toggle('open', open);
+      hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.body.classList.toggle('drawer-open', open);
+    }
+
+    hamb.addEventListener('click', () => setDrawer(!drawer.classList.contains('open')));
+    backdrop.addEventListener('click', () => setDrawer(false));
+    // 画面外をタップ/クリックしたときにドロワーを閉じる（スマホ向け）
+    document.addEventListener('pointerdown', (e) => {
+      try {
+        if (!drawer.classList.contains('open')) return;
+        const path = (e.composedPath && e.composedPath()) || (function fallback(el){
+          const arr = [];
+          let node = el;
+          while(node){ arr.push(node); node = node.parentNode; }
+          return arr;
+        })(e.target);
+        if (!path.includes(drawer) && !path.includes(hamb)) {
+          setDrawer(false);
+        }
+      } catch (err) {}
+    }, { passive: true });
+    drawer.addEventListener('click', (e) => { if (e.target.tagName === 'A') setDrawer(false); });
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && drawer.classList.contains('open')) setDrawer(false); });
+  }
+  </script>
+  <style>
+    /* ページ固有の微調整のみ残す */
+
+    .section { 
+      padding: 4vh 6vw; 
+      scroll-margin-top: 72px; 
+      max-width:1200px; 
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* ヒーローセクション */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      height: 70vh;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-bottom: 4rem;
+    }
+
+    .hero-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2));
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      color: white;
+      max-width: 800px;
+      padding: 2rem;
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 700;
+      margin: 0 0 1rem;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(16px, 2.2vw, 22px);
+      margin: 0;
+      opacity: 0.9;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+
+
+    /* ガイドラインカード */
+    .guideline-grid {
+      display: grid;
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .guideline-card {
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      transition: all 0.3s ease;
+      transform: translateY(0);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .guideline-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+      border-color: rgba(91, 166, 255, 0.3);
+    }
+
+    .guideline-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--card-accent, var(--accent));
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.3s ease;
+    }
+
+    .guideline-card:hover::before {
+      transform: scaleY(1);
+    }
+
+    .guideline-icon {
+      flex-shrink: 0;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .guideline-card:hover .guideline-icon {
+      transform: scale(1.1);
+    }
+
+    .guideline-content {
+      flex: 1;
+    }
+
+    .guideline-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+      color: var(--fg);
+    }
+
+    .guideline-text {
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .guideline-text a {
+      color: var(--accent, #5ba6ff);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: opacity 0.2s ease;
+    }
+
+    .guideline-text a:hover {
+      opacity: 0.8;
+    }
+
+    /* 個別のアクセントカラー */
+    .card-shield { --card-accent: #8b5cf6; }
+    .card-shield .guideline-icon { background: #8b5cf6; }
+
+    .card-copyright { --card-accent: #3b82f6; }
+    .card-copyright .guideline-icon { background: #3b82f6; }
+
+    .card-brush { --card-accent: #10b981; }
+    .card-brush .guideline-icon { background: #10b981; }
+
+    .card-block { --card-accent: #D9576E; }
+    .card-block .guideline-icon { background: #D9576E; }
+
+    .card-stream { --card-accent: #D19830; }
+    .card-stream .guideline-icon { background: #D19830; }
+
+    .card-contact { --card-accent: #5394DA; }
+    .card-contact .guideline-icon { background: #5394DA; }
+
+    .card-chat { --card-accent: #6b7280; }
+    .card-chat .guideline-icon { background: #6b7280; }
+
+  /* 必要ならこのページ専用の追加CSSをここに書く */
+  </style>
+</head>
+
+<body>
+  <canvas id="scene" aria-hidden="true"></canvas>
+
+        <!-- ナビゲーションバー -->
+     <script>
+      $(function() {
+        $.get('/navbar_OC.html', function(data){
+          $('body').prepend(data);
+          // ナビゲーションが読み込まれた後にハンバーガーメニューを初期化
+          if (typeof initHamburgerMenu === 'function') {
+            initHamburgerMenu();
+          }
+        });
+      });
+    </script>
+
+  <section class="hero-section animate-in animate-fade-up">
+    <!-- <img src="../src/guideline/IP_Policy_Banner.png" alt="知的財産・著作物ポリシー" class="hero-image"> -->
+    <div class="hero-overlay"></div>
+    <div class="hero-content animate-in animate-fade-up animate-delay-1">
+      <h1 class="hero-title">Intellectual Property Policy</h1>
+      <p class="hero-subtitle">知的財産・著作物ポリシー</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="carousel-title-group is-center animate-in animate-fade-up" style="margin-bottom: 3rem;">
+      <h2 class="carousel-title" style="font-size: clamp(32px, 4.5vw, 48px); letter-spacing: 0.02em;">IP Policy</h2>
+      <p class="carousel-subtitle" style="font-size: clamp(14px, 1.8vw, 18px);">知的財産・著作物の利用に関するポリシー</p>
+    </div>
+
+    <div class="guideline-grid">
+      <article class="guideline-card card-shield animate-in animate-fade-left animate-delay-1">
+        <div class="guideline-icon">
+          <span class="material-symbols-outlined">shield</span>
+        </div>
+        <div class="guideline-content">
+          <h3 class="guideline-title">著作物の帰属について</h3>
+          <p class="guideline-text">
+            One Team.が制作・公開しているゲーム・アプリ・告知素材などの著作物は、すべてOne Team.に帰属します。
+          </p>
+        </div>
+      </article>
+
+      <article class="guideline-card card-brush animate-in animate-fade-right animate-delay-2">
+        <div class="guideline-icon">
+          <span class="material-symbols-outlined">brush</span>
+        </div>
+        <div class="guideline-content">
+          <h3 class="guideline-title">二次創作について</h3>
+          <p class="guideline-text">
+            ファンアートやファンフィクションなどの二次創作は、<strong>個人での非営利利用</strong>に限り歓迎しています。<br>
+            ただし、公序良俗に反する内容や、他者を誹謗中傷するような作品はご遠慮ください。
+          </p>
+        </div>
+      </article>
+
+      <article class="guideline-card card-block animate-in animate-fade-left animate-delay-3">
+        <div class="guideline-icon">
+          <span class="material-symbols-outlined">block</span>
+        </div>
+        <div class="guideline-content">
+          <h3 class="guideline-title">禁止事項</h3>
+          <p class="guideline-text">
+            One Team.の著作物（ゲーム・アプリ・告知素材等）の<strong>無断転載・再配布・商用利用</strong>は固くお断りしています。<br>
+            素材の利用を希望される場合は、事前にお問い合わせください。
+          </p>
+        </div>
+      </article>
+
+      <article class="guideline-card card-stream animate-in animate-fade-right animate-delay-4">
+        <div class="guideline-icon">
+          <span class="material-symbols-outlined">videocam</span>
+        </div>
+        <div class="guideline-content">
+          <h3 class="guideline-title">動画配信・実況について</h3>
+          <p class="guideline-text">
+            One Team.のゲームのプレイ動画・配信は大歓迎です！<br>
+            配信に関する詳しいルールは<a href="StreamingGuideline.html">配信ガイドライン</a>をご確認ください。
+          </p>
+        </div>
+      </article>
+
+      <article class="guideline-card card-contact animate-in animate-fade-left animate-delay-5">
+        <div class="guideline-icon">
+          <span class="material-symbols-outlined">mail</span>
+        </div>
+        <div class="guideline-content">
+          <h3 class="guideline-title">お問い合わせ</h3>
+          <p class="guideline-text">
+            著作物の利用に関するご質問やご相談は、下記のお問い合わせよりご連絡ください。
+          </p>
+        </div>
+      </article>
+
+      <article class="guideline-card card-chat animate-in animate-fade-right animate-delay-6">
+        <div class="guideline-icon">
+          <span class="material-symbols-outlined">chat</span>
+        </div>
+        <div class="guideline-content">
+          <h3 class="guideline-title">ポリシーの改定について</h3>
+          <p class="guideline-text">
+            今後何らかの事情でポリシーを変更する場合は、One Team.のXで告知します。<br>
+            <small>2025年3月6日発行 (第一版)</small>
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <script>
+  // ===== 背景アニメーション（残光 × 鮮やかブレンド × 省負荷） =====
+  (() => {
+    const view = document.getElementById('scene');
+    const ctx = view.getContext('2d');
+    const acc = document.createElement('canvas'); // オフスクリーンで蓄積
+    const accCtx = acc.getContext('2d');
+    const DPR = Math.max(1, Math.min(2.5, window.devicePixelRatio || 1));
+    let W = 0, H = 0;
+
+    function resize(){
+      W = innerWidth; H = innerHeight;
+      for(const c of [view, acc]){ c.width = Math.floor(W*DPR); c.height = Math.floor(H*DPR); c.style.width=W+'px'; c.style.height=H+'px'; }
+      for(const c of [ctx, accCtx]){ c.setTransform(DPR,0,0,DPR,0,0); }
+      accCtx.clearRect(0,0,W,H); // 初期は透明（白で塗らない）
+    }
+    addEventListener('resize', resize, { passive:true });
+    resize();
+
+    const TAU = Math.PI*2;
+    const rand = (a,b)=> a + Math.random()*(b-a);
+
+    function makeBlob(){
+      const a = rand(0, TAU);
+      const h = rand(0,360), s = Math.round(rand(78,96)), l = Math.round(rand(55,65));
+      return {
+        x: rand(0,W), y: rand(0,H), r: rand(55,95),
+        color: `hsl(${h.toFixed(1)} ${s}% ${l}%)`, // 固定色（ちらつき防止）
+        vx: Math.cos(a) * rand(0.03, 0.08),
+        vy: Math.sin(a) * rand(0.03, 0.08),
+        t: rand(0,1000), jitter: rand(0.0004, 0.0010)
+      };
+    }
+
+    const blobs = Array.from({length:9}, makeBlob);
+
+    const DECAY = 0.015; // 小さいほど長く残る（0.01〜0.02 目安）
+    function radial(x,y,r,c){
+      const g = accCtx.createRadialGradient(x,y,0,x,y,r);
+      g.addColorStop(0, c.replace(')', ' / 0.95)'));
+      g.addColorStop(0.6, c.replace(')', ' / 0.50)'));
+      g.addColorStop(1, c.replace(')', ' / 0)'));
+      return g;
+    }
+
+    (function draw(){
+      // 1) 残光フェード（薄い白を重ねて徐々に消す）
+      // 既存の描画を少しだけ"消す"→ 透明方向にフェード
+      accCtx.globalCompositeOperation = 'destination-out';
+      accCtx.fillStyle = `rgba(0,0,0,${DECAY})`;
+      accCtx.fillRect(0,0,W,H);
+
+      // 2) 鮮やかに重ねる
+      accCtx.globalCompositeOperation = 'screen';
+      for(const b of blobs){
+        b.t += b.jitter;
+        b.x += b.vx + Math.cos(b.t) * 0.22;
+        b.y += b.vy + Math.sin(b.t*0.26) * 0.22;
+        if(b.x < -220) b.x = W + 220; if(b.x > W + 220) b.x = -220;
+        if(b.y < -220) b.y = H + 220; if(b.y > H + 220) b.y = -220;
+        accCtx.fillStyle = radial(b.x,b.y,b.r,b.color);
+        accCtx.beginPath(); accCtx.arc(b.x,b.y,b.r,0,TAU); accCtx.fill();
+      }
+
+      // 3) 画面へ描画
+      ctx.clearRect(0,0,W,H);
+      ctx.drawImage(acc, 0, 0, W, H);
+      requestAnimationFrame(draw);
+    })();
+  })();
+
+  // ===== ハンバーガー（右スライド + バックドロップ + ESCで閉じる） =====
+  // ハンバーガーメニューの初期化は head 内の initHamburgerMenu() を使用します。
+  // navbar を読み込んだ後に次の呼び出しで初期化されます:
+  // if (typeof initHamburgerMenu === 'function') initHamburgerMenu();
+
+  // ===== フロートインアニメーション =====
+  const animateElements = document.querySelectorAll('.animate-in');
+  
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const element = entry.target;
+        
+        // 適切なアニメーションクラスを追加
+        if (element.classList.contains('animate-fade-up')) {
+          element.style.animationName = 'fadeInUp';
+        } else if (element.classList.contains('animate-fade-left')) {
+          element.style.animationName = 'fadeInLeft';
+        } else if (element.classList.contains('animate-fade-right')) {
+          element.style.animationName = 'fadeInRight';
+        } else {
+          element.style.animationName = 'fadeInUp'; // デフォルト
+        }
+        
+        element.style.animationDuration = '0.8s';
+        element.style.animationFillMode = 'forwards';
+        element.style.animationTimingFunction = 'ease-out';
+        
+        // 一度アニメーションしたら監視を停止
+        observer.unobserve(element);
+      }
+    });
+  }, observerOptions);
+
+  // 全てのアニメーション要素を監視開始
+  animateElements.forEach(element => {
+    observer.observe(element);
+  });
+  </script>
+      <script>
+      $(function() {
+        $.get('/contact.html', function(contactData){
+          $('body').append(contactData);
+          $.get('/footer_O.html', function(footerData){
+            $('body').append(footerData);
+          });
+        });
+      });
+    </script>
+    
+</body>
+
+</html>
