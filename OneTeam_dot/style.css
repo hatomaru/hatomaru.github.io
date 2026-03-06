@@ -312,3 +312,110 @@ h1{ font-size: clamp(36px, 6vw, 68px); letter-spacing:.02em; margin:.1rem 0 1.2r
 @media (max-width:480px){ :root{ --topbar-h:52px; } .topbar-inner{ padding:.3rem .4rem; gap:4px; } .navbar-logo img{ height:30px; } .social-link img{ width:22px; } .my-apps-button{ display:none; } .hamb{ padding:.3rem .4rem; min-width:40px; min-height:40px; } .hamb svg{ width:20px; height:20px; } .section{ padding:4vh 3vw; } header{ padding:6vh 3vw 4vh; } }
 @media (max-width:360px){ :root{ --topbar-h:48px; } .topbar-inner{ padding:.25rem .3rem; gap:3px; } .navbar-logo img{ height:26px; } .social-link img{ width:18px; } .hamb{ padding:.25rem .3rem; min-width:36px; min-height:36px; } .hamb svg{ width:18px; height:18px; } }
 @media (max-width:320px){ :root{ --topbar-h:44px; } .topbar-inner{ padding:.2rem .25rem; gap:2px; } .navbar-logo img{ height:22px; } .social-link img{ width:16px; } .hamb{ padding:.2rem .25rem; min-width:32px; min-height:32px; } .hamb svg{ width:16px; height:16px; } }
+
+/* === Buy Me a Coffee 特別アニメーション === */
+.btn-coffee {
+  background: #FFDD00 !important;
+  color: #000000 !important;
+  font-weight: 800;
+  border-radius: 30px;
+  padding: 12px 32px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 4px 12px rgba(255, 221, 0, 0.4);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-coffee::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+  transition: all 0.6s ease;
+  z-index: -1;
+}
+
+.btn-coffee:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 10px 24px rgba(255, 221, 0, 0.6);
+  border-color: transparent;
+}
+.btn-coffee:hover::before {
+  left: 100%;
+}
+
+.coffee-svg {
+  overflow: visible;
+  transition: transform 0.3s ease;
+}
+
+/* 通常時の湯気ゆらゆら */
+.coffee-steam path {
+  animation: steam-float 2.5s infinite ease-in-out;
+  opacity: 0;
+  transform-origin: bottom;
+}
+.coffee-steam .steam-1 { animation-delay: 0s; }
+.coffee-steam .steam-2 { animation-delay: 0.8s; }
+.coffee-steam .steam-3 { animation-delay: 1.6s; }
+
+@keyframes steam-float {
+  0% { transform: translateY(2px) scaleY(0.8); opacity: 0; }
+  30% { opacity: 0.8; }
+  70% { opacity: 0.6; }
+  100% { transform: translateY(-6px) scaleY(1.2); opacity: 0; }
+}
+
+/* ホバー時のコーヒー淹れるドロップ */
+.coffee-drop {
+  opacity: 0;
+  transform: translateY(-5px);
+  transform-origin: center bottom;
+}
+.btn-coffee:hover .coffee-drop {
+  animation: drop-pour 0.6s ease-in forwards;
+}
+
+@keyframes drop-pour {
+  0% { transform: translateY(-8px) scaleY(0.5); opacity: 0; }
+  20% { opacity: 1; transform: translateY(-2px) scaleY(1); }
+  60% { transform: translateY(8px) scaleY(1.5); opacity: 1; }
+  100% { transform: translateY(14px) scaleY(0.5); opacity: 0; }
+}
+
+/* ホバー時のカップのハッピーバウンス */
+.coffee-cup {
+  transform-origin: center bottom;
+}
+.btn-coffee:hover .coffee-cup {
+  animation: cup-happy 0.8s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes cup-happy {
+  0% { transform: scale(1) translateY(0); }
+  30% { transform: scale(1.1, 0.9) translateY(2px); }
+  50% { transform: scale(0.95, 1.05) translateY(-4px); }
+  70% { transform: scale(1.02, 0.98) translateY(1px); }
+  100% { transform: scale(1) translateY(0); }
+}
+
+/* ホバーで顔も嬉しそうに */
+.cup-face {
+  transition: transform 0.3s ease;
+  transform-origin: center;
+}
+.btn-coffee:hover .cup-face {
+  transform: translateY(-1.5px) scale(1.05);
+}
+
+/* ホバーで湯気も元気に */
+.btn-coffee:hover .coffee-steam path {
+  animation-duration: 1.2s;
+}
