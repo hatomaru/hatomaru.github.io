@@ -91,25 +91,175 @@ h1{ font-size: clamp(36px, 6vw, 68px); letter-spacing:.02em; margin:.1rem 0 1.2r
 @media (max-width:640px){ .grid{ grid-template-columns:1fr; gap:14px; } }
 @media (max-width:480px){ .grid{ gap:12px; } }
 @media (max-width:360px){ .grid{ gap:10px; } }
-.card{ background: var(--card); border:1px solid var(--stroke); border-radius: var(--radius); box-shadow: var(--shadow); display:flex; flex-direction:column; overflow:hidden; transition: all .3s ease; transform: translateY(0); }
-.card:hover{ transform: translateY(-8px); box-shadow: 0 12px 28px rgba(0,0,0,0.15); border-color: rgba(91,166,255,0.3); }
-.thumb{ height:180px; background-size:cover; background-position:center; background-repeat:no-repeat; transition: transform .3s ease; overflow:hidden; position:relative; background-color:#f3f4f6; }
-.thumb img{ width:100%; height:100%; object-fit:cover; object-position:center; display:block; transition: transform .3s ease; }
-.card:hover .thumb{ transform: scale(1.05); }
-.card:hover .thumb img{ transform: scale(1.05); }
-.card-body{ padding:16px; display:flex; flex-direction:column; gap:10px; flex:1; }
-.title{ font-weight:700; font-size:1.1rem; line-height:1.4; transition: color .3s ease; }
-.reading{ font-size:.95rem; color: var(--muted); line-height:1.3; }
-.card:hover .title{ color: var(--accent); }
-.meta{ font-size:14px; color: var(--muted); line-height:1.3; }
-.tag{ display:inline-block; font-size:15px; padding:2px 8px; border-radius:999px; color:#fff; transition: transform .2s ease, box-shadow .2s ease; align-self:flex-start; }
-.card:hover .tag{ transform: scale(1.05); }
+/* === モダンなカードデザイン === */
+.card {
+  background: var(--card);
+  border: 1px solid rgba(229, 231, 235, 0.6);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transform: translateY(0);
+  position: relative;
+  z-index: 1;
+}
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.6);
+  z-index: 2;
+}
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 0 0 2px rgba(91, 166, 255, 0.2);
+  border-color: transparent;
+  z-index: 10;
+}
+
+.thumb {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.5s ease;
+  overflow: hidden;
+  position: relative;
+  background-color: #f3f4f6;
+  border-bottom: 1px solid rgba(0,0,0,0.03);
+}
+.thumb::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 40%;
+  background: linear-gradient(to top, rgba(0,0,0,0.06), transparent);
+  pointer-events: none;
+}
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.card:hover .thumb img {
+  transform: scale(1.08); /* プレミアム感のある少し強めのスケール */
+}
+
+.card-body {
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  background: linear-gradient(to bottom, #ffffff, #fcfdfd);
+}
+
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: 8px;
+  color: #fff;
+  transition: all 0.3s ease;
+  align-self: flex-start;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.card:hover .tag {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.title {
+  font-weight: 800;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  color: var(--fg);
+  transition: color 0.3s ease;
+  margin-bottom: -4px;
+}
+.card:hover .title {
+  color: var(--accent);
+}
+
+.reading {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* descテキストのスタイル */
+.card-body p {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.meta {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+.meta::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #d1d5db;
+}
+
 /* カード全体リンク（STORY用）: 下線を消し、色は継承 */
 .card-link{ display:block; text-decoration:none; color:inherit; }
 .card-link:hover, .card-link:focus, .card-link:focus-visible{ text-decoration:none; }
-.btns{ margin-top:auto; display:flex; gap:8px; flex-wrap:wrap; }
-.btn{ flex:1; text-align:center; text-decoration:none; font-size:14px; padding:.5rem; border-radius: var(--radius); font-weight:600; transition: all .3s ease; transform: translateY(0); min-height:44px; display:flex; align-items:center; justify-content:center; line-height:1.2; }
-.btn:hover{ transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+
+.btns {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.btn {
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transform: translateY(0);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
 
 .btn.primary{ background:#2563eb; color:#fff; }
 .btn.primary:hover{ background:#1d4ed8; box-shadow: 0 4px 12px rgba(37,99,235,0.4); }

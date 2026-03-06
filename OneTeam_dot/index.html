@@ -94,7 +94,11 @@
   <!-- About セクション -->
   <section id="about" class="section">
     <h2 class="animate-in animate-fade-up">About</h2>
-    <p class="animate-in animate-fade-up">One Team. (ワンチームドット) は、テクノロジー × デザイン × ストーリーを「かける」ことで、<br>新しい体験を作ることに取り組んでいる個人開発者です。</p>
+    <p class="animate-in animate-fade-up">One Team. (ワンチームドット) は、<br>
+    テクノロジー × デザイン × ストーリーを掛け合わせて<br>
+    新しい体験を作る個人開発者です。<br>
+    AI やローカルLLMなどの技術を用いた実験やプロトタイプ制作を行い、<br>
+    作品や制作過程で得た気づきを Protopedia や Note などで発信しています。</p>
   </section>
 
   <!-- GAMES セクション -->
@@ -121,7 +125,7 @@
       <div class="controls animate-in animate-fade-up animate-delay-1">
         <div class="carousel-title-group">
           <h2 class="carousel-title">LABS</h2>
-          <p class="carousel-subtitle">体験づくりの過程で試した実験や、ゲーム以外の作品を紹介しています</p>
+          <p class="carousel-subtitle">体体験づくりの過程で生まれた実験や、<br>技術検証・ゲーム以外の作品を紹介しています</p>
         </div>
         <div class="carousel-nav-group">
           <button class="btn-nav" id="labs-prev">◀ Prev</button>
@@ -314,20 +318,8 @@
   if(it.tag){ const tag=document.createElement('span'); tag.className='tag'; tag.style.background=it.tagColor||'#6b7280'; tag.textContent=it.tag; body.appendChild(tag); }
   const tt=document.createElement('div'); tt.className='title'; tt.textContent=it.title; body.appendChild(tt);
   if(it.reading){ const rd=document.createElement('div'); rd.className='reading'; rd.textContent=it.reading; body.appendChild(rd); }
-  const mt=document.createElement('div'); mt.className='meta'; mt.textContent=it.meta||''; body.appendChild(mt);
         if(it.desc){ const desc=document.createElement('p'); desc.textContent=it.desc; body.appendChild(desc); }
 
-        // 掲載時期（MEDIA向け・任意）
-        if(it.published){
-          const pub=document.createElement('div');
-          pub.className='published';
-          pub.textContent = `掲載時期: ${it.published}`;
-          pub.style.fontSize = '0.85em';
-          pub.style.opacity = '0.75';
-          pub.style.marginTop = '6px';
-          body.appendChild(pub);
-        }
-        
         // ボタン生成（複数/単一の両対応）
         {
           const btnDataRaw = (it.buttons ?? it.button ?? null);
@@ -349,6 +341,19 @@
             }
             body.appendChild(btns);
           }
+        }
+
+  const mt=document.createElement('div'); mt.className='meta'; mt.textContent=it.meta||''; body.appendChild(mt);
+
+        // 掲載時期（MEDIA向け・任意）
+        if(it.published){
+          const pub=document.createElement('div');
+          pub.className='published';
+          pub.textContent = `掲載時期: ${it.published}`;
+          pub.style.fontSize = '0.85em';
+          pub.style.opacity = '0.75';
+          pub.style.marginTop = '6px';
+          body.appendChild(pub);
         }
         card.appendChild(th); card.appendChild(body);
         
@@ -384,7 +389,7 @@
       image:'../portfolio/src/app/AM/サムネイル_2.jpg',
       objectPosition: 'center 30%',
       objectFit: 'cover',
-      buttons:[{label:'配信ページ',href:'https://oneteam-dot.itch.io/amevar-demo',type:'store4'}]
+      buttons:[{label:'itch.io',href:'https://oneteam-dot.itch.io/amevar-demo',type:'primary'}]
     },
     { 
       title:'BlockWorld Ai', 
@@ -396,7 +401,7 @@
       image:'../portfolio/src/app/BlockWorld_Ai/サムネイル_3.jpg',
       objectPosition: 'center 30%',
       objectFit: 'cover',
-      buttons:[{label:'ストアページ',href:'https://store.steampowered.com/app/3010030/BlockWorld_Ai',type:'store3'}]
+      buttons:[{label:'Steam',href:'https://store.steampowered.com/app/3010030/BlockWorld_Ai',type:'primary'}]
     },
         { 
       title:'ナンバークラッシュゲーム CyberCrush', 
@@ -408,7 +413,7 @@
       image:'../portfolio/src/app/CC/CC_1.jpg',
       objectPosition: '30% 20%',
       objectFit: 'cover',
-      buttons:[{label:'unityroomで遊ぶ',href:'https://unityroom.com/games/cybercrash',type:'primary'}]
+      buttons:[{label:'PLAY',href:'https://unityroom.com/games/cybercrash',type:'primary'}]
     },
     { 
       title:'BlockWorld', 
@@ -421,8 +426,8 @@
       objectPosition: 'center 20%',
       objectFit: 'cover',
        buttons:[
-        {label:'BlockWorldをインストールする',href:'https://play.google.com/store/apps/details?id=com.ColorfulDeveloper.BlockWorld',type:'store1'},
-        {label:'BlockWorldをインストールする',href:'https://apps.apple.com/jp/app/id6463722805',type:'store2'},
+        {label:'Android',href:'https://play.google.com/store/apps/details?id=com.ColorfulDeveloper.BlockWorld',type:'store1'},
+        {label:'iOS',href:'https://apps.apple.com/jp/app/id6463722805',type:'store2'},
       ]
     },
     { 
@@ -436,8 +441,8 @@
       objectPosition: 'center 40%',
       objectFit: 'cover',
       buttons:[
-        {label:'SimpleMathをインストールする',href:'https://play.google.com/store/apps/details?id=com.ColorfulDeveloper.SimpleMath',type:'store1'},
-        {label:'SimpleMathをインストールする',href:'https://apps.apple.com/jp/app/id6469422268',type:'store2'},
+        {label:'Android',href:'https://play.google.com/store/apps/details?id=com.ColorfulDeveloper.SimpleMath',type:'store1'},
+        {label:'iOS',href:'https://apps.apple.com/jp/app/id6469422268',type:'store2'},
       ]
     }
   ];
@@ -484,6 +489,18 @@
   ];
 
   const labs = [
+         {
+      title: 'AIDrivenFramework',
+      reading: '',
+      tag: 'AI駆動型ゲーム開発フレームワーク',
+      tagColor: '#1c65ad',
+      meta: 'Unity × ローカルLLM x 安全な組み込み',
+      desc: 'ローカル LLM を Unity に安全に統合するためのセットアップ＆実行フレームワークOSS Ollama は不要 - GUI による簡単なインストール',
+      image: 'src/app/gif/AISetupWalkthrough.gif',
+      objectPosition: 'center 10%',
+      objectFit: 'cover',
+      buttons: {label:'Github',href:'https://github.com/hatomaru/AIDrivenFramework',type:'primary'}
+    },
         {
       title: '確認だけ',
       reading: '',
@@ -494,8 +511,8 @@
       image: '../portfolio/src/app/Lab/NowCheck.png',
       objectPosition: 'center 10%',
       objectFit: 'cover',
-      buttons: [{label:'確認だけをインストールする',href:'https://play.google.com/store/apps/details?id=com.OneTeamdot.NowCheck',type:'store1'},
-        {label:'確認だけをインストールする',href:'https://apps.apple.com/jp/app/id6757307010',type:'store2'},]
+      buttons: [{label:'Android',href:'https://play.google.com/store/apps/details?id=com.OneTeamdot.NowCheck',type:'store1'},
+        {label:'iOS',href:'https://apps.apple.com/jp/app/id6757307010',type:'store2'},]
     },
     {
       title: 'AfterNSeconds',
