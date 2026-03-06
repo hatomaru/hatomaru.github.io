@@ -91,6 +91,18 @@
     <h1 class="animate-in animate-fade-up animate-delay-2">One Team.</h1>
   </header>
 
+  <!-- FEATURED PROJECT セクション -->
+  <section id="featured" class="section animate-in animate-fade-up">
+    <div class="carousel-title-group is-center" style="margin-bottom: 2rem;">
+      <h2 class="carousel-title featured-title">
+        <span class="dot"></span>
+        <span class="txt">FEATURED PROJECT</span>
+      </h2>
+      <p class="carousel-subtitle" style="font-size:1.1rem; letter-spacing:0.05em;">注目作品</p>
+    </div>
+    <div id="featured-container" class="animate-in animate-fade-up animate-delay-1"></div>
+  </section>
+
   <!-- About セクション -->
   <section id="about" class="section">
     <h2 class="animate-in animate-fade-up">About</h2>
@@ -585,6 +597,49 @@
   // MEDIAはJS読み込み後に初期化
   loadMedias();
   setupCarousel({ items: guides, gridEl: document.getElementById('guide-grid'), prevEl: document.getElementById('guide-prev'), nextEl: document.getElementById('guide-next'), indicatorEl: document.getElementById('guide-indicator'), pageSize:9 });
+
+  // ===== FEATURED PROJECT レンダリング =====
+  function renderFeatured() {
+    // games配列やlabs配列から注目作品として候補をいくつかピックアップし、ランダムまたは特定の一つを表示する
+    const candidates = [games[1], labs[0], games[0]];
+    const featuredItem = candidates[Math.floor(Math.random() * candidates.length)];
+    
+    if (!featuredItem) return;
+
+    const container = document.getElementById('featured-container');
+    if (!container) return;
+
+    let buttonsHtml = '';
+    const btnDataRaw = (featuredItem.buttons ?? featuredItem.button ?? null);
+    if (btnDataRaw) {
+      const btnList = Array.isArray(btnDataRaw) ? btnDataRaw : [btnDataRaw];
+      btnList.forEach(b => {
+        if (!b) return;
+        const targetAttr = b.newTab ? 'target="_blank" rel="noopener noreferrer"' : '';
+        const disabledClass = b.disabled ? 'disabled' : '';
+        const href = b.disabled ? 'javascript:void(0)' : (b.href || '#');
+        buttonsHtml += `<a href="${href}" class="btn ${b.type || ''} ${disabledClass}" ${targetAttr}>${b.label ?? 'リンク'}</a>`;
+      });
+    }
+
+    container.innerHTML = `
+      <div class="featured-card">
+        <div class="featured-thumb">
+          <img src="${featuredItem.image}" alt="${featuredItem.title}" style="object-position: ${featuredItem.objectPosition || 'center'}; object-fit: ${featuredItem.objectFit || 'cover'};" loading="lazy">
+        </div>
+        <div class="featured-body">
+          ${featuredItem.tag ? `<span class="tag" style="background:${featuredItem.tagColor || '#6b7280'}">${featuredItem.tag}</span>` : ''}
+          <div class="title">${featuredItem.title}</div>
+          ${featuredItem.reading ? `<div class="reading">${featuredItem.reading}</div>` : ''}
+          ${featuredItem.desc ? `<p class="desc">${featuredItem.desc}</p>` : ''}
+          <div class="btns">
+            ${buttonsHtml}
+          </div>
+        </div>
+      </div>
+    `;
+  }
+  renderFeatured();
 
   // ===== フロートインアニメーション（スクロール順に順番表示） =====
   const STAGGER_MS = 180; // 要素ごとに少しずつ時間差で表示
