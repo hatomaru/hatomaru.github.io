@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,81 +31,74 @@
     </script>
 
 
-  <section id="hero" style="margin-bottom: 10px;">
+  <section id="hero" style="margin-bottom: 0px;">
     <section class="slideshow-section">
       <div class="slideshow-container">
-        <!-- 各スライド -->
         <div class="mySlides fade">
           <img src="../src/app/AIDrivenFramework/Banner.png">
         </div>
-        <!-- 前へボタン -->
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <!-- 次へボタン -->
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
       </div>
-      <!-- スライド下のドットナビゲーション -->
       <div style="text-align:center">
         <span class="dot" onclick="currentSlide(1)"></span>
       </div>
     </section>
   </section>
-	  <section class="aboutCountnt">
-	<h1>AIDrivenFramework</h1>
-    <span style="font-size: 20px; color: grey">AIドリブンフレームワーク<br></span>
-	<time datetime="2024-02-25" style="margin-top: 0px;margin-bottom: 0px;padding-bottom: 30px">2026年</time>
-	 <li class="Content_Genre">
-          <ul><span class="app-genre" style="background-color: #5b2eff;color: whitesmoke">ローカルLLM</span></ul>
-		<ul><span class="app-genre" style="background-color: #274b53;color: whitesmoke">ユーティリティ</span></ul>
-			</li>
-		    <h2 style="margin-top: -8px">使用した技術</h2>
-		  		   <li class="Content_Genre" style="margin-top: -10px;">
-          <ul><span class="app-genre" style="background-color: #5635ce;color: whitesmoke;padding-top: 10px;">Llama.cpp</span></ul>
-					    <ul><span class="app-genre" style="background-color: #40537c;color: whitesmoke;padding-top: 10px;">プロセス管理</span></ul>
-			</li>
-		<section class="ContentAbout">
-  <section class="news-section" style="margin-bottom: 10px;">
-    <h2>概要</h2>
-   	 <article class="news-item" style="border-left: 0px solid #1C9418;">
+
+  <div class="project-header">
+    <div class="appeal-text" style="--appeal-color-1: #5635ce; --appeal-color-2: #40537c 80%;">UnityでのAI導入を革新するOSS</div>
+    <h1 class="project-title">AIDrivenFramework</h1>
+    <div class="project-meta">
+      <span class="year"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 18px; margin-right: 4px;">calendar_today</span>2026年</span>
+    </div>
+    <div class="Content_Genre" style="gap: 8px;">
+<span class="app-genre" style="background-color: #5b2eff;color: ;">ローカルLLM</span>
+      <span class="app-genre" style="background-color: #274b53;color: ;">ユーティリティ</span>
+      <span class="app-genre" style="background-color: #5635ce;color: ;">Llama.cpp</span>
+      <span class="app-genre" style="background-color: #40537c;color: ;">プロセス管理</span>
+    </div>
+  </div>
+
+  <div class="tech-blog-content">
+    
+    <!-- 概要 -->
+    <section class="tech-section">
+      <h2><span class="material-symbols-outlined">description</span> 概要</h2>
       <p>AIDrivenFrameworkは、Unityで手軽にローカルLLMを動かし<br>ライセンスに配慮したセットアップをユーザー自身で行えるOSSフレームワークです。
-セットアップを行った後に、<br>短いコードでプロセスの生成、管理、破棄、AI回答生成までを行ってくれます。
+セットアップを行った後に、<br>短いコードでプロセスの生成、管理、破棄、AI回答生成までを行ってくれます。</p>
+    </section>
 
-      </p>
-      <div class="news-footer">
+    <!-- 使用した技術 -->
+    <section class="tech-section">
+      <h2><span class="material-symbols-outlined">build</span> 使用した技術</h2>
+      <div class="tech-list">
+<div class="tech-item"><div class="tech-desc">使用技術の詳細は各プロジェクトにて確認できます。</div></div>
+      </div>
+    </section>
 
-      </div>
-    </article>
-  </section>
-  <!-- 配信中のアプリセクション -->
-    <section class="news-section" style="margin-top: 0px;">
-    <h2>こだわったポイント</h2>
-   	 <article class="news-item" style="border-left: 20px solid #1b6769;"><span class="material-symbols-outlined" style="margin-left: 0px;margin-top: 9px;font-size: 60px; color: #1b6769;">
-Genetics
-</span>
-	  <li>
-		  <ul><p2>短いコードでLLMを使い始められる</p2></ul> 
-		 </li>
-      <p>Unityのビルド上でも行えるセットアップを実行し、その後短いコードを実装すると簡単にローカルLLMを使い始められます。
-      <div class="news-footer">
-        <time datetime="2024-02-25 " style="color: hsla(0,0%,100%,1.00)">2024年4月6日</time>
-      </div>
-    </article>
-		 	 <article class="news-item" style="border-left: 20px solid #1E7689;"><span class="material-symbols-outlined" style="margin-left: 0px;margin-top: 9px;font-size: 60px; color: #1E7689;">
-Egg
-</span>
-	  <li>
-		  <ul><p2>ユーザーが選択できるライセンスに配慮したUX</p2>
-		  </ul> 
-		 </li>
-      <p>ユーザー自身もLLMの初期設定を行えるようにしました。<br></be>
+    <!-- なぜ作ったか -->
+    <section class="tech-section">
+      <h2><span class="material-symbols-outlined">psychology_alt</span> なぜ作ったか（Why）</h2>
+      <p><strong>短いコードでLLMを使い始められる</strong><br></p>
+    </section>
+
+    <!-- どう解決したか -->
+    <section class="tech-section">
+      <h2><span class="material-symbols-outlined">lightbulb</span> どう解決したか</h2>
+      <p><strong>ユーザーが選択できるライセンスに配慮したUX</strong><br>ユーザー自身もLLMの初期設定を行えるようにしました。<br></be>
 なおかつ好きなモデルを選択できるようにしてライセンスに配慮し、UXも両立させました。</p>
-<div class="news-footer">
-  <time datetime="2024-02-25 " style="color: hsla(0,0%,100%,1.00)">2024年4月6日</time>
-</div>
-    </article>
-  </section>
-	</section>
-		  	</section>
-     <script>
+    </section>
+
+    <!-- 学び -->
+    <section class="tech-section">
+      <h2><span class="material-symbols-outlined">school</span> 学び</h2>
+      <p>プロジェクトを通して得られた経験や学びがここに表示されます。</p>
+    </section>
+
+  </div>
+
+  <script>
       $(function() {
         $.get('/footer_O.html', function(data){
           $('body').append(data);
