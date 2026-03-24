@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,83 +23,87 @@
     </script>
 
 
-  <section id="hero" style="margin-bottom: 10px;">
+  <section id="hero" style="margin-bottom: 0px;">
     <section class="slideshow-section">
       <div class="slideshow-container">
-        <!-- 各スライド -->
         <div class="mySlides fade">
           <img src="../src/app/ILikeIt/サムネイル_1.jpg">
         </div>
-        <!-- 前へボタン -->
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <!-- 次へボタン -->
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
       </div>
-      <!-- スライド下のドットナビゲーション -->
       <div style="text-align:center">
         <span class="dot" onclick="currentSlide(1)"></span>
       </div>
     </section>
   </section>
-	  <section class="aboutCountnt">
-	<h1>I Like It!</h1>
-    <span style="font-size: 20px; color: grey">アイライクイット<br></span>
-	<time datetime="2024-02-25" style="margin-top: 0px;margin-bottom: 0px;padding-bottom: 30px">2025年 Unity1Week あい投稿作品</time>
-	 <li class="Content_Genre">
-          <ul><span class="app-genre" style="background-color: #FF2E86;color: whitesmoke">AI</span></ul>
-			  <ul><span class="app-genre" style="background-color: #E08429;color: whitesmoke">カジュアル</span></ul>
-          <ul><span class="app-genre" style="background-color: #43A2D8;color: whitesmoke">unityroomで公開中</span>
-			  </ul>
-			</li>
-		    <h2 style="margin-top: -8px">使用した技術</h2>
-		  		   <li class="Content_Genre" style="margin-top: -10px;">
- 	  <ul><span class="app-genre" style="background-color: #FF2E86;color: whitesmoke;padding-top: 10px;">Geminiと連携したリアルタイム生成</span></ul>
-			</li>
-	       <a href="https://unityroom.com/games/ilike_it"
-          class="Dl-button" style="background-color: #43A2D8">unityroomでこの作品を遊ぶ</a>
-		<section class="ContentAbout">
-  <section class="news-section" style="margin-bottom: 10px;">
-    <h2>概要</h2>
-   	 <article class="news-item" style="border-left: 0px solid #1C9418;">
+
+  <div class="project-header animate-on-scroll fade-in-up">
+    <div class="appeal-text" style="--appeal-color-1: #f472b6; --appeal-color-2: #fb7185 80%;">SNSを模した心温まるカジュアルゲーム</div>
+    <h1 class="project-title">I Like It!</h1>
+    <div class="project-meta">
+      <span class="year"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 18px; margin-right: 4px;">calendar_today</span>2025年 Unity1Week あい投稿作品</span>
+    </div>
+    <div class="Content_Genre" style="gap: 8px;">
+<span class="app-genre" style="background-color: #FF2E86;">AI</span>
+      <span class="app-genre" style="background-color: #E08429;">カジュアル</span>
+      <span class="app-genre" style="background-color: #43A2D8;">unityroomで公開中</span>
+      <span class="app-genre" style="background-color: #FF2E86;">Geminiと連携したリアルタイム生成</span>
+    </div>
+  </div>
+  <div class="tech-blog-content">
+        <div class="repo-button-wrap">
+      <a class="repo-button" style="--repo-button-hover-border: #8bbbfa;" href="https://unityroom.com/games/ilike_it" target="_blank" rel="noopener noreferrer" aria-label="AIDrivenFramework GitHub Repository">
+        <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
+        unityroomで遊ぶ
+      </a>
+    </div>
+    <!-- 概要 -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">description</span> 概要</h2>
       <p>Geminiが生成したSNS風投稿を、60秒間でチェックしよう。
 <br>ポジティブな投稿にはライクし、飛ばしても問題はなし。
-<br>困っていそうな投稿にはそっと絆創膏を貼ってあげるゲーム
-      </p>
-      <div class="news-footer">
+<br>困っていそうな投稿にはそっと絆創膏を貼ってあげるゲーム</p>
+    </section>
 
+    <!-- 使用した技術 -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">build</span> 使用した技術</h2>
+      <div class="tech-list">
+<div class="tech-item">
+          <div class="tech-icon" style="background: #e11d48;"><span class="material-symbols-outlined">smart_toy</span>
+          </div>
+          <div class="tech-info">
+            <div class="tech-name">Geminiを用いたSNS風投稿生成</div>
+            <div class="tech-desc">プロンプトに投稿のポジティブ度やネガティブ度を取り入れて、<br>ゲーム状態に応じて変化させることでユーモアある投稿が生成されるようにしました。</div>
+          </div>
+        </div>
       </div>
-    </article>
-  </section>
-  <!-- 配信中のアプリセクション -->
-    <section class="news-section" style="margin-top: 0px;">
-    <h2>こだわったポイント</h2>
-   	 <article class="news-item" style="border-left: 20px solid #b92c67;"><span class="material-symbols-outlined" style="margin-left: 0px;margin-top: 9px;font-size: 60px; color: #b92c67;">
-Bolt
-</span>
-	  <li>
-		  <ul><p2>生成AIと連動した変化し続けるゲーム</p2></ul> 
-		 </li>
-      <p>サイバーな雰囲気作りにこだわりました。<br>
-        生成AIを活用し、ゲーム内の投稿をリアルタイムに生成。プレイするたびに内容や展開が変化するゲーム性を実現しました。
-      <div class="news-footer">
-        <time datetime="2024-02-25 " style="color: hsla(0,0%,100%,1.00)">2024年4月6日</time>
-      </div>
-    </article>
-		 	 <article class="news-item" style="border-left: 20px solid #895b1e;"><span class="material-symbols-outlined" style="margin-left: 0px;margin-top: 9px;font-size: 60px; color: #895b1e;">
-Fertile
-</span>
-	  <li>
-		  <ul><p2>いいねと絆創膏でそっと寄り添うゲーム体験</p2></ul> 
-		 </li>
-      <p>SNS風の投稿を生成し、プレイヤーは「いいね」で共感、「絆創膏」で寄り添いを表現。現代社会をモチーフにした体験を表現しました。</p>
-<div class="news-footer">
-  <time datetime="2024-02-25 " style="color: hsla(0,0%,100%,1.00)">2024年4月6日</time>
-</div>
-    </article>
-  </section>
-	</section>
-		  	</section>
-     <script>
+    </section>
+
+    <!-- なぜ作ったか -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">psychology_alt</span> なぜ作ったか（Why）</h2>
+      <p>Unity1Weekでのお題<strong>「あい」</strong>から、SNSとメンタルヘルスを連想した。
+<br>SNS風の投稿を仕分けし、助けが必要そうな投稿に絆創膏を貼る優しいゲームを作りたいと思ったから。</p>
+    </section>
+
+    <!-- どう解決したか -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">lightbulb</span> どう解決したか</h2>
+      <p><strong>「いかにもAIが生成したような文章が出てしまう課題」</strong>にぶつかりました。
+        <br>この課題には、性格や話し方を定義したAIペルソナをプロンプトに取り入れることで、実際のSNSで流れていそうな自然な文体にすることができました。</p>
+    </section>
+
+    <!-- 学び -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">school</span> 学び</h2>
+      <p>クラウドの生成AIをUnityから呼び出し、WebGL上で遊べるようにした経験から、<br>WebAPIへの理解やゲームにAIを組み込むことについて学びました。</p>
+    </section>
+
+  </div>
+
+  <script>
       $(function() {
         $.get('/footer_O.html', function(data){
           $('body').append(data);

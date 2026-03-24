@@ -85,45 +85,30 @@ html {
   flex: 1;
 }
 
-/* アプリグリッドの基本設定 - PC版で大画面を活用 */
+/* アプリグリッドの基本設定 - 画面が大きくても最大3列、画面いっぱいに広がる柔軟なデザイン */
 .app-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(min(3, auto-fit), minmax(320px, 1fr));
   gap: 25px;
   padding: 30px 0;
+  width: 100%;
 }
 
-/* 超大画面では6列表示 */
-@media (min-width: 2000px) {
-  .app-grid {
-    grid-template-columns: repeat(6, 1fr);
-    gap: 35px;
-    padding: 30px 0;
-  }
-}
-
-/* 非常に大きな画面では5列表示 */
-@media (min-width: 1700px) and (max-width: 1999px) {
-  .app-grid {
-    grid-template-columns: repeat(5, 1fr);
-    gap: 30px;
-    padding: 30px 0;
-  }
-}
-
-/* 大画面では4列表示 */
-@media (min-width: 1400px) and (max-width: 1699px) {
-  .app-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-  }
-}
-
-/* 中大画面では3列表示 */
-@media (min-width: 1000px) and (max-width: 1399px) {
+@media (min-width: 1200px) {
   .app-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 801px) {
+  .app-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .app-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -136,6 +121,7 @@ html {
   transition: transform 280ms ease, box-shadow 280ms ease;
   max-width: 100%;
   border: 1px solid var(--muted-border);
+  position: relative;
 }
 
 .app-card:hover {
@@ -166,10 +152,12 @@ html {
 
 
 .app-info h3 {
-  font-size: 1.25em;
-  margin: 2px 0 10px;
-  line-height: 1.35;
+  font-size: 1.3em;
+  margin: 2px 0 6px;
+  line-height: 1.4;
   font-weight: 700;
+  color: #111827;
+  letter-spacing: 0.02em;
 }
 
 
@@ -725,4 +713,419 @@ html {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* -------------------------
+   追加：Hero, Feature, App Card拡張
+   ------------------------- */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  min-height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--card-bg);
+  padding-top: var(--header-height);
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 800;
+  color: #222;
+  z-index: 2;
+  text-align: center;
+  margin: 0;
+  letter-spacing: 0.05em;
+  text-shadow: 0 4px 12px rgba(255, 255, 255, 0.9);
+}
+
+.hero-bg-text-container {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  overflow: hidden;
+  z-index: 1;
+  opacity: 0.05;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.hero-bg-text {
+  display: inline-block;
+  font-size: clamp(8rem, 15vw, 15rem);
+  font-weight: 900;
+  color: #000;
+  text-transform: uppercase;
+  animation: slideText 60s linear infinite;
+  padding-left: 100%; /* Start from off-screen right */
+}
+
+@keyframes slideText {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+.feature-project-section {
+  padding: 60px var(--section-padding-x);
+  max-width: 1100px;
+  margin: -80px auto 40px;
+  position: relative;
+  z-index: 10;
+  background-color: #f8f9fa;
+  border-radius: 24px;
+}
+
+.feature-card {
+  display: flex;
+  flex-direction: row;
+  background: var(--card-bg);
+  border-radius: 20px;
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  border: 1px solid var(--muted-border);
+  transition: transform 280ms ease, box-shadow 280ms ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.feature-image-container {
+  flex: 1.2;
+  min-height: 320px;
+}
+
+.feature-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.feature-info {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.feature-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #FF2E86, #5b2eff);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.9em;
+  margin-bottom: 20px;
+  align-self: flex-start;
+  box-shadow: 0 4px 10px rgba(91, 46, 255, 0.3);
+}
+
+.feature-info h3 {
+  font-size: 2.2em;
+  margin: 0 0 16px;
+  color: #222;
+  font-weight: 800;
+}
+
+.feature-info p {
+  color: #555;
+  font-size: 1.05em;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.feature-reason {
+  background: #f8f9fa;
+  padding: 20px 24px;
+  border-left: 5px solid #5b2eff;
+  border-radius: 0 12px 12px 0;
+}
+
+.feature-reason h4 {
+  margin: 0 0 10px;
+  color: #333;
+  font-size: 1.1em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.feature-reason p {
+  margin: 0;
+  font-size: 0.95em;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* scrolling and ticket layout */
+.feature-scroll-wrapper {
+  overflow: hidden;
+  width: 100%;
+  padding-bottom: 20px; /* shadow clipping prevention */
+}
+.feature-scroll-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-tickets 35s linear infinite;
+  gap: 30px; 
+  padding: 15px 0;
+}
+.feature-scroll-track:hover {
+  animation-play-state: paused;
+}
+@keyframes scroll-tickets {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 15px)); }
+}
+
+.ticket-layout {
+  position: relative;
+  width: 750px;
+  max-width: 85vw;
+  flex: 0 0 auto;
+  text-decoration: none !important; 
+}
+.ticket-layout * {
+  text-decoration: none !important;
+}
+
+.ticket-divider {
+  width: 4px;
+  background-image: linear-gradient(to bottom, #ddd 50%, rgba(255,255,255,0) 0%);
+  background-position: center;
+  background-size: 4px 20px;
+  background-repeat: repeat-y;
+  position: relative;
+  z-index: 1;
+}
+
+.ticket-divider::before,
+.ticket-divider::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  background-color: #f8f9fa; /* Match outer section bg */
+  border-radius: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  box-shadow: inset 0 4px 6px rgba(0,0,0,0.06);
+}
+
+.ticket-divider::before {
+  top: -20px;
+}
+.ticket-divider::after {
+  bottom: -20px;
+  box-shadow: inset 0 -4px 6px rgba(0,0,0,0.06);
+}
+
+@media (max-width: 900px) {
+  .feature-card {
+    flex-direction: column;
+  }
+  .feature-image-container {
+    height: 180px;
+    min-height: 180px;
+  }
+  .feature-info {
+    padding: 24px 20px;
+  }
+  .feature-reason {
+    padding: 12px 14px;
+  }
+  .feature-reason h4 {
+    font-size: 1em;
+    margin-bottom: 6px;
+  }
+  .feature-reason p {
+    font-size: 0.85em;
+    line-height: 1.5;
+  }
+  .feature-info h3 {
+    font-size: 1.5em;
+    margin-bottom: 12px;
+  }
+  .feature-badge {
+    margin-bottom: 12px;
+  }
+  
+  .ticket-layout {
+    width: 300px;
+  }
+  .ticket-divider {
+    height: 4px;
+    width: 100%;
+    background-image: linear-gradient(to right, #ddd 50%, rgba(255,255,255,0) 0%);
+    background-position: center;
+    background-size: 20px 4px;
+    background-repeat: repeat-x;
+  }
+  .ticket-divider::before,
+  .ticket-divider::after {
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #f8f9fa;
+  }
+  .ticket-divider::before {
+    left: -20px;
+    top: 50%;
+    box-shadow: inset -4px 0 6px rgba(0,0,0,0.06);
+  }
+  .ticket-divider::after {
+    left: auto;
+    right: -20px;
+    top: 50%;
+    box-shadow: inset 4px 0 6px rgba(0,0,0,0.06);
+  }
+}
+
+.glass-icon {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+  border-radius: 20px;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  font-size: 0.85em;
+  font-weight: 700;
+  pointer-events: none;
+}
+.glass-icon .material-symbols-outlined {
+  font-size: 18px !important;
+}
+
+.app-appeal {
+  font-size: 0.95em;
+  font-weight: 600;
+  color: #4b5563;
+  margin: 0 0 12px;
+  line-height: 1.5;
+}
+
+/* スクロール連動アニメーション (Intersection Observer 用) */
+.animate-on-scroll {
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.fade-in-up {
+  transform: translateY(30px);
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* 段階的な表示（スタッガー効果）用 */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+
+/* スマホ等で視差効果を少し抑える設定 */
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll {
+    transition: opacity 0.5s ease;
+    transform: none;
+  }
+}
+
+/* Modern Pagination Styling */
+#pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  user-select: none;
+}
+
+#pagination-controls .page-btn {
+  appearance: none;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #64748b;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  line-height: 1;
+}
+
+#pagination-controls .page-btn:hover:not(.disabled):not(.active) {
+  background: #f8fafc;
+  color: #1e293b;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+#pagination-controls .page-btn.active {
+  background: #111827 !important; /* Force dark theme consistency */
+  color: #ffffff !important;
+  border-color: #111827 !important;
+  box-shadow: 0 4px 12px rgba(17, 24, 39, 0.25);
+  cursor: default;
+}
+
+#pagination-controls .page-btn.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+}
+
+#pagination-controls .nav-btn {
+  padding: 0 18px;
+  gap: 6px;
+}
+
+#pagination-controls .nav-btn span {
+  font-size: 20px;
+}
+
+/* Pagination container fade-in */
+#app-grid-container {
+  min-height: 400px;
+}
+.app-card.fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }

@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,110 +23,113 @@
     </script>
 
 
-  <section id="hero" style="margin-bottom: 10px;">
+  <section id="hero" style="margin-bottom: 0px;">
     <section class="slideshow-section">
       <div class="slideshow-container">
-        <!-- 各スライド -->
         <div class="mySlides fade">
           <img src="../src/app/CC/CC.jpg">
         </div>
-    <div class="mySlides fade">
+        <div class="mySlides fade">
           <img src="../src/app/CC/CC_1.jpg">
         </div>
-		   <div class="mySlides fade">
+        <div class="mySlides fade">
           <img src="../src/app/CC/CC_2.jpg">
         </div>
-		   <div class="mySlides fade">
+        <div class="mySlides fade">
           <img src="../src/app/CC/CC_3.jpg">
         </div>
-        <!-- 前へボタン -->
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <!-- 次へボタン -->
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
       </div>
-      <!-- スライド下のドットナビゲーション -->
       <div style="text-align:center">
         <span class="dot" onclick="currentSlide(1)"></span>
-		  <span class="dot" onclick="currentSlide(2)"></span>
-		  <span class="dot" onclick="currentSlide(3)"></span>
-		  <span class="dot" onclick="currentSlide(4)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
       </div>
     </section>
   </section>
-	  <section class="aboutCountnt">
-	<h1>ナンバークラッシュゲーム CyberCrash</h1>
-    <span style="font-size: 20px; color: grey">サイバークラッシュ<br></span>
-	<time datetime="2024-02-25" style="margin-top: 0px;margin-bottom: 0px;padding-bottom: 30px">2024年 Unity1Week かわる投稿作品</time>
-	 <li class="Content_Genre">
-          <ul><span class="app-genre" style="background-color: #10134A;color: whitesmoke">ミニゲーム</span></ul>
-			  <ul><span class="app-genre" style="background-color: #43A2D8;color: whitesmoke">unityroomで公開中</span>
-			  </ul>
-        		   <ul><span class="app-genre" style="background-color: #FFF;color: orange;border: 2px solid orange; font-weight: bold;"><span class="material-symbols-outlined" style="padding-right: 5px">
-trophy
-</span>PLiCy ゲームコンテスト2025 ファイナリスト賞</span></ul>
-			</li>
-		    <h2 style="margin-top: -8px">使用した技術</h2>
-		  		   <li class="Content_Genre" style="margin-top: -10px;">
- 	  <ul><span class="app-genre" style="background-color: #10134A;color: whitesmoke;padding-top: 10px;">光が流れるようなShaderGraph</span></ul>
-			</li>
-	       <a href="https://unityroom.com/games/cybercrash"
-          class="Dl-button" style="background-color: #43A2D8">unityroomでこの作品を遊ぶ</a>
-		<section class="ContentAbout">
-  <section class="news-section" style="margin-bottom: 10px;">
-    <h2>概要</h2>
-   	 <article class="news-item" style="border-left: 0px solid #1C9418;">
-      <p>サイバーな空間で画面下のインターフェースを押してお題の数字をクリアしていくミニゲーム<br>制限時間以内にお題の数字を0にして数字を消していきます。
-      </p>
-      <div class="news-footer">
 
+  <div class="project-header animate-on-scroll fade-in-up">
+    <div class="appeal-text" style="--appeal-color-1: #0ea5e9; --appeal-color-2: #6366f1 80%;">サイバー空間での爽快ナンバークラッシュ</div>
+    <h1 class="project-title">ナンバークラッシュゲーム CyberCrash</h1>
+    <div class="project-meta">
+      <span class="year"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 18px; margin-right: 4px;">calendar_today</span>2024年 Unity1Week かわる投稿作品</span>
+    </div>
+    <div class="Content_Genre" style="gap: 8px;">
+<span class="app-genre" style="background-color: #10134A;">ミニゲーム</span>
+      <span class="app-genre" style="background-color: #43A2D8;">unityroomで公開中</span>
+      <span class="app-genre" style="background-color: #10134A;">光が流れるようなShaderGraph</span>
+            <span class="app-genre" style="background-color: #FFF;color: orange;border: 2px solid orange; font-weight: bold;">
+        <span class="material-symbols-outlined" style="padding-right: 5px; font-size: 18px">trophy</span>PLiCy ゲームコンテスト2025 ファイナリスト賞</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="tech-blog-content">
+            <div class="repo-button-wrap">
+      <a class="repo-button" style="--repo-button-hover-border: #8bbbfa;" href="https://unityroom.com/games/cybercrash" target="_blank" rel="noopener noreferrer" aria-label="AIDrivenFramework GitHub Repository">
+        <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
+        unityroomで遊ぶ
+      </a>
+    </div>
+    <!-- 概要 -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">description</span> 概要</h2>
+      <p>サイバーな空間で画面下のインターフェースを押してお題の数字をクリアしていくミニゲーム<br>音楽に乗りながら、制限時間以内にお題の数字を0にして数字を消していきます。</p>
+       <p><strong>ピクセルフォントで演出する雰囲気</strong><br>ピクセルのようなフォントを使用することで、デジタルな世界で数字を消しているような雰囲気に</p>
+    </section>
+
+    <!-- 使用した技術 -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">build</span> 使用した技術</h2>
+      <div class="tech-list">
+        <div class="tech-item">
+          <div class="tech-icon" style="background: #821de1;"><span class="material-symbols-outlined">Flashlight_On</span>
+          </div>
+          <div class="tech-info">
+            <div class="tech-name">ShaderGraphを使った光が流れる演出</div>
+            <div class="tech-desc">サイバーな雰囲気作りにこだわりました。<br>またゲームの状態によって光り方や速さを変える事でゲームの進行状況を分かりやすくしました。</div>
+          </div>
+        </div>
       </div>
-    </article>
-  </section>
-  <!-- 配信中のアプリセクション -->
-    <section class="news-section" style="margin-top: 0px;">
-    <h2>こだわったポイント</h2>
-   	 <article class="news-item" style="border-left: 20px solid #1E4D89;"><span class="material-symbols-outlined" style="margin-left: 0px;margin-top: 9px;font-size: 60px; color: #1E4D89;">
-Bolt
-</span>
-	  <li>
-		  <ul><p2>ShaderGraphを使った光が流れる演出</p2></ul> 
-		 </li>
-      <p>サイバーな雰囲気作りにこだわりました。<br>
-        またゲームの状態によって光り方を変える事でゲームの進行状況を分かりやすくしました。</p>
-      <div class="news-footer">
-        <time datetime="2024-02-25 " style="color: hsla(0,0%,100%,1.00)">2024年4月6日</time>
+    </section>
+
+    <!-- なぜ作ったか -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">psychology_alt</span> なぜ作ったか（Why）</h2>
+      <p>Unity1Weekで<strong>かわる</strong>から連想して、ゲームの進行状況に応じて空間の光や速さがかわるゲームを作りたいと思ったから。
+    </section>
+
+    <!-- どう解決したか -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">lightbulb</span> どう解決したか</h2>
+      <p>ただ空間の光を変化させるだけではなく、<strong>「残り時間やゲーム状態に応じた伝わる演出」</strong>になるように<br>残り時間が短い際には点滅させたり、ライフが少なくなったらライト全体を暗くさせたりなどしました。</p>
+    </section>
+
+    <!-- 学び -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">school</span> 学び</h2>
+      <p>プレイヤーが画面全体で盛り上がれる体験を実現することができました。また押せない数字は暗くし押すと警告が表示される、
+        <br>レベルアップでアイテムを獲得できる要素など遊びやすさや手触りを心掛けました。</p>
+    </section>
+
+    <!-- 実績 -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">emoji_events</span> 実績</h2>
+      <div class="tech-list" style="gap: 12px;">
+        <div
+          style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #fffcf0; border-radius: 8px; border: 1px solid #fdf0c0;">
+          <span class="material-symbols-outlined" style="color: #ed9126; font-size: 32px;">trophy</span>
+          <div><strong style="color: #b46b14; font-size: 1.05rem;">PLiCy ゲームコンテスト2025</strong><br><span
+              style="color: #666; font-size: 0.95rem;">ファイナリスト賞</span></div>
+        </div>
       </div>
-    </article>
-		 	 <article class="news-item" style="border-left: 20px solid #1E7689;"><span class="material-symbols-outlined" style="margin-left: 0px;margin-top: 9px;font-size: 60px; color: #1E7689;">
-Apps
-</span>
-	  <li>
-		  <ul><p2>ピクセルフォントで演出する雰囲気</p2>
-		  </ul> 
-		 </li>
-      <p>ピクセルのようなフォントを使用することで、デジタルな世界で数字を消しているような雰囲気に</p>
-      <p>なるように工夫しました。</p>
-<div class="news-footer">
-  <time datetime="2024-02-25 " style="color: hsla(0,0%,100%,1.00)">2024年4月6日</time>
-</div>
-    </article>
-  </section>
-  <section class="news-section">
-    <h2>受賞歴</h2>
-		 	 <article class="news-item" style="border-left: 20px solid #a45197;"><span class="material-symbols-outlined" style="margin-left: 0px;margin-top: 9px;font-size: 70px; color: #a45197;">
-trophy
-</span>
-	  <li>
-		  <ul><p2>PLiCy ゲームコンテスト2025 ファイナリスト賞</p2></ul> 
-		 </li>
-      <div class="news-footer">
-        <time datetime="2025-12-23"></time>
-      </div>
-    </article>
-  </section>
-	</section>
-		  	</section>
-     <script>
+    </section>
+
+  </div>
+
+  <script>
       $(function() {
         $.get('/footer_O.html', function(data){
           $('body').append(data);

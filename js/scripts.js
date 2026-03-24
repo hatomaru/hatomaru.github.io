@@ -17,6 +17,7 @@ function currentSlide(n) {
 function showSlides(n) {
   var i;
   var slides = document.getElementsByClassName("mySlides");
+  if (slides.length === 0) return;
   var dots = document.getElementsByClassName("dot");
   if (n > slides.length) {slideIndex = 1}    
   if (n < 1) {slideIndex = slides.length}
@@ -60,3 +61,35 @@ function showSlides(n) {
   }
 })();
 
+// スクロール連動アニメーションのIntersection Observer
+(function() {
+  function initScrollAnimation() {
+    const obProps = {
+      root: null,
+      rootMargin: "0px 0px -10% 0px",
+      threshold: 0
+    };
+    const observer = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, obProps);
+
+    const elements = document.querySelectorAll('.animate-on-scroll');
+    elements.forEach(function(el) {
+      observer.observe(el);
+    });
+  }
+
+  // ページ読み込み完了時および、Worksなどの動的生成直後にも呼べるようにwindowに公開
+  window.initScrollAnimation = initScrollAnimation;
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollAnimation);
+  } else {
+    initScrollAnimation();
+  }
+})();

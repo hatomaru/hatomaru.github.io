@@ -1,0 +1,435 @@
+{
+  "feature": [
+    {
+      "link": "contents/BlockWorld_Ai.html",
+      "image": "src/app/BlockWorld_Ai/サムネイル_12.jpg",
+      "badge": "注目作品",
+      "title": "BlockWorld Ai",
+      "desc": "パズルを学ぶ不思議なAI ホシハビトくんと共にゲーム内でパズルの動かし方を学ばせて、強力なボスにプレイヤーと共に戦うパズルRPGゲームです。",
+      "reasonIcon": "lightbulb",
+      "reasonTitle": "アピールしたい点",
+      "reasonDesc": "AI自身が学習して成長するという新しいゲーム体験を実現し、数々の賞を受賞。「強化学習」という技術を遊びながら学べるゲーム性"
+    },
+    {
+      "link": "contents/AIDrivenFramework.html",
+      "image": "src/app/AIDrivenFramework/Banner.png",
+      "badge": "OSS プロジェクト",
+      "title": "AIDrivenFramework",
+      "desc": "Unityで手軽にローカルLLMを動かし、ライセンスに配慮したセットアップをユーザー自身で行えるOSSフレームワークです。",
+      "reasonIcon": "build",
+      "reasonTitle": "アピールしたい点",
+      "reasonDesc": "今後のAI導入を革新する設計と使いやすさを追求。ぜひ試してみてください！"
+    },
+    {
+      "link": "contents/Amevar.html",
+      "image": "src/app/AM/サムネイル_1.jpg",
+      "badge": "展示作品",
+      "title": "Amevar",
+      "desc": "島のエサを最適な行動で食べる事を学ぶ生物を育成したり、戦いで淘汰・進化させたりする育成シミュレーションゲームです。",
+      "reasonIcon": "celebration",
+      "reasonTitle": "アピールしたい点",
+      "reasonDesc": "大阪・関西万博 デジタル学園祭へ出展し、その後も改良を続けています"
+    }
+  ],
+  "works": [
+    {
+      "link": "contents/BlockWorld_Ai.html",
+      "authorIcon": "person",
+      "authorType": "個人制作",
+      "image": "src/app/BlockWorld_Ai/サムネイル_12.jpg",
+      "imagePos": "50% 50%",
+      "title": "BlockWorld Ai",
+      "appeal": "AIと共闘する新感覚パズルRPG",
+      "tags": [
+        {
+          "bg": "#FF2E86",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "AI"
+        },
+        {
+          "bg": "#2fad26",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "パズル"
+        },
+        {
+          "bg": "#FFF",
+          "fg": "orange",
+          "border": "2px solid orange",
+          "icon": "trophy",
+          "text": "受賞作品"
+        }
+      ],
+      "desc": "パズルを学ぶ不思議なAI ホシハビトくんと共に<br>ゲーム内でパズルの動かし方を学ばせて、強力なボスにプレイヤーと共に戦うパズルRPGゲームです。",
+      "year": "2023-26年"
+    },
+    {
+      "link": "contents/AIDrivenFramework.html",
+      "authorIcon": "person",
+      "authorType": "個人制作",
+      "image": "src/app/AIDrivenFramework/Banner.png",
+      "imagePos": "50% 50%",
+      "title": "AIDrivenFramework",
+      "appeal": "UnityでのAI導入を革新するOSSフレームワーク",
+      "tags": [
+        {
+          "bg": "#5b2eff",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "ローカルLLM"
+        },
+        {
+          "bg": "#274b53",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "ユーティリティ"
+        }
+      ],
+      "desc": "Unityで手軽にローカルLLMを動かしライセンスに配慮したセットアップをユーザー自身で行えるOSSフレームワーク",
+      "year": "2026年"
+    },
+    {
+      "link": "contents/AfterNSecondsWorld.html",
+      "authorIcon": "person",
+      "authorType": "個人制作",
+      "image": "src/app/Lab/AfterNSeconds.jpg",
+      "imagePos": "50% 50%",
+      "title": "N秒後の世界",
+      "appeal": "時と共に移ろう世界を描くメディアアート",
+      "tags": [
+        {
+          "bg": "#5b2eff",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "ローカルLLM"
+        },
+        {
+          "bg": "#d43464",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "メディアアート"
+        }
+      ],
+      "desc": "時間経過によって変化する世界をローカルLLMを用いて表現するメディアアート",
+      "year": "2026年"
+    },
+    {
+      "link": "contents/CheckNow.html",
+      "authorIcon": "person",
+      "authorType": "個人制作",
+      "image": "src/app/Lab/NowCheck.png",
+      "imagePos": "50% 50%",
+      "title": "確認だけ",
+      "appeal": "日々の不安を取り除くための記録アプリ",
+      "tags": [
+        {
+          "bg": "#63522f",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "実験的プロトタイプ"
+        },
+        {
+          "bg": "#274b53",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "ユーティリティ"
+        }
+      ],
+      "desc": "日常で忘れがちになる物を記録して確認できるアプリ",
+      "year": "2026年"
+    },
+    {
+      "link": "contents/Amevar.html",
+      "authorIcon": "person",
+      "authorType": "個人制作",
+      "image": "src/app/AM/サムネイル_1.jpg",
+      "imagePos": "50% 50%",
+      "title": "Amevar",
+      "appeal": "生物の進化と淘汰を見守るシミュレーション",
+      "tags": [
+        {
+          "bg": "#FF2E86",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "AI"
+        },
+        {
+          "bg": "#7e29e0",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "育成シミュレーション"
+        },
+        {
+          "bg": "#FFF",
+          "fg": "orange",
+          "border": "2px solid orange",
+          "icon": "trophy",
+          "text": "大阪・関西万博 デジタル学園祭 出展（2025年7月）"
+        }
+      ],
+      "desc": "島のエサを最適な行動で食べる事を学ぶ生物を育成したり、戦いで淘汰・進化させたりする育成シミュレーションゲーム",
+      "year": "2025年"
+    },
+    {
+      "link": "contents/ILikeIt.html",
+      "authorIcon": "person",
+      "authorType": "個人制作",
+      "image": "src/app/ILikeIt/サムネイル_1.jpg",
+      "imagePos": "50% 50%",
+      "title": "I Like It!",
+      "appeal": "SNSを模した心温まるカジュアルゲーム",
+      "tags": [
+        {
+          "bg": "#FF2E86",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "AI"
+        },
+        {
+          "bg": "#E08429",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "カジュアル"
+        },
+        {
+          "bg": "#43A2D8",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "Unityroomで配信中"
+        }
+      ],
+      "desc": "SNSの投稿をイメージしたものをスワイプしたり、助けが必要そうな投稿に絆創膏を貼ったりするゲームです。",
+      "year": "2025年"
+    },
+    {
+      "link": "contents/CalcOnline.html",
+      "authorIcon": "person",
+      "authorType": "個人制作",
+      "image": "src/app/CalcOnline/スクリーンショット_1.jpg",
+      "imagePos": "50% 50%",
+      "title": "カルクオンライン",
+      "appeal": "オンラインで遊べる直感脳トレ計算ゲーム",
+      "tags": [
+        {
+          "bg": "#1A88AA",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "オンライン"
+        },
+        {
+          "bg": "#2FAA00",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "計算練習"
+        }
+      ],
+      "desc": "2択の計算問題を解く事で脳の健康維持と家族の絆を深められるゲームです。",
+      "year": "2025年"
+    },
+    {
+      "link": "contents/CHROMJOURNEY.html",
+      "authorIcon": "person",
+      "authorType": "個人制作",
+      "image": "src/app/CHROMMJOURNEY/スクリーンショット_4.jpg",
+      "imagePos": "50% 50%",
+      "title": "CHROMJOURNEY",
+      "appeal": "エレメントを合体させる物語発見パズル",
+      "tags": [
+        {
+          "bg": "#E08429",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "カジュアル"
+        }
+      ],
+      "desc": "エレメントを合体させ世界のバランスを変化させるゲームです。<br>プレイヤーは世界のバランスを調整し、ひとかけらの物語を発見することが目的です。",
+      "year": "2024年"
+    },
+    {
+      "link": "contents/CountDownGame.html",
+      "authorIcon": "person",
+      "authorType": "個人制作",
+      "image": "src/app/A_01/サムネ.png",
+      "imagePos": "50% 50%",
+      "title": "みんなでクラッシュ！<br>カウントダウンゲーム",
+      "appeal": "お題の数字をゼロにする直感アクション",
+      "tags": [
+        {
+          "bg": "#10134A",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "ミニゲーム"
+        },
+        {
+          "bg": "#FFF",
+          "fg": "orange",
+          "border": "2px solid orange",
+          "icon": "trophy",
+          "text": "受賞作品"
+        }
+      ],
+      "desc": "形に触れてお題の数字を0よりも少なくするゲームです。<br>違う形に触れ続けるとコンボ！獲得できるスコアがアップします。ひとりでもみんなとでも遊べます。",
+      "year": "2024年"
+    },
+    {
+      "link": "contents/CyberCrash.html",
+      "authorIcon": "person",
+      "authorType": "個人制作",
+      "image": "src/app/CC/CC.jpg",
+      "imagePos": "50% 50%",
+      "title": "ナンバークラッシュゲーム CyberCrash",
+      "appeal": "サイバー空間での爽快ナンバークラッシュ",
+      "tags": [
+        {
+          "bg": "#10134A",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "ミニゲーム"
+        },
+        {
+          "bg": "#FFF",
+          "fg": "orange",
+          "border": "2px solid orange",
+          "icon": "trophy",
+          "text": "受賞作品"
+        },
+        {
+          "bg": "#43A2D8",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "Unityroomで配信中"
+        }
+      ],
+      "desc": "サイバーな空間で画面下のインターフェースを押してお題の数字をクリアするゲームです。",
+      "year": "2024年"
+    },
+    {
+      "link": "contents/SimpleMath.html",
+      "authorIcon": "person",
+      "authorType": "個人制作",
+      "image": "../src/app/SiM_ScreenShot.png",
+      "imagePos": "50% 50%",
+      "title": "SimpleMath",
+      "appeal": "楽しく計算の練習ができる学習ゲーム",
+      "tags": [
+        {
+          "bg": "#2FAA00",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "計算練習"
+        },
+        {
+          "bg": "#FFF",
+          "fg": "orange",
+          "border": "2px solid orange",
+          "icon": "trophy",
+          "text": "アプリ甲子園 2023 入賞"
+        }
+      ],
+      "desc": "二択から答えを選んでたし算・ひき算・かけ算・わり算の練習が出来る計算練習ゲームです。",
+      "year": "2023年"
+    },
+    {
+      "link": "contents/BlockWorld.html",
+      "authorIcon": "person",
+      "authorType": "個人制作",
+      "image": "../src/app/BL_ScreenShoot.png",
+      "imagePos": "50% 50%",
+      "title": "BlockWorld",
+      "appeal": "時間内にブロックの数字をゼロにする脳トレ",
+      "tags": [
+        {
+          "bg": "#FF2E86",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "脳トレ"
+        },
+        {
+          "bg": "#FFF",
+          "fg": "orange",
+          "border": "2px solid orange",
+          "icon": "trophy",
+          "text": "受賞作品"
+        }
+      ],
+      "desc": "制限時間以内にブロックの中の数字が0になるようにパネルをタップして、敵に攻撃し、全6体の敵を全て倒すゲームです。",
+      "year": "2023年"
+    },
+    {
+      "link": "contents/BlockWorld_PC.html",
+      "authorIcon": "person",
+      "authorType": "個人制作",
+      "image": "src/app/BlockWorld_PC/BlockWorld_1.jpg",
+      "imagePos": "50% 50%",
+      "title": "BlockWorld",
+      "appeal": "PCで遊ぶ本格大画面パズル＆脳トレ！",
+      "tags": [
+        {
+          "bg": "#FF2E86",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "脳トレ"
+        },
+        {
+          "bg": "#FFF",
+          "fg": "orange",
+          "border": "2px solid orange",
+          "icon": "trophy",
+          "text": "受賞作品"
+        }
+      ],
+      "desc": "制限時間以内にブロックの中の数字が0になるようにパネルをタップして、敵に攻撃し、全6体の敵を全て倒すゲームです。",
+      "year": "2022年"
+    },
+    {
+      "link": "contents/NoutoteFever.html",
+      "authorIcon": "person",
+      "authorType": "個人制作",
+      "image": "src/app/FB/ScreenShot_1.jpg",
+      "imagePos": "50% 50%",
+      "title": "脳トレフィーバーブレイク",
+      "appeal": "同じパネルを避けて戦う白熱連鎖パズル",
+      "tags": [
+        {
+          "bg": "#FF2E86",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "脳トレ"
+        },
+        {
+          "bg": "#FFF",
+          "fg": "orange",
+          "border": "2px solid orange",
+          "icon": "trophy",
+          "text": "受賞作品"
+        }
+      ],
+      "desc": "制限時間以内にブロックの中の数字が0になるようにパネルをタップして、同じパネルを押さないように気を付けながら、全6体の敵を全て倒すゲームです。",
+      "year": "2021年"
+    }
+  ]
+}

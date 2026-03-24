@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,85 +31,106 @@
     </script>
 
 
-  <section id="hero" style="margin-bottom: 10px;">
+  <section id="hero" style="margin-bottom: 0px;">
     <section class="slideshow-section">
       <div class="slideshow-container">
-        <!-- 各スライド -->
         <div class="mySlides fade">
           <img src="../src/app/Lab/NowCheck.png">
         </div>
-        <!-- 前へボタン -->
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <!-- 次へボタン -->
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
       </div>
-      <!-- スライド下のドットナビゲーション -->
       <div style="text-align:center">
         <span class="dot" onclick="currentSlide(1)"></span>
       </div>
     </section>
   </section>
-	  <section class="aboutCountnt">
-	<h1>確認だけ</h1>
-	<time datetime="2024-02-25" style="margin-top: 0px;margin-bottom: 0px;padding-bottom: 30px">2026年</time>
-	 <li class="Content_Genre">
-            <ul><span class="app-genre" style="background-color: #63522f;color: whitesmoke">実験的プロトタイプ</span></ul>
-            <ul><span class="app-genre" style="background-color: #274b53;color: whitesmoke">ユーティリティ</span></ul>
-			</li>
-		    <h2 style="margin-top: -8px">使用した技術</h2>
-		  		   <li class="Content_Genre" style="margin-top: -10px;">
-          <ul><span class="app-genre" style="background-color: #5635ce;color: whitesmoke;padding-top: 10px;">Flutter</span></ul>
-            <ul><span class="app-genre" style="background-color: #7e3c5b;color: whitesmoke;padding-top: 10px;">AIエージェント</span></ul>
-			</li>
-             	 <p>
+
+  <div class="project-header animate-on-scroll fade-in-up">
+    <div class="appeal-text" style="--appeal-color-1: #14b8a6; --appeal-color-2: #10b981 80%;">日々の不安を取り除くための記録アプリ</div>
+    <h1 class="project-title">確認だけ</h1>
+    <div class="project-meta">
+      <span class="year"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 18px; margin-right: 4px;">calendar_today</span>2026年</span>
+    </div>
+    <div class="Content_Genre" style="gap: 8px;">
+<span class="app-genre" style="background-color: #63522f;">実験的プロトタイプ</span>
+      <span class="app-genre" style="background-color: #274b53;">ユーティリティ</span>
+      <span class="app-genre" style="background-color: #5635ce;">Flutter</span>
+    </div>
+           	 <p>
 			<a href="https://apps.apple.com/jp/app/%E7%A2%BA%E8%AA%8D%E3%81%A0%E3%81%91-%E9%8D%B5-%E9%9B%BB%E6%B0%97-%E3%82%AC%E3%82%B9%E3%81%AE%E7%8A%B6%E6%85%8B%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF/id6757307010?itsct=apps_box_badge&amp;itscg=30200" style="display: inline-block; overflow: hidden; border-radius: 13px; width: 120px; height: 83px; margin-right: 20px;margin-left: 20px;"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp?size=250x83&amp;releaseDate=1693872000" alt="Download on the App Store" style="border-radius: 13px; width: 120px; height: 83px;"></a>
 			<a href='https://play.google.com/store/apps/details?id=com.OneTeamdot.NowCheck&hl=ja&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Google Play で手に入れよう' src='https://play.google.com/intl/ja_jp/badges/static/images/badges/ja_badge_web_generic.png' style = "width: 150px;margin-top: -73px"/></a>
 		  </p>
 		  <p style="font-size: 10px">Google Play および Google Play ロゴは、Google LLC の商標です。</p>
-		<section class="ContentAbout">
-  <section class="news-section" style="margin-bottom: 10px;">
-    <h2>概要</h2>
-   	 <article class="news-item" style="border-left: 0px solid #1C9418;">
+  </div>
+  <div class="tech-blog-content">
+    
+    <!-- 概要 -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">description</span> 概要</h2>
       <p>確認だけは、電気を消したか、鍵を閉めたのかなど日頃に忘れがちな物を記録して確認できるアプリです。
-<br>本アプリはコードの9割をバイブコーディングを用いて制作しました。
+<br>本アプリはコードの9割をバイブコーディングを用いて制作しました。</p>
+      <p><strong>確認行動を最短で記録できる設計</strong><br>「記録し忘れを防ぐ」ことを重視し、1タップでチェックが残せる導線にしました。朝の外出前や就寝前など、短時間でも使えるようにしています。</p>
+      <p><strong>履歴の見える化で不安を軽減</strong><br>いつ何を確認したかを後から見返せるようにし、「確認したか不安」という状態を減らす体験を目指しました。</p>
+    </section>
 
-      </p>
-      <div class="news-footer">
+    <!-- 使用した技術 -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">build</span> 使用した技術</h2>
+      <div class="tech-list">
+        <div class="tech-item">
+          <div class="tech-icon" style="background: #5635ce;"><span class="material-symbols-outlined">phone_iphone</span>
+          </div>
+          <div class="tech-info">
+            <div class="tech-name">Flutterによるクロスプラットフォーム開発</div>
+            <div class="tech-desc">1つのコードベースで画面と状態管理を組み立て、短期間で試作と検証を回せる構成にしました。</div>
+          </div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon" style="background: #7e3c5b;"><span class="material-symbols-outlined">auto_awesome</span>
+          </div>
+          <div class="tech-info">
+            <div class="tech-name">AIエージェントを活用した開発フロー</div>
+            <div class="tech-desc">仕様の言語化、UIのたたき台生成、コード補完をAIと対話しながら進め、実装速度を高めました。</div>
+          </div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon" style="background: #0f766e;"><span class="material-symbols-outlined">design_services</span>
+          </div>
+          <div class="tech-info">
+            <div class="tech-name">視認性を重視したUI設計</div>
+            <div class="tech-desc">コントラストとタップ領域を意識し、急いでいる場面でも誤操作しにくい情報配置を検証しました。</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      </div>
-    </article>
-  </section>
-  <!-- 配信中のアプリセクション -->
-    <section class="news-section" style="margin-top: 0px;">
-    <h2>こだわったポイント</h2>
-   	 <article class="news-item" style="border-left: 20px solid #1b6769;"><span class="material-symbols-outlined" style="margin-left: 0px;margin-top: 9px;font-size: 60px; color: #1b6769;">
-Genetics
-</span>
-	  <li>
-		  <ul><p2>シンプルで視認性の高いデザイン</p2></ul> 
-		 </li>
-      <p>今作は視認性の高いモダン風なデザインにこだわりました。<br>
-具体的には記録項目のコントラスト比や記録しやすいUIを工夫しました。</p>
-      <div class="news-footer">
-        <time datetime="2024-02-25 " style="color: hsla(0,0%,100%,1.00)">2024年4月6日</time>
-      </div>
-    </article>
-		 	 <article class="news-item" style="border-left: 20px solid #1E7689;"><span class="material-symbols-outlined" style="margin-left: 0px;margin-top: 9px;font-size: 60px; color: #1E7689;">
-Egg
-</span>
-	  <li>
-		  <ul><p2>AIエージェントとの対話</p2>
-		  </ul> 
-		 </li>
-      <p>制作ではAIエージェントに要点とやってほしい事をまとめつつ、対話をしながら進めました。</p>
-<div class="news-footer">
-  <time datetime="2024-02-25 " style="color: hsla(0,0%,100%,1.00)">2024年4月6日</time>
-</div>
-    </article>
-  </section>
-	</section>
-		  	</section>
-     <script>
+    <!-- なぜ作ったか -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">psychology_alt</span> なぜ作ったか（Why）</h2>
+      <p>外出後に「鍵を閉めたか」「電源を切ったか」を何度も気にしてしまう体験を、記録によって減らしたいと考えたのがきっかけです。
+      <br>また、日常的に使う機能だからこそ、複雑な操作を減らしたシンプルなUI設計が重要だと考えました。</p>
+    </section>
+
+    <!-- どう解決したか -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">lightbulb</span> どう解決したか</h2>
+      <p><strong>「記録が手間で続かない課題」</strong>に対しては、カテゴリを絞ったチェックUIにして、入力負荷を減らしました。
+      <br>さらに、<strong>「確認した事実を後から思い出せない課題」</strong>に対しては、履歴を時系列で見返せる設計にして、不安の再確認をしやすくしました。</p>
+      <p>制作ではAIエージェントに要点とタスクを渡し、実装と改善のサイクルを短く回すことで、短期間で検証可能な形に到達しました。</p>
+    </section>
+
+    <!-- 学び -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">school</span> 学び</h2>
+      <p>AI支援開発では、最初に目的・制約・優先順位を明確に言語化するほど、成果物の精度が上がることを学びました。
+      <br>また、日常アプリでは機能の多さよりも、迷わず操作できる導線と情報の見やすさが継続利用に直結することを再確認しました。</p>
+      <p>今後は通知機能や記録テンプレートの追加を通して、より習慣化しやすい体験に改善していきたいです。</p>
+    </section>
+
+  </div>
+
+  <script>
       $(function() {
         $.get('/footer_O.html', function(data){
           $('body').append(data);

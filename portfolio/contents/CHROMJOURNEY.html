@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,89 +23,89 @@
     </script>
 
 
-  <section id="hero" style="margin-bottom: 10px;">
+  <section id="hero" style="margin-bottom: 0px;">
     <section class="slideshow-section">
       <div class="slideshow-container">
-        <!-- 各スライド -->
         <div class="mySlides fade">
           <img src="../src/app/CHROMMJOURNEY/スクリーンショット_4.jpg">
         </div>
-    <div class="mySlides fade">
+        <div class="mySlides fade">
           <img src="../src/app/CHROMMJOURNEY/スクリーンショット_3.jpg">
         </div>
-		   <div class="mySlides fade">
+        <div class="mySlides fade">
           <img src="../src/app/CHROMMJOURNEY/スクリーンショット_1.jpg">
         </div>
-		   <div class="mySlides fade">
+        <div class="mySlides fade">
           <img src="../src/app/CHROMMJOURNEY/スクリーンショット_2.jpg">
         </div>
-        <!-- 前へボタン -->
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <!-- 次へボタン -->
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
       </div>
-      <!-- スライド下のドットナビゲーション -->
       <div style="text-align:center">
         <span class="dot" onclick="currentSlide(1)"></span>
-		  <span class="dot" onclick="currentSlide(2)"></span>
-		  <span class="dot" onclick="currentSlide(3)"></span>
-		  <span class="dot" onclick="currentSlide(4)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
       </div>
     </section>
   </section>
-	  <section class="aboutCountnt">
-	<h1>CHROMJOURNEY</h1>
-    <span style="font-size: 20px; color: grey">クロムジャーニー<br></span>
-	<time datetime="2024-02-25" style="margin-top: 0px;margin-bottom: 0px;padding-bottom: 30px">2024年</time>
-	 <li class="Content_Genre">
-          <ul><span class="app-genre" style="background-color: #E08429;color: whitesmoke">カジュアルゲーム</span></ul>
-			</li>
-		  <h2 style="margin-top: -8px">使用した技術</h2>
-		  		   <li class="Content_Genre" style="margin-top: -10px;">
- 	  <ul><span class="app-genre" style="background-color: #87632E;color: whitesmoke;padding-top: 10px;">絵の具が混ざりあう様なShaderGraph</span></ul>
-			</li>
-		<section class="ContentAbout">
-  <section class="news-section" style="margin-bottom: 10px;">
-    <h2>概要</h2>
-   	 <article class="news-item" style="border-left: 0px solid #1C9418;">
-      <p>エレメントを合体させ環境を変化させるゲームです。舞台はこの世界の概念、色が集まって生まれたCHROM(クロム)<br>プレイヤーは世界のバランスを調整し、ひとかけらの物語を発見することが目的です。
 
-      </p>
-      <div class="news-footer">
+  <div class="project-header animate-on-scroll fade-in-up">
+    <div class="appeal-text" style="--appeal-color-1: #8b5cf6; --appeal-color-2: #ec4899 80%;">エレメントを合体させる物語発見パズル</div>
+    <h1 class="project-title">CHROMJOURNEY</h1>
+    <div class="project-meta">
+      <span class="year"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 18px; margin-right: 4px;">calendar_today</span>2024年</span>
+    </div>
+    <div class="Content_Genre" style="gap: 8px;">
+<span class="app-genre" style="background-color: #E08429;color: ;">カジュアルゲーム</span>
+      <span class="app-genre" style="background-color: #87632E;color: ;">絵の具が混ざりあう様なShaderGraph</span>
+    </div>
+  </div>
 
+  <div class="tech-blog-content">
+    
+    <!-- 概要 -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">description</span> 概要</h2>
+      <p>エレメントを合体させ環境を変化させるゲームです。舞台はこの世界の概念、色が集まって生まれたCHROM(クロム)<br>プレイヤーは世界のバランスを調整し、ひとかけらの物語を発見することが目的です。</p>
+    </section>
+
+    <!-- 使用した技術 -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">build</span> 使用した技術</h2>
+      <div class="tech-list">
+        <div class="tech-item">
+          <div class="tech-icon" style="background: #e11d48;"><span class="material-symbols-outlined">smart_toy</span>
+          </div>
+          <div class="tech-info">
+            <div class="tech-name">ShaderGraphを用いて色が混ざりあう様子を表現</div>
+            <div class="tech-desc">イラストをマーブル模様のように混ぜて描画するShaderGrapthを制作し、<br>色の多様さや鮮やかさを表現しました。</div>
+          </div>
+        </div>
       </div>
-    </article>
-  </section>
-  <!-- 配信中のアプリセクション -->
-    <section class="news-section" style="margin-top: 0px;">
-    <h2>こだわったポイント</h2>
-   	 <article class="news-item" style="border-left: 20px solid #C09C2B;"><span class="material-symbols-outlined" style="margin-left: 0px;margin-top: 9px;font-size: 60px; color: #C09C2B;">
-Palette
-</span>
-	  <li>
-		  <ul><p2>ShaderGraphを用いて色が混ざりあう様子を表現</p2></ul> 
-		 </li>
-      <p>イラストをマーブル模様のように混ぜて描画するShaderGrapthを制作し、<br>色の多様さや鮮やかさを表現しました。</p>
-      <div class="news-footer">
-        <time datetime="2024-02-25 " style="color: hsla(0,0%,100%,1.00)">2024年4月6日</time>
-      </div>
-    </article>
-		 	 <article class="news-item" style="border-left: 20px solid #218357;"><span class="material-symbols-outlined" style="margin-left: 0px;margin-top: 9px;font-size: 60px; color: #218357;">
-Star
-</span>
-	  <li>
-		  <ul><p2>エレメントを飛ばして合体した時の爽快感</p2>
-		  </ul> 
-		 </li>
-				 <p>合体した時のエフェクトが気持ちよくなるように工夫しました。</p>
-<div class="news-footer">
-  <time datetime="2024-02-25 " style="color: hsla(0,0%,100%,1.00)">2024年4月6日</time>
-</div>
-    </article>
-  </section>
-	</section>
-		  	</section>
-     <script>
+    </section>
+
+    <!-- なぜ作ったか -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">psychology_alt</span> なぜ作ったか（Why）</h2>
+      <p>以前から概念をゲームにしてみたいと興味を持ち、色という概念に調和を混ぜる事でゲームが出来ると考えたから。</p>
+    </section>
+
+    <!-- どう解決したか -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">lightbulb</span> どう解決したか</h2>
+      <p>「概念をゲームにする事の壁」にぶつかったが、最終的にゲーム性をエレメントを合成し、<br>絵の具の世界の物語を発見していくゲームにすることで、物質のバランスを調整していくゲームを作る事ができた。</p>
+    </section>
+
+    <!-- 学び -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">school</span> 学び</h2>
+      <p>概念をゲームにすることによって、抽象的な物を気持ちよく遊べるようにするための土台の考えが身についた。<br>また、ShaderGraphでの画像フィルター処理に挑戦しプレイヤーのゲーム体験を一段上げることができた。</p>
+    </section>
+
+  </div>
+
+  <script>
       $(function() {
         $.get('/footer_O.html', function(data){
           $('body').append(data);
