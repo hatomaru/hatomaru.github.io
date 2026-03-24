@@ -452,6 +452,49 @@ body {
   padding: 10px 20px 80px;
 }
 
+/* Generic action button (works pages) */
+.repo-button-wrap {
+  display: flex;
+  justify-content: flex-start;
+  margin: 8px 0 18px;
+  animation: repoFadeInUp 0.45s ease-out;
+}
+
+.repo-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--repo-button-border, #d4d4d8);
+  background: var(--repo-button-bg, linear-gradient(135deg, #ffffff, #f5f3ff));
+  color: var(--repo-button-text, #1f2937);
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.repo-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(55, 48, 163, 0.16);
+  border-color: var(--repo-button-hover-border, #a78bfa);
+}
+
+.repo-button:active {
+  transform: translateY(0);
+}
+
+@keyframes repoFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Section styling */
 .tech-section {
   background: #ffffff;
