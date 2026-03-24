@@ -65,11 +65,11 @@
       <span class="year"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 18px; margin-right: 4px;">calendar_today</span>2025年</span>
     </div>
     <div class="Content_Genre" style="gap: 8px;">
-<span class="app-genre" style="background-color: #FF2E86;color: ;">AI</span>
-      <span class="app-genre" style="background-color: #7e29e0;color: ;">育成シミュレーション</span>
-      <span class="app-genre" style="background-color: #FF2D5F;color: ;">強化学習生物AI</span>
-      <span class="app-genre" style="background-color: #BA3679;color: ;">生物モデル構築・実装</span>
-      <span class="app-genre" style="background-color: #40537c;color: ;">SQLiteを用いたデータベース</span>
+<span class="app-genre" style="background-color: #FF2E86;">AI</span>
+      <span class="app-genre" style="background-color: #7e29e0;">育成シミュレーション</span>
+      <span class="app-genre" style="background-color: #FF2D5F;">強化学習生物AI</span>
+      <span class="app-genre" style="background-color: #BA3679;">生物モデル構築・実装</span>
+      <span class="app-genre" style="background-color: #40537c;">SQLiteを用いたデータベース</span>
     </div>
   </div>
 
@@ -78,7 +78,7 @@
     <!-- 概要 -->
     <section class="tech-section">
       <h2><span class="material-symbols-outlined">description</span> 概要</h2>
-      <p>あなたが見守るのは、“自分で学び、進化する”生物たち。
+      <p>あなたが見守るのは、<strong>自分で学び、進化する生物</strong>たち。
 <br>本作はAIの様な学習システムを備えた生物を、観察・育成しながら多様なバイオームを冒険する育成シミュレーションゲームです。
 <br>島を探索し、生物たちが自発的に行動を学び、他種族との戦いを経て淘汰と進化を繰り返します。
 <br>勝利すれば新たなパーツを獲得し、姿も能力も変化します。さらに撫でたりつついたりといった触れ合いで愛着が生まれ、あなただけの“推し”が育っていきます。
@@ -89,26 +89,57 @@
     <section class="tech-section">
       <h2><span class="material-symbols-outlined">build</span> 使用した技術</h2>
       <div class="tech-list">
-<div class="tech-item"><div class="tech-desc">使用技術の詳細は各プロジェクトにて確認できます。</div></div>
+<div class="tech-item">
+          <div class="tech-icon" style="background: #e11d48;"><span class="material-symbols-outlined">smart_toy</span>
+          </div>
+          <div class="tech-info">
+            <div class="tech-name">強化学習AI</div>
+            <div class="tech-desc">どのような伸び方や行動をしたら、エサを取れるのかを学び、行動に反映させる強化学習AIを実装しました。</div>
+          </div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon" style="background: #e1751d;"><span class="material-symbols-outlined">Database</span>
+          </div>
+          <div class="tech-info">
+            <div class="tech-name">学習データのSQLite管理</div>
+            <div class="tech-desc">学習データの増加によりJsonでは管理が複雑化し、処理遅延が発生する課題がありました。
+              <br>これをSQLiteで管理することで、高速な検索や並び替えを実現しました。</div>
+          </div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon" style="background: #43a416;"><span class="material-symbols-outlined">Memory</span>
+          </div>
+          <div class="tech-info">
+            <div class="tech-name">モジュールごとに分割した生物機能</div>
+            <div class="tech-desc">生物の見る、考える、行動する、伝えるなどの機能をモジュールごとに分割し、
+              <br>相互作用させることで、生物らしさを表現しました。</div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- なぜ作ったか -->
     <section class="tech-section">
       <h2><span class="material-symbols-outlined">psychology_alt</span> なぜ作ったか（Why）</h2>
-      <p><strong>命のつながりを進化と淘汰で表現</strong><br></p>
+      <p>以前、AIがプレイヤーのパズルの解き方を学び成長するゲームを制作した経験があった。
+<br>その経験から、個を育てるだけではなく、島の中で沢山のAIが考え行動し育つゲームを作り、AI同士が社会を作る姿を表現したかったから。</p>
     </section>
 
     <!-- どう解決したか -->
     <section class="tech-section">
       <h2><span class="material-symbols-outlined">lightbulb</span> どう解決したか</h2>
-      <p><strong>ローポリゴンを活かしたメリハリある表現</strong><br>通常シーンでは優しい雰囲気に、誕生シーンでは温かさを演出するなど、場面に応じた表現に工夫しました。</p>
+      <p>沢山の生物を島で動かした際に<strong>「負荷が大きくなる」課題</strong>がありましたが、非同期処理や、キャッシュを行い情報の取得頻度を落としたり、プレイヤーから遠くに居る生物は処理を軽量化するなど最適化に取り組みました。</p>
+      <p>また、AIが育つ過程を体験してもらうための工夫として、異なる生物同士が知識を活用しエサを取り合う戦いで、プレイヤーがAIの成長を実感できるようにしました。</p>
     </section>
 
     <!-- 学び -->
     <section class="tech-section">
       <h2><span class="material-symbols-outlined">school</span> 学び</h2>
-      <p>プロジェクトを通して得られた経験や学びがここに表示されます。</p>
+      <p>生物の持つ機能を、モジュールごとに分割しシステムに落とし込む設計力や、重い処理をリルタイムで行う場合の非同期処理やキャッシュを行い情報の取得頻度落とすなど処理負荷軽減の手法を学びました。
+      <br>また、生物の淘汰と進化のテーマを体験として伝わる形にするために、万博や東京ゲームダンジョンなどでの展示でプレイヤーから意見をいただいたり、キャラクターが話しかけながら少しずつ理解できるゲーム性を実現しました。</p>
+      <p>しかし、プレイヤーがゲームの目的が分からなくなってしまい、途中で止めてしまう課題がありました。</p>
+      <p>今後、目的を持って生物を育てることを楽しめるように、進化のサイクルを速く体験できるようにしたり、
+        <br>遺伝的アルゴリズムを用いて進化した事が見た目や行動に反映させるように改善を続けていきたいです。</p>
     </section>
 
   </div>
