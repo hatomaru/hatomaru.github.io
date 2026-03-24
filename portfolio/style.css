@@ -773,7 +773,9 @@ html {
 .feature-project-section {
   padding: 40px var(--section-padding-x);
   max-width: 1100px;
-  margin: 20px auto 40px;
+  margin: -80px auto 40px;
+  position: relative;
+  z-index: 10;
 }
 
 .feature-card {
@@ -864,16 +866,126 @@ html {
   line-height: 1.6;
 }
 
+/* scrolling and ticket layout */
+.feature-scroll-wrapper {
+  overflow: hidden;
+  width: 100%;
+  padding-bottom: 20px; /* shadow clipping prevention */
+}
+.feature-scroll-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-tickets 35s linear infinite;
+  gap: 30px; 
+  padding: 15px 0;
+}
+.feature-scroll-track:hover {
+  animation-play-state: paused;
+}
+@keyframes scroll-tickets {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 15px)); }
+}
+
+.ticket-layout {
+  position: relative;
+  width: 750px;
+  max-width: 85vw;
+  flex: 0 0 auto;
+  text-decoration: none !important; 
+}
+.ticket-layout * {
+  text-decoration: none !important;
+}
+
+.ticket-divider {
+  width: 4px;
+  background-image: linear-gradient(to bottom, #ddd 50%, rgba(255,255,255,0) 0%);
+  background-position: center;
+  background-size: 4px 20px;
+  background-repeat: repeat-y;
+  position: relative;
+  z-index: 1;
+}
+
+.ticket-divider::before,
+.ticket-divider::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff; /* Match outer body bg */
+  border-radius: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  box-shadow: inset 0 4px 6px rgba(0,0,0,0.06);
+}
+
+.ticket-divider::before {
+  top: -20px;
+}
+.ticket-divider::after {
+  bottom: -20px;
+  box-shadow: inset 0 -4px 6px rgba(0,0,0,0.06);
+}
+
 @media (max-width: 900px) {
   .feature-card {
     flex-direction: column;
   }
   .feature-image-container {
-    height: 260px;
-    min-height: 260px;
+    height: 180px;
+    min-height: 180px;
   }
   .feature-info {
-    padding: 30px 24px;
+    padding: 24px 20px;
+  }
+  .feature-reason {
+    padding: 12px 14px;
+  }
+  .feature-reason h4 {
+    font-size: 1em;
+    margin-bottom: 6px;
+  }
+  .feature-reason p {
+    font-size: 0.85em;
+    line-height: 1.5;
+  }
+  .feature-info h3 {
+    font-size: 1.5em;
+    margin-bottom: 12px;
+  }
+  .feature-badge {
+    margin-bottom: 12px;
+  }
+  
+  .ticket-layout {
+    width: 300px;
+  }
+  .ticket-divider {
+    height: 4px;
+    width: 100%;
+    background-image: linear-gradient(to right, #ddd 50%, rgba(255,255,255,0) 0%);
+    background-position: center;
+    background-size: 20px 4px;
+    background-repeat: repeat-x;
+  }
+  .ticket-divider::before,
+  .ticket-divider::after {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .ticket-divider::before {
+    left: -20px;
+    top: 50%;
+    box-shadow: inset -4px 0 6px rgba(0,0,0,0.06);
+  }
+  .ticket-divider::after {
+    left: auto;
+    right: -20px;
+    top: 50%;
+    box-shadow: inset 4px 0 6px rgba(0,0,0,0.06);
   }
 }
 

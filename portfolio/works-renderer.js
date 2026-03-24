@@ -3,25 +3,39 @@ let worksData = [];
 const itemsPerPage = 6;
 let currentPage = 1;
 
-function renderFeature(feature) {
-    if (!feature) return;
+function renderFeature(featureData) {
+    if (!featureData) return;
     const container = document.getElementById("feature-container");
     if (!container) return;
-    container.innerHTML = `
-    <a href="${feature.link}" class="feature-card">
+    
+    // Featureを配列化（3つの表示に対応）
+    const featuresList = Array.isArray(featureData) ? featureData : [featureData];
+    
+    let html = '<div class="feature-scroll-wrapper"><div class="feature-scroll-track">';
+    
+    const renderCard = (feature) => `
+    <a href="${feature.link}" class="feature-card ticket-layout">
         <div class="feature-image-container">
             <img src="${feature.image}" alt="Featured Project">
         </div>
+        <div class="ticket-divider"></div>
         <div class="feature-info">
             <div class="feature-badge">${feature.badge}</div>
             <h3>${feature.title}</h3>
-            <p>${feature.desc}</p>
             <div class="feature-reason">
                 <h4><span class="material-symbols-outlined">${feature.reasonIcon}</span> ${feature.reasonTitle}</h4>
                 <p>${feature.reasonDesc}</p>
             </div>
         </div>
     </a>`;
+
+    const cardsHtml = featuresList.map(renderCard).join('');
+    
+    // ループアニメーションのために要素を2倍にする
+    html += cardsHtml + cardsHtml; 
+    
+    html += '</div></div>';
+    container.innerHTML = html;
 }
 
 function renderWorks() {

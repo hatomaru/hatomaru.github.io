@@ -1,14 +1,36 @@
 {
-  "feature": {
-    "link": "contents/BlockWorld_Ai.html",
-    "image": "src/app/BlockWorld_Ai/サムネイル_12.jpg",
-    "badge": "注目作品",
-    "title": "BlockWorld Ai",
-    "desc": "パズルを学ぶ不思議なAI ホシハビトくんと共にゲーム内でパズルの動かし方を学ばせて、強力なボスにプレイヤーと共に戦うパズルRPGゲームです。",
-    "reasonIcon": "lightbulb",
-    "reasonTitle": "アピールしたい点",
-    "reasonDesc": "AI自身が学習して成長するという新しいゲーム体験を実現し、数々の賞を受賞。「強化学習」という技術を遊びながら学べるゲーム性"
-  },
+  "feature": [
+    {
+      "link": "contents/BlockWorld_Ai.html",
+      "image": "src/app/BlockWorld_Ai/サムネイル_12.jpg",
+      "badge": "注目作品",
+      "title": "BlockWorld Ai",
+      "desc": "パズルを学ぶ不思議なAI ホシハビトくんと共にゲーム内でパズルの動かし方を学ばせて、強力なボスにプレイヤーと共に戦うパズルRPGゲームです。",
+      "reasonIcon": "lightbulb",
+      "reasonTitle": "アピールしたい点",
+      "reasonDesc": "AI自身が学習して成長するという新しいゲーム体験を実現し、数々の賞を受賞。「強化学習」という技術を遊びながら学べるゲーム性"
+    },
+    {
+      "link": "contents/AIDrivenFramework.html",
+      "image": "src/app/AIDrivenFramework/Banner.png",
+      "badge": "OSS プロジェクト",
+      "title": "AIDrivenFramework",
+      "desc": "Unityで手軽にローカルLLMを動かし、ライセンスに配慮したセットアップをユーザー自身で行えるOSSフレームワークです。",
+      "reasonIcon": "build",
+      "reasonTitle": "アピールしたい点",
+      "reasonDesc": "今後のAI導入を革新する設計と使いやすさを追求。ぜひ試してみてください！"
+    },
+    {
+      "link": "contents/Amevar.html",
+      "image": "src/app/AM/サムネイル_1.jpg",
+      "badge": "展示作品",
+      "title": "Amevar",
+      "desc": "島のエサを最適な行動で食べる事を学ぶ生物を育成したり、戦いで淘汰・進化させたりする育成シミュレーションゲームです。",
+      "reasonIcon": "celebration",
+      "reasonTitle": "アピールしたい点",
+      "reasonDesc": "大阪・関西万博 デジタル学園祭へ出展し、その後も改良を続けています"
+    }
+  ],
   "works": [
     {
       "link": "contents/BlockWorld_Ai.html",
@@ -127,8 +149,8 @@
     },
     {
       "link": "contents/Amevar.html",
-      "authorIcon": "group",
-      "authorType": "チーム制作",
+      "authorIcon": "person",
+      "authorType": "個人制作",
       "image": "src/app/AM/サムネイル_1.jpg",
       "imagePos": "50% 50%",
       "title": "Amevar",
@@ -153,7 +175,7 @@
           "fg": "orange",
           "border": "2px solid orange",
           "icon": "trophy",
-          "text": "大阪万博 デジタル学園祭 出展（2025年7月）"
+          "text": "大阪・関西万博 デジタル学園祭 出展（2025年7月）"
         }
       ],
       "desc": "島のエサを最適な行動で食べる事を学ぶ生物を育成したり、戦いで淘汰・進化させたりする育成シミュレーションゲーム",
