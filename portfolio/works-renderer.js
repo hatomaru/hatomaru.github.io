@@ -68,7 +68,7 @@ function renderWorks() {
         let yearStr = work.year ? `<p class="Year">${work.year}</p>` : '';
         
         html += `
-        <div class="app-card fade-in">
+        <div class="app-card animate-on-scroll fade-in-up delay-1">
           <a href="${work.link}" style="color:black; text-decoration: none;">
             ${authorTypeStr}
             <div class="app-image-container">
@@ -90,6 +90,9 @@ function renderWorks() {
     container.innerHTML = html;
     
     renderPagination();
+    if(typeof window.initScrollAnimation === 'function') {
+        window.initScrollAnimation();
+    }
 }
 
 function renderPagination() {

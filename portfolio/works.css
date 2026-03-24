@@ -686,6 +686,36 @@ body {
   font-size: 20px;
 }
 
+/* スクロール連動アニメーション (Intersection Observer 用) */
+.animate-on-scroll {
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.fade-in-up {
+  transform: translateY(30px);
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* 段階的な表示（スタッガー効果）用 */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+
+/* スマホ等で視差効果を少し抑える設定 */
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll {
+    transition: opacity 0.5s ease;
+    transform: none;
+  }
+}
+
 /* Pagination container fade-in */
 #app-grid-container {
   min-height: 400px; /* Prevent layout jump */
