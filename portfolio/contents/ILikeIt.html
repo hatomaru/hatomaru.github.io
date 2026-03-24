@@ -45,15 +45,19 @@
       <span class="year"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 18px; margin-right: 4px;">calendar_today</span>2025年 Unity1Week あい投稿作品</span>
     </div>
     <div class="Content_Genre" style="gap: 8px;">
-<span class="app-genre" style="background-color: #FF2E86;color: ;">AI</span>
-      <span class="app-genre" style="background-color: #E08429;color: ;">カジュアル</span>
-      <span class="app-genre" style="background-color: #43A2D8;color: ;">unityroomで公開中</span>
-      <span class="app-genre" style="background-color: #FF2E86;color: ;">Geminiと連携したリアルタイム生成</span>
+<span class="app-genre" style="background-color: #FF2E86;">AI</span>
+      <span class="app-genre" style="background-color: #E08429;">カジュアル</span>
+      <span class="app-genre" style="background-color: #43A2D8;">unityroomで公開中</span>
+      <span class="app-genre" style="background-color: #FF2E86;">Geminiと連携したリアルタイム生成</span>
     </div>
   </div>
-
   <div class="tech-blog-content">
-    
+        <div class="repo-button-wrap">
+      <a class="repo-button" style="--repo-button-hover-border: #8bbbfa;" href="https://unityroom.com/games/ilike_it" target="_blank" rel="noopener noreferrer" aria-label="AIDrivenFramework GitHub Repository">
+        <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
+        unityroomで遊ぶ
+      </a>
+    </div>
     <!-- 概要 -->
     <section class="tech-section">
       <h2><span class="material-symbols-outlined">description</span> 概要</h2>
@@ -66,26 +70,35 @@
     <section class="tech-section">
       <h2><span class="material-symbols-outlined">build</span> 使用した技術</h2>
       <div class="tech-list">
-<div class="tech-item"><div class="tech-desc">使用技術の詳細は各プロジェクトにて確認できます。</div></div>
+<div class="tech-item">
+          <div class="tech-icon" style="background: #e11d48;"><span class="material-symbols-outlined">smart_toy</span>
+          </div>
+          <div class="tech-info">
+            <div class="tech-name">Geminiを用いたSNS風投稿生成</div>
+            <div class="tech-desc">プロンプトに投稿のポジティブ度やネガティブ度を取り入れて、<br>ゲーム状態に応じて変化させることでユーモアある投稿が生成されるようにしました。</div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- なぜ作ったか -->
     <section class="tech-section">
       <h2><span class="material-symbols-outlined">psychology_alt</span> なぜ作ったか（Why）</h2>
-      <p><strong>生成AIと連動した変化し続けるゲーム</strong><br></p>
+      <p>Unity1Weekでのお題<strong>「あい」</strong>から、SNSとメンタルヘルスを連想した。
+<br>SNS風の投稿を仕分けし、助けが必要そうな投稿に絆創膏を貼る優しいゲームを作りたいと思ったから。</p>
     </section>
 
     <!-- どう解決したか -->
     <section class="tech-section">
       <h2><span class="material-symbols-outlined">lightbulb</span> どう解決したか</h2>
-      <p><strong>いいねと絆創膏でそっと寄り添うゲーム体験</strong><br>SNS風の投稿を生成し、プレイヤーは「いいね」で共感、「絆創膏」で寄り添いを表現。現代社会をモチーフにした体験を表現しました。</p>
+      <p><strong>「いかにもAIが生成したような文章が出てしまう課題」</strong>にぶつかりました。
+        <br>この課題には、性格や話し方を定義したAIペルソナをプロンプトに取り入れることで、実際のSNSで流れていそうな自然な文体にすることができました。</p>
     </section>
 
     <!-- 学び -->
     <section class="tech-section">
       <h2><span class="material-symbols-outlined">school</span> 学び</h2>
-      <p>プロジェクトを通して得られた経験や学びがここに表示されます。</p>
+      <p>クラウドの生成AIをUnityから呼び出し、WebGL上で遊べるようにした経験から、<br>WebAPIへの理解やゲームにAIを組み込むことについて学びました。</p>
     </section>
 
   </div>
