@@ -57,10 +57,9 @@
       <span class="year"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 18px; margin-right: 4px;">calendar_today</span>2025年</span>
     </div>
     <div class="Content_Genre" style="gap: 8px;">
-<span class="app-genre" style="background-color: #1A88AA;color: ;">オンライン</span>
-      <span class="app-genre" style="background-color: #2FAA00;color: ;">計算練習</span>
-      <span class="app-genre" style="background-color: #1A88AA;color: ;">オンライン対戦</span>
-      <span class="app-genre" style="background-color: #2F5A82;color: ;">リアルタイムコメント機能</span>
+<span class="app-genre" style="background-color: #1A88AA;">オンライン対戦</span>
+      <span class="app-genre" style="background-color: #2FAA00;">計算練習</span>
+      <span class="app-genre" style="background-color: #2F5A82;">リアルタイムコメント機能</span>
     </div>
   </div>
 
@@ -82,26 +81,35 @@
     <section class="tech-section">
       <h2><span class="material-symbols-outlined">build</span> 使用した技術</h2>
       <div class="tech-list">
-<div class="tech-item"><div class="tech-desc">使用技術の詳細は各プロジェクトにて確認できます。</div></div>
+        <div class="tech-item">
+          <div class="tech-icon" style="background: #1d6be1;"><span class="material-symbols-outlined">Globe</span>
+          </div>
+          <div class="tech-info">
+            <div class="tech-name">Photon PUN2</div>
+            <div class="tech-desc">オンライン対戦機能を実装し、<br>コミュニケーションの手段としてルーム内でのチャット・スタンプ機能を実装</div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- なぜ作ったか -->
     <section class="tech-section">
       <h2><span class="material-symbols-outlined">psychology_alt</span> なぜ作ったか（Why）</h2>
-      <p><strong>オンラインでみんなで計算早押しバトル</strong><br>みんなでオンライン対戦が出来る機能を実装しました。<br>またスタンプやチャット機能でコミュニケーションを活性化できるように工夫しました</p>
+      <p>介護施設や学校で気軽に楽しめる、計算ゲームを作りたいと思ったから。</p>
     </section>
 
     <!-- どう解決したか -->
     <section class="tech-section">
       <h2><span class="material-symbols-outlined">lightbulb</span> どう解決したか</h2>
-      <p><strong>誰でも遊びやすい シンプルなUI</strong><br>ボタンにアイコンに追加したり、操作の手順をなるべく少なくする事で、誰でも遊びやすいゲームになるように工夫しました。</p>
+      <p>オンライン対戦において、「プレイヤー間で状態の同期がずれてしまう課題」に直面しました。
+        <br>この課題に対して、ルームのホストを基準とした状態管理を行い、ゲームの進行や結果判定を一元化することで、同期ズレを防ぐ設計にしました。</p>
+        <p>また、通信遅延による体験の低下を抑えるために、即時性が求められる処理と多少遅れても問題ない処理を分離し、安定した対戦体験を実現しました。</p>
     </section>
 
     <!-- 学び -->
     <section class="tech-section">
       <h2><span class="material-symbols-outlined">school</span> 学び</h2>
-      <p>プロジェクトを通して得られた経験や学びがここに表示されます。</p>
+      <p>部屋を立てたホストと参加者の区別や、同期がずれないような設計や実装を通じて、<br>簡易的なオンラインゲームを作るための基礎を身に着けました。</p>
     </section>
 
   </div>
