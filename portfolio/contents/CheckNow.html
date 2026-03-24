@@ -53,13 +53,16 @@
       <span class="year"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 18px; margin-right: 4px;">calendar_today</span>2026年</span>
     </div>
     <div class="Content_Genre" style="gap: 8px;">
-<span class="app-genre" style="background-color: #63522f;color: ;">実験的プロトタイプ</span>
-      <span class="app-genre" style="background-color: #274b53;color: ;">ユーティリティ</span>
-      <span class="app-genre" style="background-color: #5635ce;color: ;">Flutter</span>
-      <span class="app-genre" style="background-color: #7e3c5b;color: ;">AIエージェント</span>
+<span class="app-genre" style="background-color: #63522f;">実験的プロトタイプ</span>
+      <span class="app-genre" style="background-color: #274b53;">ユーティリティ</span>
+      <span class="app-genre" style="background-color: #5635ce;">Flutter</span>
     </div>
+           	 <p>
+			<a href="https://apps.apple.com/jp/app/%E7%A2%BA%E8%AA%8D%E3%81%A0%E3%81%91-%E9%8D%B5-%E9%9B%BB%E6%B0%97-%E3%82%AC%E3%82%B9%E3%81%AE%E7%8A%B6%E6%85%8B%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF/id6757307010?itsct=apps_box_badge&amp;itscg=30200" style="display: inline-block; overflow: hidden; border-radius: 13px; width: 120px; height: 83px; margin-right: 20px;margin-left: 20px;"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp?size=250x83&amp;releaseDate=1693872000" alt="Download on the App Store" style="border-radius: 13px; width: 120px; height: 83px;"></a>
+			<a href='https://play.google.com/store/apps/details?id=com.OneTeamdot.NowCheck&hl=ja&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Google Play で手に入れよう' src='https://play.google.com/intl/ja_jp/badges/static/images/badges/ja_badge_web_generic.png' style = "width: 150px;margin-top: -73px"/></a>
+		  </p>
+		  <p style="font-size: 10px">Google Play および Google Play ロゴは、Google LLC の商標です。</p>
   </div>
-
   <div class="tech-blog-content">
     
     <!-- 概要 -->
@@ -67,33 +70,62 @@
       <h2><span class="material-symbols-outlined">description</span> 概要</h2>
       <p>確認だけは、電気を消したか、鍵を閉めたのかなど日頃に忘れがちな物を記録して確認できるアプリです。
 <br>本アプリはコードの9割をバイブコーディングを用いて制作しました。</p>
+      <p><strong>確認行動を最短で記録できる設計</strong><br>「記録し忘れを防ぐ」ことを重視し、1タップでチェックが残せる導線にしました。朝の外出前や就寝前など、短時間でも使えるようにしています。</p>
+      <p><strong>履歴の見える化で不安を軽減</strong><br>いつ何を確認したかを後から見返せるようにし、「確認したか不安」という状態を減らす体験を目指しました。</p>
     </section>
 
     <!-- 使用した技術 -->
     <section class="tech-section">
       <h2><span class="material-symbols-outlined">build</span> 使用した技術</h2>
       <div class="tech-list">
-<div class="tech-item"><div class="tech-desc">使用技術の詳細は各プロジェクトにて確認できます。</div></div>
+        <div class="tech-item">
+          <div class="tech-icon" style="background: #5635ce;"><span class="material-symbols-outlined">phone_iphone</span>
+          </div>
+          <div class="tech-info">
+            <div class="tech-name">Flutterによるクロスプラットフォーム開発</div>
+            <div class="tech-desc">1つのコードベースで画面と状態管理を組み立て、短期間で試作と検証を回せる構成にしました。</div>
+          </div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon" style="background: #7e3c5b;"><span class="material-symbols-outlined">auto_awesome</span>
+          </div>
+          <div class="tech-info">
+            <div class="tech-name">AIエージェントを活用した開発フロー</div>
+            <div class="tech-desc">仕様の言語化、UIのたたき台生成、コード補完をAIと対話しながら進め、実装速度を高めました。</div>
+          </div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon" style="background: #0f766e;"><span class="material-symbols-outlined">design_services</span>
+          </div>
+          <div class="tech-info">
+            <div class="tech-name">視認性を重視したUI設計</div>
+            <div class="tech-desc">コントラストとタップ領域を意識し、急いでいる場面でも誤操作しにくい情報配置を検証しました。</div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- なぜ作ったか -->
     <section class="tech-section">
       <h2><span class="material-symbols-outlined">psychology_alt</span> なぜ作ったか（Why）</h2>
-      <p><strong>シンプルで視認性の高いデザイン</strong><br>今作は視認性の高いモダン風なデザインにこだわりました。<br>
-具体的には記録項目のコントラスト比や記録しやすいUIを工夫しました。</p>
+      <p>外出後に「鍵を閉めたか」「電源を切ったか」を何度も気にしてしまう体験を、記録によって減らしたいと考えたのがきっかけです。
+      <br>また、日常的に使う機能だからこそ、複雑な操作を減らしたシンプルなUI設計が重要だと考えました。</p>
     </section>
 
     <!-- どう解決したか -->
     <section class="tech-section">
       <h2><span class="material-symbols-outlined">lightbulb</span> どう解決したか</h2>
-      <p><strong>AIエージェントとの対話</strong><br>制作ではAIエージェントに要点とやってほしい事をまとめつつ、対話をしながら進めました。</p>
+      <p><strong>「記録が手間で続かない課題」</strong>に対しては、カテゴリを絞ったチェックUIにして、入力負荷を減らしました。
+      <br>さらに、<strong>「確認した事実を後から思い出せない課題」</strong>に対しては、履歴を時系列で見返せる設計にして、不安の再確認をしやすくしました。</p>
+      <p>制作ではAIエージェントに要点とタスクを渡し、実装と改善のサイクルを短く回すことで、短期間で検証可能な形に到達しました。</p>
     </section>
 
     <!-- 学び -->
     <section class="tech-section">
       <h2><span class="material-symbols-outlined">school</span> 学び</h2>
-      <p>プロジェクトを通して得られた経験や学びがここに表示されます。</p>
+      <p>AI支援開発では、最初に目的・制約・優先順位を明確に言語化するほど、成果物の精度が上がることを学びました。
+      <br>また、日常アプリでは機能の多さよりも、迷わず操作できる導線と情報の見やすさが継続利用に直結することを再確認しました。</p>
+      <p>今後は通知機能や記録テンプレートの追加を通して、より習慣化しやすい体験に改善していきたいです。</p>
     </section>
 
   </div>
