@@ -53,14 +53,21 @@
       <span class="year"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 18px; margin-right: 4px;">calendar_today</span>2026年</span>
     </div>
     <div class="Content_Genre" style="gap: 8px;">
-<span class="app-genre" style="background-color: #5b2eff;color: ;">ローカルLLM</span>
-      <span class="app-genre" style="background-color: #274b53;color: ;">ユーティリティ</span>
-      <span class="app-genre" style="background-color: #5635ce;color: ;">Llama.cpp</span>
-      <span class="app-genre" style="background-color: #40537c;color: ;">プロセス管理</span>
+<span class="app-genre" style="background-color: #5b2eff;">ローカルLLM</span>
+      <span class="app-genre" style="background-color: #274b53;">ユーティリティ</span>
+      <span class="app-genre" style="background-color: #5635ce;">Llama.cpp / Ollama</span>
+      <span class="app-genre" style="background-color: #40537c;">プロセス管理</span>
     </div>
   </div>
 
   <div class="tech-blog-content">
+
+    <div class="repo-button-wrap">
+      <a class="repo-button" style="--repo-button-hover-border: #a78bfa;" href="https://github.com/hatomaru/AIDrivenFramework" target="_blank" rel="noopener noreferrer" aria-label="AIDrivenFramework GitHub Repository">
+        <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
+        GitHub Repository
+      </a>
+    </div>
     
     <!-- 概要 -->
     <section class="tech-section">
@@ -73,27 +80,47 @@
     <section class="tech-section">
       <h2><span class="material-symbols-outlined">build</span> 使用した技術</h2>
       <div class="tech-list">
-<div class="tech-item"><div class="tech-desc">使用技術の詳細は各プロジェクトにて確認できます。</div></div>
+     <div class="tech-item">
+          <div class="tech-icon" style="background: #e11d48;"><span class="material-symbols-outlined">smart_toy</span>
+          </div>
+          <div class="tech-info">
+            <div class="tech-name">柔軟に置き換え可能なExecutor設計</div>
+            <div class="tech-desc">LLMの生成処理をExecutorとして抽象化し、使用するモデルや実行方式を柔軟に切り替えられる構造にしました。</div>
+          </div>
+        </div>
+             <div class="tech-item">
+          <div class="tech-icon" style="background: #581de1;"><span class="material-symbols-outlined">Wand_Stars</span>
+          </div>
+          <div class="tech-info">
+            <div class="tech-name">導入を簡単にするセットアップウィザード</div>
+            <div class="tech-desc">ウィザード形式でLLMとモデルをダウンロード・設定できるようにし、ユーザーがローカルLLMを用いたゲームを簡単に遊べるようにしました。</div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- なぜ作ったか -->
     <section class="tech-section">
       <h2><span class="material-symbols-outlined">psychology_alt</span> なぜ作ったか（Why）</h2>
-      <p><strong>短いコードでLLMを使い始められる</strong><br></p>
+      <p>UnityでローカルLLMを用いたゲームを開発・リリースする際には、モデルのライセンスやプロセス制御、LLMとの連携など、実装の複雑さが大きな課題となっていました。
+<br>また、これらの課題により、開発者が気軽にLLMをゲームに組み込むことが難しく、またユーザーにとっても安全に利用できる環境を整えるハードルが高い状況でした。</p>
+<p>そこで、開発者が簡単に扱え、かつユーザーも安全に利用できるローカルLLM統合基盤を構築したいと考えたからです。</p>
     </section>
 
     <!-- どう解決したか -->
     <section class="tech-section">
       <h2><span class="material-symbols-outlined">lightbulb</span> どう解決したか</h2>
-      <p><strong>ユーザーが選択できるライセンスに配慮したUX</strong><br>ユーザー自身もLLMの初期設定を行えるようにしました。<br></be>
-なおかつ好きなモデルを選択できるようにしてライセンスに配慮し、UXも両立させました。</p>
+      <p><strong>「ユーザーがモデルを準備するのに手間がかかる課題」</strong>は、アプリ内のウィザードで、VRAMの容量を読み込みユーザーに合ったモデルのダウンロード先を提案し、ダウンロードするとアプリ内で設定するようにして、利便性とライセンスに配慮した設計にしました。
+      <br>また、<strong>「開発者が自社のLLMに最適化しにくい課題」</strong>は、プロセスの管理をFWで行い、生成部分の処理をExecuterで置き換えられるようにすることで柔軟に扱えるようにしました。</p>
+      <p>従来は数日かかっていたLLM統合を、数時間で導入できることを目標に設計しました。</p>
     </section>
 
     <!-- 学び -->
     <section class="tech-section">
       <h2><span class="material-symbols-outlined">school</span> 学び</h2>
-      <p>プロジェクトを通して得られた経験や学びがここに表示されます。</p>
+      <p>抽象化設計（Executor）とプロセス管理を分離することで、拡張性と再利用性の高い構成を実現する重要性を学びました。
+<br>また、OSSでの配信活動や、コミュニティに積極的に発信する経験を通じて、発信力や構造を設計して伝える力を強化できました。</p>
+<p>現在は実際に使われる形にするため、ユースケースの拡充に取り組んでいます。</p>
     </section>
 
   </div>
