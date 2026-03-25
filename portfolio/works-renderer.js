@@ -114,12 +114,20 @@ function initFeatureScroller(originalCount) {
 function renderWorks() {
     const container = document.getElementById("app-grid-container");
     if (!container) return;
-    container.innerHTML = "";
     
     // pagination
     const startIdx = (currentPage - 1) * itemsPerPage;
     const endIdx = startIdx + itemsPerPage;
     const itms = worksData.slice(startIdx, endIdx);
+    
+    // 作品データがない場合のデバッグまたはガード
+    if (itms.length === 0 && worksData.length > 0) {
+        currentPage = 1;
+        renderWorks();
+        return;
+    }
+
+    container.innerHTML = "";
 
     let html = "";
     itms.forEach(work => {

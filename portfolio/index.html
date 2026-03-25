@@ -1,87 +1,131 @@
-<!DOCTYPE html>
-<html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>One Team. Portfolio</title>
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   <link rel="icon" href="favicon_P.ico">
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   <link rel="stylesheet" href="../css/defaultstyle.css">
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/portfolio.css">
   <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
-  <!-- ナビゲーションバー -->
-  <script>
-    $(function () {
-      $.get('../navbar_O.html', function (data) {
+<!-- 
+  ================================================================
+  1. 共通ナビゲーション: 動的読み込み (Navbar)
+  ================================================================
+-->
+<script>
+  $(function () {
+    const loadNavbar = (path) => {
+      return $.get(path, function (data) {
         $('body').append(data);
-        // ナビゲーションが読み込まれた後にハンバーガーメニューを初期化
-        if (typeof initHamburgerMenu === 'function') {
-          initHamburgerMenu();
-        }
-      }).fail(function() {
-        // Fallback for when running directly in portfolio dir
-        $.get('/navbar_O.html', function (data) {
-          $('body').append(data);
-          if (typeof initHamburgerMenu === 'function') {
-            initHamburgerMenu();
-          }
-        });
+        if (typeof initHamburgerMenu === 'function') initHamburgerMenu();
       });
-    });
-  </script>
+    };
 
-  <section class="hero-section">
-    <div class="hero-bg-text-container">
-      <div class="hero-bg-text">EXPAND THE EXPERIENCE WITH AI • EXPAND THE EXPERIENCE WITH AI • EXPAND THE EXPERIENCE
-        WITH AI • EXPAND THE EXPERIENCE WITH AI •</div>
+    loadNavbar('../navbar_O.html').fail(() => loadNavbar('/navbar_O.html'));
+  });
+</script>
+
+<!--
+  ================================================================
+  3. HERO SECTION: メインタイトルと実績表示
+  ================================================================
+-->
+<section class="hero-section">
+  <div class="hero-bg-text-container">
+    <div class="hero-bg-text">
+      EXPAND THE EXPERIENCE WITH AI • EXPAND THE EXPERIENCE WITH AI • EXPAND THE EXPERIENCE WITH AI • EXPAND THE EXPERIENCE WITH AI •
     </div>
-    <h1 class="hero-title animate-on-scroll fade-in-up delay-1">AIで体験を拡張する</h1>
+  </div>
+  <h1 class="hero-title animate-on-scroll fade-in-up delay-1">AIで体験を拡張する</h1>
 
-    <!-- 実績アピールセクション (Hero直下・3つに厳選) -->
-    <div class="achievement-container animate-on-scroll fade-in-up delay-2">
-      <div class="glass-achievement">
-        <span class="achievement-emoji">🏆</span>
-        <div class="achievement-info">
-          <div class="achievement-title">TGS & Expo 2025 Exhibition</div>
-          <div class="achievement-desc">TGS2024 Selected Indie 80選出・大阪・関西万博出展など
-            <br>多数の出展・The 17th Unity Awards Best Student Project部門 準優秀賞など多数の受賞歴
-          </div>
+  <!-- 実績: ガラス風カード (Hero下部) -->
+  <div class="achievement-container animate-on-scroll fade-in-up delay-2">
+    <!-- 実績 1: TGS & 万博 -->
+    <div class="glass-achievement">
+      <span class="achievement-emoji">🏆</span>
+      <div class="achievement-info">
+        <div class="achievement-title">
+          TGS & Expo 2025 Exhibition<br>
+          <span style="font-size: 0.85em; opacity: 0.9;">The 17th Unity Awards Best Student Project RUNNERUP</span>
         </div>
-      </div>
-      <div class="glass-achievement">
-        <span class="achievement-emoji">🤖</span>
-        <div class="achievement-info">
-          <div class="achievement-title">AI x Game Engineer</div>
-          <div class="achievement-desc">強化学習・LLM・AIのゲーム統合に取り組むエンジニア</div>
-        </div>
-      </div>
-      <div class="glass-achievement">
-        <span class="achievement-emoji">🌐</span>
-        <div class="achievement-info">
-          <div class="achievement-title">OSS & Community</div>
-          <div class="achievement-desc"><strong>UnityでLLM導入を簡略化するOSS</strong>を開発 AIDrivenFramework等の公開
-            <br>コミュニティと積極的に交流し、フィードバックを反映
-          </div>
+        <div class="achievement-desc">
+          TGS2024 Selected Indie 80選出・大阪・関西万博出展など<br>
+          多数の出展・受賞歴があります。
         </div>
       </div>
     </div>
-  </section>
 
-  <section class="feature-project-section animate-on-scroll fade-in-up delay-2" id="feature"
-    style="max-width: 100vw; overflow-x: hidden;">
-    <h2 class="TitleText">Feature Project</h2>
-    <h2 class="TitleDetail">注目のプロジェクト</h2>
-    <div id="feature-container" style="width: 100%;"></div>
-  </section>
+    <!-- 実績 2: 役割 -->
+    <div class="glass-achievement">
+      <span class="achievement-emoji">🤖</span>
+      <div class="achievement-info">
+        <div class="achievement-title">AI x Game Engineer</div>
+        <div class="achievement-desc">強化学習・LLM・AI의 ゲーム統合に取り組むエンジニア</div>
+      </div>
+    </div>
+
+    <!-- 実績 3: コミュニティ -->
+    <div class="glass-achievement">
+      <span class="achievement-emoji">🌐</span>
+      <div class="achievement-info">
+        <div class="achievement-title">OSS & Community</div>
+        <div class="achievement-desc">
+          <strong>UnityでLLM導入を簡略化するOSS</strong>を開発。AIDrivenFramework等の公開やコミュニティ活動を行っています。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="feature-project-section animate-on-scroll fade-in-up delay-2" id="feature">
+  <h2 class="TitleText">Feature Project</h2>
+  <h2 class="TitleDetail">注目のプロジェクト</h2>
+  
+  <div id="feature-container">
+    <!-- 静的フォールバック (JS有効時は works-renderer.js により上書きされます) -->
+    <div class="feature-scroll-wrapper">
+      <div class="feature-scroll-track">
+        <!-- カード 1 -->
+        <a href="contents/BlockWorld_Ai.html" class="feature-card ticket-layout">
+          <div class="feature-image-container"><img src="src/app/BlockWorld_Ai/サムネイル_12.jpg" alt="BlockWorld Ai"></div>
+          <div class="ticket-divider"></div>
+          <div class="feature-info">
+            <div class="feature-badge">注目作品</div>
+            <h3>BlockWorld Ai</h3>
+            <div class="feature-reason">
+              <h4><span class="material-symbols-outlined">lightbulb</span> アピールしたい点</h4>
+              <p>AI自身が学習して成長するという新しいゲーム体験を実現し、数々の賞を受賞。</p>
+            </div>
+          </div>
+        </a>
+        <!-- カード 2 -->
+        <a href="contents/AIDrivenFramework.html" class="feature-card ticket-layout">
+          <div class="feature-image-container"><img src="src/app/AIDrivenFramework/Banner.png" alt="AIDrivenFramework"></div>
+          <div class="ticket-divider"></div>
+          <div class="feature-info">
+            <div class="feature-badge">OSS プロジェクト</div>
+            <h3>AIDrivenFramework</h3>
+            <div class="feature-reason">
+              <h4><span class="material-symbols-outlined">build</span> アピールしたい点</h4>
+              <p>Unityで手軽にLLMを動かし、誰でもセットアップできるOSSフレームワークです。</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<noscript>
+  <div class="no-js-warning">
+    JavaScriptが制限されているため、一部のリッチな機能（ドラッグ操作など）が利用できません。標準のリンクから閲覧可能です。
+  </div>
+</noscript>
 
   <section class="about" id="about" style="padding-top: 40px;">
     <div class="about-container">
@@ -187,68 +231,98 @@
   </section>
   <!-- 作品の一覧 -->
   <section class="apps-section" id="app" style="padding-top: 20px;">
+    <div class="app-grid" id="app-grid-container">
+      <!-- JS無効時または読み込み待ち時のデフォルト表示 (JS有効時は renderer により上書きされます) -->
+      <div class="app-card">
+        <a href="contents/BlockWorld_Ai.html" style="color:black; text-decoration: none;">
+          <div class="app-image-container"><img src="src/app/BlockWorld_Ai/サムネイル_12.jpg" alt="作品"></div>
+          <div class="app-info"><h3>BlockWorld Ai</h3><div class="app-appeal">AIと共闘する新感覚パズルRPG</div><p>パズルを学ぶ不思議なAIと共に戦うパズルRPGゲームです。</p></div>
+        </a>
+      </div>
+      <div class="app-card">
+        <a href="contents/AIDrivenFramework.html" style="color:black; text-decoration: none;">
+          <div class="app-image-container"><img src="src/app/AIDrivenFramework/Banner.png" alt="作品"></div>
+          <div class="app-info"><h3>AIDrivenFramework</h3><div class="app-appeal">UnityでのAI導入を革新するOSS</div><p>手軽にローカルLLMを動かすためのOSSフレームワーク</p></div>
+        </a>
+      </div>
+      <div class="app-card">
+        <a href="contents/Amevar.html" style="color:black; text-decoration: none;">
+          <div class="app-image-container"><img src="src/app/AM/サムネイル_1.jpg" alt="作品"></div>
+          <div class="app-info"><h3>Amevar</h3><div class="app-appeal">生物の進化と淘汰を見守るシミュレーション</div><p>大阪・関西万博 デジタル学園祭へ出展</p></div>
+        </a>
+      </div>
+    </div>
 
-    <div class="app-grid" id="app-grid-container"></div>
+    <noscript>
+      <p style="text-align: center; margin-top: 30px; font-weight: 500;">※JavaScriptを有効にすると、全作品の閲覧・検索・ページ移動が可能です。</p>
+    </noscript>
     <div id="pagination-controls"
       style="display:flex; justify-content:center; gap: 8px; margin-top: 35px; margin-bottom: 20px;"></div>
   </section>
+
+  <!--
+  ================================================================
+  6. SKILLS: スキル一覧
+  ================================================================
+-->
   <section class="apps-section" id="skil" style="padding-top: 40px;">
     <h2 class="TitleText" style="font-size: 4.0em;">Skills</h2>
     <h2 class="TitleDetail">スキル</h2>
     <div class="app-grid">
-      <!-- アプリカード -->
+      <!-- スキルカード 1 -->
       <div class="app-card animate-on-scroll fade-in-up delay-1">
         <div class="app-image-container">
-          <img src="src/app/BlockWorld_Ai/サムネイル_5.jpg" alt="アプリのスクリーンショット" style="object-position: 100% 20%;">
+          <img src="src/app/BlockWorld_Ai/サムネイル_5.jpg" alt="スキル画像" style="object-position: 100% 20%;">
         </div>
         <div class="app-info">
           <h3>Unityを使った2Dゲーム制作</h3>
-          <p>主にUnityを使って、カジュアルゲームやパズルゲームを作っています。<br>また最近では3Dにも挑戦しています。
-          </p>
+          <p>主にUnityを使って、カジュアルゲームやパズルゲームを作っています。<br>また最近では3Dにも挑戦しています。</p>
         </div>
       </div>
+      <!-- スキルカード 2 -->
       <div class="app-card animate-on-scroll fade-in-up delay-1">
         <div class="app-image-container">
-          <img src="src/app/BlockWorld_Ai/サムネイル_5.jpg" alt="アプリのスクリーンショット" style="object-position: 100% 20%;">
+          <img src="src/app/BlockWorld_Ai/サムネイル_5.jpg" alt="スキル画像" style="object-position: 100% 20%;">
         </div>
         <div class="app-info">
           <h3>Unity ML‐Agentsを用いたモデル設計</h3>
-          <p>Unity ML‐Agentsを用いて、AIモデルの設計と実装を行い、高度な敵AIの実装に挑戦しています。
-          </p>
+          <p>Unity ML‐Agentsを用いて、AIモデルの設計と実装を行い、高度な敵AIの実装に挑戦しています。</p>
         </div>
       </div>
+      <!-- スキルカード 3 -->
       <div class="app-card animate-on-scroll fade-in-up delay-1">
         <div class="app-image-container">
-          <img src="src/SkillImage/SkillImage_Ai.png" alt="アプリのスクリーンショット" style="object-position: 100% 20%;">
+          <img src="src/SkillImage/SkillImage_Ai.png" alt="スキル画像" style="object-position: 100% 20%;">
         </div>
         <div class="app-info">
           <h3>強化学習AIの設計と実装</h3>
-          <p>強化学習を用いた高度なゲームAIの設計・実装を行い、プレイヤーの行動を学習して共に成長するゲームを開発しています。
-          </p>
+          <p>強化学習を用いた高度なゲームAIの設計・実装を行い、プレイヤーの行動を学習して共に成長するゲームを開発しています。</p>
         </div>
       </div>
+      <!-- スキルカード 4 -->
       <div class="app-card animate-on-scroll fade-in-up delay-1">
         <div class="app-image-container">
-          <img src="src/SkillImage/SkillImage_Desgin.png" alt="アプリのスクリーンショット" style="object-position: 100% 20%;">
+          <img src="src/SkillImage/SkillImage_Desgin.png" alt="スキル画像" style="object-position: 100% 20%;">
         </div>
         <div class="app-info">
           <h3>UIの設計と実装</h3>
-          <p>UGUIを使用し、UnityでのUI設計・実装を行っています。また、EventTriggerを用いた判定も実装できます。
-          </p>
+          <p>UGUIを使用し、UnityでのUI設計・実装を行っています。また、EventTriggerを用いた判定も実装できます。</p>
         </div>
       </div>
+      <!-- スキルカード 5 -->
       <div class="app-card animate-on-scroll fade-in-up delay-1">
         <div class="app-image-container">
-          <img src="src/Skill_Design.png" alt="アプリのスクリーンショット" style="object-position: 100% 20%;">
+          <img src="src/Skill_Design.png" alt="スキル画像" style="object-position: 100% 20%;">
         </div>
         <div class="app-info">
           <h3>Figmaを使ったUIデザイン</h3>
           <p>FigmaやIllustratorを使ったデザインに取り組んでいます。</p>
         </div>
       </div>
+      <!-- スキルカード 6 -->
       <div class="app-card">
         <div class="app-image-container">
-          <img src="src/SkillImage/SkillImage_Movie.png" alt="アプリのスクリーンショット" style="object-position: 100% 20%;">
+          <img src="src/SkillImage/SkillImage_Movie.png" alt="スキル画像" style="object-position: 100% 20%;">
         </div>
         <div class="app-info">
           <h3>映像編集</h3>
@@ -257,90 +331,69 @@
       </div>
     </div>
   </section>
-  <script>
-    $(function () {
-      $.get('../footer_O.html', function (data) {
+
+  <!-- JS制限環境向けフッター -->
+  <noscript>
+    <footer style="background: #222; color: #fff; padding: 40px 20px; text-align: center; margin-top: 60px;">
+      <p>&copy; 2026 One Team. Portfolio</p>
+      <div style="margin-top: 15px;">
+        <a href="index.html" style="color: #fff; margin: 0 10px;">Home</a>
+        <a href="#feature" style="color: #fff; margin: 0 10px;">Projects</a>
+        <a href="#about" style="color: #fff; margin: 0 10px;">About</a>
+        <a href="https://hatomaru.github.io/OneTeam_dot/" style="color: #fff; margin: 0 10px;">Official Site</a>
+      </div>
+    </footer>
+  </noscript>
+<!-- 
+  ================================================================
+  7. FOOTER: フッター読み込みとパネル制御
+  ================================================================
+-->
+<script>
+  $(function () {
+    const loadFooter = (path) => {
+      return $.get(path, function (data) {
         $('body').append(data);
-      }).fail(function() {
-        $.get('/footer_O.html', function (data) {
-          $('body').append(data);
-        });
       });
-    });
-  </script>
-  <script src="../js/scripts.js?v=2"></script>
-  <script src="../js/menu.js?v=2"></script>
-  <script>
-    // About折り畳み制御（スマホ/タブレット）
-    (function () {
-      var toggle = document.querySelector('.about-toggle');
-      var panel = document.getElementById('about-content');
-      if (!toggle || !panel) return;
+    };
+    loadFooter('../footer_O.html').fail(() => loadFooter('/footer_O.html'));
+  });
+</script>
 
-      var mq = window.matchMedia('(max-width: 768px)');
+<!-- スクリプト読み込み -->
+<script src="../js/scripts.js?v=2"></script>
+<script src="../js/menu.js?v=2"></script>
+<script src="works-renderer.js"></script>
 
-      function setOpen(open) {
-        if (open) {
-          panel.classList.add('is-open');
-          if (mq.matches) {
-            // 実高まで滑らかに展開
-            panel.style.maxHeight = panel.scrollHeight + 'px';
-          } else {
-            panel.style.maxHeight = '';
-          }
-          toggle.setAttribute('aria-expanded', 'true');
-          toggle.innerHTML = '<span class="material-symbols-outlined" style="margin-right:6px;">expand_less</span>閉じる';
-        } else {
-          panel.classList.remove('is-open');
-          if (mq.matches) {
-            panel.style.maxHeight = '0px';
-          } else {
-            panel.style.maxHeight = '';
-          }
-          toggle.setAttribute('aria-expanded', 'false');
-          toggle.innerHTML = '<span class="material-symbols-outlined" style="margin-right:6px;">expand_more</span>開く';
-        }
+<!-- Aboutパネルの制御スクリプト -->
+<script>
+  (function () {
+    const toggle = document.querySelector('.about-toggle');
+    const panel = document.getElementById('about-content');
+    if (!toggle || !panel) return;
+
+    const mq = window.matchMedia('(max-width: 768px)');
+
+    function setOpen(open) {
+      if (open) {
+        panel.classList.add('is-open');
+        panel.style.maxHeight = mq.matches ? panel.scrollHeight + 'px' : '';
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.innerHTML = '<span class="material-symbols-outlined" style="margin-right:6px;">expand_less</span>閉じる';
+      } else {
+        panel.classList.remove('is-open');
+        panel.style.maxHeight = mq.matches ? '0px' : '';
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.innerHTML = '<span class="material-symbols-outlined" style="margin-right:6px;">expand_more</span>開く';
       }
+    }
 
-      function applyByMedia(e) {
-        if (e.matches) {
-          // 小画面: デフォルトは折り畳み。#about指定時は自動で開く
-          setOpen(location.hash === '#about');
-        } else {
-          // 大画面: 常に開く（CSS的にも影響なしだが状態を合わせる）
-          setOpen(true);
-        }
-      }
-
-      toggle.addEventListener('click', function () {
-        var isOpen = toggle.getAttribute('aria-expanded') === 'true';
-        setOpen(!isOpen);
-      });
-
-      if (mq.addEventListener) {
-        mq.addEventListener('change', applyByMedia);
-      } else if (mq.addListener) {
-        // 旧ブラウザ互換
-        mq.addListener(applyByMedia);
-      }
-      applyByMedia(mq);
-
-      // アンカー遷移でAbout指定時に開く
-      window.addEventListener('hashchange', function () {
-        if (location.hash === '#about' && mq.matches) {
-          setOpen(true);
-        }
-      });
-
-      // リサイズや向き変更で開いている場合の高さを追従
-      window.addEventListener('resize', function () {
-        if (mq.matches && toggle.getAttribute('aria-expanded') === 'true') {
-          panel.style.maxHeight = panel.scrollHeight + 'px';
-        }
-      });
-    })();
-  </script>
-  <script src="works-renderer.js"></script>
+    toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') === 'false'));
+    mq.addEventListener('change', (e) => setOpen(!e.matches));
+    
+    // 初期状態
+    setOpen(!mq.matches || location.hash === '#about');
+  })();
+</script>
 </body>
-
 </html>
