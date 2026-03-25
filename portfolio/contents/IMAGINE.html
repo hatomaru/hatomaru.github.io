@@ -1,0 +1,174 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>One Team. Portfolio | IMAGINE</title>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+	<link rel="icon" href="/portfolio/favicon_P.ico">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="../../css/defaultstyle.css">
+  <link rel="stylesheet" href="../../css/styles.css">
+	<link rel="stylesheet" href="../../css/portfolio.css">
+  <link rel="stylesheet" href="../works.css">
+  <style>
+    :root{
+      /* 作品ページごとに変更可能なドット色 */
+      --dot-color: #d1d5db;           /* 通常 */
+      --dot-color-active: #1b6769;    /* アクティブ */
+      --dot-color-hover: #1b6769;     /* ホバー */
+    }
+  </style>
+</head>
+
+<body>
+
+    <!-- ナビゲーションバー -->
+     <script>
+      $(function() {
+        $.get('/navbar_O.html', function(data){
+          $('body').append(data);
+        });
+      });
+    </script>
+
+
+  <section id="hero" style="margin-bottom: 0px;">
+    <section class="slideshow-section">
+      <div class="slideshow-container">
+        <div class="mySlides fade">
+          <img src="../src/app/Lab/IMAGINE.jpg">
+        </div>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
+      <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+      </div>
+    </section>
+  </section>
+
+  <div class="project-header animate-on-scroll fade-in-up">
+    <div class="appeal-text" style="--appeal-color-1: #f59e0b; --appeal-color-2: #ef4444 80%;">車窓から世界と対話するAIコンシェルジュ体験</div>
+    <h1 class="project-title">IMAGINE</h1>
+    <div class="project-meta">
+      <span class="year"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 18px; margin-right: 4px;">calendar_today</span>2026年</span>
+    </div>
+    <div class="Content_Genre" style="gap: 8px;">
+              <span class="app-genre" style="background-color: #d43464;">AIコンシェルジュ</span>
+<span class="app-genre" style="background-color: #2e70ff;">顔認識</span>
+            <span class="app-genre" style="background-color: #5635ce;">Flutter</span>
+    </div>
+  </div>
+
+  <div class="tech-blog-content">
+    
+    <div class="repo-button-wrap">
+      <a class="repo-button" style="--repo-button-hover-border: #a78bfa;" href="https://github.com/GDGoC-Japan-Hackathon/imagine" target="_blank" rel="noopener noreferrer" aria-label="AIDrivenFramework GitHub Repository">
+        <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
+        GitHub Repository
+      </a>
+    </div>
+
+    <!-- 概要 -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">description</span> 概要</h2>
+      <p>IMAGINEは、自動運転車内のエンタメにおける「未来の空白」を埋めるアプリです。車窓から注視した建物をAIが検出し、音声でツアーガイドとして情報を届けることを目的としています。
+        <br>これまで衝突回避などの安全のために用いられてきた自動運転の画像認識技術を、乗員の移動体験向上のために活用します。</p>
+    </section>
+
+    <!-- チーム編成 -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">groups</span> チーム編成</h2>
+      <div class="tech-list">
+        <div class="tech-item">
+          <div class="tech-icon" style="background: #0b97f5;"><span class="material-symbols-outlined">person</span>
+          </div>
+          <div class="tech-info">
+            <div class="tech-name">私</div>
+            <div class="tech-desc">フロントエンド・バックエンド実装、Geminiのプロンプト設計、リレーサーバ実装を担当。</div>
+          </div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon" style="background: #0b97f5;"><span class="material-symbols-outlined">person</span>
+          </div>
+          <div class="tech-info">
+            <div class="tech-name">コータさん</div>
+            <div class="tech-desc">アイデア出し、AAOS関係、初期のアプリデザイン、フロントエンド部分を担当。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 使用した技術 -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">build</span> 使用した技術</h2>
+      <div class="tech-list">
+        <div class="tech-item">
+          <div class="tech-icon" style="background: #e11d48;"><span class="material-symbols-outlined">smart_toy</span>
+          </div>
+          <div class="tech-info">
+            <div class="tech-name">Geminiと読み上げ機能を用いた解説システム</div>
+            <div class="tech-desc">視線先の建物画像をGeminiに入力し、解説文と対象物の情報を取得する。
+                <br>さらにTTSで読み上げることで、バスガイドのような体験を実現しました。</div>
+          </div>
+        </div>
+                <div class="tech-item">
+          <div class="tech-icon" style="background: #e11d78;"><span class="material-symbols-outlined">Familiar_Face_And_Zone</span>
+          </div>
+          <div class="tech-info">
+            <div class="tech-name">MediaPipeでの顔認識</div>
+            <div class="tech-desc">車載器などのモバイル端末で、処理負荷を軽減するためにMediaPipeと接続方法にMethodChannelを使いました。
+<br>また、全ての顔が検出開始から2秒間静止している場合に検出するようにし、運転手がうとうとしているなどの場合に
+<br>誤動作しないようにしました。</div>
+          </div>
+        </div>
+                        <div class="tech-item">
+          <div class="tech-icon" style="background: #e11db0;"><span class="material-symbols-outlined">Electric_Car</span>
+          </div>
+          <div class="tech-info">
+            <div class="tech-name">未来の車（AAOS)　にカメラが無い制約を、スマホ＋リレーサーバで解決</div>
+            <div class="tech-desc">AAOSには原則カメラが無いため、スマホからGoogle Cloud Computing Engine上に構築したリレーサーバに接続してカメラ映像や切り替えコマンドを送信できるようにしました。</div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- なぜ作ったか -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">psychology_alt</span> なぜ作ったか（Why）</h2>
+      <p>ハッカソンでチームメンバーが、自動運転の車には音楽を聴くしかエンターテイメントが無いと問題定義を話している様子を聞いて、
+        <br>観光客の案内や、視覚障害者の補助として活用できると思ったから</p>
+    </section>
+
+    <!-- どう解決したか -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">lightbulb</span> どう解決したか</h2>
+      <p><strong>「AAOSでカメラが認識しない課題」</strong>にぶつかった際は、USBカメラで接続できるようにするなど様々な方法を試しましたが、解決する事はできませんでした。
+<br>しかし、スマホをカメラにし、リレーサーバを経由してネットワークをつないで解決しました。</p>
+<p>また、<strong>「生成時間が1分以上かかるレイテンシの課題」</strong>もありました。
+    <br>この課題はハッカソンでは気づくことが出来なかったので、今後生成中の時間にキャラクターが関連しそうな話題を話してくれたり、Gemini TTSを用いた高度な生成ではなく、端末内の読み上げ機能を用いるなど改善していきたいです。</p>    
+</section>
+
+    <!-- 学び -->
+    <section class="tech-section animate-on-scroll fade-in-up delay-1">
+      <h2><span class="material-symbols-outlined">school</span> 学び</h2>
+      <p>ハッカソンを通じて、制約のある環境でも別の手段を組み合わせて解決する力を身につけました。
+        <br>特に、AAOSでカメラが利用できない問題に対して、スマホとリレーサーバを組み合わせることで代替手段を構築できたのは大きな学びでした。</p>
+        <p>また、生成AIのレイテンシが体験に与える影響を実感し、待ち時間をどのように体験として設計するかの重要性を学びました。</p>
+    </section>
+
+  </div>
+
+  <script>
+      $(function() {
+        $.get('/footer_O.html', function(data){
+          $('body').append(data);
+        });
+      });
+    </script>
+  <script src="../../js/scripts.js"></script>
+  <script src="../../js/menu.js"></script>
+</body>
+
+</html>
