@@ -63,23 +63,22 @@ body {
 .slideshow-section {
   display: block;
   max-width: var(--max-width);
-  margin: 0 auto 12px
+  margin: 0 auto 24px;
+  position: relative;
+  width: 100%;
 }
 
 .slideshow-container {
   position: relative;
-  border-radius: 10px;
-  /* overflow: hidden を削除して、画像が途切れないようにする */
-  overflow: visible; 
-  background: rgba(0, 0, 0, 0.02);
+  border-radius: 12px;
+  overflow: hidden; /* モバイルでの不自然なはみ出しを防ぐために一時的に戻す */
+  background: rgba(0, 0, 0, 0.03);
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 200px;
+  min-height: 250px;
 }
 
 /* mySlidesが親要素の幅を正しく取得し、中央揃えを維持する */
@@ -95,17 +94,15 @@ body {
   width: auto;
   height: auto;
   max-width: 100% !important;
-  /* max-heightを制限しつつ、アスペクト比を維持して途切れないように設定 */
-  max-height: 70vh !important; 
+  max-height: 70vh !important;
   object-fit: contain !important;
   display: block;
   margin: 0 auto;
-  border-radius: 8px;
 }
 
 @media (min-width: 768px) {
   .slideshow-container img {
-    max-height: 550px !important; /* PCでの過剰な拡大を防止 */
+    max-height: 550px !important;
   }
 }
 
@@ -423,10 +420,11 @@ body {
 
 /* --- Tech Blog Layout Sections --- */
 .project-header {
-  padding: 30px 20px 20px;
+  padding: 40px 20px 24px;
   max-width: var(--max-width);
   margin: 0 auto;
   text-align: left;
+  clear: both; /* 回り込み防止 */
 }
 
 .appeal-text {
