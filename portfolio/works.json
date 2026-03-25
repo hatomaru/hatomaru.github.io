@@ -1,6 +1,16 @@
 {
   "feature": [
     {
+      "link": "contents/IMAGINE.html",
+      "image": "src/app/IMAGINE/サムネイル_1.jpg",
+      "badge": "ハッカソン作品",
+      "title": "IMAGINE",
+      "desc": "車窓から注視した建物をAIが検出し、音声でリアルタイムに解説する「未来の移動体験」を提供するAIコンシェルジュ。",
+      "reasonIcon": "psychology_alt",
+      "reasonTitle": "アピールしたい点",
+      "reasonDesc": "制約のある環境下でも、別の手段（スマホ＋リレーサーバ）を組み合わせた提案力と、生成AIの体験設計を重視しました。"
+    },
+    {
       "link": "contents/BlockWorld_Ai.html",
       "image": "src/app/BlockWorld_Ai/サムネイル_12.jpg",
       "badge": "注目作品",
@@ -32,6 +42,40 @@
     }
   ],
   "works": [
+    {
+      "link": "contents/IMAGINE.html",
+      "authorIcon": "groups",
+      "authorType": "チーム制作",
+      "image": "src/app/IMAGINE/サムネイル_1.jpg",
+      "imagePos": "50% 50%",
+      "title": "IMAGINE",
+      "appeal": "車窓から世界と対話するAIコンシェルジュ体験",
+      "tags": [
+        {
+          "bg": "#d43464",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "AIコンシェルジュ"
+        },
+        {
+          "bg": "#5635ce",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "Flutter"
+        },
+        {
+          "bg": "#2fad26",
+          "fg": "whitesmoke",
+          "border": "",
+          "icon": "",
+          "text": "ハッカソン作品"
+        }
+      ],
+      "desc": "自動運転車内のエンタメにおける「未来の空白」を埋めるアプリ。<br>車窓から注視した建物をAIが検出し、音声でツアーガイドとして情報を届けます。",
+      "year": "2026年"
+    },
     {
       "link": "contents/BlockWorld_Ai.html",
       "authorIcon": "person",

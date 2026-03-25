@@ -788,7 +788,7 @@ html {
   margin: -80px auto 40px;
   position: relative;
   z-index: 10;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   border-radius: 24px;
 }
 
@@ -960,7 +960,7 @@ html {
 }
 
 .feature-reason {
-  background: #f8f9fa;
+  background: #ffffff;
   padding: 20px 24px;
   border-left: 5px solid #5b2eff;
   border-radius: 0 12px 12px 0;
@@ -1031,7 +1031,7 @@ html {
   left: 50%;
   width: 40px;
   height: 40px;
-  background-color: #f8f9fa; /* Match outer section bg */
+  background-color: #ffffff; /* Match outer section bg */
   border-radius: 50%;
   transform: translateX(-50%);
   z-index: 10;
@@ -1091,7 +1091,7 @@ html {
   .ticket-divider::after {
     top: 50%;
     transform: translateY(-50%);
-    background-color: #f8f9fa;
+    background-color: #ffffff;
   }
   .ticket-divider::before {
     left: -20px;
