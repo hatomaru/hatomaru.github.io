@@ -1,7 +1,7 @@
 User-agent: *
-Allow: /sitemap.xml
+Allow: /
 Allow: /OneTeam_dot/
 Allow: /portfolio/
-Disallow: /
+Allow: /sitemap.xml
 
 Sitemap: https://hatomaru.github.io/sitemap.xml
