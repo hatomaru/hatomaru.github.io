@@ -11,7 +11,7 @@ function renderFeature(featureData) {
     // Featureを配列化（3つの表示に対応）
     const featuresList = Array.isArray(featureData) ? featureData : [featureData];
     
-    let html = '<div class="feature-scroll-wrapper"><div class="feature-scroll-track">';
+    let html = '<div class="feature-scroll-wrapper" id="feature-scroll-wrapper"><div class="feature-scroll-track" id="feature-scroll-track">';
     
     const renderCard = (feature) => `
     <a href="${feature.link}" class="feature-card ticket-layout">
@@ -31,11 +31,84 @@ function renderFeature(featureData) {
 
     const cardsHtml = featuresList.map(renderCard).join('');
     
-    // ループアニメーションのために要素を2倍にする
-    html += cardsHtml + cardsHtml; 
+    // 無限ループのために3倍にする（前・中・後）
+    html += cardsHtml + cardsHtml + cardsHtml; 
     
     html += '</div></div>';
     container.innerHTML = html;
+
+    // ドラッグスクロールの初期化
+    initFeatureScroller(featuresList.length);
+}
+
+function initFeatureScroller(originalCount) {
+    const wrapper = document.getElementById("feature-scroll-wrapper");
+    const track = document.getElementById("feature-scroll-track");
+    if (!wrapper || !track) return;
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    let isMoving = false;
+
+    // 初期位置を中央（2セット目の開始位置）に設定
+    const cardWidth = track.scrollWidth / 3;
+    wrapper.scrollLeft = cardWidth;
+
+    const startAction = (e) => {
+        isDown = true;
+        isMoving = false;
+        wrapper.classList.add('active');
+        startX = (e.pageX || e.touches[0].pageX) - wrapper.offsetLeft;
+        scrollLeft = wrapper.scrollLeft;
+    };
+
+    const stopAction = () => {
+        isDown = false;
+        wrapper.classList.remove('active');
+        // ドラッグ移動した場合はリンク遷移を抑制するためにフラグを使用（任意）
+    };
+
+    const moveAction = (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        isMoving = true;
+        const x = (e.pageX || e.touches[0].pageX) - wrapper.offsetLeft;
+        const walk = (x - startX) * 2; // スクロール速度の調整
+        wrapper.scrollLeft = scrollLeft - walk;
+        checkInfiniteScroll();
+    };
+
+    const checkInfiniteScroll = () => {
+        // 左端のセットに到達したら中央セットへワープ
+        if (wrapper.scrollLeft <= 0) {
+            wrapper.scrollLeft = cardWidth;
+        } 
+        // 右端のセット（2セット目以降）に到達したら中央セットへワープ
+        else if (wrapper.scrollLeft >= cardWidth * 2) {
+            wrapper.scrollLeft = cardWidth;
+        }
+    };
+
+    wrapper.addEventListener('mousedown', startAction);
+    wrapper.addEventListener('touchstart', startAction, { passive: true });
+    
+    window.addEventListener('mouseleave', stopAction);
+    window.addEventListener('mouseup', stopAction);
+    window.addEventListener('touchend', stopAction);
+
+    wrapper.addEventListener('mousemove', moveAction);
+    wrapper.addEventListener('touchmove', moveAction);
+
+    // スムーズなスクロールのためのイベント
+    wrapper.addEventListener('scroll', checkInfiniteScroll);
+
+    // カードクリック時のドラッグ判定
+    wrapper.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            if (isMoving) e.preventDefault();
+        });
+    });
 }
 
 function renderWorks() {

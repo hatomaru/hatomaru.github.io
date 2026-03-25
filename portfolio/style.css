@@ -780,8 +780,35 @@ html {
   border-radius: 24px;
 }
 
+.feature-scroll-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  padding: 30px 20px 60px;
+  cursor: grab;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.feature-scroll-wrapper::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Webkit */
+}
+
+.feature-scroll-wrapper.active {
+  cursor: grabbing;
+}
+
+.feature-scroll-track {
+  display: inline-flex;
+  gap: 30px;
+  will-change: transform;
+}
+
 .feature-card {
-  display: flex;
+  flex: 0 0 calc(min(100%, 800px));
+  width: calc(min(100%, 800px));
+  display: flex !important;
   flex-direction: row;
   background: var(--card-bg);
   border-radius: 20px;
@@ -789,8 +816,17 @@ html {
   overflow: hidden;
   border: 1px solid var(--muted-border);
   transition: transform 280ms ease, box-shadow 280ms ease;
+  white-space: normal; /* テキストの折り返しを許可 */
   text-decoration: none;
   color: inherit;
+}
+
+/* モバイルでのカード幅調整 */
+@media (max-width: 768px) {
+  .feature-card {
+    flex: 0 0 85vw;
+    width: 85vw;
+  }
 }
 
 .feature-card:hover {
