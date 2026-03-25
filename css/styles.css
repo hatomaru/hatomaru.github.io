@@ -73,46 +73,21 @@
     box-sizing: border-box;
   }
 
-.Link{
-	
-}
-/* CSS Document */
-
-/* 全体のスタイル */
-body, html {
-  margin: 0;
-  padding: 0;
-  font-family: 'Arial', sans-serif;
-}
-
-/* スライドショーのセクションのスタイル */
-.slideshow-section {
-  position: relative;
-  max-width: 100%;
-  
-}
-
-/* スライドショーのコンテナのスタイル */
-/* スライドショーのコンテナのスタイル */
+/* スライドショーのコンテナのスタイル - ページごとのCSSで制御 */
 .slideshow-container {
-  max-width: 100%; /* 最大幅は画面の幅と同じ */
-  height: 500px; /* ここで高さを固定 */
-  position: relative;
-  margin: auto;
-  overflow: hidden; /* はみ出した部分は非表示に */
-  margin-bottom: 20px;
+  width: 100%;
 }
 
 /* 各スライドのスタイル */
 .mySlides {
-  display: none; /* スライドは一つずつ表示 */
-  height: 100%; /* コンテナの高さに合わせる */
+  display: none;
+  width: 100%;
 }
 
 .mySlides img {
-  width: 100%; /* 画像は幅いっぱいに広げる */
-  height: 100%; /* 画像の高さをコンテナの高さに合わせる */
-  object-fit: contain; /* 画像全体が見えるように調整 */
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .FillSlide img {
@@ -181,18 +156,7 @@ body, html {
   }
 }
 
-/* レスポンシブデザインのためのメディアクエリ */
-@media (max-width: 768px) {
-  .slideshow-container {
-    height: 300px; /* 小さい画面での高さを調整 */
-  }
-}
-
-@media (max-width: 480px) {
-  .slideshow-container {
-    height: 200px; /* さらに小さい画面での高さを調整 */
-  }
-}
+/* モバイルおよび小画面での調整は各ページのCSSで管理 */
 
 
 /* スライド下のドットナビゲーションのスタイル */
