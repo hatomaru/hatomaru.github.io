@@ -1,4 +1,14 @@
 window.__MEDIA_DATA = [
+    {
+    "title": "【特集】世界が注目！若手ゲームクリエイター・三浦大幹さん",
+    "meta": "YBSワイドニュース様",
+    "desc": "The 17th Unity Awards Best Student Project部門 RUNNER UPを受賞したBlockWorld Aiや活動について番組内で紹介していただきました。",
+    "image": "",
+    "objectFit": "cover",
+    "objectPosition": "center",
+    "href": "https://www.youtube.com/watch?v=8Tyltp-1WFc",
+    "published": "2026-03-03"
+  },
   {
     "title": "Amevar（アミーバー）レビュー｜のんびり見守るAI生物育成、癒しと課題も正直に",
     "meta": "ファインマン・システム株式会社様",
