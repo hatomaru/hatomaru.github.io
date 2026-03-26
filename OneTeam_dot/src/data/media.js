@@ -1,6 +1,6 @@
 window.__MEDIA_DATA = [
     {
-    "title": "【特集】世界が注目！若手ゲームクリエイター・三浦大幹さん",
+    "title": "【特集】好きを極めて夢実現",
     "meta": "YBSワイドニュース様",
     "desc": "The 17th Unity Awards Best Student Project部門 RUNNER UPを受賞したBlockWorld Aiや活動について番組内で紹介していただきました。",
     "image": "",
