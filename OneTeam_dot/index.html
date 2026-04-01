@@ -1,738 +1,1042 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-  <script>
-  // グローバルに呼べる初期化関数を用意する
-  function initHamburgerMenu(){
-    const hamb = document.getElementById('hamb');
-    const drawer = document.getElementById('drawer');
-    const backdrop = document.getElementById('backdrop');
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script>
+      // グローバルに呼べる初期化関数を用意する
+      function initHamburgerMenu() {
+        const hamb = document.getElementById("hamb");
+        const drawer = document.getElementById("drawer");
+        const backdrop = document.getElementById("backdrop");
 
-    if (!hamb || !drawer || !backdrop) return; // ナビがまだ存在しない場合は何もしない
+        if (!hamb || !drawer || !backdrop) return; // ナビがまだ存在しない場合は何もしない
 
-    // --- ドロワーをトップバーの下に配置する調整 ---
-    // モバイルでトップバーが固定表示（sticky）されている場合、
-    // ドロワーの内容がトップバーの背後に隠れてしまうため、
-    // トップバーの高さを測って drawer の top/height を調整する。
-    const topbar = document.querySelector('.topbar');
-    function updateDrawerPosition(){
-      const topH = (topbar && topbar.getBoundingClientRect) ? Math.round(topbar.getBoundingClientRect().height) : 0;
-      // topbar の高さ分だけドロワーを下げ、残りを高さにする
-      drawer.style.top = topH + 'px';
-      drawer.style.height = `calc(100vh - ${topH}px)`;
-    }
-    // 初期設定とリサイズで更新
-    updateDrawerPosition();
-    window.addEventListener('resize', updateDrawerPosition, { passive: true });
-
-    function setDrawer(open){
-      drawer.classList.toggle('open', open);
-      backdrop.classList.toggle('open', open);
-      hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
-      document.body.classList.toggle('drawer-open', open);
-    }
-
-    hamb.addEventListener('click', () => {
-      const open = !drawer.classList.contains('open');
-      setDrawer(open);
-    });
-    backdrop.addEventListener('click', () => setDrawer(false));
-    // 画面外をタップ/クリックしたときにドロワーを閉じる（スマホ向け）
-    document.addEventListener('pointerdown', (e) => {
-      try {
-        if (!drawer.classList.contains('open')) return;
-        // composedPath を使ってイベントパス内に drawer または hamb があるか確認
-        const path = (e.composedPath && e.composedPath()) || (function fallback(el){
-          const arr = [];
-          let node = el;
-          while(node){ arr.push(node); node = node.parentNode; }
-          return arr;
-        })(e.target);
-        if (!path.includes(drawer) && !path.includes(hamb)) {
-          setDrawer(false);
+        // --- ドロワーをトップバーの下に配置する調整 ---
+        // モバイルでトップバーが固定表示（sticky）されている場合、
+        // ドロワーの内容がトップバーの背後に隠れてしまうため、
+        // トップバーの高さを測って drawer の top/height を調整する。
+        const topbar = document.querySelector(".topbar");
+        function updateDrawerPosition() {
+          const topH =
+            topbar && topbar.getBoundingClientRect
+              ? Math.round(topbar.getBoundingClientRect().height)
+              : 0;
+          // topbar の高さ分だけドロワーを下げ、残りを高さにする
+          drawer.style.top = topH + "px";
+          drawer.style.height = `calc(100vh - ${topH}px)`;
         }
-      } catch (err) {
-        // 念のため例外は無視して挙動に影響を出さない
-        // console.error(err);
-      }
-    }, { passive: true });
-    drawer.addEventListener('click', (e) => {
-      if (e.target.tagName === 'A') setDrawer(false);
-    });
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && drawer.classList.contains('open')) setDrawer(false);
-    });
-  }
-  </script>
-  <title>One Team. – 「かける」で体験をつくる</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <canvas id="scene" aria-hidden="true"></canvas>
+        // 初期設定とリサイズで更新
+        updateDrawerPosition();
+        window.addEventListener("resize", updateDrawerPosition, {
+          passive: true,
+        });
 
-      <!-- ナビゲーションバー -->
-     <script>
-      $(function() {
-        $.get('/navbar_OC.html', function(data){
-      $('body').prepend(data);
+        function setDrawer(open) {
+          drawer.classList.toggle("open", open);
+          backdrop.classList.toggle("open", open);
+          hamb.setAttribute("aria-expanded", open ? "true" : "false");
+          document.body.classList.toggle("drawer-open", open);
+        }
+
+        hamb.addEventListener("click", () => {
+          const open = !drawer.classList.contains("open");
+          setDrawer(open);
+        });
+        backdrop.addEventListener("click", () => setDrawer(false));
+        // 画面外をタップ/クリックしたときにドロワーを閉じる（スマホ向け）
+        document.addEventListener(
+          "pointerdown",
+          (e) => {
+            try {
+              if (!drawer.classList.contains("open")) return;
+              // composedPath を使ってイベントパス内に drawer または hamb があるか確認
+              const path =
+                (e.composedPath && e.composedPath()) ||
+                (function fallback(el) {
+                  const arr = [];
+                  let node = el;
+                  while (node) {
+                    arr.push(node);
+                    node = node.parentNode;
+                  }
+                  return arr;
+                })(e.target);
+              if (!path.includes(drawer) && !path.includes(hamb)) {
+                setDrawer(false);
+              }
+            } catch (err) {
+              // 念のため例外は無視して挙動に影響を出さない
+              // console.error(err);
+            }
+          },
+          { passive: true },
+        );
+        drawer.addEventListener("click", (e) => {
+          if (e.target.tagName === "A") setDrawer(false);
+        });
+        window.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && drawer.classList.contains("open"))
+            setDrawer(false);
+        });
+      }
+    </script>
+    <title>One Team. – 「かける」で体験をつくる</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <canvas id="scene" aria-hidden="true"></canvas>
+
+    <!-- ナビゲーションバー -->
+    <script>
+      $(function () {
+        $.get("/navbar_OC.html", function (data) {
+          $("body").prepend(data);
           // ナビゲーションが読み込まれた後にハンバーガーメニューを初期化
-          if (typeof initHamburgerMenu === 'function') {
+          if (typeof initHamburgerMenu === "function") {
             initHamburgerMenu();
           }
         });
       });
     </script>
 
-  <header id="top" class="animate-in animate-fade-up">
-    <p class="lead animate-in animate-fade-up animate-delay-1">「かける」で体験をつくる</p>
-    <h1 class="animate-in animate-fade-up animate-delay-2">One Team.</h1>
-  </header>
+    <header id="top" class="animate-in animate-fade-up">
+      <p class="lead animate-in animate-fade-up animate-delay-1">
+        「かける」で体験をつくる
+      </p>
+      <h1 class="animate-in animate-fade-up animate-delay-2">One Team.</h1>
+    </header>
 
-  <!-- FEATURED PROJECT セクション -->
-  <section id="featured" class="section animate-in animate-fade-up">
-    <div class="carousel-title-group is-center" style="margin-bottom: 2rem;">
-      <h2 class="carousel-title featured-title">
-        <span class="dot"></span>
-        <span class="txt">FEATURED PROJECT</span>
-      </h2>
-      <p class="carousel-subtitle" style="font-size:1.1rem; letter-spacing:0.05em;">注目作品</p>
-    </div>
-    <div id="featured-container" class="animate-in animate-fade-up animate-delay-1"></div>
-  </section>
-
-  <!-- About セクション -->
-  <section id="about" class="section">
-    <h2 class="animate-in animate-fade-up">About</h2>
-    <p class="animate-in animate-fade-up">One Team. (ワンチームドット) は、<br>
-    テクノロジー × デザイン × ストーリーを掛け合わせて<br>
-    新しい体験を作る個人開発者です。<br>
-    AI やローカルLLMなどの技術を用いた実験やプロトタイプ制作を行い、<br>
-    作品や制作過程で得た気づきを Protopedia や Note などで発信しています。</p>
-  </section>
-
-  <!-- GAMES セクション -->
-  <section id="games" class="section animate-in animate-fade-left">
-    <div class="carousel">
-      <div class="controls animate-in animate-fade-up animate-delay-1">
-        <div class="carousel-title-group">
-          <h2 class="carousel-title">GAMES</h2>
-          <p class="carousel-subtitle">ゲーム作品</p>
-        </div>
-        <div class="carousel-nav-group">
-          <button class="btn-nav" id="games-prev">◀ Prev</button>
-          <span class="page-indicator" id="games-indicator">1 / 1</span>
-          <button class="btn-nav" id="games-next">Next ▶</button>
-        </div>
+    <!-- 重要なお知らせ セクション -->
+    <section id="important-notice" class="section animate-in animate-fade-up">
+      <div
+        class="card"
+        style="
+          text-align: center;
+          padding: 32px 24px;
+          max-width: 600px;
+          margin-left: auto;
+          margin-right: auto;
+          border: 2px solid #ef4444;
+          background-color: rgba(239, 68, 68, 0.05);
+        "
+      >
+        <h2
+          style="
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0 0 16px;
+            color: #ef4444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+          "
+        >
+          ⚠️ 重要なお知らせ
+        </h2>
+        <p
+          style="
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin: 0 0 16px;
+            line-height: 1.6;
+          "
+        >
+          この度諸事情により、<bold>「BlockWorld Ai」</bold
+          >をストアから非公開にさせていただきます。
+        </p>
+        <p
+          style="
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin: 0 0 24px;
+            line-height: 1.6;
+          "
+        >
+          また、One
+          Team.が配信するほぼ全てのアプリも対応が必要なため一時的に配信を終了させていただきます。(5月末ごろに対応し再開予定)
+        </p>
+        <p
+          style="
+            color: var(--text);
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 0;
+            line-height: 1.6;
+          "
+        >
+          遊んでくださった皆様に深く感謝します。<br />
+          ありがとうございました！！
+        </p>
       </div>
-      <div class="grid animate-in animate-fade-up animate-delay-2" id="games-grid"></div>
-    </div>
-  </section>
+    </section>
 
-  <!-- LABS セクション -->
-  <section id="labs" class="section animate-in animate-fade-left">
-    <div class="carousel">
-      <div class="controls animate-in animate-fade-up animate-delay-1">
-        <div class="carousel-title-group">
-          <h2 class="carousel-title">LABS</h2>
-          <p class="carousel-subtitle">体験づくりの過程で生まれた実験や、<br>技術検証・ゲーム以外の作品を紹介しています</p>
-        </div>
-        <div class="carousel-nav-group">
-          <button class="btn-nav" id="labs-prev">◀ Prev</button>
-          <span class="page-indicator" id="labs-indicator">1 / 1</span>
-          <button class="btn-nav" id="labs-next">Next ▶</button>
-        </div>
-      </div>
-      <div class="grid animate-in animate-fade-up animate-delay-2" id="labs-grid"></div>
-    </div>
-  </section>
+    <!-- About セクション -->
+    <section id="about" class="section">
+      <h2 class="animate-in animate-fade-up">About</h2>
+      <p class="animate-in animate-fade-up">
+        One Team. (ワンチームドット) は、<br />
+        テクノロジー × デザイン × ストーリーを掛け合わせて<br />
+        新しい体験を作る個人開発者です。<br />
+        AI やローカルLLMなどの技術を用いた実験やプロトタイプ制作を行い、<br />
+        作品や制作過程で得た気づきを Protopedia や Note などで発信しています。
+      </p>
+    </section>
 
-  <!-- STORY セクション -->
-  <section id="story" class="section animate-in animate-fade-right">
-    <div class="carousel">
-      <div class="controls animate-in animate-fade-up animate-delay-1">
-        <div class="carousel-title-group">
-          <h2 class="carousel-title">STORY</h2>
+    <!-- GAMES セクション -->
+    <section id="games" class="section animate-in animate-fade-left">
+      <div class="carousel">
+        <div class="controls animate-in animate-fade-up animate-delay-1">
+          <div class="carousel-title-group">
+            <h2 class="carousel-title">GAMES</h2>
+            <p class="carousel-subtitle">ゲーム作品</p>
+          </div>
+          <div class="carousel-nav-group">
+            <button class="btn-nav" id="games-prev">◀ Prev</button>
+            <span class="page-indicator" id="games-indicator">1 / 1</span>
+            <button class="btn-nav" id="games-next">Next ▶</button>
+          </div>
         </div>
-        <div class="carousel-nav-group">
-          <button class="btn-nav" id="story-prev">◀ Prev</button>
-          <span class="page-indicator" id="story-indicator">1 / 1</span>
-          <button class="btn-nav" id="story-next">Next ▶</button>
-        </div>
+        <div
+          class="grid animate-in animate-fade-up animate-delay-2"
+          id="games-grid"
+        ></div>
       </div>
-      <p class="animate-in animate-fade-up animate-delay-2">作品制作の思考ログや小話を紹介しています</p>
-      <div class="grid animate-in animate-fade-up animate-delay-3" id="story-grid"></div>
-    </div>
-  </section>
+    </section>
 
-  <!-- MEDIA セクション -->
-  <section id="media" class="section animate-in animate-fade-right">
-    <div class="carousel">
-      <div class="controls animate-in animate-fade-up animate-delay-1">
-        <div class="carousel-title-group">
-          <h2 class="carousel-title">MEDIA</h2>
-          <p class="carousel-subtitle">各種メディアにて、作品や活動についてご紹介いただいた実績を掲載しています。</p>
+    <!-- LABS セクション -->
+    <section id="labs" class="section animate-in animate-fade-left">
+      <div class="carousel">
+        <div class="controls animate-in animate-fade-up animate-delay-1">
+          <div class="carousel-title-group">
+            <h2 class="carousel-title">LABS</h2>
+            <p class="carousel-subtitle">
+              体験づくりの過程で生まれた実験や、<br />技術検証・ゲーム以外の作品を紹介しています
+            </p>
+          </div>
+          <div class="carousel-nav-group">
+            <button class="btn-nav" id="labs-prev">◀ Prev</button>
+            <span class="page-indicator" id="labs-indicator">1 / 1</span>
+            <button class="btn-nav" id="labs-next">Next ▶</button>
+          </div>
         </div>
-        <div class="carousel-nav-group">
-          <button class="btn-nav" id="media-prev">◀ Prev</button>
-          <span class="page-indicator" id="media-indicator">1 / 1</span>
-          <button class="btn-nav" id="media-next">Next ▶</button>
-        </div>
+        <div
+          class="grid animate-in animate-fade-up animate-delay-2"
+          id="labs-grid"
+        ></div>
       </div>
-      <div class="grid animate-in animate-fade-up animate-delay-2" id="media-grid"></div>
-    </div>
-  </section>
+    </section>
 
-  <!-- GUIDELINE セクション -->
-  <section id="guideline" class="section animate-in animate-fade-right">
-    <div class="carousel">
-      <div class="controls animate-in animate-fade-up animate-delay-1">
-        <div class="carousel-title-group">
-          <h2 class="carousel-title">GUIDELINE</h2>
-          <p class="carousel-subtitle">利用指針</p>
+    <!-- STORY セクション -->
+    <section id="story" class="section animate-in animate-fade-right">
+      <div class="carousel">
+        <div class="controls animate-in animate-fade-up animate-delay-1">
+          <div class="carousel-title-group">
+            <h2 class="carousel-title">STORY</h2>
+          </div>
+          <div class="carousel-nav-group">
+            <button class="btn-nav" id="story-prev">◀ Prev</button>
+            <span class="page-indicator" id="story-indicator">1 / 1</span>
+            <button class="btn-nav" id="story-next">Next ▶</button>
+          </div>
         </div>
-        <div class="carousel-nav-group">
-          <button class="btn-nav" id="guide-prev">◀ Prev</button>
-          <span class="page-indicator" id="guide-indicator">1 / 1</span>
-          <button class="btn-nav" id="guide-next">Next ▶</button>
-        </div>
+        <p class="animate-in animate-fade-up animate-delay-2">
+          作品制作の思考ログや小話を紹介しています
+        </p>
+        <div
+          class="grid animate-in animate-fade-up animate-delay-3"
+          id="story-grid"
+        ></div>
       </div>
-      <div class="grid animate-in animate-fade-up animate-delay-2" id="guide-grid"></div>
-    </div>
-  </section>
-  <!-- 応援セクション -->
-  <section id="support" class="section animate-in animate-fade-right">
-    <div class="carousel">
-      <div class="controls animate-in animate-fade-up animate-delay-1">
-        <div class="carousel-title-group">
-          <h2 class="carousel-title">SUPPORT</h2>
-          <p class="carousel-subtitle">One Team. を応援</p>
+    </section>
+
+    <!-- MEDIA セクション -->
+    <section id="media" class="section animate-in animate-fade-right">
+      <div class="carousel">
+        <div class="controls animate-in animate-fade-up animate-delay-1">
+          <div class="carousel-title-group">
+            <h2 class="carousel-title">MEDIA</h2>
+            <p class="carousel-subtitle">
+              各種メディアにて、作品や活動についてご紹介いただいた実績を掲載しています。
+            </p>
+          </div>
+          <div class="carousel-nav-group">
+            <button class="btn-nav" id="media-prev">◀ Prev</button>
+            <span class="page-indicator" id="media-indicator">1 / 1</span>
+            <button class="btn-nav" id="media-next">Next ▶</button>
+          </div>
         </div>
+        <div
+          class="grid animate-in animate-fade-up animate-delay-2"
+          id="media-grid"
+        ></div>
       </div>
-      <div class="animate-in animate-fade-up animate-delay-2" style="margin-top: 10px;">
-        <div class="card" style="text-align: center; padding: 32px 24px; max-width: 600px; margin-left: auto; margin-right: auto;">
-          <h3 style="font-size: 1.25rem; font-weight: 700; margin: 0 0 12px;">One Team. を応援</h3>
-          <p style="color: var(--muted); font-size: 0.95rem; margin: 0 0 24px; line-height: 1.6;">
-            もし作品を楽しんでいただけたら、<br>
-            コーヒーを一杯おごってもらえると嬉しいです ☕
-          </p>
-          <a href="https://buymeacoffee.com/oneteam_dot" target="_blank" rel="noopener noreferrer" class="btn btn-coffee">
-            <svg class="coffee-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <!-- コーヒーの湯気 -->
-              <g class="coffee-steam">
-                <path d="M7 1 Q 8 2.5 7 4" class="steam-1"></path>
-                <path d="M10 1 Q 9 2.5 10 4" class="steam-2"></path>
-                <path d="M13 1 Q 14 2.5 13 4" class="steam-3"></path>
-              </g>
-              <!-- 淹れるドロップ -->
-              <path d="M10 -6 v4" class="coffee-drop" stroke-width="2"></path>
-              <!-- カップとスマイル -->
-              <g class="coffee-cup">
-                <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
-                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
-                <g class="cup-face">
-                  <circle cx="7.5" cy="13" r="1.2" fill="currentColor" stroke="none"></circle>
-                  <circle cx="12.5" cy="13" r="1.2" fill="currentColor" stroke="none"></circle>
-                  <path d="M8.5 15.5 Q 10 17 11.5 15.5" stroke-width="1.5" fill="none"></path>
+    </section>
+
+    <!-- GUIDELINE セクション -->
+    <section id="guideline" class="section animate-in animate-fade-right">
+      <div class="carousel">
+        <div class="controls animate-in animate-fade-up animate-delay-1">
+          <div class="carousel-title-group">
+            <h2 class="carousel-title">GUIDELINE</h2>
+            <p class="carousel-subtitle">利用指針</p>
+          </div>
+          <div class="carousel-nav-group">
+            <button class="btn-nav" id="guide-prev">◀ Prev</button>
+            <span class="page-indicator" id="guide-indicator">1 / 1</span>
+            <button class="btn-nav" id="guide-next">Next ▶</button>
+          </div>
+        </div>
+        <div
+          class="grid animate-in animate-fade-up animate-delay-2"
+          id="guide-grid"
+        ></div>
+      </div>
+    </section>
+    <!-- 応援セクション -->
+    <section id="support" class="section animate-in animate-fade-right">
+      <div class="carousel">
+        <div class="controls animate-in animate-fade-up animate-delay-1">
+          <div class="carousel-title-group">
+            <h2 class="carousel-title">SUPPORT</h2>
+            <p class="carousel-subtitle">One Team. を応援</p>
+          </div>
+        </div>
+        <div
+          class="animate-in animate-fade-up animate-delay-2"
+          style="margin-top: 10px"
+        >
+          <div
+            class="card"
+            style="
+              text-align: center;
+              padding: 32px 24px;
+              max-width: 600px;
+              margin-left: auto;
+              margin-right: auto;
+            "
+          >
+            <h3 style="font-size: 1.25rem; font-weight: 700; margin: 0 0 12px">
+              One Team. を応援
+            </h3>
+            <p
+              style="
+                color: var(--muted);
+                font-size: 0.95rem;
+                margin: 0 0 24px;
+                line-height: 1.6;
+              "
+            >
+              もし作品を楽しんでいただけたら、<br />
+              コーヒーを一杯おごってもらえると嬉しいです ☕
+            </p>
+            <a
+              href="https://buymeacoffee.com/oneteam_dot"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-coffee"
+            >
+              <svg
+                class="coffee-svg"
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <!-- コーヒーの湯気 -->
+                <g class="coffee-steam">
+                  <path d="M7 1 Q 8 2.5 7 4" class="steam-1"></path>
+                  <path d="M10 1 Q 9 2.5 10 4" class="steam-2"></path>
+                  <path d="M13 1 Q 14 2.5 13 4" class="steam-3"></path>
                 </g>
-              </g>
-            </svg>
-            Buy me a coffee
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-  <script>
-  // ===== 背景アニメーション（残光 × 鮮やかブレンド × 省負荷） =====
-  (() => {
-    const view = document.getElementById('scene');
-    const ctx = view.getContext('2d');
-    const acc = document.createElement('canvas'); // オフスクリーンで蓄積
-    const accCtx = acc.getContext('2d');
-    const DPR = Math.max(1, Math.min(2.5, window.devicePixelRatio || 1));
-    let W = 0, H = 0;
-
-    function resize(){
-      W = innerWidth; H = innerHeight;
-      for(const c of [view, acc]){ c.width = Math.floor(W*DPR); c.height = Math.floor(H*DPR); c.style.width=W+'px'; c.style.height=H+'px'; }
-      for(const c of [ctx, accCtx]){ c.setTransform(DPR,0,0,DPR,0,0); }
-      accCtx.clearRect(0,0,W,H); // 初期は透明（白で塗らない）
-    }
-    addEventListener('resize', resize, { passive:true });
-    resize();
-
-    const TAU = Math.PI*2;
-    const rand = (a,b)=> a + Math.random()*(b-a);
-
-    function makeBlob(){
-      const a = rand(0, TAU);
-      const h = rand(0,360), s = Math.round(rand(78,96)), l = Math.round(rand(55,65));
-      return {
-        x: rand(0,W), y: rand(0,H), r: rand(55,95),
-        color: `hsl(${h.toFixed(1)} ${s}% ${l}%)`, // 固定色（ちらつき防止）
-        vx: Math.cos(a) * rand(0.03, 0.08),
-        vy: Math.sin(a) * rand(0.03, 0.08),
-        t: rand(0,1000), jitter: rand(0.0004, 0.0010)
-      };
-    }
-
-    const blobs = Array.from({length:9}, makeBlob);
-
-    const DECAY = 0.015; // 小さいほど長く残る（0.01〜0.02 目安）
-    function radial(x,y,r,c){
-      const g = accCtx.createRadialGradient(x,y,0,x,y,r);
-      g.addColorStop(0, c.replace(')', ' / 0.95)'));
-      g.addColorStop(0.6, c.replace(')', ' / 0.50)'));
-      g.addColorStop(1, c.replace(')', ' / 0)'));
-      return g;
-    }
-
-    (function draw(){
-      // 1) 残光フェード（薄い白を重ねて徐々に消す）
-      // 既存の描画を少しだけ“消す”→ 透明方向にフェード
-      accCtx.globalCompositeOperation = 'destination-out';
-      accCtx.fillStyle = `rgba(0,0,0,${DECAY})`;
-      accCtx.fillRect(0,0,W,H);
-
-      // 2) 鮮やかに重ねる
-      accCtx.globalCompositeOperation = 'screen';
-      for(const b of blobs){
-        b.t += b.jitter;
-        b.x += b.vx + Math.cos(b.t) * 0.22;
-        b.y += b.vy + Math.sin(b.t*0.26) * 0.22;
-        if(b.x < -220) b.x = W + 220; if(b.x > W + 220) b.x = -220;
-        if(b.y < -220) b.y = H + 220; if(b.y > H + 220) b.y = -220;
-        accCtx.fillStyle = radial(b.x,b.y,b.r,b.color);
-        accCtx.beginPath(); accCtx.arc(b.x,b.y,b.r,0,TAU); accCtx.fill();
-      }
-
-      // 3) 画面へ描画
-      ctx.clearRect(0,0,W,H);
-      ctx.drawImage(acc, 0, 0, W, H);
-      requestAnimationFrame(draw);
-    })();
-  })();
-
-  // ===== ハンバーガー（右スライド） =====
-  // ハンバーガーメニューの初期化は head 内の initHamburgerMenu() を使用します。
-  // navbar を読み込んだ後に次の呼び出しで初期化されます:
-  // if (typeof initHamburgerMenu === 'function') initHamburgerMenu();
-
-  // ===== カルーセル =====
-  function setupCarousel({ items, gridEl, prevEl, nextEl, indicatorEl, pageSize=9, wrapCardLink=false }){
-    let page=0; const totalPages=Math.max(1,Math.ceil(items.length/pageSize));
-    function render(){
-      gridEl.innerHTML='';
-      const slice=items.slice(page*pageSize,page*pageSize+pageSize);
-      for(const it of slice){
-        const card=document.createElement('article'); card.className='card';
-        const th=document.createElement('div'); th.className='thumb';
-        
-        // 画像の処理
-        if(it.image) {
-          const img = document.createElement('img');
-          img.src = it.image;
-          // 遅延読み込みは画像のみに限定する（トップバー等は常に即時表示）
-          img.loading = 'lazy';
-          img.decoding = 'async';
-          img.alt = it.title || '';
-          
-          // トリミング範囲の指定（object-position）
-          if(it.objectPosition) {
-            img.style.objectPosition = it.objectPosition;
-          }
-          
-          // 画像のフィット方法の指定
-          if(it.objectFit) {
-            img.style.objectFit = it.objectFit;
-          }
-          
-          // 画像読み込みエラーの対処
-          img.onerror = function() {
-            this.style.display = 'none';
-            th.style.background = 'linear-gradient(135deg,#eef3ff,#f7f0ff)';
-          };
-          
-          // 画像読み込み中の表示
-          img.style.backgroundColor = '#f3f4f6';
-          
-          th.appendChild(img);
-        } else if(it.thumb) {
-          // 従来の背景画像方式もサポート
-          th.style.background = it.thumb;
-        } else {
-          // デフォルトのグラデーション
-          th.style.background = 'linear-gradient(135deg,#eef3ff,#f7f0ff)';
-        }
-        
-        const body=document.createElement('div'); body.className='card-body';
-  if(it.tag){ const tag=document.createElement('span'); tag.className='tag'; tag.style.background=it.tagColor||'#6b7280'; tag.textContent=it.tag; body.appendChild(tag); }
-  const tt=document.createElement('div'); tt.className='title'; tt.textContent=it.title; body.appendChild(tt);
-  if(it.reading){ const rd=document.createElement('div'); rd.className='reading'; rd.textContent=it.reading; body.appendChild(rd); }
-        if(it.desc){ const desc=document.createElement('p'); desc.textContent=it.desc; body.appendChild(desc); }
-
-        // ボタン生成（複数/単一の両対応）
-        {
-          const btnDataRaw = (it.buttons ?? it.button ?? null);
-          if (btnDataRaw) {
-            const btns = document.createElement('div');
-            btns.className = 'btns';
-            const btnList = Array.isArray(btnDataRaw) ? btnDataRaw : [btnDataRaw];
-            for (const b of btnList) {
-              if (!b) continue;
-              const btn = document.createElement('a');
-              btn.className = 'btn ' + (b.type || '');
-              btn.href = b.href || '#';
-              btn.textContent = b.label ?? 'リンク';
-              // 新しいタブで開く
-              if (b.newTab) { btn.target = '_blank'; btn.rel = 'noopener noreferrer'; }
-              // 無効状態
-              if (b.disabled) { btn.classList.add('disabled'); btn.setAttribute('aria-disabled','true'); btn.href = 'javascript:void(0)'; }
-              btns.appendChild(btn);
-            }
-            body.appendChild(btns);
-          }
-        }
-
-  const mt=document.createElement('div'); mt.className='meta'; mt.textContent=it.meta||''; body.appendChild(mt);
-
-        // 掲載時期（MEDIA向け・任意）
-        if(it.published){
-          const pub=document.createElement('div');
-          pub.className='published';
-          pub.textContent = `掲載時期: ${it.published}`;
-          pub.style.fontSize = '0.85em';
-          pub.style.opacity = '0.75';
-          pub.style.marginTop = '6px';
-          body.appendChild(pub);
-        }
-        card.appendChild(th); card.appendChild(body);
-        
-        // STORY/MEDIAなどカード全体をリンク化（ボタンがない場合のみ）
-        if (wrapCardLink && !it.buttons && !it.button && (it.href || it.link)) {
-          const a = document.createElement('a');
-          a.className = 'card-link';
-          a.href = it.href || it.link;
-          const shouldNewTab = !!it.newTab || (gridEl && gridEl.id === 'media-grid');
-          if (shouldNewTab) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
-          a.appendChild(card);
-          gridEl.appendChild(a);
-        } else {
-          gridEl.appendChild(card);
-        }
-      }
-      indicatorEl.textContent=`${page+1} / ${totalPages}`;
-      prevEl.disabled=page===0; nextEl.disabled=page>=totalPages-1;
-    }
-    prevEl.addEventListener('click',()=>{ if(page>0){page--;render();} });
-    nextEl.addEventListener('click',()=>{ if(page<totalPages-1){page++;render();} });
-    render();
-  }
-
-  const games=[
-  { 
-   title:'Amevar', 
-   reading:'アミーバー',
-      tag:'あなたが見守るのは、小さな命の物語', 
-      tagColor:'#10b981', 
-      meta:'命のつながり x 育成シミュレーション', 
-      desc:'自由に動き回る生物を育成し、戦いや進化で命のつながりを体験する育成シミュレーション', 
-      image:'../portfolio/src/app/AM/サムネイル_2.jpg',
-      objectPosition: 'center 30%',
-      objectFit: 'cover',
-      buttons:[{label:'itch.io',href:'https://oneteam-dot.itch.io/amevar-demo',type:'primary'}]
-    },
-    { 
-      title:'BlockWorld Ai', 
-      reading:'ブロックワールド アイ',
-      tag:'パズルでキミのAIを育てよう', 
-      tagColor:'#ec4899', 
-      meta:'AI × パズルRPG', 
-      desc:'パズルを学ぶ不思議なAI ホシハビトくんと共に強力なボスに挑むパズルRPG', 
-      image:'../portfolio/src/app/BlockWorld_Ai/サムネイル_3.jpg',
-      objectPosition: 'center 30%',
-      objectFit: 'cover',
-      buttons:[{label:'Steam',href:'https://store.steampowered.com/app/3010030/BlockWorld_Ai',type:'primary'}]
-    },
-        { 
-      title:'ナンバークラッシュゲーム CyberCrush', 
-      reading:'サイバークラッシュ',
-      tag:'サイバー空間で数字をクラッシュ！', 
-      tagColor:'#8b5cf6', 
-      meta:'脳トレ x フラッシュ', 
-      desc:'制限時間内にパネルの数字を0にして、ブロックを消すシンプル脳トレゲーム', 
-      image:'../portfolio/src/app/CC/CC_1.jpg',
-      objectPosition: '30% 20%',
-      objectFit: 'cover',
-      buttons:[{label:'PLAY',href:'https://unityroom.com/games/cybercrash',type:'primary'}]
-    },
-    { 
-      title:'BlockWorld', 
-      reading:'ブロックワールド',
-      tag:'星ブロックを揃えて大量連鎖を狙え！', 
-      tagColor:'#8b5cf6', 
-      meta:'パズル x 爽快感', 
-      desc:'制限時間内にブロックの数字を0にして敵を全て倒すシンプル脳トレパズル', 
-      image:'../src/app/BL_ScreenShoot.png',
-      objectPosition: 'center 20%',
-      objectFit: 'cover',
-       buttons:[
-        {label:'Android',href:'https://play.google.com/store/apps/details?id=com.ColorfulDeveloper.BlockWorld',type:'store1'},
-        {label:'iOS',href:'https://apps.apple.com/jp/app/id6463722805',type:'store2'},
-      ]
-    },
-    { 
-      title:'SimpleMath', 
-      reading:'シンプルマス',
-      tag:'2択で答える計算練習ゲーム', 
-      tagColor:'#10b981', 
-      meta:'計算練習 x お手軽', 
-      desc:'二択から答えを選んで四則演算の練習ができる計算練習ゲーム', 
-      image:'../src/app/SiM_ScreenShot.png',
-      objectPosition: 'center 40%',
-      objectFit: 'cover',
-      buttons:[
-        {label:'Android',href:'https://play.google.com/store/apps/details?id=com.ColorfulDeveloper.SimpleMath',type:'store1'},
-        {label:'iOS',href:'https://apps.apple.com/jp/app/id6469422268',type:'store2'},
-      ]
-    }
-  ];
-  // MEDIAデータはJS（media.js）から読み込み
-  let medias = [];
-  async function loadMedias(){
-    try {
-      await new Promise((resolve) => {
-        if (Array.isArray(window.__MEDIA_DATA)) return resolve();
-        const s = document.createElement('script');
-        s.src = 'src/data/media.js';
-        s.onload = resolve;
-        s.onerror = resolve; // 失敗時もresolveして空配列フォールバック
-        document.head.appendChild(s);
-      });
-      medias = Array.isArray(window.__MEDIA_DATA) ? window.__MEDIA_DATA : [];
-    } finally {
-      setupCarousel({ items: medias, gridEl: document.getElementById('media-grid'), prevEl: document.getElementById('media-prev'), nextEl: document.getElementById('media-next'), indicatorEl: document.getElementById('media-indicator'), pageSize:3, wrapCardLink:true });
-    }
-  }
-  const guides=[
-      { 
-      title:'配信ガイドライン', 
-      tag:'GUIDE', 
-      tagColor:'#3b82f6', 
-      meta:'Streaming Guidelines', 
-      desc:'One Team.のゲームを配信する際のルール。', 
-      image:'src/guideline/Guideline_Other.png',
-      objectPosition: 'center center',
-      objectFit: 'cover',
-      buttons:[{label:'詳細を読む',href:'Guideline/StreamingGuideline.html',type:'primary'}]
-    },
-    { 
-      title:'知的財産・著作物ポリシー', 
-      tag:'Policy', 
-      tagColor:'#8b5cf6', 
-      meta:'Intellectual Property Policy', 
-      desc:'One Team.の知的財産や著作物の利用に関するポリシー。', 
-      image:'',
-      objectPosition: 'center center',
-      objectFit: 'cover',
-      buttons:[{label:'詳細を読む',href:'Guideline/IPPolicy.html',type:'primary'}]
-    },
-     { 
-      title:'プライバシーポリシー', 
-      tag:'Policy', 
-      tagColor:'#3b82f6', 
-      meta:'PrivacyPolicy', 
-      desc:'One Team.がスマートフォン向けに配信しているアプリのプライバシーポリシー。', 
-      image:'src/guideline/PrivacyPolicy_Banner.png',
-      objectPosition: 'center center',
-      objectFit: 'cover',
-      buttons:[{label:'詳細を読む',href:'PrivacyPolicy/jp/index.html',type:'primary'}]
-    }
-  ];
-
-  const labs = [
-         {
-      title: 'AIDrivenFramework',
-      reading: '',
-      tag: 'AI駆動型ゲーム開発フレームワーク',
-      tagColor: '#1c65ad',
-      meta: 'Unity × ローカルLLM x 安全な組み込み',
-      desc: 'ローカル LLM を Unity に安全に統合するためのセットアップ＆実行フレームワークOSS Ollama は不要 - GUI による簡単なインストール',
-      image: 'src/app/gif/AISetupWalkthrough.gif',
-      objectPosition: 'center 10%',
-      objectFit: 'cover',
-      buttons: {label:'Github',href:'https://github.com/hatomaru/AIDrivenFramework',type:'primary'}
-    },
-        {
-      title: '確認だけ',
-      reading: '',
-      tag: '鍵・電気・ガスの状態をチェック',
-      tagColor: '#1c65ad',
-      meta: 'ライフスタイル × シンプルな確認',
-      desc: '鍵・ガス・電気などをチェックして、いつでも確認できるアプリ',
-      image: '../portfolio/src/app/Lab/NowCheck.png',
-      objectPosition: 'center 10%',
-      objectFit: 'cover',
-      buttons: [{label:'Android',href:'https://play.google.com/store/apps/details?id=com.OneTeamdot.NowCheck',type:'store1'},
-        {label:'iOS',href:'https://apps.apple.com/jp/app/id6757307010',type:'store2'},]
-    },
-    {
-      title: 'AfterNSeconds',
-      reading: 'N秒後の世界',
-      tag: 'コトバを解釈し変化するN秒後の世界',
-      tagColor: '#cf2ac0',
-      meta: 'LLM × メディアアート',
-      desc: 'Unityとllama.cppを使って、コトバを解釈し変化するN秒後の世界を表現した作品',
-      image: '../portfolio/src/app/Lab/AfterNSeconds.jpg',
-      objectPosition: 'center',
-      objectFit: 'cover',
-      buttons: []
-    }
-  ];
-
-  // STORY 用データ（最大3件/カルーセル対応）
-  const stories = [
-    { title:'Amevarのフキダシ①', meta:'Note', desc:'Amevarの制作の小話を紹介', image:'src/note/Samune_1.png', objectFit:'cover', objectPosition:'center', href:'https://note.com/oneteam_dot/n/n10fdfb82b4d4' },
-    //{ title:'キャラクター', meta:'Characters', desc:'主要キャラクターのプロフィール。', href:'#' },
-    //{ title:'制作ノート', meta:'Dev Note', desc:'開発の裏話や制作メモ。', href:'#' },
-    { title:'もっと見る', meta:'And more', desc:'One Team. 公式Noteをみてみる', href:'https://note.com/oneteam_dot' },
-    //{ title:'もっと見る', meta:'準備中', desc:'準備中', href:'#' }
-  ];
-
-  setupCarousel({ items: games, gridEl: document.getElementById('games-grid'), prevEl: document.getElementById('games-prev'), nextEl: document.getElementById('games-next'), indicatorEl: document.getElementById('games-indicator'), pageSize:9 });
-  setupCarousel({ items: labs, gridEl: document.getElementById('labs-grid'), prevEl: document.getElementById('labs-prev'), nextEl: document.getElementById('labs-next'), indicatorEl: document.getElementById('labs-indicator'), pageSize:9 });
-  setupCarousel({ items: stories, gridEl: document.getElementById('story-grid'), prevEl: document.getElementById('story-prev'), nextEl: document.getElementById('story-next'), indicatorEl: document.getElementById('story-indicator'), pageSize:3, wrapCardLink:true });
-  // MEDIAはJS読み込み後に初期化
-  loadMedias();
-  setupCarousel({ items: guides, gridEl: document.getElementById('guide-grid'), prevEl: document.getElementById('guide-prev'), nextEl: document.getElementById('guide-next'), indicatorEl: document.getElementById('guide-indicator'), pageSize:9 });
-
-  // ===== FEATURED PROJECT レンダリング =====
-  function renderFeatured() {
-    // games配列やlabs配列から注目作品として候補をいくつかピックアップし、ランダムまたは特定の一つを表示する
-    const candidates = [games[1], labs[0], games[0]];
-    const featuredItem = candidates[Math.floor(Math.random() * candidates.length)];
-    
-    if (!featuredItem) return;
-
-    const container = document.getElementById('featured-container');
-    if (!container) return;
-
-    let buttonsHtml = '';
-    const btnDataRaw = (featuredItem.buttons ?? featuredItem.button ?? null);
-    if (btnDataRaw) {
-      const btnList = Array.isArray(btnDataRaw) ? btnDataRaw : [btnDataRaw];
-      btnList.forEach(b => {
-        if (!b) return;
-        const targetAttr = b.newTab ? 'target="_blank" rel="noopener noreferrer"' : '';
-        const disabledClass = b.disabled ? 'disabled' : '';
-        const href = b.disabled ? 'javascript:void(0)' : (b.href || '#');
-        buttonsHtml += `<a href="${href}" class="btn ${b.type || ''} ${disabledClass}" ${targetAttr}>${b.label ?? 'リンク'}</a>`;
-      });
-    }
-
-    container.innerHTML = `
-      <div class="featured-card">
-        <div class="featured-thumb">
-          <img src="${featuredItem.image}" alt="${featuredItem.title}" style="object-position: ${featuredItem.objectPosition || 'center'}; object-fit: ${featuredItem.objectFit || 'cover'};" loading="lazy">
-        </div>
-        <div class="featured-body">
-          ${featuredItem.tag ? `<span class="tag" style="background:${featuredItem.tagColor || '#6b7280'}">${featuredItem.tag}</span>` : ''}
-          <div class="title">${featuredItem.title}</div>
-          ${featuredItem.reading ? `<div class="reading">${featuredItem.reading}</div>` : ''}
-          ${featuredItem.desc ? `<p class="desc">${featuredItem.desc}</p>` : ''}
-          <div class="btns">
-            ${buttonsHtml}
+                <!-- 淹れるドロップ -->
+                <path d="M10 -6 v4" class="coffee-drop" stroke-width="2"></path>
+                <!-- カップとスマイル -->
+                <g class="coffee-cup">
+                  <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                  <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                  <g class="cup-face">
+                    <circle
+                      cx="7.5"
+                      cy="13"
+                      r="1.2"
+                      fill="currentColor"
+                      stroke="none"
+                    ></circle>
+                    <circle
+                      cx="12.5"
+                      cy="13"
+                      r="1.2"
+                      fill="currentColor"
+                      stroke="none"
+                    ></circle>
+                    <path
+                      d="M8.5 15.5 Q 10 17 11.5 15.5"
+                      stroke-width="1.5"
+                      fill="none"
+                    ></path>
+                  </g>
+                </g>
+              </svg>
+              Buy me a coffee
+            </a>
           </div>
         </div>
       </div>
-    `;
-  }
-  renderFeatured();
-
-  // ===== フロートインアニメーション（スクロール順に順番表示） =====
-  const STAGGER_MS = 180; // 要素ごとに少しずつ時間差で表示
-  const queued = new Set();
-  const queue = [];
-  let processing = false;
-
-  function triggerFloatIn(element){
-    if (!element) return;
-    // 適切なアニメーションクラスを適用
-    if (element.classList.contains('animate-fade-left')) {
-      element.style.animationName = 'fadeInLeft';
-    } else if (element.classList.contains('animate-fade-right')) {
-      element.style.animationName = 'fadeInRight';
-    } else {
-      element.style.animationName = 'fadeInUp';
-    }
-    element.style.animationDuration = '0.8s';
-    element.style.animationFillMode = 'forwards';
-    element.style.animationTimingFunction = 'ease-out';
-  }
-
-  function processQueue(){
-    if (processing || queue.length === 0) return;
-    processing = true;
-    const el = queue.shift();
-    triggerFloatIn(el);
-    observer.unobserve(el);
-    setTimeout(() => {
-      processing = false;
-      processQueue();
-    }, STAGGER_MS);
-  }
-
-  const observerOptions = {
-    threshold: 0.15,
-    rootMargin: '0px 0px -15% 0px'
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    // 可視になったものをDOM順で処理し、キューに追加
-    entries
-      .filter(e => e.isIntersecting)
-      .sort((a, b) => (a.target.compareDocumentPosition(b.target) & Node.DOCUMENT_POSITION_FOLLOWING) ? -1 : 1)
-      .forEach(({ target }) => {
-        if (queued.has(target)) return;
-        queued.add(target);
-        queue.push(target);
-        processQueue();
-      });
-  }, observerOptions);
-
-  // ヘッダー内は初回ロードで即時アニメーション、スクロール順制御の対象外
-  document.querySelectorAll('.animate-in:not(header .animate-in)').forEach(el => observer.observe(el));
-
-  // 既存のヘッダー要素の即時アニメーション（軽い段階的ディレイ）
-  const headerElements = document.querySelectorAll('header .animate-in');
-  headerElements.forEach((element, index) => {
-    setTimeout(() => {
-      if (element.classList.contains('animate-fade-left')) {
-        element.style.animationName = 'fadeInLeft';
-      } else if (element.classList.contains('animate-fade-right')) {
-        element.style.animationName = 'fadeInRight';
-      } else {
-        element.style.animationName = 'fadeInUp';
-      }
-      element.style.animationDuration = '0.8s';
-      element.style.animationFillMode = 'forwards';
-      element.style.animationTimingFunction = 'ease-out';
-    }, index * 120);
-  });
-  </script>
+    </section>
     <script>
-      $(function() {
-        $.get('/contact.html', function(contactData){
-          $('body').append(contactData);
+      // ===== 背景アニメーション（残光 × 鮮やかブレンド × 省負荷） =====
+      (() => {
+        const view = document.getElementById("scene");
+        const ctx = view.getContext("2d");
+        const acc = document.createElement("canvas"); // オフスクリーンで蓄積
+        const accCtx = acc.getContext("2d");
+        const DPR = Math.max(1, Math.min(2.5, window.devicePixelRatio || 1));
+        let W = 0,
+          H = 0;
+
+        function resize() {
+          W = innerWidth;
+          H = innerHeight;
+          for (const c of [view, acc]) {
+            c.width = Math.floor(W * DPR);
+            c.height = Math.floor(H * DPR);
+            c.style.width = W + "px";
+            c.style.height = H + "px";
+          }
+          for (const c of [ctx, accCtx]) {
+            c.setTransform(DPR, 0, 0, DPR, 0, 0);
+          }
+          accCtx.clearRect(0, 0, W, H); // 初期は透明（白で塗らない）
+        }
+        addEventListener("resize", resize, { passive: true });
+        resize();
+
+        const TAU = Math.PI * 2;
+        const rand = (a, b) => a + Math.random() * (b - a);
+
+        function makeBlob() {
+          const a = rand(0, TAU);
+          const h = rand(0, 360),
+            s = Math.round(rand(78, 96)),
+            l = Math.round(rand(55, 65));
+          return {
+            x: rand(0, W),
+            y: rand(0, H),
+            r: rand(55, 95),
+            color: `hsl(${h.toFixed(1)} ${s}% ${l}%)`, // 固定色（ちらつき防止）
+            vx: Math.cos(a) * rand(0.03, 0.08),
+            vy: Math.sin(a) * rand(0.03, 0.08),
+            t: rand(0, 1000),
+            jitter: rand(0.0004, 0.001),
+          };
+        }
+
+        const blobs = Array.from({ length: 9 }, makeBlob);
+
+        const DECAY = 0.015; // 小さいほど長く残る（0.01〜0.02 目安）
+        function radial(x, y, r, c) {
+          const g = accCtx.createRadialGradient(x, y, 0, x, y, r);
+          g.addColorStop(0, c.replace(")", " / 0.95)"));
+          g.addColorStop(0.6, c.replace(")", " / 0.50)"));
+          g.addColorStop(1, c.replace(")", " / 0)"));
+          return g;
+        }
+
+        (function draw() {
+          // 1) 残光フェード（薄い白を重ねて徐々に消す）
+          // 既存の描画を少しだけ“消す”→ 透明方向にフェード
+          accCtx.globalCompositeOperation = "destination-out";
+          accCtx.fillStyle = `rgba(0,0,0,${DECAY})`;
+          accCtx.fillRect(0, 0, W, H);
+
+          // 2) 鮮やかに重ねる
+          accCtx.globalCompositeOperation = "screen";
+          for (const b of blobs) {
+            b.t += b.jitter;
+            b.x += b.vx + Math.cos(b.t) * 0.22;
+            b.y += b.vy + Math.sin(b.t * 0.26) * 0.22;
+            if (b.x < -220) b.x = W + 220;
+            if (b.x > W + 220) b.x = -220;
+            if (b.y < -220) b.y = H + 220;
+            if (b.y > H + 220) b.y = -220;
+            accCtx.fillStyle = radial(b.x, b.y, b.r, b.color);
+            accCtx.beginPath();
+            accCtx.arc(b.x, b.y, b.r, 0, TAU);
+            accCtx.fill();
+          }
+
+          // 3) 画面へ描画
+          ctx.clearRect(0, 0, W, H);
+          ctx.drawImage(acc, 0, 0, W, H);
+          requestAnimationFrame(draw);
+        })();
+      })();
+
+      // ===== ハンバーガー（右スライド） =====
+      // ハンバーガーメニューの初期化は head 内の initHamburgerMenu() を使用します。
+      // navbar を読み込んだ後に次の呼び出しで初期化されます:
+      // if (typeof initHamburgerMenu === 'function') initHamburgerMenu();
+
+      // ===== カルーセル =====
+      function setupCarousel({
+        items,
+        gridEl,
+        prevEl,
+        nextEl,
+        indicatorEl,
+        pageSize = 9,
+        wrapCardLink = false,
+      }) {
+        let page = 0;
+        const totalPages = Math.max(1, Math.ceil(items.length / pageSize));
+        function render() {
+          gridEl.innerHTML = "";
+          const slice = items.slice(
+            page * pageSize,
+            page * pageSize + pageSize,
+          );
+          for (const it of slice) {
+            const card = document.createElement("article");
+            card.className = "card";
+            const th = document.createElement("div");
+            th.className = "thumb";
+
+            // 画像の処理
+            if (it.image) {
+              const img = document.createElement("img");
+              img.src = it.image;
+              // 遅延読み込みは画像のみに限定する（トップバー等は常に即時表示）
+              img.loading = "lazy";
+              img.decoding = "async";
+              img.alt = it.title || "";
+
+              // トリミング範囲の指定（object-position）
+              if (it.objectPosition) {
+                img.style.objectPosition = it.objectPosition;
+              }
+
+              // 画像のフィット方法の指定
+              if (it.objectFit) {
+                img.style.objectFit = it.objectFit;
+              }
+
+              // 画像読み込みエラーの対処
+              img.onerror = function () {
+                this.style.display = "none";
+                th.style.background = "linear-gradient(135deg,#eef3ff,#f7f0ff)";
+              };
+
+              // 画像読み込み中の表示
+              img.style.backgroundColor = "#f3f4f6";
+
+              th.appendChild(img);
+            } else if (it.thumb) {
+              // 従来の背景画像方式もサポート
+              th.style.background = it.thumb;
+            } else {
+              // デフォルトのグラデーション
+              th.style.background = "linear-gradient(135deg,#eef3ff,#f7f0ff)";
+            }
+
+            const body = document.createElement("div");
+            body.className = "card-body";
+            if (it.tag) {
+              const tag = document.createElement("span");
+              tag.className = "tag";
+              tag.style.background = it.tagColor || "#6b7280";
+              tag.textContent = it.tag;
+              body.appendChild(tag);
+            }
+            const tt = document.createElement("div");
+            tt.className = "title";
+            tt.textContent = it.title;
+            body.appendChild(tt);
+            if (it.reading) {
+              const rd = document.createElement("div");
+              rd.className = "reading";
+              rd.textContent = it.reading;
+              body.appendChild(rd);
+            }
+            if (it.desc) {
+              const desc = document.createElement("p");
+              desc.textContent = it.desc;
+              body.appendChild(desc);
+            }
+
+            // ボタン生成（複数/単一の両対応）
+            {
+              const btnDataRaw = it.buttons ?? it.button ?? null;
+              if (btnDataRaw) {
+                const btns = document.createElement("div");
+                btns.className = "btns";
+                const btnList = Array.isArray(btnDataRaw)
+                  ? btnDataRaw
+                  : [btnDataRaw];
+                for (const b of btnList) {
+                  if (!b) continue;
+                  const btn = document.createElement("a");
+                  btn.className = "btn " + (b.type || "");
+                  btn.href = b.href || "#";
+                  btn.textContent = b.label ?? "リンク";
+                  // 新しいタブで開く
+                  if (b.newTab) {
+                    btn.target = "_blank";
+                    btn.rel = "noopener noreferrer";
+                  }
+                  // 無効状態
+                  if (b.disabled) {
+                    btn.classList.add("disabled");
+                    btn.setAttribute("aria-disabled", "true");
+                    btn.href = "javascript:void(0)";
+                  }
+                  btns.appendChild(btn);
+                }
+                body.appendChild(btns);
+              }
+            }
+
+            const mt = document.createElement("div");
+            mt.className = "meta";
+            mt.textContent = it.meta || "";
+            body.appendChild(mt);
+
+            // 掲載時期（MEDIA向け・任意）
+            if (it.published) {
+              const pub = document.createElement("div");
+              pub.className = "published";
+              pub.textContent = `掲載時期: ${it.published}`;
+              pub.style.fontSize = "0.85em";
+              pub.style.opacity = "0.75";
+              pub.style.marginTop = "6px";
+              body.appendChild(pub);
+            }
+            card.appendChild(th);
+            card.appendChild(body);
+
+            // STORY/MEDIAなどカード全体をリンク化（ボタンがない場合のみ）
+            if (
+              wrapCardLink &&
+              !it.buttons &&
+              !it.button &&
+              (it.href || it.link)
+            ) {
+              const a = document.createElement("a");
+              a.className = "card-link";
+              a.href = it.href || it.link;
+              const shouldNewTab =
+                !!it.newTab || (gridEl && gridEl.id === "media-grid");
+              if (shouldNewTab) {
+                a.target = "_blank";
+                a.rel = "noopener noreferrer";
+              }
+              a.appendChild(card);
+              gridEl.appendChild(a);
+            } else {
+              gridEl.appendChild(card);
+            }
+          }
+          indicatorEl.textContent = `${page + 1} / ${totalPages}`;
+          prevEl.disabled = page === 0;
+          nextEl.disabled = page >= totalPages - 1;
+        }
+        prevEl.addEventListener("click", () => {
+          if (page > 0) {
+            page--;
+            render();
+          }
+        });
+        nextEl.addEventListener("click", () => {
+          if (page < totalPages - 1) {
+            page++;
+            render();
+          }
+        });
+        render();
+      }
+
+      const games = [
+        {
+          title: "Amevar",
+          reading: "アミーバー",
+          tag: "あなたが見守るのは、小さな命の物語",
+          tagColor: "#10b981",
+          meta: "命のつながり x 育成シミュレーション",
+          desc: "自由に動き回る生物を育成し、戦いや進化で命のつながりを体験する育成シミュレーション",
+          image: "../portfolio/src/app/AM/サムネイル_2.jpg",
+          objectPosition: "center 30%",
+          objectFit: "cover",
+          buttons: [
+            {
+              label: "itch.io",
+              href: "https://oneteam-dot.itch.io/amevar-demo",
+              type: "primary",
+            },
+          ],
+        },
+        {
+          title: "BlockWorld Ai",
+          reading: "ブロックワールド アイ",
+          tag: "パズルでキミのAIを育てよう",
+          tagColor: "#ec4899",
+          meta: "AI × パズルRPG",
+          desc: "パズルを学ぶ不思議なAI ホシハビトくんと共に強力なボスに挑むパズルRPG",
+          image: "../portfolio/src/app/BlockWorld_Ai/サムネイル_3.jpg",
+          objectPosition: "center 30%",
+          objectFit: "cover",
+          buttons: [
+            {
+              label: "配信終了",
+              href: "javascript:void(0)",
+              type: "store-end",
+            },
+          ],
+        },
+        {
+          title: "ナンバークラッシュゲーム CyberCrush",
+          reading: "サイバークラッシュ",
+          tag: "サイバー空間で数字をクラッシュ！",
+          tagColor: "#8b5cf6",
+          meta: "脳トレ x フラッシュ",
+          desc: "制限時間内にパネルの数字を0にして、ブロックを消すシンプル脳トレゲーム",
+          image: "../portfolio/src/app/CC/CC_1.jpg",
+          objectPosition: "30% 20%",
+          objectFit: "cover",
+          buttons: [
+            {
+              label: "PLAY",
+              href: "https://unityroom.com/games/cybercrash",
+              type: "primary",
+            },
+          ],
+        },
+        {
+          title: "BlockWorld",
+          reading: "ブロックワールド",
+          tag: "星ブロックを揃えて大量連鎖を狙え！",
+          tagColor: "#8b5cf6",
+          meta: "パズル x 爽快感",
+          desc: "制限時間内にブロックの数字を0にして敵を全て倒すシンプル脳トレパズル",
+          image: "../src/app/BL_ScreenShoot.png",
+          objectPosition: "center 20%",
+          objectFit: "cover",
+          buttons: [
+            {
+              label: "配信一時停止",
+              href: "javascript:void(0)",
+              type: "store-end",
+            },
+          ],
+        },
+        {
+          title: "SimpleMath",
+          reading: "シンプルマス",
+          tag: "2択で答える計算練習ゲーム",
+          tagColor: "#10b981",
+          meta: "計算練習 x お手軽",
+          desc: "二択から答えを選んで四則演算の練習ができる計算練習ゲーム",
+          image: "../src/app/SiM_ScreenShot.png",
+          objectPosition: "center 40%",
+          objectFit: "cover",
+          buttons: [
+            {
+              label: "Android",
+              href: "https://play.google.com/store/apps/details?id=com.ColorfulDeveloper.SimpleMath",
+              type: "store1",
+            },
+            {
+              label: "iOS",
+              href: "https://apps.apple.com/jp/app/id6469422268",
+              type: "store2",
+            },
+          ],
+        },
+      ];
+      // MEDIAデータはJS（media.js）から読み込み
+      let medias = [];
+      async function loadMedias() {
+        try {
+          await new Promise((resolve) => {
+            if (Array.isArray(window.__MEDIA_DATA)) return resolve();
+            const s = document.createElement("script");
+            s.src = "src/data/media.js";
+            s.onload = resolve;
+            s.onerror = resolve; // 失敗時もresolveして空配列フォールバック
+            document.head.appendChild(s);
+          });
+          medias = Array.isArray(window.__MEDIA_DATA)
+            ? window.__MEDIA_DATA
+            : [];
+        } finally {
+          setupCarousel({
+            items: medias,
+            gridEl: document.getElementById("media-grid"),
+            prevEl: document.getElementById("media-prev"),
+            nextEl: document.getElementById("media-next"),
+            indicatorEl: document.getElementById("media-indicator"),
+            pageSize: 3,
+            wrapCardLink: true,
+          });
+        }
+      }
+      const guides = [
+        {
+          title: "配信ガイドライン",
+          tag: "GUIDE",
+          tagColor: "#3b82f6",
+          meta: "Streaming Guidelines",
+          desc: "One Team.のゲームを配信する際のルール。",
+          image: "src/guideline/Guideline_Other.png",
+          objectPosition: "center center",
+          objectFit: "cover",
+          buttons: [
+            {
+              label: "詳細を読む",
+              href: "Guideline/StreamingGuideline.html",
+              type: "primary",
+            },
+          ],
+        },
+        {
+          title: "知的財産・著作物ポリシー",
+          tag: "Policy",
+          tagColor: "#8b5cf6",
+          meta: "Intellectual Property Policy",
+          desc: "One Team.の知的財産や著作物の利用に関するポリシー。",
+          image: "",
+          objectPosition: "center center",
+          objectFit: "cover",
+          buttons: [
+            {
+              label: "詳細を読む",
+              href: "Guideline/IPPolicy.html",
+              type: "primary",
+            },
+          ],
+        },
+        {
+          title: "プライバシーポリシー",
+          tag: "Policy",
+          tagColor: "#3b82f6",
+          meta: "PrivacyPolicy",
+          desc: "One Team.がスマートフォン向けに配信しているアプリのプライバシーポリシー。",
+          image: "src/guideline/PrivacyPolicy_Banner.png",
+          objectPosition: "center center",
+          objectFit: "cover",
+          buttons: [
+            {
+              label: "詳細を読む",
+              href: "PrivacyPolicy/jp/index.html",
+              type: "primary",
+            },
+          ],
+        },
+      ];
+
+      const labs = [
+        {
+          title: "AIDrivenFramework",
+          reading: "",
+          tag: "AI駆動型ゲーム開発フレームワーク",
+          tagColor: "#1c65ad",
+          meta: "Unity × ローカルLLM x 安全な組み込み",
+          desc: "ローカル LLM を Unity に安全に統合するためのセットアップ＆実行フレームワークOSS Ollama は不要 - GUI による簡単なインストール",
+          image: "src/app/gif/AISetupWalkthrough.gif",
+          objectPosition: "center 10%",
+          objectFit: "cover",
+          buttons: {
+            label: "Github",
+            href: "https://github.com/hatomaru/AIDrivenFramework",
+            type: "primary",
+          },
+        },
+        {
+          title: "確認だけ",
+          reading: "",
+          tag: "鍵・電気・ガスの状態をチェック",
+          tagColor: "#1c65ad",
+          meta: "ライフスタイル × シンプルな確認",
+          desc: "鍵・ガス・電気などをチェックして、いつでも確認できるアプリ",
+          image: "../portfolio/src/app/Lab/NowCheck.png",
+          objectPosition: "center 10%",
+          objectFit: "cover",
+          buttons: [
+            {
+              label: "配信一時停止",
+              href: "javascript:void(0)",
+              type: "store-end",
+            },
+          ],
+        },
+        {
+          title: "AfterNSeconds",
+          reading: "N秒後の世界",
+          tag: "コトバを解釈し変化するN秒後の世界",
+          tagColor: "#cf2ac0",
+          meta: "LLM × メディアアート",
+          desc: "Unityとllama.cppを使って、コトバを解釈し変化するN秒後の世界を表現した作品",
+          image: "../portfolio/src/app/Lab/AfterNSeconds.jpg",
+          objectPosition: "center",
+          objectFit: "cover",
+          buttons: [],
+        },
+      ];
+
+      // STORY 用データ（最大3件/カルーセル対応）
+      const stories = [
+        {
+          title: "Amevarのフキダシ①",
+          meta: "Note",
+          desc: "Amevarの制作の小話を紹介",
+          image: "src/note/Samune_1.png",
+          objectFit: "cover",
+          objectPosition: "center",
+          href: "https://note.com/oneteam_dot/n/n10fdfb82b4d4",
+        },
+        //{ title:'キャラクター', meta:'Characters', desc:'主要キャラクターのプロフィール。', href:'#' },
+        //{ title:'制作ノート', meta:'Dev Note', desc:'開発の裏話や制作メモ。', href:'#' },
+        {
+          title: "もっと見る",
+          meta: "And more",
+          desc: "One Team. 公式Noteをみてみる",
+          href: "https://note.com/oneteam_dot",
+        },
+        //{ title:'もっと見る', meta:'準備中', desc:'準備中', href:'#' }
+      ];
+
+      setupCarousel({
+        items: games,
+        gridEl: document.getElementById("games-grid"),
+        prevEl: document.getElementById("games-prev"),
+        nextEl: document.getElementById("games-next"),
+        indicatorEl: document.getElementById("games-indicator"),
+        pageSize: 9,
+      });
+      setupCarousel({
+        items: labs,
+        gridEl: document.getElementById("labs-grid"),
+        prevEl: document.getElementById("labs-prev"),
+        nextEl: document.getElementById("labs-next"),
+        indicatorEl: document.getElementById("labs-indicator"),
+        pageSize: 9,
+      });
+      setupCarousel({
+        items: stories,
+        gridEl: document.getElementById("story-grid"),
+        prevEl: document.getElementById("story-prev"),
+        nextEl: document.getElementById("story-next"),
+        indicatorEl: document.getElementById("story-indicator"),
+        pageSize: 3,
+        wrapCardLink: true,
+      });
+      // MEDIAはJS読み込み後に初期化
+      loadMedias();
+      setupCarousel({
+        items: guides,
+        gridEl: document.getElementById("guide-grid"),
+        prevEl: document.getElementById("guide-prev"),
+        nextEl: document.getElementById("guide-next"),
+        indicatorEl: document.getElementById("guide-indicator"),
+        pageSize: 9,
+      });
+
+      // ===== フロートインアニメーション（スクロール順に順番表示） =====
+      const STAGGER_MS = 180; // 要素ごとに少しずつ時間差で表示
+      const queued = new Set();
+      const queue = [];
+      let processing = false;
+
+      function triggerFloatIn(element) {
+        if (!element) return;
+        // 適切なアニメーションクラスを適用
+        if (element.classList.contains("animate-fade-left")) {
+          element.style.animationName = "fadeInLeft";
+        } else if (element.classList.contains("animate-fade-right")) {
+          element.style.animationName = "fadeInRight";
+        } else {
+          element.style.animationName = "fadeInUp";
+        }
+        element.style.animationDuration = "0.8s";
+        element.style.animationFillMode = "forwards";
+        element.style.animationTimingFunction = "ease-out";
+      }
+
+      function processQueue() {
+        if (processing || queue.length === 0) return;
+        processing = true;
+        const el = queue.shift();
+        triggerFloatIn(el);
+        observer.unobserve(el);
+        setTimeout(() => {
+          processing = false;
+          processQueue();
+        }, STAGGER_MS);
+      }
+
+      const observerOptions = {
+        threshold: 0.15,
+        rootMargin: "0px 0px -15% 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        // 可視になったものをDOM順で処理し、キューに追加
+        entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) =>
+            a.target.compareDocumentPosition(b.target) &
+            Node.DOCUMENT_POSITION_FOLLOWING
+              ? -1
+              : 1,
+          )
+          .forEach(({ target }) => {
+            if (queued.has(target)) return;
+            queued.add(target);
+            queue.push(target);
+            processQueue();
+          });
+      }, observerOptions);
+
+      // ヘッダー内は初回ロードで即時アニメーション、スクロール順制御の対象外
+      document
+        .querySelectorAll(".animate-in:not(header .animate-in)")
+        .forEach((el) => observer.observe(el));
+
+      // 既存のヘッダー要素の即時アニメーション（軽い段階的ディレイ）
+      const headerElements = document.querySelectorAll("header .animate-in");
+      headerElements.forEach((element, index) => {
+        setTimeout(() => {
+          if (element.classList.contains("animate-fade-left")) {
+            element.style.animationName = "fadeInLeft";
+          } else if (element.classList.contains("animate-fade-right")) {
+            element.style.animationName = "fadeInRight";
+          } else {
+            element.style.animationName = "fadeInUp";
+          }
+          element.style.animationDuration = "0.8s";
+          element.style.animationFillMode = "forwards";
+          element.style.animationTimingFunction = "ease-out";
+        }, index * 120);
+      });
+    </script>
+    <script>
+      $(function () {
+        $.get("/contact.html", function (contactData) {
+          $("body").append(contactData);
           // contact の挿入が完了したら footer を読み込む
-          $.get('/footer_O.html', function(footerData){
-            $('body').append(footerData);
+          $.get("/footer_O.html", function (footerData) {
+            $("body").append(footerData);
           });
         });
       });
     </script>
-</body>
+  </body>
 </html>

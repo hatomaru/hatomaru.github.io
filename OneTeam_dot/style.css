@@ -280,6 +280,8 @@ h1{ font-size: clamp(36px, 6vw, 68px); letter-spacing:.02em; margin:.1rem 0 1.2r
 .btn.store3:hover{ background:#2e2e44; box-shadow: 0 4px 12px #2e2e4466; }
 .btn.store4{ background:#8f3532; color:#fff; }
 .btn.store4:hover{ background:#702825; box-shadow: 0 4px 12px #8f353266; }
+.btn.store-end{ background:#6b7280; color:#fff; box-shadow:none !important; }
+.btn.store-end:hover{ background:#4b5563; box-shadow:none !important; }
 /* タッチデバイス配慮 */
 @media (hover:none) and (pointer:coarse){
   .card:hover{ transform:none; box-shadow: var(--shadow); border-color: var(--stroke); }
@@ -293,6 +295,7 @@ h1{ font-size: clamp(36px, 6vw, 68px); letter-spacing:.02em; margin:.1rem 0 1.2r
   .btn.store2:hover{ background:#0b3975; box-shadow: var(--shadow); }
   .btn.store3:hover{ background:#2e2e44; box-shadow: var(--shadow); }
   .btn.store4:hover{ background:#702825; box-shadow: var(--shadow); }
+  .btn.store-end:hover{ background:#4b5563; box-shadow: none !important; }
   .controls .btn-nav:hover:not(:disabled){ transform:none; box-shadow: var(--shadow); border-color: var(--stroke); background: var(--card); }
   .topnav a:hover{ background:none; color: var(--fg); transform:none; }
   .hamb:hover{ background: var(--card); border-color: var(--stroke); transform:none; }
