@@ -10,6 +10,16 @@ window.__MEDIA_DATA = [
     "published": "2026-03-03"
   },
   {
+    "title": "【今月のAIニュースまとめ】｜モリカトロンのつぶやき便（2026年2月号）",
+    "meta": "モリカトロン株式会社様",
+    "desc": "モリカトロン株式会社の『Morikatron Engineer Blog』にて、AIDrivenFrameworkについて掲載していただきました。",
+    "image": "",
+    "objectFit": "cover",
+    "objectPosition": "center",
+    "href": "https://tech.morikatron.ai/entry/2026/02/06/115526",
+    "published": "2026-02-06"
+  },
+  {
     "title": "Amevar（アミーバー）レビュー｜のんびり見守るAI生物育成、癒しと課題も正直に",
     "meta": "ファインマン・システム株式会社様",
     "desc": "ファインマン・システム株式会社(https://feynman.co.jp/）が運営する「Unity入門の森（https://feynman.co.jp/unityforest/）」にて、Amevarのレビュー記事を掲載していただきました。",
