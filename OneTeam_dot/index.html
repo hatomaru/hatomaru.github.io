@@ -111,70 +111,6 @@
       <h1 class="animate-in animate-fade-up animate-delay-2">One Team.</h1>
     </header>
 
-    <!-- 重要なお知らせ セクション -->
-    <section id="important-notice" class="section animate-in animate-fade-up">
-      <div
-        class="card"
-        style="
-          text-align: center;
-          padding: 32px 24px;
-          max-width: 600px;
-          margin-left: auto;
-          margin-right: auto;
-          border: 2px solid #ef4444;
-          background-color: rgba(239, 68, 68, 0.05);
-        "
-      >
-        <h2
-          style="
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin: 0 0 16px;
-            color: #ef4444;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-          "
-        >
-          ⚠️ 重要なお知らせ
-        </h2>
-        <p
-          style="
-            color: var(--muted);
-            font-size: 0.95rem;
-            margin: 0 0 16px;
-            line-height: 1.6;
-          "
-        >
-          この度諸事情により、<bold>「BlockWorld Ai」</bold
-          >をストアから非公開にさせていただきます。
-        </p>
-        <p
-          style="
-            color: var(--muted);
-            font-size: 0.95rem;
-            margin: 0 0 24px;
-            line-height: 1.6;
-          "
-        >
-          また、One
-          Team.が配信するほぼ全てのアプリも対応が必要なため一時的に配信を終了させていただきます。(5月末ごろに対応し再開予定)
-        </p>
-        <p
-          style="
-            color: var(--text);
-            font-size: 1rem;
-            font-weight: bold;
-            margin: 0;
-            line-height: 1.6;
-          "
-        >
-          遊んでくださった皆様に深く感謝します。<br />
-          ありがとうございました！！
-        </p>
-      </div>
-    </section>
 
     <!-- About セクション -->
     <section id="about" class="section">
@@ -208,6 +144,8 @@
         ></div>
       </div>
     </section>
+    
+    
 
     <!-- LABS セクション -->
     <section id="labs" class="section animate-in animate-fade-left">
@@ -738,7 +676,7 @@
           buttons: [
             {
               label: "配信終了",
-              href: "javascript:void(0)",
+              href: "#blockworld-notice",
               type: "store-end",
             },
           ],
@@ -771,12 +709,9 @@
           image: "../src/app/BL_ScreenShoot.png",
           objectPosition: "center 20%",
           objectFit: "cover",
-          buttons: [
-            {
-              label: "配信一時停止",
-              href: "javascript:void(0)",
-              type: "store-end",
-            },
+          buttons:[
+            {label:'Android',href:'https://play.google.com/store/apps/details?id=com.ColorfulDeveloper.BlockWorld',type:'store1'},
+            {label:'iOS',href:'https://apps.apple.com/jp/app/id6463722805',type:'store2'},
           ],
         },
         {
@@ -912,12 +847,9 @@
           objectPosition: "center 10%",
           objectFit: "cover",
           buttons: [
-            {
-              label: "配信一時停止",
-              href: "javascript:void(0)",
-              type: "store-end",
-            },
-          ],
+            {label:'Android',href:'https://play.google.com/store/apps/details?id=com.OneTeamdot.NowCheck',type:'store1'},
+            {label:'iOS',href:'https://apps.apple.com/jp/app/id6757307010',type:'store2'},
+          ]
         },
         {
           title: "AfterNSeconds",
@@ -1068,6 +1000,84 @@
           element.style.animationTimingFunction = "ease-out";
         }, index * 120);
       });
+    </script>
+    <!-- BlockWorld Ai 公開終了モーダル（カード風・軽いアニメ） -->
+    <style>
+      @keyframes bw-pop-in { from { transform: translateY(12px) scale(.98); opacity: 0 } to { transform: translateY(0) scale(1); opacity: 1 } }
+      @keyframes bw-pop-out { from { transform: translateY(0) scale(1); opacity: 1 } to { transform: translateY(12px) scale(.98); opacity: 0 } }
+      #bw-modal-backdrop {
+        position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,0.45); z-index: 1200; padding: 20px;
+      }
+      #bw-modal-backdrop.open { display:flex; }
+      #bw-modal {
+        width: 100%; max-width: 680px; border-radius: 12px; background: linear-gradient(180deg,#ffffff,#fbfbff); box-shadow: 0 14px 40px rgba(2,6,23,0.35); padding: 20px 20px 18px; box-sizing: border-box; position: relative; transform: translateY(8px) scale(.995); opacity: 0; transition: transform 220ms cubic-bezier(.2,.8,.2,1), opacity 220ms;
+      }
+      #bw-modal-backdrop.open #bw-modal { transform: translateY(0) scale(1); opacity: 1; animation: bw-pop-in 260ms cubic-bezier(.2,.8,.2,1); }
+      /* closing state */
+      #bw-modal-backdrop.closing { background: rgba(0,0,0,0); transition: background 220ms ease; }
+      #bw-modal-backdrop.closing #bw-modal { animation: bw-pop-out 200ms cubic-bezier(.2,.8,.2,1) forwards; }
+      #bw-modal .bw-header { display:flex; align-items:center; gap:12px; }
+      #bw-modal .bw-icon { width:48px; height:48px; border-radius:8px; background:#fff0f0; display:flex; align-items:center; justify-content:center; color:#ef4444; font-weight:700; box-shadow: 0 6px 18px rgba(236,72,153,0.08); }
+      #bw-modal h3 { margin:0; font-size:1.05rem; color:#111827; }
+      #bw-modal p { margin:8px 0 0; color:var(--muted); line-height:1.5; }
+      #bw-modal .bw-actions { margin-top:16px; display:flex; gap:8px; justify-content:flex-end; }
+      #bw-modal .bw-close { background:#ef4444; color:#fff; border:none; padding:8px 12px; border-radius:8px; cursor:pointer; font-weight:600; }
+      #bw-modal .bw-close.ghost { background:transparent; color:#374151; border:1px solid #e6e6e9; }
+      @media (max-width:420px){ #bw-modal { padding:14px; border-radius:10px; } #bw-modal .bw-actions{ justify-content:center; } }
+    </style>
+    <div id="bw-modal-backdrop" aria-hidden="true">
+      <div id="bw-modal" role="dialog" aria-modal="true" aria-labelledby="bw-modal-title" tabindex="-1">
+        <div class="bw-header">
+          <div class="bw-icon">⚠️</div>
+          <div>
+            <h3 id="bw-modal-title">BlockWorld Ai — 公開終了のお知らせ</h3>
+            <p style="margin-top:6px;">この度諸事情により、<strong>「BlockWorld Ai」</strong>をストアから非公開にさせていただきます。</p>
+          </div>
+        </div>
+        <p style="font-weight:600; margin-top:14px;">遊んでくださった皆様に深く感謝します。ありがとうございました！</p>
+        <div class="bw-actions">
+          <button class="bw-close ghost" type="button">閉じる</button>
+          <button class="bw-close" type="button">OK</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      (function(){
+        const backdrop = document.getElementById('bw-modal-backdrop');
+        const modal = document.getElementById('bw-modal');
+        const closeBtns = modal && modal.querySelectorAll('.bw-close');
+        let lastActive = null;
+
+        function openModal(){
+          lastActive = document.activeElement;
+          backdrop.classList.add('open');
+          backdrop.setAttribute('aria-hidden','false');
+          modal.focus();
+          document.body.classList.add('modal-open');
+        }
+        function closeModal(){
+          // play closing animation then hide
+          if(!backdrop.classList.contains('open') || backdrop.classList.contains('closing')) return;
+          backdrop.classList.add('closing');
+          // after animation, fully close
+          setTimeout(()=>{
+            backdrop.classList.remove('closing');
+            backdrop.classList.remove('open');
+            backdrop.setAttribute('aria-hidden','true');
+            document.body.classList.remove('modal-open');
+            try{ lastActive && lastActive.focus(); }catch(e){}
+          }, 220);
+        }
+
+        document.body.addEventListener('click', (e)=>{
+          const a = e.target.closest && e.target.closest('a[href="#blockworld-notice"]');
+          if(a){ e.preventDefault(); openModal(); }
+        });
+
+        backdrop.addEventListener('click', (e)=>{ if(e.target === backdrop) closeModal(); });
+        closeBtns && closeBtns.forEach(b=>b.addEventListener('click', closeModal));
+        document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && backdrop.classList.contains('open')) closeModal(); });
+      })();
     </script>
     <script>
       $(function () {
