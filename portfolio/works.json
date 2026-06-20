@@ -475,5 +475,52 @@
       "desc": "制限時間以内にブロックの中の数字が0になるようにパネルをタップして、同じパネルを押さないように気を付けながら、全6体の敵を全て倒すゲームです。",
       "year": "2021年"
     }
+  ],
+  "presentations": [
+    {
+      "date": "2026.02",
+      "badgeText": "発表",
+      "badgeClass": "presentation",
+      "title": "FONRTNITE SHIBUYAで何して遊ぶ？決勝イベント＆授賞式",
+      "desc": "FONRTNITE SHIBUYAで何して遊ぶ？の決勝イベントにて、「渋谷バブバブルビート」についてプレゼンテーションを行いました。",
+      "youtubeUrl": "https://youtu.be/ujxi7A_Rq6Q?si=r7Nq41-B4HpyaN4g&t=1094",
+      "thumbnail": "https://img.youtube.com/vi/ujxi7A_Rq6Q/hqdefault.jpg"
+    },
+    {
+      "date": "2025.11",
+      "badgeText": "発表",
+      "badgeClass": "presentation",
+      "title": "#ヒーローズリーグ 2025 予選 in 第二部",
+      "desc": "ヒーローズリーグ 2025の予選会で「Amevar」についてプレゼンテーションを行いました。",
+      "youtubeUrl": "https://www.youtube.com/live/MvqzAEUUHME?si=bJNUFztGMFFPP2K_&t=2535",
+      "thumbnail": "https://img.youtube.com/vi/MvqzAEUUHME/hqdefault.jpg"
+    },
+    {
+      "date": "2023.12",
+      "badgeText": "発表",
+      "badgeClass": "presentation",
+      "title": "ゲームづくりは青春だ。Unityニュージェネレーションズフェス2023 決勝大会",
+      "desc": "Unityニュージェネレーションズフェス2023の決勝大会にて、「BlockWorld Ai」についてプレゼンテーションを行いました。",
+      "youtubeUrl": "https://www.youtube.com/live/hpqSUcox0rQ?t=10800&si=hPtUSn4a3kdZUHvF",
+      "thumbnail": "https://img.youtube.com/vi/hpqSUcox0rQ/hqdefault.jpg"
+    },
+    {
+      "date": "2023.11",
+      "badgeText": "発表",
+      "badgeClass": "presentation",
+      "title": "アプリ甲子園2023　No.5 三浦 大幹「SimpleMath」",
+      "desc": "アプリ甲子園2023の本選にて、「SimpleMath」についてプレゼンテーションを行いました。",
+      "youtubeUrl": "https://www.youtube.com/watch?v=7eDMWj26nhA",
+      "thumbnail": "https://img.youtube.com/vi/7eDMWj26nhA/hqdefault.jpg"
+    },
+    {
+      "date": "2022.12",
+      "badgeText": "発表",
+      "badgeClass": "presentation",
+      "title": "BlockWorld | 山梨大学教育学部附属特別支援学校 チーム「One Team.」- Unityユースクリエイターカップ 2022 プレゼン発表会本選",
+      "desc": "Unityユースクリエイターカップ 2022 の本選にて、「BlockWorld」についてプレゼンテーションを行いました。",
+      "youtubeUrl": "https://youtu.be/ZEoTRQZAxDc?si=BHrF-RK9a261FMSc",
+      "thumbnail": "https://img.youtube.com/vi/ZEoTRQZAxDc/hqdefault.jpg"
+    }
   ]
 }

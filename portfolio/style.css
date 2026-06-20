@@ -1170,7 +1170,7 @@ html {
 }
 
 /* Modern Pagination Styling */
-#pagination-controls {
+#pagination-controls, #presentation-pagination-controls {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1180,7 +1180,7 @@ html {
   user-select: none;
 }
 
-#pagination-controls .page-btn {
+#pagination-controls .page-btn, #presentation-pagination-controls .page-btn {
   appearance: none;
   border: 1px solid #e2e8f0;
   background: #ffffff;
@@ -1200,7 +1200,8 @@ html {
   line-height: 1;
 }
 
-#pagination-controls .page-btn:hover:not(.disabled):not(.active) {
+#pagination-controls .page-btn:hover:not(.disabled):not(.active),
+#presentation-pagination-controls .page-btn:hover:not(.disabled):not(.active) {
   background: #f8fafc;
   color: #1e293b;
   border-color: #cbd5e1;
@@ -1208,7 +1209,8 @@ html {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-#pagination-controls .page-btn.active {
+#pagination-controls .page-btn.active,
+#presentation-pagination-controls .page-btn.active {
   background: #111827 !important; /* Force dark theme consistency */
   color: #ffffff !important;
   border-color: #111827 !important;
@@ -1216,19 +1218,22 @@ html {
   cursor: default;
 }
 
-#pagination-controls .page-btn.disabled {
+#pagination-controls .page-btn.disabled,
+#presentation-pagination-controls .page-btn.disabled {
   opacity: 0.4;
   cursor: not-allowed;
   background: #f1f5f9;
   border-color: #e2e8f0;
 }
 
-#pagination-controls .nav-btn {
+#pagination-controls .nav-btn,
+#presentation-pagination-controls .nav-btn {
   padding: 0 18px;
   gap: 6px;
 }
 
-#pagination-controls .nav-btn span {
+#pagination-controls .nav-btn span,
+#presentation-pagination-controls .nav-btn span {
   font-size: 20px;
 }
 
@@ -1242,4 +1247,215 @@ html {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==== Presentations (発表・登壇実績) ==== */
+.presentation-list {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 20px 0;
+  min-height: 300px; /* ページ遷移時の高さ確保 */
+}
+
+.presentation-item {
+  display: flex;
+  gap: 28px;
+  background: var(--card-bg);
+  border: 1px solid var(--muted-border);
+  border-radius: var(--card-radius);
+  padding: 24px;
+  box-shadow: var(--card-shadow);
+  transition: transform 280ms ease, box-shadow 280ms ease, border-color 280ms ease;
+  overflow: hidden;
+}
+
+.presentation-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--card-shadow-hover);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.presentation-video-link {
+  flex-shrink: 0;
+  width: 280px;
+  text-decoration: none;
+}
+
+.presentation-thumbnail-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.presentation-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.presentation-video-link:hover .presentation-thumbnail {
+  transform: scale(1.05);
+  filter: brightness(0.8);
+}
+
+.play-button-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.play-button-overlay span {
+  font-size: 54px !important;
+  color: #ffffff;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.presentation-video-link:hover .play-button-overlay {
+  opacity: 1;
+}
+
+.presentation-video-link:hover .play-button-overlay span {
+  transform: scale(1.15);
+  color: #ff0000; /* YouTubeレッドに変化 */
+}
+
+.presentation-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.presentation-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.presentation-date {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #6b7280;
+}
+
+.presentation-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.presentation-badge.presentation {
+  background-color: #e3f2fd;
+  color: #0d47a1;
+}
+
+.presentation-badge.stage {
+  background-color: #fbe9e7;
+  color: #d84315;
+}
+
+.presentation-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 10px 0;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+}
+
+.presentation-desc {
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+  flex-grow: 1;
+}
+
+.presentation-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #111827;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  width: fit-content;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.presentation-link-btn:hover {
+  background-color: #e50914; /* YouTubeレッドに変形 */
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(229, 9, 20, 0.3);
+}
+
+.presentation-link-btn span {
+  font-size: 18px !important;
+}
+
+/* 発表実績フェードイン効果 */
+.presentation-item.fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .presentation-list {
+    gap: 16px;
+  }
+  
+  .presentation-item {
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+  }
+  
+  .presentation-video-link {
+    width: 100%;
+  }
+  
+  .presentation-thumbnail-wrapper {
+    aspect-ratio: 16 / 9;
+  }
+  
+  .presentation-title {
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+  }
+  
+  .presentation-desc {
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+  }
+  
+  .presentation-meta {
+    margin-bottom: 8px;
+  }
 }

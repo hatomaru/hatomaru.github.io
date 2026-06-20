@@ -3,6 +3,10 @@ let worksData = [];
 const itemsPerPage = 6;
 let currentPage = 1;
 
+let presentationsData = [];
+const presentationItemsPerPage = 3;
+let currentPresentationPage = 1;
+
 function renderFeature(featureData) {
     if (!featureData) return;
     const container = document.getElementById("feature-container");
@@ -224,6 +228,98 @@ window.changePage = function(page) {
     }
 }
 
+function renderPresentations() {
+    const container = document.getElementById("presentation-list-container");
+    if (!container) return;
+    
+    const startIdx = (currentPresentationPage - 1) * presentationItemsPerPage;
+    const endIdx = startIdx + presentationItemsPerPage;
+    const items = presentationsData.slice(startIdx, endIdx);
+    
+    if (items.length === 0 && presentationsData.length > 0) {
+        currentPresentationPage = 1;
+        renderPresentations();
+        return;
+    }
+
+    container.innerHTML = "";
+
+    let html = "";
+    items.forEach(pres => {
+        html += `
+        <div class="presentation-item animate-on-scroll fade-in-up delay-1">
+          <a href="${pres.youtubeUrl}" target="_blank" rel="noopener noreferrer" class="presentation-video-link">
+            <div class="presentation-thumbnail-wrapper">
+              <img src="${pres.thumbnail}" alt="YouTube Thumbnail" class="presentation-thumbnail">
+            </div>
+          </a>
+          <div class="presentation-content">
+            <div class="presentation-meta">
+              <span class="presentation-date">${pres.date}</span>
+              <span class="presentation-badge ${pres.badgeClass}">${pres.badgeText}</span>
+            </div>
+            <h3 class="presentation-title">${pres.title}</h3>
+            <p class="presentation-desc">${pres.desc}</p>
+            <a href="${pres.youtubeUrl}" target="_blank" rel="noopener noreferrer" class="presentation-link-btn">YouTubeで見る</a>
+          </div>
+        </div>`;
+    });
+    
+    container.innerHTML = html;
+    renderPresentationPagination();
+    
+    if(typeof window.initScrollAnimation === 'function') {
+        window.initScrollAnimation();
+    }
+}
+
+function renderPresentationPagination() {
+    const c = document.getElementById("presentation-pagination-controls");
+    if (!c) return;
+    
+    const totalPages = Math.ceil(presentationsData.length / presentationItemsPerPage);
+    if (totalPages <= 1) {
+        c.innerHTML = "";
+        return;
+    }
+
+    let buttonsHtml = "";
+    
+    const prevDisabled = currentPresentationPage === 1 ? "disabled" : "";
+    buttonsHtml += `<button class="page-btn nav-btn ${prevDisabled}" onclick="changePresentationPage(${currentPresentationPage - 1})"><span class="material-symbols-outlined" style="font-size: 18px">chevron_left</span> Prev</button>`;
+    
+    for(let i = 1; i <= totalPages; i++) {
+        const active = i === currentPresentationPage ? "active" : "";
+        buttonsHtml += `<button class="page-btn ${active}" onclick="changePresentationPage(${i})">${i}</button>`;
+    }
+    
+    const nextDisabled = currentPresentationPage === totalPages ? "disabled" : "";
+    buttonsHtml += `<button class="page-btn nav-btn ${nextDisabled}" onclick="changePresentationPage(${currentPresentationPage + 1})">Next <span class="material-symbols-outlined" style="font-size: 18px">chevron_right</span></button>`;
+    
+    c.innerHTML = buttonsHtml;
+}
+
+window.changePresentationPage = function(page) {
+    const totalPages = Math.ceil(presentationsData.length / presentationItemsPerPage);
+    if(page < 1 || page > totalPages) return;
+    
+    currentPresentationPage = page;
+    renderPresentations();
+    
+    const target = document.getElementById("presentation-section");
+    if (target) {
+        const offset = 140;
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = target.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
+        window.scrollTo({
+             top: offsetPosition,
+             behavior: "smooth"
+        });
+    }
+}
+
 // Fetch JSON on load
 fetch('works.json')
   .then(res => res.json())
@@ -231,6 +327,11 @@ fetch('works.json')
       renderFeature(data.feature);
       worksData = data.works;
       renderWorks();
+      
+      if (data.presentations) {
+          presentationsData = data.presentations;
+          renderPresentations();
+      }
   })
   .catch(err => {
       console.error("Failed to load works.json", err);
