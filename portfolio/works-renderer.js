@@ -249,7 +249,17 @@ function renderPresentations() {
     items.forEach(pres => {
         const linkUrl = pres.youtubeUrl || pres.linkUrl || "#";
         const linkText = pres.linkText || (pres.youtubeUrl ? "YouTubeで見る" : "見る");
-        const thumbnail = pres.thumbnail || "src/default_thumbnail.svg";
+        
+        let thumbnail = pres.thumbnail;
+        if (!thumbnail || thumbnail === "src/default_thumbnail.svg") {
+            const ytMatch = linkUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|live\/))([\w-]{11})/);
+            if (ytMatch) {
+                thumbnail = `https://img.youtube.com/vi/${ytMatch[1]}/hqdefault.jpg`;
+            } else {
+                thumbnail = "src/default_thumbnail.svg";
+            }
+        }
+
         const metaHtml = pres.meta ? `<span class="presentation-meta-text" style="font-size: 0.85rem; color: #6b7280; font-weight: 600; margin-left: 8px;">${pres.meta}</span>` : "";
         
         html += `
@@ -350,7 +360,7 @@ fetch('works.json')
               return {
                   date: dateStr,
                   badgeClass: "media",
-                  badgeText: "掲載",
+                  badgeText: "メディア",
                   meta: m.meta,
                   title: m.title,
                   desc: m.desc,
