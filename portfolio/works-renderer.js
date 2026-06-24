@@ -152,12 +152,13 @@ function renderWorks() {
         let appealStr = work.appeal ? `<div class="app-appeal">${work.appeal}</div>` : '';
         let yearStr = work.year ? `<p class="Year">${work.year}</p>` : '';
         
+        let imageSrc = work.image || "src/default_thumbnail.svg";
         html += `
         <div class="app-card animate-on-scroll fade-in-up delay-1">
           <a href="${work.link}" style="color:black; text-decoration: none;">
             ${authorTypeStr}
             <div class="app-image-container">
-              <img src="${work.image}" alt="作品のスクリーンショット" style="object-position: ${position};">
+              <img src="${imageSrc}" alt="作品のスクリーンショット" style="object-position: ${position};">
             </div>
             <div class="app-info">
               <h3>${work.title}</h3>
@@ -246,21 +247,27 @@ function renderPresentations() {
 
     let html = "";
     items.forEach(pres => {
+        const linkUrl = pres.youtubeUrl || pres.linkUrl || "#";
+        const linkText = pres.linkText || (pres.youtubeUrl ? "YouTubeで見る" : "見る");
+        const thumbnail = pres.thumbnail || "src/default_thumbnail.svg";
+        const metaHtml = pres.meta ? `<span class="presentation-meta-text" style="font-size: 0.85rem; color: #6b7280; font-weight: 600; margin-left: 8px;">${pres.meta}</span>` : "";
+        
         html += `
         <div class="presentation-item animate-on-scroll fade-in-up delay-1">
-          <a href="${pres.youtubeUrl}" target="_blank" rel="noopener noreferrer" class="presentation-video-link">
+          <a href="${linkUrl}" target="_blank" rel="noopener noreferrer" class="presentation-video-link">
             <div class="presentation-thumbnail-wrapper">
-              <img src="${pres.thumbnail}" alt="YouTube Thumbnail" class="presentation-thumbnail">
+              <img src="${thumbnail}" alt="Thumbnail" class="presentation-thumbnail" ${!pres.thumbnail ? 'style="object-fit: cover;"' : ''}>
             </div>
           </a>
           <div class="presentation-content">
             <div class="presentation-meta">
               <span class="presentation-date">${pres.date}</span>
               <span class="presentation-badge ${pres.badgeClass}">${pres.badgeText}</span>
+              ${metaHtml}
             </div>
             <h3 class="presentation-title">${pres.title}</h3>
             <p class="presentation-desc">${pres.desc}</p>
-            <a href="${pres.youtubeUrl}" target="_blank" rel="noopener noreferrer" class="presentation-link-btn">YouTubeで見る</a>
+            <a href="${linkUrl}" target="_blank" rel="noopener noreferrer" class="presentation-link-btn">${linkText}</a>
           </div>
         </div>`;
     });
@@ -306,7 +313,7 @@ window.changePresentationPage = function(page) {
     currentPresentationPage = page;
     renderPresentations();
     
-    const target = document.getElementById("presentation-section");
+    const target = document.getElementById("activity");
     if (target) {
         const offset = 140;
         const bodyRect = document.body.getBoundingClientRect().top;
@@ -328,8 +335,41 @@ fetch('works.json')
       worksData = data.works;
       renderWorks();
       
+      let combinedPresentations = [];
       if (data.presentations) {
-          presentationsData = data.presentations;
+          combinedPresentations = combinedPresentations.concat(data.presentations);
+      }
+      
+      if (window.__MEDIA_DATA) {
+          const mappedMedia = window.__MEDIA_DATA.map(m => {
+              let dateStr = m.published || "";
+              if (dateStr.includes('-')) {
+                  const parts = dateStr.split('-');
+                  dateStr = `${parts[0]}.${parts[1]}`;
+              }
+              return {
+                  date: dateStr,
+                  badgeClass: "media",
+                  badgeText: "掲載",
+                  meta: m.meta,
+                  title: m.title,
+                  desc: m.desc,
+                  linkUrl: m.href,
+                  thumbnail: m.image || "src/default_thumbnail.svg",
+              };
+          });
+          combinedPresentations = combinedPresentations.concat(mappedMedia);
+      }
+      
+      if (combinedPresentations.length > 0) {
+          combinedPresentations.sort((a, b) => {
+              let dateA = a.date;
+              let dateB = b.date;
+              if (dateA === "TGS2024") dateA = "2024.09";
+              if (dateB === "TGS2024") dateB = "2024.09";
+              return dateA < dateB ? 1 : (dateA > dateB ? -1 : 0);
+          });
+          presentationsData = combinedPresentations;
           renderPresentations();
       }
   })
