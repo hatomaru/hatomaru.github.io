@@ -1,0 +1,250 @@
+/* =========================================
+   Modern Timeline Layout for TrackRecord
+========================================= */
+
+/* Timeline Container */
+.timeline {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto 60px;
+  padding: 40px 20px;
+}
+
+/* The central vertical line */
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  background: linear-gradient(180deg, rgba(15,23,32,0.05) 0%, rgba(15,23,32,0.15) 50%, rgba(15,23,32,0.05) 100%);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -2px;
+  border-radius: 4px;
+}
+
+/* Individual timeline items */
+.timeline-item {
+  padding: 10px 40px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+/* Alternating positioning for PC */
+.timeline-item:nth-child(odd) {
+  left: 0;
+}
+
+.timeline-item:nth-child(even) {
+  left: 50%;
+}
+
+/* The dot/icon on the timeline */
+.timeline-dot {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  right: -22px;
+  top: 24px;
+  background: #ffffff;
+  border: 4px solid var(--item-color, #64748b);
+  border-radius: 50%;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+  left: -22px;
+}
+
+.timeline-dot .material-symbols-outlined {
+  color: var(--item-color, #64748b);
+  font-size: 24px !important;
+  margin: 0;
+}
+
+/* The content card */
+.timeline-content {
+  padding: 24px 30px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: relative;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-top: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 32px rgba(11, 18, 32, 0.06);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+/* Colored accent line on the card (top border) */
+.timeline-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--item-color, #64748b);
+  opacity: 0.8;
+}
+
+/* Hover effects */
+.timeline-item-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.timeline-item-link:hover .timeline-content {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(11, 18, 32, 0.12);
+  border-color: rgba(255, 255, 255, 0.9);
+}
+
+.timeline-item-link:hover .timeline-dot {
+  transform: scale(1.15);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.timeline-item-link:active .timeline-content {
+  transform: translateY(-2px);
+}
+
+/* Content details */
+.timeline-date {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--item-color, #64748b);
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.timeline-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+}
+
+.timeline-subtitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #475569;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.timeline-icon-corner {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  font-size: 24px;
+  color: #94a3b8;
+  opacity: 0;
+  transform: translate(-10px, 10px);
+  transition: all 0.3s ease;
+}
+
+.timeline-item-link:hover .timeline-icon-corner {
+  opacity: 0.8;
+  transform: translate(0, 0);
+  color: var(--item-color, #64748b);
+}
+
+/* Glow effect underneath the dot */
+.timeline-dot::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  background: var(--item-color, #64748b);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0.15;
+  filter: blur(6px);
+  transition: opacity 0.3s ease;
+}
+
+.timeline-item-link:hover .timeline-dot::before {
+  opacity: 0.3;
+}
+
+/* Page Header Adjustments */
+.track-record-header {
+  text-align: center;
+  margin: 40px 0 20px;
+}
+
+.track-record-header h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.track-record-header p {
+  font-size: 1.1rem;
+  color: #64748b;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* =========================================
+   Responsive Design (Mobile)
+========================================= */
+@media screen and (max-width: 768px) {
+  .timeline::after {
+    left: 24px; /* Move line to the left */
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 60px; /* Make space for the line and dot */
+    padding-right: 15px;
+  }
+
+  .timeline-item:nth-child(even),
+  .timeline-item:nth-child(odd) {
+    left: 0;
+  }
+
+  .timeline-dot {
+    left: 2px !important;
+    right: auto;
+    width: 36px;
+    height: 36px;
+    top: 26px;
+    border-width: 3px;
+  }
+  
+  .timeline-dot .material-symbols-outlined {
+    font-size: 20px !important;
+  }
+
+  .timeline-content {
+    padding: 20px 20px;
+  }
+  
+  .timeline-title {
+    font-size: 1.15rem;
+  }
+  
+  .timeline-subtitle {
+    font-size: 0.95rem;
+  }
+}
