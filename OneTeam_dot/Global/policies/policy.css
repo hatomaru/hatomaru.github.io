@@ -191,9 +191,10 @@ a { color: inherit; }
     opacity 0.8s ease,
     transform 0.8s ease;
 }
-.reveal-left { transform: translateX(-30px); }
-.reveal-right { transform: translateX(30px); }
-.reveal-up { transform: translateY(24px); }
+.policy-card.reveal {
+  transition-duration: 0.55s;
+}
+.reveal-up { transform: translateY(14px); }
 .reveal.is-visible { opacity: 1; transform: none; }
 
 #shared-footer { min-height: 86px; }
