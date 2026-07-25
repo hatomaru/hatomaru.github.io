@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="The official Global. website for One Team., an independent creator combining technology, design, and story."
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <title>One Team. | Global Official Site</title>
+    <link rel="icon" href="../favicon_P.ico" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,500,0,0"
+    />
+  </head>
+  <body>
+    <canvas id="scene" aria-hidden="true"></canvas>
+
+    <nav class="topbar" aria-label="Primary navigation">
+      <div class="topbar-inner">
+        <a class="navbar-logo" href="index.html#top" aria-label="One Team. home">
+          <img src="../src/OneTeam.Logo_2.png" alt="One Team." />
+        </a>
+
+        <div class="topnav">
+          <a href="index.html#about">About</a>
+          <a href="index.html#apps">APP</a>
+          <a href="index.html#policies">POLICIES</a>
+          <a href="index.html#contact">CONTACT</a>
+          <a href="../index.html">JAPAN SITE</a>
+        </div>
+
+        <div class="navbar-right">
+          <a
+            class="my-apps-button"
+            href="https://x.com/OneTeam_dot"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Follow us on X
+          </a>
+        </div>
+
+        <button
+          class="hamb"
+          type="button"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <div class="drawer" id="mobile-menu" hidden>
+        <a href="index.html#about">About</a>
+        <a href="index.html#apps">APP</a>
+        <a href="index.html#policies">POLICIES</a>
+        <a href="index.html#contact">CONTACT</a>
+        <a href="../index.html">JAPAN SITE</a>
+        <a href="https://x.com/OneTeam_dot" target="_blank" rel="noopener noreferrer">
+          Follow us on X
+        </a>
+      </div>
+    </nav>
+
+    <main>
+      <header id="top">
+        <p class="lead">Creating experiences through connection.</p>
+        <h1>One Team.</h1>
+        <p class="edition">Global OFFICIAL WEBSITE</p>
+      </header>
+
+      <section id="about" class="section reveal">
+        <h2>About</h2>
+        <p>
+          One Team. is an independent creator combining<br />
+          technology × design × storytelling to build new experiences.<br />
+          We experiment with AI, local language models, games, and useful
+          everyday tools,<br />
+          sharing what we learn through prototypes and finished products.
+        </p>
+      </section>
+
+      <section id="apps" class="section reveal">
+        <div class="section-heading">
+          <div>
+            <h2>APP</h2>
+            <p class="section-subtitle">A simple tool for everyday peace of mind</p>
+          </div>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <div class="thumb">
+              <img
+                src="assets/now-check.png"
+                alt="Just Check. checklist screen"
+              />
+            </div>
+            <div class="card-body">
+              <span class="tag">LIFESTYLE</span>
+              <div class="title">Now Check.</div>
+              <div class="reading">Check your keys, lights, gas!</div>
+              <p>
+                Check your keys, lights, gas, and other essentials before
+                leaving home. Your latest checks stay easy to review whenever
+                you need reassurance.
+              </p>
+              <div class="meta">Everyday checklist × Simple confirmation</div>
+              <div class="btns">
+                <a
+                  class="btn store1"
+                  href="https://play.google.com/store/apps/details?id=com.OneTeamdot.NowCheck"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Android
+                </a>
+                <a
+                  class="btn store2"
+                  href="https://apps.apple.com/us/app/id6757307010"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  iOS
+                </a>
+              </div>
+              <small class="availability">
+                Store availability may vary by device and region.
+              </small>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="policies" class="section reveal">
+        <div class="section-heading">
+          <div>
+            <h2>POLICIES</h2>
+            <p class="section-subtitle">
+              Guidelines for enjoying and using One Team. creations
+            </p>
+          </div>
+        </div>
+
+        <div class="policy-grid">
+          <article class="card policy-card">
+            <div class="policy-thumb policy-thumb-ip" aria-hidden="true">
+              <span class="material-symbols-outlined">shield</span>
+              <strong>IP POLICY</strong>
+            </div>
+            <div class="card-body">
+              <span class="tag policy-tag-ip">POLICY</span>
+              <div class="title">Intellectual Property Policy</div>
+              <p>
+                Rules for fan works, redistribution, commercial use, and other
+                uses of One Team. creations.
+              </p>
+              <div class="meta">Intellectual Property &amp; Copyright</div>
+              <div class="btns">
+                <a class="btn primary" href="policies/ip/index.html">
+                  Read the policy
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card policy-card">
+            <div class="policy-thumb policy-thumb-streaming" aria-hidden="true">
+              <span class="material-symbols-outlined">videocam</span>
+              <strong>STREAMING</strong>
+            </div>
+            <div class="card-body">
+              <span class="tag policy-tag-streaming">GUIDELINE</span>
+              <div class="title">Streaming Guidelines</div>
+              <p>
+                Guidelines for gameplay videos, livestreams, titles, conduct,
+                and platform monetization.
+              </p>
+              <div class="meta">Gameplay Videos &amp; Livestreaming</div>
+              <div class="btns">
+                <a class="btn primary" href="policies/streaming/index.html">
+                  Read the guidelines
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card policy-card">
+            <div class="policy-thumb policy-thumb-privacy" aria-hidden="true">
+              <span class="material-symbols-outlined">privacy_tip</span>
+              <strong>PRIVACY</strong>
+            </div>
+            <div class="card-body">
+              <span class="tag policy-tag-privacy">PRIVACY</span>
+              <div class="title">U.S. Privacy Notice</div>
+              <p>
+                How personal information is handled and which privacy rights
+                may apply to residents of the United States.
+              </p>
+              <div class="meta">United States Privacy</div>
+              <div class="btns">
+                <a class="btn primary" href="../PrivacyPolicy/us/index.html">
+                  Read the notice
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="section reveal">
+        <h2>Contact</h2>
+        <p>
+          Follow our latest projects, prototypes, and development updates on X.
+        </p>
+        <a
+          class="btn primary contact-button"
+          href="https://x.com/OneTeam_dot"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View One Team. on X
+        </a>
+      </section>
+    </main>
+
+    <div id="shared-footer"></div>
+
+    <script src="script.js"></script>
+    <script src="shared-footer.js" data-footer-src="../../footer_O.html"></script>
+  </body>
+</html>
