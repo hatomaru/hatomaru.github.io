@@ -18,7 +18,7 @@ body {
 
 #scene { position: fixed; inset:0; width:100%; height:100%; display:block; filter: blur(14px) saturate(130%) contrast(112%); z-index:0; pointer-events: none; }
 
-.us-site-notice {
+.global-site-notice {
   position: relative;
   z-index: 60;
   width: 100%;
@@ -33,12 +33,12 @@ body {
   backdrop-filter: blur(12px);
   font-size: 13px;
 }
-.us-site-notice[hidden] { display: none; }
-.us-site-notice > div { display: flex; align-items: center; gap: 10px; }
-.us-site-notice p { margin: 0; }
-.us-site-notice__actions { flex: 0 0 auto; }
-.us-site-notice__actions a,
-.us-site-notice__actions button {
+.global-site-notice[hidden] { display: none; }
+.global-site-notice > div { display: flex; align-items: center; gap: 10px; }
+.global-site-notice p { margin: 0; }
+.global-site-notice__actions { flex: 0 0 auto; }
+.global-site-notice__actions a,
+.global-site-notice__actions button {
   appearance: none;
   padding: 7px 12px;
   border: 1px solid rgba(29, 35, 48, .14);
@@ -50,11 +50,11 @@ body {
   text-decoration: none;
   cursor: pointer;
 }
-.us-site-notice__actions a { border-color: #43A2D8; background: #43A2D8; color: #fff; }
+.global-site-notice__actions a { border-color: #43A2D8; background: #43A2D8; color: #fff; }
 
 @media (max-width: 640px) {
-  .us-site-notice { align-items: flex-start; flex-direction: column; gap: 8px; padding-block: 12px; }
-  .us-site-notice__actions { width: 100%; justify-content: flex-end; }
+  .global-site-notice { align-items: flex-start; flex-direction: column; gap: 8px; padding-block: 12px; }
+  .global-site-notice__actions { width: 100%; justify-content: flex-end; }
 }
 
 @keyframes fadeInUp { from { opacity:0; transform: translateY(30px);} to { opacity:1; transform: translateY(0);} }

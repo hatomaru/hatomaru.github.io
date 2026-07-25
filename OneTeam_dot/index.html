@@ -90,40 +90,56 @@
   </head>
   <body>
     <canvas id="scene" aria-hidden="true"></canvas>
-    <aside class="us-site-notice" id="us-site-notice" hidden aria-label="United States website">
+    <aside class="global-site-notice" id="global-site-notice" hidden aria-label="Global website suggestion">
       <div>
         <p>
-          Visiting from the United States?
-          <strong>View the One Team. Global official site.</strong>
+          Looking for the English site?
+          <strong>Visit One Team. Global.</strong>
         </p>
       </div>
-      <div class="us-site-notice__actions">
-        <a href="global-us/index.html">Continue</a>
-        <button type="button" aria-label="Dismiss United States site notice">Not now</button>
+      <div class="global-site-notice__actions">
+        <a href="Global/index.html">Go to Global site</a>
+        <button type="button" aria-label="Stay on the Japanese site">Stay here</button>
       </div>
     </aside>
     <script>
       (() => {
-        const notice = document.getElementById("us-site-notice");
-        const dismissed = sessionStorage.getItem("oneteam-us-site-notice") === "dismissed";
+        const notice = document.getElementById("global-site-notice");
+        const dismissalKey = "oneteam-global-site-notice-dismissed-at";
+        const dismissalDuration = 30 * 24 * 60 * 60 * 1000;
         const locales = navigator.languages || [navigator.language || ""];
-        const primaryLocale = locales[0] || "";
-        const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
-        const usTimeZones = /^(America\/(New_York|Detroit|Kentucky|Indiana|Chicago|Menominee|North_Dakota|Denver|Boise|Phoenix|Los_Angeles|Anchorage|Juneau|Sitka|Metlakatla|Yakutat|Nome|Adak)|Pacific\/Honolulu)$/;
-        const isLikelyInUS = locales.some((locale) => /^en-US\b/i.test(locale)) || usTimeZones.test(timeZone);
+        const primaryLocale = navigator.language || locales[0] || "";
         const hasJapanesePreference = /^ja(?:-|$)/i.test(primaryLocale);
-        const noticePreview = new URLSearchParams(location.search).get("us-site-notice");
+        const shouldOfferGlobal = Boolean(primaryLocale) && !hasJapanesePreference;
+        const query = new URLSearchParams(location.search);
+        const noticePreview =
+          query.get("global-site-notice") ?? query.get("us-site-notice");
+        let dismissedRecently = false;
+
+        try {
+          const dismissedAt = Number(localStorage.getItem(dismissalKey));
+          dismissedRecently =
+            Number.isFinite(dismissedAt) &&
+            dismissedAt > 0 &&
+            Date.now() - dismissedAt < dismissalDuration;
+        } catch {
+          // Storage may be unavailable in private browsing contexts.
+        }
+
         const shouldShowNotice =
           noticePreview === "show" ||
           (noticePreview !== "hide" &&
-            isLikelyInUS &&
-            !hasJapanesePreference &&
-            !dismissed);
+            shouldOfferGlobal &&
+            !dismissedRecently);
 
         notice.hidden = !shouldShowNotice;
         notice.querySelector("button").addEventListener("click", () => {
           notice.hidden = true;
-          sessionStorage.setItem("oneteam-us-site-notice", "dismissed");
+          try {
+            localStorage.setItem(dismissalKey, String(Date.now()));
+          } catch {
+            // The notice still closes for the current page if storage fails.
+          }
         });
       })();
     </script>
