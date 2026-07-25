@@ -90,6 +90,59 @@
   </head>
   <body>
     <canvas id="scene" aria-hidden="true"></canvas>
+    <aside class="global-site-notice" id="global-site-notice" hidden aria-label="Global website suggestion">
+      <div>
+        <p>
+          Looking for the English site?
+          <strong>Visit One Team. Global.</strong>
+        </p>
+      </div>
+      <div class="global-site-notice__actions">
+        <a href="Global/index.html">Go to Global site</a>
+        <button type="button" aria-label="Stay on the Japanese site">Stay here</button>
+      </div>
+    </aside>
+    <script>
+      (() => {
+        const notice = document.getElementById("global-site-notice");
+        const dismissalKey = "oneteam-global-site-notice-dismissed-at";
+        const dismissalDuration = 30 * 24 * 60 * 60 * 1000;
+        const locales = navigator.languages || [navigator.language || ""];
+        const primaryLocale = navigator.language || locales[0] || "";
+        const hasJapanesePreference = /^ja(?:-|$)/i.test(primaryLocale);
+        const shouldOfferGlobal = Boolean(primaryLocale) && !hasJapanesePreference;
+        const query = new URLSearchParams(location.search);
+        const noticePreview =
+          query.get("global-site-notice") ?? query.get("us-site-notice");
+        let dismissedRecently = false;
+
+        try {
+          const dismissedAt = Number(localStorage.getItem(dismissalKey));
+          dismissedRecently =
+            Number.isFinite(dismissedAt) &&
+            dismissedAt > 0 &&
+            Date.now() - dismissedAt < dismissalDuration;
+        } catch {
+          // Storage may be unavailable in private browsing contexts.
+        }
+
+        const shouldShowNotice =
+          noticePreview === "show" ||
+          (noticePreview !== "hide" &&
+            shouldOfferGlobal &&
+            !dismissedRecently);
+
+        notice.hidden = !shouldShowNotice;
+        notice.querySelector("button").addEventListener("click", () => {
+          notice.hidden = true;
+          try {
+            localStorage.setItem(dismissalKey, String(Date.now()));
+          } catch {
+            // The notice still closes for the current page if storage fails.
+          }
+        });
+      })();
+    </script>
 
     <!-- ナビゲーションバー -->
     <script>
@@ -677,6 +730,11 @@
               label: "詳細を読む",
               href: "PrivacyPolicy/jp/index.html",
               type: "primary",
+            },
+            {
+              label: "English / Regions",
+              href: "PrivacyPolicy/en/index.html",
+              type: "secondary",
             },
           ],
         },

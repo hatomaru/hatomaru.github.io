@@ -226,6 +226,7 @@
 
   /* 必要ならこのページ専用の追加CSSをここに書く */
   </style>
+  <link rel="stylesheet" href="policy-header.css" />
 </head>
 
 <body>
@@ -248,19 +249,16 @@
     <!-- <img src="../src/guideline/IP_Policy_Banner.png" alt="知的財産・著作物ポリシー" class="hero-image"> -->
     <div class="hero-overlay"></div>
     <div class="hero-content animate-in animate-fade-up animate-delay-1">
-      <h1 class="hero-title">Intellectual Property Policy</h1>
-      <p class="hero-subtitle">知的財産・著作物ポリシー</p>
+      <p class="hero-kicker">ONE TEAM. POLICY</p>
+      <h1 class="hero-title">IP Policy</h1>
+      <p class="hero-subtitle">
+        知的財産・著作物の利用に関するポリシー
+      </p>
     </div>
   </section>
 
-  <section class="section">
-    <div class="carousel-title-group is-center animate-in animate-fade-up" style="margin-bottom: 3rem;">
-      <h2 class="carousel-title" style="font-size: clamp(32px, 4.5vw, 48px); letter-spacing: 0.02em;">IP Policy</h2>
-      <p class="carousel-subtitle" style="font-size: clamp(14px, 1.8vw, 18px);">知的財産・著作物の利用に関するポリシー</p>
-    </div>
-
     <div class="guideline-grid">
-      <article class="guideline-card card-shield animate-in animate-fade-left animate-delay-1">
+      <article class="guideline-card card-shield animate-in animate-fade-up animate-delay-1">
         <div class="guideline-icon">
           <span class="material-symbols-outlined">shield</span>
         </div>
@@ -272,7 +270,7 @@
         </div>
       </article>
 
-      <article class="guideline-card card-brush animate-in animate-fade-right animate-delay-2">
+      <article class="guideline-card card-brush animate-in animate-fade-up animate-delay-2">
         <div class="guideline-icon">
           <span class="material-symbols-outlined">brush</span>
         </div>
@@ -285,7 +283,7 @@
         </div>
       </article>
 
-      <article class="guideline-card card-block animate-in animate-fade-left animate-delay-3">
+      <article class="guideline-card card-block animate-in animate-fade-up animate-delay-3">
         <div class="guideline-icon">
           <span class="material-symbols-outlined">block</span>
         </div>
@@ -298,7 +296,7 @@
         </div>
       </article>
 
-      <article class="guideline-card card-stream animate-in animate-fade-right animate-delay-4">
+      <article class="guideline-card card-stream animate-in animate-fade-up animate-delay-4">
         <div class="guideline-icon">
           <span class="material-symbols-outlined">videocam</span>
         </div>
@@ -311,7 +309,7 @@
         </div>
       </article>
 
-      <article class="guideline-card card-contact animate-in animate-fade-left animate-delay-5">
+      <article class="guideline-card card-contact animate-in animate-fade-up animate-delay-5">
         <div class="guideline-icon">
           <span class="material-symbols-outlined">mail</span>
         </div>
@@ -323,7 +321,7 @@
         </div>
       </article>
 
-      <article class="guideline-card card-chat animate-in animate-fade-right animate-delay-6">
+      <article class="guideline-card card-chat animate-in animate-fade-up animate-delay-6">
         <div class="guideline-icon">
           <span class="material-symbols-outlined">chat</span>
         </div>
@@ -438,7 +436,7 @@
           element.style.animationName = 'fadeInUp'; // デフォルト
         }
         
-        element.style.animationDuration = '0.8s';
+        element.style.animationDuration = element.classList.contains('guideline-card') ? '0.55s' : '0.8s';
         element.style.animationFillMode = 'forwards';
         element.style.animationTimingFunction = 'ease-out';
         
