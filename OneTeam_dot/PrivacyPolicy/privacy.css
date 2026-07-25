@@ -26,6 +26,27 @@ a {
   color: var(--brand-gold);
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
+  transition:
+    color .2s ease,
+    background-color .2s ease,
+    box-shadow .2s ease,
+    opacity .2s ease,
+    text-decoration-color .2s ease;
+}
+
+a:focus-visible {
+  outline: 3px solid rgba(220, 186, 41, .45);
+  outline-offset: 3px;
+}
+
+main a:hover,
+main a:focus-visible {
+  border-radius: 3px;
+  background: rgba(220, 186, 41, .13);
+  color: #7a6200;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 2px;
+  box-shadow: 0 0 0 3px rgba(220, 186, 41, .13);
 }
 
 /* Header: mirrors the existing Japanese privacy-policy page. */
@@ -51,6 +72,13 @@ a {
   gap: 20px;
 }
 
+.header-branding {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+}
+
 .brand {
   display: block;
   width: 200px;
@@ -63,6 +91,20 @@ a {
   text-indent: -9999px;
 }
 
+.brand:hover,
+.brand:focus-visible {
+  opacity: .72;
+}
+
+.policy-label {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
 .home-link {
   padding: 10px 20px;
   border-radius: 5px;
@@ -70,11 +112,14 @@ a {
   color: #fff;
   text-decoration: none;
   white-space: nowrap;
-  transition: background-color .3s;
 }
 
 .home-link:hover,
-.home-link:focus { background: #333; color: #fff; }
+.home-link:focus-visible {
+  background: #333;
+  color: #fff;
+  box-shadow: 0 0 0 3px rgba(220, 186, 41, .35);
+}
 
 /* Hero and policy sections share the Japanese page's two-column rhythm. */
 .hero {
@@ -117,67 +162,67 @@ main > .notice::before {
 .icon-overview::before,
 .icon-overview > .header-inner::before {
   background-color: #ffd700;
-  background-image: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/journal-text.svg");
+  background-image: url("assets/icons/journal-text.svg");
 }
 .icon-ad-free::before {
   background-color: #2fa334;
-  background-image: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/slash-circle.svg");
+  background-image: url("assets/icons/slash-circle.svg");
 }
 .icon-operator::before {
   background-color: #2fa334;
-  background-image: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/person-badge.svg");
+  background-image: url("assets/icons/person-badge.svg");
 }
 .icon-collection::before {
   background-color: #d67096;
-  background-image: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/database.svg");
+  background-image: url("assets/icons/database.svg");
 }
 .icon-purpose::before {
-  background-color: #d67096;
-  background-image: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/bullseye.svg");
+  background-color: #c9e2d0;
+  background-image: url("assets/icons/clipboard-check.svg");
 }
 .icon-analytics::before {
   background-color: #4486c5;
-  background-image: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/graph-up.svg");
+  background-image: url("assets/icons/graph-up.svg");
 }
 .icon-transfer::before {
   background-color: #4486c5;
-  background-image: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/globe2.svg");
+  background-image: url("assets/icons/globe2.svg");
 }
 .icon-retention::before {
   background-color: #e1e1e1;
-  background-image: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/clock-history.svg");
+  background-image: url("assets/icons/clock-history.svg");
 }
 .icon-security::before {
   background-color: #e1e1e1;
-  background-image: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/shield-lock.svg");
+  background-image: url("assets/icons/shield-lock.svg");
 }
 .icon-rights::before {
   background-color: #ffd700;
-  background-image: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/person-check.svg");
+  background-image: url("assets/icons/person-check.svg");
 }
 .icon-choice::before {
   background-color: #ffd700;
-  background-image: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/toggles.svg");
+  background-image: url("assets/icons/toggles.svg");
 }
 .icon-children::before {
   background-color: #e1e1e1;
-  background-image: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/people.svg");
+  background-image: url("assets/icons/people.svg");
 }
 .icon-incident::before {
   background-color: #e1e1e1;
-  background-image: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/exclamation-triangle.svg");
+  background-image: url("assets/icons/exclamation-triangle.svg");
 }
 .icon-region::before {
   background-color: #4486c5;
-  background-image: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/geo-alt.svg");
+  background-image: url("assets/icons/geo-alt.svg");
 }
 .icon-contact::before {
   background-color: #e1e1e1;
-  background-image: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/envelope.svg");
+  background-image: url("assets/icons/envelope.svg");
 }
 .icon-update::before {
   background-color: #e1e1e1;
-  background-image: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/arrow-repeat.svg");
+  background-image: url("assets/icons/arrow-repeat.svg");
 }
 
 .hero > .header-inner:hover::before,
@@ -227,12 +272,19 @@ main p { color: var(--muted); }
 .region-nav a {
   padding: 2px 10px;
   border-right: 1px solid #ddd;
+  border-radius: 4px;
   color: var(--brand-gold);
+  text-decoration: none;
 }
 
 .region-nav a:first-child { padding-left: 0; }
 .region-nav a:last-child { border-right: 0; }
 .region-nav a[aria-current="page"] { color: var(--ink); font-weight: 700; text-decoration: none; }
+.region-nav a:hover,
+.region-nav a:focus-visible {
+  background: rgba(220, 186, 41, .16);
+  color: var(--ink);
+}
 
 .site-header .region-nav,
 .navbar .region-nav {
@@ -264,6 +316,15 @@ main > .notice {
 }
 
 main > .notice strong { color: var(--ink); }
+main > .notice p {
+  max-width: 78ch;
+  font-size: 1.03rem;
+  line-height: 1.75;
+}
+main > .notice strong {
+  display: block;
+  margin-bottom: 4px;
+}
 
 main h2 { font-size: 1.5rem; }
 main p, main ul { margin-top: 8px; }
@@ -300,6 +361,8 @@ main li + li { margin-top: 6px; }
   }
 
   .brand { width: 150px; height: 40px; }
+  .header-branding { gap: 12px; }
+  .policy-label { font-size: .9rem; }
   .home-link { display: none; }
 
   .site-header .region-nav,
@@ -345,4 +408,11 @@ main li + li { margin-top: 6px; }
   .hero h1 { font-size: 1.75rem; }
   main h2 { font-size: 1.35rem; }
   .data-table { display: block; overflow-x: auto; }
+}
+
+@media (max-width: 480px) {
+  .site-header .header-inner { padding: 0 12px; }
+  .brand { width: 132px; height: 38px; }
+  .header-branding { gap: 10px; }
+  .policy-label { font-size: .82rem; }
 }
