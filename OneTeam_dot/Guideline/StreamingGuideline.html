@@ -242,7 +242,7 @@
 
 
     <div class="guideline-grid">
-      <article class="guideline-card card-celebration animate-in animate-fade-left animate-delay-1">
+      <article class="guideline-card card-celebration animate-in animate-fade-up animate-delay-1">
         <div class="guideline-icon">
           <span class="material-symbols-outlined">celebration</span>
         </div>
@@ -254,7 +254,7 @@
         </div>
       </article>
 
-      <article class="guideline-card card-title animate-in animate-fade-right animate-delay-2">
+      <article class="guideline-card card-title animate-in animate-fade-up animate-delay-2">
         <div class="guideline-icon">
           <span class="material-symbols-outlined">match_case</span>
         </div>
@@ -266,7 +266,7 @@
         </div>
       </article>
 
-      <article class="guideline-card card-block animate-in animate-fade-left animate-delay-3">
+      <article class="guideline-card card-block animate-in animate-fade-up animate-delay-3">
         <div class="guideline-icon">
           <span class="material-symbols-outlined">block</span>
         </div>
@@ -278,7 +278,7 @@
         </div>
       </article>
 
-      <article class="guideline-card card-monetize animate-in animate-fade-right animate-delay-4">
+      <article class="guideline-card card-monetize animate-in animate-fade-up animate-delay-4">
         <div class="guideline-icon">
           <span class="material-symbols-outlined">payments</span>
         </div>
@@ -290,7 +290,7 @@
         </div>
       </article>
 
-      <article class="guideline-card card-chat animate-in animate-fade-left animate-delay-5">
+      <article class="guideline-card card-chat animate-in animate-fade-up animate-delay-5">
         <div class="guideline-icon">
           <span class="material-symbols-outlined">chat</span>
         </div>
@@ -406,7 +406,7 @@
           element.style.animationName = 'fadeInUp'; // デフォルト
         }
         
-        element.style.animationDuration = '0.8s';
+        element.style.animationDuration = element.classList.contains('guideline-card') ? '0.55s' : '0.8s';
         element.style.animationFillMode = 'forwards';
         element.style.animationTimingFunction = 'ease-out';
         
