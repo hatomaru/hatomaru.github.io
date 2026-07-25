@@ -90,6 +90,43 @@
   </head>
   <body>
     <canvas id="scene" aria-hidden="true"></canvas>
+    <aside class="us-site-notice" id="us-site-notice" hidden aria-label="United States website">
+      <div>
+        <p>
+          Visiting from the United States?
+          <strong>View the One Team. Global official site.</strong>
+        </p>
+      </div>
+      <div class="us-site-notice__actions">
+        <a href="global-us/index.html">Continue</a>
+        <button type="button" aria-label="Dismiss United States site notice">Not now</button>
+      </div>
+    </aside>
+    <script>
+      (() => {
+        const notice = document.getElementById("us-site-notice");
+        const dismissed = sessionStorage.getItem("oneteam-us-site-notice") === "dismissed";
+        const locales = navigator.languages || [navigator.language || ""];
+        const primaryLocale = locales[0] || "";
+        const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+        const usTimeZones = /^(America\/(New_York|Detroit|Kentucky|Indiana|Chicago|Menominee|North_Dakota|Denver|Boise|Phoenix|Los_Angeles|Anchorage|Juneau|Sitka|Metlakatla|Yakutat|Nome|Adak)|Pacific\/Honolulu)$/;
+        const isLikelyInUS = locales.some((locale) => /^en-US\b/i.test(locale)) || usTimeZones.test(timeZone);
+        const hasJapanesePreference = /^ja(?:-|$)/i.test(primaryLocale);
+        const noticePreview = new URLSearchParams(location.search).get("us-site-notice");
+        const shouldShowNotice =
+          noticePreview === "show" ||
+          (noticePreview !== "hide" &&
+            isLikelyInUS &&
+            !hasJapanesePreference &&
+            !dismissed);
+
+        notice.hidden = !shouldShowNotice;
+        notice.querySelector("button").addEventListener("click", () => {
+          notice.hidden = true;
+          sessionStorage.setItem("oneteam-us-site-notice", "dismissed");
+        });
+      })();
+    </script>
 
     <!-- ナビゲーションバー -->
     <script>
@@ -677,6 +714,11 @@
               label: "詳細を読む",
               href: "PrivacyPolicy/jp/index.html",
               type: "primary",
+            },
+            {
+              label: "English / Regions",
+              href: "PrivacyPolicy/en/index.html",
+              type: "secondary",
             },
           ],
         },
