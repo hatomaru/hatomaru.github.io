@@ -266,6 +266,17 @@ h1 {
 .btn:hover { border-color: var(--accent); transform: translateY(-2px); }
 .store1, .primary { border-color: #43a2d8; background: #43a2d8; color: #fff; }
 .store2 { border-color: #1d2330; background: #1d2330; color: #fff; }
+.coming-soon {
+  min-width: 132px;
+  border-color: rgba(67, 162, 216, 0.28);
+  background: rgba(67, 162, 216, 0.1);
+  color: #247fae;
+  cursor: default;
+}
+.coming-soon:hover {
+  border-color: rgba(67, 162, 216, 0.28);
+  transform: none;
+}
 .availability { color: var(--muted); font-size: 0.72rem; }
 .contact-button { margin-top: 0.6rem; }
 
@@ -276,62 +287,18 @@ h1 {
 }
 .policy-card { max-width: none; }
 .policy-thumb {
-  position: relative;
   height: 190px;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  place-items: center;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.03);
 }
-.policy-thumb::before,
-.policy-thumb::after {
-  content: "";
-  position: absolute;
-  border-radius: 999px;
-  filter: blur(2px);
+.policy-thumb img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-.policy-thumb::before {
-  width: 150px;
-  height: 150px;
-  top: -48px;
-  right: -26px;
-  background: rgba(255, 255, 255, 0.38);
-}
-.policy-thumb::after {
-  width: 105px;
-  height: 105px;
-  bottom: -34px;
-  left: -18px;
-  background: rgba(255, 255, 255, 0.28);
-}
-.policy-thumb .material-symbols-outlined {
-  position: relative;
-  z-index: 1;
-  color: #fff;
-  font-size: clamp(3rem, 5vw, 4.4rem);
-  font-variation-settings: "FILL" 0, "wght" 500;
-  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.13);
-  transition: transform 0.35s ease;
-}
-.policy-thumb strong {
-  position: relative;
-  z-index: 1;
-  color: #fff;
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.13);
-}
-.policy-card:hover .policy-thumb .material-symbols-outlined {
-  transform: scale(1.08) rotate(-3deg);
-}
-.policy-thumb-ip { background: linear-gradient(135deg, #8b5cf6, #5ba6ff); }
-.policy-thumb-streaming { background: linear-gradient(135deg, #d19830, #f2c14e); }
-.policy-thumb-privacy { background: linear-gradient(135deg, #3b82f6, #43c6d8); }
+.policy-card:hover .policy-thumb img { transform: scale(1.025); }
 .policy-tag-ip { background: #8b5cf6; }
 .policy-tag-streaming { background: #d19830; }
 .policy-tag-privacy { background: #3b82f6; }
