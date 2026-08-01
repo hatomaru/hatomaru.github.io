@@ -269,7 +269,8 @@ main p { color: var(--muted); }
   scrollbar-width: thin;
 }
 
-.region-nav a {
+.region-nav a,
+.region-nav span {
   padding: 2px 10px;
   border-right: 1px solid #ddd;
   border-radius: 4px;
@@ -277,9 +278,9 @@ main p { color: var(--muted); }
   text-decoration: none;
 }
 
-.region-nav a:first-child { padding-left: 0; }
-.region-nav a:last-child { border-right: 0; }
-.region-nav a[aria-current="page"] { color: var(--ink); font-weight: 700; text-decoration: none; }
+.region-nav > :first-child { padding-left: 0; }
+.region-nav > :last-child { border-right: 0; }
+.region-nav [aria-current="page"] { color: var(--ink); font-weight: 700; text-decoration: none; }
 .region-nav a:hover,
 .region-nav a:focus-visible {
   background: rgba(220, 186, 41, .16);

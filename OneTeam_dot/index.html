@@ -7,6 +7,7 @@
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="link-compat.js" defer></script>
     <script>
       // グローバルに呼べる初期化関数を用意する
       function initHamburgerMenu() {
@@ -98,7 +99,7 @@
         </p>
       </div>
       <div class="global-site-notice__actions">
-        <a href="Global/index.html">Go to Global site</a>
+        <a href="Global/" data-file-index>Go to Global site</a>
         <button type="button" aria-label="Stay on the Japanese site">Stay here</button>
       </div>
     </aside>
@@ -483,6 +484,7 @@
                   const btn = document.createElement("a");
                   btn.className = "btn " + (b.type || "");
                   btn.href = b.href || "#";
+                  if (b.fileIndex) btn.dataset.fileIndex = "";
                   btn.textContent = b.label ?? "リンク";
                   // 新しいタブで開く
                   if (b.newTab) {
@@ -728,12 +730,14 @@
           buttons: [
             {
               label: "詳細を読む",
-              href: "PrivacyPolicy/jp/index.html",
+              href: "PrivacyPolicy/jp/",
+              fileIndex: true,
               type: "primary",
             },
             {
               label: "English / Regions",
-              href: "PrivacyPolicy/en/index.html",
+              href: "PrivacyPolicy/en/",
+              fileIndex: true,
               type: "secondary",
             },
           ],
