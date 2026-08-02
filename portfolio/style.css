@@ -1753,3 +1753,39 @@ html {
   gap: 12px;
   justify-content: flex-start;
 }
+
+/* --- Show More Toggle without JS --- */
+.more-projects-content {
+  display: none;
+  flex-direction: column;
+  gap: 32px;
+}
+.show-more-toggle:checked ~ .more-projects-content {
+  display: flex;
+}
+.show-more-toggle:checked ~ .show-more-btn-container .text-show-more {
+  display: none;
+}
+.show-more-toggle:not(:checked) ~ .show-more-btn-container .text-show-less {
+  display: none;
+}
+.show-more-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 32px;
+  background: white;
+  border: 1px solid #cbd5e1;
+  border-radius: 30px;
+  color: #475569;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  font-size: 0.95em;
+}
+.show-more-btn:hover {
+  background: #f8fafc;
+  color: #0f172a;
+  border-color: #94a3b8;
+}
