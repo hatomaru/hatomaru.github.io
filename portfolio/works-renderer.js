@@ -23,44 +23,24 @@ function getRemoteThumbnailSource(payload) {
     );
 }
 
-function applyRemoteThumbnail(img, src, item) {
-    if (item) {
-        const reveal = () => {
-            item.style.visibility = "visible";
-        };
-        img.addEventListener("load", reveal, { once: true });
-        img.addEventListener("error", reveal, { once: true });
-    }
+function applyRemoteThumbnail(img, src) {
     img.src = src;
     img.loading = "lazy";
     img.decoding = "async";
 }
 
-function revealPresentationItemWhenReady(item, img) {
-    if (!item || !img) return;
-    const reveal = () => {
-        item.style.visibility = "visible";
-    };
-    img.addEventListener("load", reveal, { once: true });
-    img.addEventListener("error", reveal, { once: true });
-    if (img.complete) {
-        reveal();
-    }
-}
-
 function ensureRemoteThumbnail(img, href) {
-    if (!href) return;
+    if (!href) return Promise.resolve();
     const cached = remoteThumbnailCache.get(href);
     if (typeof cached === "string") {
-            if (cached) applyRemoteThumbnail(img, cached, img.closest(".presentation-item"));
-        return;
+            if (cached) applyRemoteThumbnail(img, cached);
+        return Promise.resolve();
     }
     if (cached) {
-        cached.then((thumbnailUrl) => {
+        return cached.then((thumbnailUrl) => {
             if (!thumbnailUrl || !img.isConnected) return;
-            applyRemoteThumbnail(img, thumbnailUrl, img.closest(".presentation-item"));
+            applyRemoteThumbnail(img, thumbnailUrl);
         });
-        return;
     }
 
     const request = fetch(
@@ -75,26 +55,74 @@ function ensureRemoteThumbnail(img, href) {
         });
 
     remoteThumbnailCache.set(href, request);
-    request.then((thumbnailUrl) => {
+    return request.then((thumbnailUrl) => {
         if (!img.isConnected) return;
         applyRemoteThumbnail(
             img,
-            thumbnailUrl || "src/default_thumbnail.svg",
-            img.closest(".presentation-item"),
+            thumbnailUrl || "src/default_thumbnail.svg"
         );
     });
 }
 
 function hydratePresentationThumbnails(container) {
-    const thumbnails = container.querySelectorAll("img.presentation-thumbnail");
-    thumbnails.forEach((img) => {
+    container.style.position = "relative";
+    container.style.minHeight = "200px";
+
+    const loaderId = "presentation-loader";
+    let loader = document.getElementById(loaderId);
+    if (!loader) {
+        loader = document.createElement("div");
+        loader.id = loaderId;
+        loader.style.position = "absolute";
+        loader.style.top = "0";
+        loader.style.left = "0";
+        loader.style.width = "100%";
+        loader.style.height = "100%";
+        loader.style.display = "flex";
+        loader.style.justifyContent = "center";
+        loader.style.alignItems = "center";
+        loader.style.backgroundColor = "var(--bg-color, #ffffff)";
+        loader.style.zIndex = "10";
+        loader.innerHTML = '<div style="width:50px;height:50px;border:5px solid #e0e0e0;border-top:5px solid #3b82f6;border-radius:50%;animation:presentation-spin 1s linear infinite;"></div><style>@keyframes presentation-spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>';
+        container.insertBefore(loader, container.firstChild);
+    }
+
+    const thumbnails = Array.from(container.querySelectorAll("img.presentation-thumbnail"));
+    const items = thumbnails.map(img => img.closest(".presentation-item"));
+    
+    const promises = thumbnails.map((img) => {
         const href = img.dataset.previewUrl;
-        const item = img.closest(".presentation-item");
-        if (item && !href) {
-            revealPresentationItemWhenReady(item, img);
+        
+        return new Promise(resolve => {
+            const onImgLoadError = () => resolve();
+            
+            if (href) {
+                ensureRemoteThumbnail(img, href).then(() => {
+                    if (img.complete) {
+                        resolve();
+                    } else {
+                        img.addEventListener("load", onImgLoadError, { once: true });
+                        img.addEventListener("error", onImgLoadError, { once: true });
+                    }
+                });
+            } else {
+                if (img.complete) {
+                    resolve();
+                } else {
+                    img.addEventListener("load", onImgLoadError, { once: true });
+                    img.addEventListener("error", onImgLoadError, { once: true });
+                }
+            }
+        });
+    });
+
+    Promise.all(promises).then(() => {
+        if (loader && loader.parentNode) {
+            loader.parentNode.removeChild(loader);
         }
-        if (!href) return;
-        ensureRemoteThumbnail(img, href);
+        items.forEach(item => {
+            if (item) item.style.visibility = "visible";
+        });
     });
 }
 

@@ -399,19 +399,7 @@
         );
       }
 
-      function revealCardWhenReady(card, img) {
-        if (!card) return;
-        const reveal = () => {
-          card.style.visibility = "visible";
-        };
-        img.addEventListener("load", reveal, { once: true });
-        img.addEventListener("error", reveal, { once: true });
-        if (img.complete) {
-          reveal();
-        }
-      }
-
-      function applyThumbImage(th, src, altText, card) {
+      function applyThumbImage(th, src, altText) {
         let img = th.querySelector("img[data-dynamic-thumb='1']");
         if (!img) {
           img = document.createElement("img");
@@ -427,28 +415,21 @@
           th.appendChild(img);
         }
         img.alt = altText || "";
-        revealCardWhenReady(card, img);
         img.src = src;
       }
 
-      function ensureRemoteThumbnail(th, href, altText, card) {
-        if (!href) return;
+      function ensureRemoteThumbnail(th, href, altText) {
+        if (!href) return Promise.resolve();
         const cached = remoteThumbnailCache.get(href);
         if (typeof cached === "string") {
-          if (cached) applyThumbImage(th, cached, altText, card);
-          else if (card) card.style.visibility = "visible";
-          return;
+          if (cached) applyThumbImage(th, cached, altText);
+          return Promise.resolve();
         }
         if (cached) {
-          cached.then((thumbnailUrl) => {
+          return cached.then((thumbnailUrl) => {
             if (!thumbnailUrl || !th.isConnected) return;
-            applyThumbImage(th, thumbnailUrl, altText, card);
+            applyThumbImage(th, thumbnailUrl, altText);
           });
-          return;
-        }
-
-        if (card) {
-          card.style.visibility = "hidden";
         }
 
         const request = fetch(
@@ -463,12 +444,10 @@
           });
 
         remoteThumbnailCache.set(href, request);
-        request.then((thumbnailUrl) => {
+        return request.then((thumbnailUrl) => {
           if (!th.isConnected) return;
           if (thumbnailUrl) {
-            applyThumbImage(th, thumbnailUrl, altText, card);
-          } else if (card) {
-            card.style.visibility = "visible";
+            applyThumbImage(th, thumbnailUrl, altText);
           }
         });
       }
@@ -486,19 +465,54 @@
         const totalPages = Math.max(1, Math.ceil(items.length / pageSize));
         function render() {
           gridEl.innerHTML = "";
+
+          gridEl.style.position = "relative";
+          gridEl.style.minHeight = "200px";
+
+          const loaderId = gridEl.id + "-loader";
+          let loader = document.getElementById(loaderId);
+          if (!loader) {
+              loader = document.createElement("div");
+              loader.id = loaderId;
+              loader.style.position = "absolute";
+              loader.style.top = "0";
+              loader.style.left = "0";
+              loader.style.width = "100%";
+              loader.style.height = "100%";
+              loader.style.display = "flex";
+              loader.style.justifyContent = "center";
+              loader.style.alignItems = "center";
+              loader.style.backgroundColor = "var(--bg-color, #ffffff)";
+              loader.style.zIndex = "10";
+              loader.innerHTML = '<div style="width:50px;height:50px;border:5px solid #e0e0e0;border-top:5px solid #3b82f6;border-radius:50%;animation:presentation-spin 1s linear infinite;"></div>';
+              if (!document.getElementById("presentation-spin-style")) {
+                  const style = document.createElement("style");
+                  style.id = "presentation-spin-style";
+                  style.innerHTML = '@keyframes presentation-spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }';
+                  document.head.appendChild(style);
+              }
+              gridEl.appendChild(loader);
+          }
+
           const slice = items.slice(
             page * pageSize,
             page * pageSize + pageSize,
           );
+          
+          const promises = [];
+          const cardsToReveal = [];
+
           for (const it of slice) {
             const card = document.createElement("article");
             card.className = "card";
+            card.style.visibility = "hidden";
+            cardsToReveal.push(card);
+            
             const th = document.createElement("div");
             th.className = "thumb";
 
             // 画像の処理
             if (it.image) {
-              card.style.visibility = "hidden";
               const img = document.createElement("img");
               img.src = it.image;
               // 遅延読み込みは画像のみに限定する（トップバー等は常に即時表示）
@@ -520,16 +534,17 @@
               img.onerror = function () {
                 this.style.display = "none";
                 th.style.background = "linear-gradient(135deg,#eef3ff,#f7f0ff)";
-                card.style.visibility = "visible";
               };
 
-              img.addEventListener(
-                "load",
-                () => {
-                  card.style.visibility = "visible";
-                },
-                { once: true },
-              );
+              promises.push(new Promise(res => {
+                  const onload = () => res();
+                  if (img.complete) {
+                      res();
+                  } else {
+                      img.addEventListener("load", onload, { once: true });
+                      img.addEventListener("error", onload, { once: true });
+                  }
+              }));
 
               // 画像読み込み中の表示
               img.style.backgroundColor = "#f3f4f6";
@@ -538,17 +553,29 @@
             } else if (it.thumb) {
               // 従来の背景画像方式もサポート
               th.style.background = it.thumb;
+              promises.push(Promise.resolve());
             } else if (it.href) {
               // 外部ページは OG 情報からサムネイルを動的取得する
               th.style.background = "linear-gradient(135deg,#eef3ff,#f7f0ff)";
-              ensureRemoteThumbnail(th, it.href, it.title || "", card);
+              promises.push(
+                  ensureRemoteThumbnail(th, it.href, it.title || "").then(() => {
+                      const img = th.querySelector("img[data-dynamic-thumb='1']");
+                      if (img) {
+                          return new Promise(res => {
+                              const onload = () => res();
+                              if (img.complete) res();
+                              else {
+                                  img.addEventListener("load", onload, { once: true });
+                                  img.addEventListener("error", onload, { once: true });
+                              }
+                          });
+                      }
+                  })
+              );
             } else {
               // デフォルトのグラデーション
               th.style.background = "linear-gradient(135deg,#eef3ff,#f7f0ff)";
-            }
-
-            if (!it.image && !it.href) {
-              card.style.visibility = "visible";
+              promises.push(Promise.resolve());
             }
 
             const body = document.createElement("div");
@@ -649,6 +676,12 @@
               gridEl.appendChild(card);
             }
           }
+          
+          Promise.all(promises).then(() => {
+              if (loader && loader.parentNode) loader.parentNode.removeChild(loader);
+              cardsToReveal.forEach(c => c.style.visibility = "visible");
+          });
+
           indicatorEl.textContent = `${page + 1} / ${totalPages}`;
           prevEl.disabled = page === 0;
           nextEl.disabled = page >= totalPages - 1;
