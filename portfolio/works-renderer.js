@@ -7,6 +7,97 @@ let presentationsData = [];
 const presentationItemsPerPage = 3;
 let currentPresentationPage = 1;
 
+const remoteThumbnailCache = new Map();
+const transparentPixel =
+    "data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=";
+
+function getRemoteThumbnailSource(payload) {
+    const data = payload && payload.data ? payload.data : null;
+    return (
+        data?.image?.url ||
+        data?.image?.secureUrl ||
+        data?.logo?.url ||
+        data?.screenshot?.url ||
+        data?.thumbnail?.url ||
+        ""
+    );
+}
+
+function applyRemoteThumbnail(img, src, item) {
+    if (item) {
+        const reveal = () => {
+            item.style.visibility = "visible";
+        };
+        img.addEventListener("load", reveal, { once: true });
+        img.addEventListener("error", reveal, { once: true });
+    }
+    img.src = src;
+    img.loading = "lazy";
+    img.decoding = "async";
+}
+
+function revealPresentationItemWhenReady(item, img) {
+    if (!item || !img) return;
+    const reveal = () => {
+        item.style.visibility = "visible";
+    };
+    img.addEventListener("load", reveal, { once: true });
+    img.addEventListener("error", reveal, { once: true });
+    if (img.complete) {
+        reveal();
+    }
+}
+
+function ensureRemoteThumbnail(img, href) {
+    if (!href) return;
+    const cached = remoteThumbnailCache.get(href);
+    if (typeof cached === "string") {
+            if (cached) applyRemoteThumbnail(img, cached, img.closest(".presentation-item"));
+        return;
+    }
+    if (cached) {
+        cached.then((thumbnailUrl) => {
+            if (!thumbnailUrl || !img.isConnected) return;
+            applyRemoteThumbnail(img, thumbnailUrl, img.closest(".presentation-item"));
+        });
+        return;
+    }
+
+    const request = fetch(
+        `https://api.microlink.io/?url=${encodeURIComponent(href)}&screenshot=false&video=false&audio=false`,
+    )
+        .then((response) => (response.ok ? response.json() : null))
+        .then(getRemoteThumbnailSource)
+        .catch(() => "")
+        .then((thumbnailUrl) => {
+            remoteThumbnailCache.set(href, thumbnailUrl || "");
+            return thumbnailUrl || "";
+        });
+
+    remoteThumbnailCache.set(href, request);
+    request.then((thumbnailUrl) => {
+        if (!img.isConnected) return;
+        applyRemoteThumbnail(
+            img,
+            thumbnailUrl || "src/default_thumbnail.svg",
+            img.closest(".presentation-item"),
+        );
+    });
+}
+
+function hydratePresentationThumbnails(container) {
+    const thumbnails = container.querySelectorAll("img.presentation-thumbnail");
+    thumbnails.forEach((img) => {
+        const href = img.dataset.previewUrl;
+        const item = img.closest(".presentation-item");
+        if (item && !href) {
+            revealPresentationItemWhenReady(item, img);
+        }
+        if (!href) return;
+        ensureRemoteThumbnail(img, href);
+    });
+}
+
 function renderFeature(featureData) {
     if (!featureData) return;
     const container = document.getElementById("feature-container");
@@ -251,22 +342,28 @@ function renderPresentations() {
         const linkText = pres.linkText || (pres.youtubeUrl ? "YouTubeで見る" : "見る");
         
         let thumbnail = pres.thumbnail;
+        let previewUrl = "";
         if (!thumbnail || thumbnail === "src/default_thumbnail.svg") {
             const ytMatch = linkUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|live\/))([\w-]{11})/);
             if (ytMatch) {
                 thumbnail = `https://img.youtube.com/vi/${ytMatch[1]}/hqdefault.jpg`;
             } else {
-                thumbnail = "src/default_thumbnail.svg";
+                if (pres.badgeClass === "media" && linkUrl && linkUrl !== "#") {
+                    previewUrl = linkUrl;
+                    thumbnail = transparentPixel;
+                } else {
+                    thumbnail = "src/default_thumbnail.svg";
+                }
             }
         }
 
         const metaHtml = pres.meta ? `<span class="presentation-meta-text" style="font-size: 0.85rem; color: #6b7280; font-weight: 600; margin-left: 8px;">${pres.meta}</span>` : "";
         
         html += `
-        <div class="presentation-item animate-on-scroll fade-in-up delay-1">
+                        <div class="presentation-item animate-on-scroll fade-in-up delay-1" style="visibility:hidden;">
           <a href="${linkUrl}" target="_blank" rel="noopener noreferrer" class="presentation-video-link">
             <div class="presentation-thumbnail-wrapper">
-              <img src="${thumbnail}" alt="Thumbnail" class="presentation-thumbnail" ${!pres.thumbnail ? 'style="object-fit: cover;"' : ''}>
+                                    <img src="${thumbnail}" alt="Thumbnail" class="presentation-thumbnail" ${!pres.thumbnail ? 'style="object-fit: cover;"' : ''} ${previewUrl ? `data-preview-url="${previewUrl}"` : ""}>
             </div>
           </a>
           <div class="presentation-content">
@@ -283,6 +380,7 @@ function renderPresentations() {
     });
     
     container.innerHTML = html;
+    hydratePresentationThumbnails(container);
     renderPresentationPagination();
     
     if(typeof window.initScrollAnimation === 'function') {
@@ -365,6 +463,8 @@ fetch('works.json')
                   title: m.title,
                   desc: m.desc,
                   linkUrl: m.href,
+                  dynamicThumbnail: true,
+                  previewUrl: m.href,
                   thumbnail: m.image || "src/default_thumbnail.svg",
               };
           });

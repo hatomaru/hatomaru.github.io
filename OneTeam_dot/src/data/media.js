@@ -1,5 +1,15 @@
 window.__MEDIA_DATA = [
     {
+    "title": "日本のチカラ #480 一人暮らし はじめます！ ～自閉スペクトラム症の青年と父の絆～",
+    "meta": "テレビ朝日様・YBS様",
+    "desc": "僕と父とのこれまでの歩みやBitSummitでの出展について紹介していただきました。",
+    "image": "",
+    "objectFit": "cover",
+    "objectPosition": "center",
+    "href": "https://www.minkyo.or.jp/program/nippon_no_chikara/480/",
+    "published": "2026-08-15"
+    },
+    {
     "title": "【特集】好きを極めて夢実現",
     "meta": "YBSワイドニュース様",
     "desc": "The 17th Unity Awards Best Student Project部門 RUNNER UPを受賞したBlockWorld Aiや活動について番組内で紹介していただきました。",

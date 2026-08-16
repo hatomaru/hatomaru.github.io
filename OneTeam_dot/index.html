@@ -385,6 +385,94 @@
       // if (typeof initHamburgerMenu === 'function') initHamburgerMenu();
 
       // ===== カルーセル =====
+      const remoteThumbnailCache = new Map();
+
+      function getRemoteThumbnailSource(payload) {
+        const data = payload && payload.data ? payload.data : null;
+        return (
+          data?.image?.url ||
+          data?.image?.secureUrl ||
+          data?.logo?.url ||
+          data?.screenshot?.url ||
+          data?.thumbnail?.url ||
+          ""
+        );
+      }
+
+      function revealCardWhenReady(card, img) {
+        if (!card) return;
+        const reveal = () => {
+          card.style.visibility = "visible";
+        };
+        img.addEventListener("load", reveal, { once: true });
+        img.addEventListener("error", reveal, { once: true });
+        if (img.complete) {
+          reveal();
+        }
+      }
+
+      function applyThumbImage(th, src, altText, card) {
+        let img = th.querySelector("img[data-dynamic-thumb='1']");
+        if (!img) {
+          img = document.createElement("img");
+          img.dataset.dynamicThumb = "1";
+          img.loading = "lazy";
+          img.decoding = "async";
+          img.alt = altText || "";
+          img.style.backgroundColor = "#f3f4f6";
+          img.onerror = function () {
+            this.style.display = "none";
+            th.style.background = "linear-gradient(135deg,#eef3ff,#f7f0ff)";
+          };
+          th.appendChild(img);
+        }
+        img.alt = altText || "";
+        revealCardWhenReady(card, img);
+        img.src = src;
+      }
+
+      function ensureRemoteThumbnail(th, href, altText, card) {
+        if (!href) return;
+        const cached = remoteThumbnailCache.get(href);
+        if (typeof cached === "string") {
+          if (cached) applyThumbImage(th, cached, altText, card);
+          else if (card) card.style.visibility = "visible";
+          return;
+        }
+        if (cached) {
+          cached.then((thumbnailUrl) => {
+            if (!thumbnailUrl || !th.isConnected) return;
+            applyThumbImage(th, thumbnailUrl, altText, card);
+          });
+          return;
+        }
+
+        if (card) {
+          card.style.visibility = "hidden";
+        }
+
+        const request = fetch(
+          `https://api.microlink.io/?url=${encodeURIComponent(href)}&screenshot=false&video=false&audio=false`,
+        )
+          .then((response) => (response.ok ? response.json() : null))
+          .then(getRemoteThumbnailSource)
+          .catch(() => "")
+          .then((thumbnailUrl) => {
+            remoteThumbnailCache.set(href, thumbnailUrl || "");
+            return thumbnailUrl || "";
+          });
+
+        remoteThumbnailCache.set(href, request);
+        request.then((thumbnailUrl) => {
+          if (!th.isConnected) return;
+          if (thumbnailUrl) {
+            applyThumbImage(th, thumbnailUrl, altText, card);
+          } else if (card) {
+            card.style.visibility = "visible";
+          }
+        });
+      }
+
       function setupCarousel({
         items,
         gridEl,
@@ -410,6 +498,7 @@
 
             // 画像の処理
             if (it.image) {
+              card.style.visibility = "hidden";
               const img = document.createElement("img");
               img.src = it.image;
               // 遅延読み込みは画像のみに限定する（トップバー等は常に即時表示）
@@ -431,7 +520,16 @@
               img.onerror = function () {
                 this.style.display = "none";
                 th.style.background = "linear-gradient(135deg,#eef3ff,#f7f0ff)";
+                card.style.visibility = "visible";
               };
+
+              img.addEventListener(
+                "load",
+                () => {
+                  card.style.visibility = "visible";
+                },
+                { once: true },
+              );
 
               // 画像読み込み中の表示
               img.style.backgroundColor = "#f3f4f6";
@@ -440,9 +538,17 @@
             } else if (it.thumb) {
               // 従来の背景画像方式もサポート
               th.style.background = it.thumb;
+            } else if (it.href) {
+              // 外部ページは OG 情報からサムネイルを動的取得する
+              th.style.background = "linear-gradient(135deg,#eef3ff,#f7f0ff)";
+              ensureRemoteThumbnail(th, it.href, it.title || "", card);
             } else {
               // デフォルトのグラデーション
               th.style.background = "linear-gradient(135deg,#eef3ff,#f7f0ff)";
+            }
+
+            if (!it.image && !it.href) {
+              card.style.visibility = "visible";
             }
 
             const body = document.createElement("div");
