@@ -85,6 +85,47 @@ html {
   flex: 1;
 }
 
+.works-more-btn {
+  position: relative;
+  overflow: hidden;
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+  animation: worksMorePulse 2.6s ease-in-out infinite;
+}
+
+.works-more-btn .material-symbols-outlined {
+  position: relative;
+  transition: transform 180ms ease;
+}
+
+.works-more-btn::before {
+  content: '';
+  position: absolute;
+  inset: -40% auto -40% -55%;
+  width: 42%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-22deg);
+  pointer-events: none;
+}
+
+.works-more-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 16px 34px rgba(17, 24, 39, 0.30);
+  filter: brightness(1.06);
+}
+
+.works-more-btn:hover .material-symbols-outlined {
+  transform: translateX(4px);
+}
+
+.works-more-btn:active {
+  transform: translateY(0) scale(0.99);
+}
+
+@keyframes worksMorePulse {
+  0%, 100% { box-shadow: 0 10px 24px rgba(17, 24, 39, 0.22); }
+  50% { box-shadow: 0 14px 30px rgba(17, 24, 39, 0.30); }
+}
+
 /* アプリグリッドの基本設定 - 画面が大きくても最大3列、画面いっぱいに広がる柔軟なデザイン */
 .app-grid {
   display: grid;

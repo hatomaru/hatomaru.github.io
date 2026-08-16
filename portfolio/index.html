@@ -30,6 +30,14 @@
         }
         .hamburger-menu { display: none !important; }
       }
+
+      @media (prefers-reduced-motion: reduce) {
+        .works-more-btn,
+        .works-more-btn::before {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
     </style>
   </noscript>
 </head>
@@ -376,6 +384,16 @@
           <div class="app-image-container"><img src="src/app/AM/サムネイル_1.jpg" alt="作品"></div>
           <div class="app-info"><h3>Amevar</h3><div class="app-appeal">生物の進化と淘汰を見守るシミュレーション</div><p>大阪・関西万博 デジタル学園祭へ出展</p></div>
         </a>
+      </div>
+        <div style="display:flex; justify-content:center; margin-top: 10px;">
+          <a
+            href="works-noscript.html"
+            style="display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:48px; padding: 0 22px; border-radius: 999px; background: linear-gradient(135deg, #111827, #374151); color: #fff; font-weight: 800; text-decoration: none; box-shadow: 0 10px 24px rgba(17, 24, 39, 0.22);"
+          >
+            もっと見る
+            <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+          </a>
+        </div>
       </div>
     </div>
 
