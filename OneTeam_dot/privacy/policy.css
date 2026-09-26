@@ -1,0 +1,10 @@
+@import url("../PrivacyPolicy/privacy.css");
+
+/* Website-specific policy pages reuse the visual language of the app policy. */
+.policy-label { white-space: normal; }
+main code { background: #f3f3f3; border-radius: 3px; padding: 1px 4px; }
+@media (max-width: 480px) {
+  .policy-label { max-width: 145px; line-height: 1.2; }
+  .site-header .header-inner { gap: 8px; }
+}
+
