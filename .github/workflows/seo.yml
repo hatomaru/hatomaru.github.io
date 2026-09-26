@@ -1,0 +1,33 @@
+name: SEO checks
+on:
+  pull_request:
+    paths:
+      - 'OneTeam_dot/**'
+      - 'portfolio/**'
+      - 'scripts/**'
+      - 'sitemap.xml'
+      - 'robots.txt'
+      - '.github/workflows/seo.yml'
+  push:
+    paths:
+      - 'OneTeam_dot/**'
+      - 'portfolio/**'
+      - 'scripts/**'
+      - 'sitemap.xml'
+      - 'robots.txt'
+      - '.github/workflows/seo.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  seo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: python scripts/check_seo.py --links --sitemaps
+      - run: python -m unittest discover -s scripts -p "test_*.py"
+      - run: python scripts/generate_sitemap.py --check
+      - run: node --check portfolio/works-renderer.js

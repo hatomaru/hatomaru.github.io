@@ -62,6 +62,25 @@ def check(sitemaps=False, links=False):
                 require(target is None or target.is_file(), f'broken local {tag}: {attrs[key]}')
                 if tag == 'img':
                     require('alt' in attrs, f'image missing alt: {attrs[key]}')
+    if links:
+        # Every indexable page must be reachable without running JavaScript.
+        by_path = {p.path: p for p in inventory}
+        pending = [ROOT / folder / 'index.html' for folder in TARGET_DIRS]
+        reached = set()
+        while pending:
+            path = pending.pop()
+            if path in reached or path not in by_path:
+                continue
+            reached.add(path)
+            page = by_path[path]
+            for anchor in page.select('a'):
+                if anchor.get('href'):
+                    target = local_target(page, anchor['href'])
+                    if target in by_path:
+                        pending.append(target)
+        for page in inventory:
+            if page.indexable and page.path not in reached:
+                errors.append(f'{page.path.relative_to(ROOT)}: unreachable from static homepage links')
     if sitemaps:
         for folder in ('', *TARGET_DIRS):
             path = ROOT / folder / 'sitemap.xml'
