@@ -19,16 +19,21 @@
   try { choice = localStorage.getItem(storageKey); } catch (_) { /* Storage may be unavailable. */ }
   if (choice !== "granted" && choice !== "denied") choice = null;
 
-  function startAnalytics() {
+  function initAnalytics() {
     if (document.getElementById("oneteam-ga-script")) return;
     window.dataLayer = window.dataLayer || [];
     window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
     window.gtag("js", new Date());
+
+    const initialConsent = choice === "granted" ? "granted" : "denied";
     window.gtag("consent", "default", {
-      analytics_storage: "granted", ad_storage: "denied",
-      ad_user_data: "denied", ad_personalization: "denied"
+      analytics_storage: initialConsent,
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied"
     });
     window.gtag("config", measurementId, { allow_google_signals: false, allow_ad_personalization_signals: false });
+
     const tag = document.createElement("script");
     tag.id = "oneteam-ga-script";
     tag.async = true;
@@ -92,12 +97,13 @@
       const prior = choice;
       choice = value;
       try { localStorage.setItem(storageKey, value); } catch (_) { /* Choice lasts for this page only. */ }
-      if (value === "granted") startAnalytics();
+      if (typeof window.gtag === "function") {
+        window.gtag("consent", "update", {
+          analytics_storage: value === "granted" ? "granted" : "denied"
+        });
+      }
       if (value === "denied" && prior === "granted") {
-        // Reload without the tag and remove first-party Analytics cookies.
         clearAnalyticsCookies();
-        window.location.reload();
-        return;
       }
       updateBanner();
     }
@@ -106,7 +112,7 @@
     settings.addEventListener("click", () => { choice = null; updateBanner(); accept.focus(); });
     updateBanner();
   }
-  if (choice === "granted") startAnalytics();
+  initAnalytics();
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", render, { once: true });
   else render();
 })();
