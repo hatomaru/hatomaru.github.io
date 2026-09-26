@@ -8,6 +8,9 @@ const presentationItemsPerPage = 3;
 let currentPresentationPage = 1;
 
 const remoteThumbnailCache = new Map();
+function imageAlt(title) {
+    return String(title).replace(/<[^>]*>/g, " ").replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+}
 const transparentPixel =
     "data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=";
 
@@ -139,7 +142,7 @@ function renderFeature(featureData) {
     const renderCard = (feature) => `
     <a href="${feature.link}" class="feature-card ticket-layout">
         <div class="feature-image-container">
-            <img src="${feature.image}" alt="Featured Project">
+            <img src="${feature.image}" alt="${imageAlt(feature.title)}" decoding="async">
         </div>
         <div class="ticket-divider"></div>
         <div class="feature-info">
@@ -277,7 +280,7 @@ function renderWorks() {
           <a href="${work.link}" style="color:black; text-decoration: none;">
             ${authorTypeStr}
             <div class="app-image-container">
-              <img src="${imageSrc}" alt="作品のスクリーンショット" style="object-position: ${position};">
+              <img src="${imageSrc}" alt="${imageAlt(work.title)}" loading="lazy" decoding="async" style="object-position: ${position};">
             </div>
             <div class="app-info">
               <h3>${work.title}</h3>
