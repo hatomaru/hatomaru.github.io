@@ -91,7 +91,7 @@ function hydratePresentationThumbnails(container) {
     }
 
     const thumbnails = Array.from(container.querySelectorAll("img.presentation-thumbnail"));
-    const items = thumbnails.map(img => img.closest(".presentation-item"));
+    const items = Array.from(container.querySelectorAll(".presentation-item"));
     
     const promises = thumbnails.map((img) => {
         const href = img.dataset.previewUrl;
@@ -374,7 +374,7 @@ function renderPresentations() {
         
         let thumbnail = pres.thumbnail;
         let previewUrl = "";
-        if (!thumbnail || thumbnail === "src/default_thumbnail.svg") {
+        if (!pres.linkOnly && (!thumbnail || thumbnail === "src/default_thumbnail.svg")) {
             const ytMatch = linkUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|live\/))([\w-]{11})/);
             if (ytMatch) {
                 thumbnail = `https://img.youtube.com/vi/${ytMatch[1]}/hqdefault.jpg`;
@@ -392,19 +392,19 @@ function renderPresentations() {
         
         html += `
                         <div class="presentation-item animate-on-scroll fade-in-up delay-1" style="visibility:hidden;">
-          <a href="${linkUrl}" target="_blank" rel="noopener noreferrer" class="presentation-video-link">
+          ${pres.linkOnly ? "" : `<a href="${linkUrl}" target="_blank" rel="noopener noreferrer" class="presentation-video-link">
             <div class="presentation-thumbnail-wrapper">
                                     <img src="${thumbnail}" alt="Thumbnail" class="presentation-thumbnail" ${!pres.thumbnail ? 'style="object-fit: cover;"' : ''} ${previewUrl ? `data-preview-url="${previewUrl}"` : ""}>
             </div>
-          </a>
+          </a>`}
           <div class="presentation-content">
             <div class="presentation-meta">
-              <span class="presentation-date">${pres.date}</span>
+              ${pres.date ? `<span class="presentation-date">${pres.date}</span>` : ""}
               <span class="presentation-badge ${pres.badgeClass}">${pres.badgeText}</span>
               ${metaHtml}
             </div>
             <h3 class="presentation-title">${pres.title}</h3>
-            <p class="presentation-desc">${pres.desc}</p>
+            ${pres.desc ? `<p class="presentation-desc">${pres.desc}</p>` : ""}
             <a href="${linkUrl}" target="_blank" rel="noopener noreferrer" class="presentation-link-btn">${linkText}</a>
           </div>
         </div>`;
@@ -477,6 +477,15 @@ fetch('works.json')
       let combinedPresentations = [];
       if (data.presentations) {
           combinedPresentations = combinedPresentations.concat(data.presentations);
+      }
+      if (data.activityLinks) {
+          combinedPresentations = combinedPresentations.concat(data.activityLinks.map(item => ({
+              ...item,
+              date: item.date || "",
+              badgeClass: item.badgeClass || "activity",
+              badgeText: item.badgeText || "活動",
+              linkOnly: true,
+          })));
       }
       
       if (window.__MEDIA_DATA) {

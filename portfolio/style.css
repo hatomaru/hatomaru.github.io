@@ -1422,6 +1422,11 @@ html {
   color: #1b5e20;
 }
 
+.presentation-badge.activity {
+  background-color: #ede7f6;
+  color: #512da8;
+}
+
 .presentation-title {
   font-size: 1.25rem;
   font-weight: 700;
