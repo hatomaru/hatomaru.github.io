@@ -6,11 +6,11 @@
   const storageKey = "oneteam_analytics_consent_v1";
   const japanese = (navigator.language || "").toLowerCase().startsWith("ja");
   const copy = japanese ? {
-    message: "サイトの改善のため、同意いただいた場合のみ Google Analytics の Cookie を使用します。",
+    message: "サイト改善のため、Cloudflare で Cookie を使わずにアクセス解析を行います。同意した場合のみ、Google Analytics と解析用 Cookie も使用します。",
     accept: "同意する", reject: "同意しない", settings: "Cookie 設定", policy: "Webサイトのプライバシーポリシー",
     title: "Cookie の設定", close: "閉じる"
   } : {
-    message: "With your permission, we use Google Analytics cookies to understand and improve this site.",
+    message: "We use Cloudflare to measure visits without cookies. Google Analytics and its cookies are used only if you accept.",
     accept: "Accept", reject: "Decline", settings: "Cookie settings", policy: "Website privacy policy",
     title: "Cookie settings", close: "Close"
   };
@@ -19,19 +19,30 @@
   try { choice = localStorage.getItem(storageKey); } catch (_) { /* Storage may be unavailable. */ }
   if (choice !== "granted" && choice !== "denied") choice = null;
 
+  function initCloudflare() {
+    if (document.getElementById("oneteam-cloudflare-script")) return;
+    const tag = document.createElement("script");
+    tag.id = "oneteam-cloudflare-script";
+    tag.type = "module";
+    tag.src = "https://static.cloudflareinsights.com/beacon.min.js";
+    tag.setAttribute("data-cf-beacon", JSON.stringify({ token: "ec2e793ba05b407c850abe90d8810461" }));
+    document.head.appendChild(tag);
+  }
+
   function initAnalytics() {
+    if (choice !== "granted") return;
+    window["ga-disable-" + measurementId] = false;
     if (document.getElementById("oneteam-ga-script")) return;
     window.dataLayer = window.dataLayer || [];
     window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
-    window.gtag("js", new Date());
-
-    const initialConsent = choice === "granted" ? "granted" : "denied";
+    // Basic Consent Mode: load Google only after analytics consent is granted.
     window.gtag("consent", "default", {
-      analytics_storage: initialConsent,
+      analytics_storage: "granted",
       ad_storage: "denied",
       ad_user_data: "denied",
       ad_personalization: "denied"
     });
+    window.gtag("js", new Date());
     window.gtag("config", measurementId, { allow_google_signals: false, allow_ad_personalization_signals: false });
 
     const tag = document.createElement("script");
@@ -45,7 +56,10 @@
     const names = document.cookie.split(";").map((part) => part.trim().split("=")[0]);
     const paths = ["/"];
     const segments = location.pathname.split("/").filter(Boolean);
-    for (let i = 1; i <= segments.length; i++) paths.push("/" + segments.slice(0, i).join("/") + "/");
+    for (let i = 1; i <= segments.length; i++) {
+      const path = "/" + segments.slice(0, i).join("/");
+      paths.push(path, path + "/");
+    }
     const hosts = location.hostname.split(".");
     const domains = [""];
     for (let i = 0; i < hosts.length - 1; i++) domains.push("; domain=" + hosts.slice(i).join("."));
@@ -93,26 +107,36 @@
     settings.setAttribute("title", copy.settings);
     root.append(banner, settings);
     document.body.appendChild(root);
-    function updateBanner() { banner.hidden = choice !== null; settings.hidden = choice === null; }
+    let settingsOpen = false;
+    function updateBanner() {
+      const showBanner = choice === null || settingsOpen;
+      banner.hidden = !showBanner;
+      settings.hidden = showBanner;
+    }
     function select(value) {
-      const prior = choice;
       choice = value;
+      settingsOpen = false;
       try { localStorage.setItem(storageKey, value); } catch (_) { /* Choice lasts for this page only. */ }
-      if (typeof window.gtag === "function") {
-        window.gtag("consent", "update", {
-          analytics_storage: value === "granted" ? "granted" : "denied"
-        });
-      }
-      if (value === "denied" && prior === "granted") {
+      if (value === "granted") initAnalytics();
+      if (value === "denied") {
+        // A loaded Google tag cannot be unloaded; disable it before reloading
+        // into a page that never loads Google. Do not send a denied-state ping.
+        window["ga-disable-" + measurementId] = true;
         clearAnalyticsCookies();
+        if (document.getElementById("oneteam-ga-script")) {
+          location.reload();
+          return;
+        }
       }
       updateBanner();
     }
     decline.addEventListener("click", () => select("denied"));
     accept.addEventListener("click", () => select("granted"));
-    settings.addEventListener("click", () => { choice = null; updateBanner(); accept.focus(); });
+    settings.addEventListener("click", () => { settingsOpen = true; updateBanner(); accept.focus(); });
     updateBanner();
   }
+  if (choice !== "granted") clearAnalyticsCookies();
+  initCloudflare();
   initAnalytics();
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", render, { once: true });
   else render();
